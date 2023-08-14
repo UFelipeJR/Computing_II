@@ -1,4 +1,4 @@
-#Usar caracteres especiales en consola C++
+// Usar caracteres especiales en consola C++
 
 #include <iostream>
 #include <locale.h>
