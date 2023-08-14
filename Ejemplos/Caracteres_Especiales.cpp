@@ -1,4 +1,5 @@
 // Usar caracteres especiales en consola C++
+// Se requiere usar locale.h
 
 #include <iostream>
 #include <locale.h>
