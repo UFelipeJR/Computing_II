@@ -8,9 +8,11 @@ using namespace std;
 int main(){
     setlocale(LC_ALL, ""); 
 
-    wstring numero;
+    wstring numero; 
     wcout << L"Ingrese un número: "; 
     wcin >> numero;
 
     return 0;
 }
+
+
