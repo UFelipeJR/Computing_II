@@ -33,7 +33,7 @@ void ejercicio3(){
 
 void ejercicio5(){
     // Escriba un programa que pida dos números A y B e imprima en pantalla la división
-    short int A,B;
+    float A,B;
     cout << "Ingrese el numero A: "; cin >> A;
     cout << "Ingrese el numero B: "; cin >> B;
 
@@ -42,7 +42,14 @@ void ejercicio5(){
     }
 
     else{
-        cout << A/B << endl;
+
+        if((A/B)-int(A/B) >= 0.5){
+            cout << "El numero redondeado es: " << int((A/B)+1) << endl;
+        }
+        else{
+
+            cout << "El numero redondeado es:" << int((A/B)) << endl;
+        }
     }
 
 }
@@ -61,3 +68,15 @@ void ejercicio7(){
 
 
 }
+
+void ejercicio9(){
+    // Escriba un programa que pida un número N e imprima el perímetro y área de un círculo con radio N.
+    short n;
+    cout << "Ingrese el numero N: "; cin >> n;
+    cout << "El perimetro es: " << 2*3.1416*n << endl;
+    cout << "El area es: " << 3.1416*(n*n) << endl;
+
+
+}
+
+
