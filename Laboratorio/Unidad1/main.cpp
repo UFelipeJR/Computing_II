@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    ejercicio17();
+    ejercicio21();
 
     return 0;
 }

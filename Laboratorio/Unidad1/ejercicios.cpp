@@ -101,13 +101,13 @@ void ejercicio15(){
 
     cout << "La sumatoria de todos los numeros es de: " << cont << endl;
 
-    }
+}
 
 void ejercicio17() {
     //Escriba un programa que pida constantemente números hasta que se ingrese el número cero e imprima en
     //pantalla el mayor de todos los números ingresados.
 
-    short int n = 0, mayor = 0;
+    short int n, mayor = 0;
 
     do {
         cout << "Ingrese un numero para encontrar el mayor y 0 para finalizar: ";
@@ -120,5 +120,32 @@ void ejercicio17() {
     cout << "El numero mayor es: " << mayor << endl;
 }
 
+void ejercicio19(){
+    //Escriba un programa que pida un número N e imprima si es o no un número primo.
 
+    short int n, cont = 0;
+    cout << "Ingrese un numero:"; cin >> n;
+
+    for(short int i = 1; i <= n; i++){
+        if(n%i == 0){
+            cont += 1;
+        }
+
+    }
+
+    if(cont == 2){
+        cout << "Es primo" << endl;
+    }
+    else{
+        cout << "No es primo" << endl;
+    }
+}
+
+void ejercicio21(){
+    //Escriba un programa que pida un carácter C, si es una letra la debe convertir de mayúscula
+    //a minúscula y viceversa e imprimirla.
+
+    char letra;
+    cout << "Ingrese una letra: "; cin >> letra;
+}
 
