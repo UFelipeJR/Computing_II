@@ -145,7 +145,44 @@ void ejercicio21(){
     //Escriba un programa que pida un carácter C, si es una letra la debe convertir de mayúscula
     //a minúscula y viceversa e imprimirla.
 
+    //PENDIENTE
     char letra;
     cout << "Ingrese una letra: "; cin >> letra;
 }
+
+void ejercicio23(){
+    //Escriba un programa que pida dos números A y B e imprima en pantalla el mínimo común múltiplo
+    //entre los dos.
+
+    //PENDIENTE
+}
+
+
+void ejercicio25(){
+    //Escriba un programa que pida un número N e imprima en pantalla la cantidad de
+    //dígitos de N.
+
+
+}
+
+void ejercicio27(){
+    //Escriba un programa que actúe como una calculadora con operaciones de suma, resta, multiplicación y división,
+    //el usuario debe ingresar los operandos y la operación a realizar.
+
+
+}
+
+void ejercicio29(){
+    /*Escriba un programa que adivine un número A (entre 0 y 100) seleccionado por el usuario
+    (el número NO se ingresa al programa), el programa imprimirá en pantalla un número B y el
+    usuario usará los símbolos `>', `<' y `=' para indicarle al programa si B es mayor, menor o igual
+    que A. El programa imprimira un nuevo número B, con base en simbolo ingresado por el usuario, y
+    repetira el proceso hasta acertar el número seleccionado por usuario.*/
+
+    int numero;
+    cout << "Ingrese el numero que el sistema adivinara"; cin >> numero;
+    cout << numero;
+
+}
+
 

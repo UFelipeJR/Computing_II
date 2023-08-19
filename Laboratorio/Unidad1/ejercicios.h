@@ -12,5 +12,9 @@ void ejercicio15();
 void ejercicio17();
 void ejercicio19();
 void ejercicio21();
+void ejercicio23();
+void ejercicio25();
+void ejercicio27();
+void ejercicio29();
 
 #endif // EJERCICIOS_H
