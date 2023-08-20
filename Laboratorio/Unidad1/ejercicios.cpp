@@ -145,31 +145,82 @@ void ejercicio21(){
     //Escriba un programa que pida un carácter C, si es una letra la debe convertir de mayúscula
     //a minúscula y viceversa e imprimirla.
 
-    //PENDIENTE
     char letra;
     cout << "Ingrese una letra: "; cin >> letra;
+
+    if(letra >= 'a' && letra <= 'z'){
+        cout << "La letra es: " << char(letra-32) << endl;
+    }
+
+    if(letra >= 'A' && letra <= 'Z'){
+        cout << "La letra es: " << char(letra+32) << endl;
+    }
 }
 
 void ejercicio23(){
     //Escriba un programa que pida dos números A y B e imprima en pantalla el mínimo común múltiplo
     //entre los dos.
 
-    //PENDIENTE
+    short int A,B,i=1;
+    bool estado = false;
+    cout << "Ingrese el numero A:"; cin >> A;
+    cout << "Ingrese el numero B:"; cin >> B;
+
+    while(estado != true){
+        if(i%A == 0 && i%B == 0 ){
+            estado = true;
+        }
+        i += 1;
+    }
+    cout << "El MCM de los dos numeros es: " << i-1 << endl;
 }
 
 
 void ejercicio25(){
     //Escriba un programa que pida un número N e imprima en pantalla la cantidad de
     //dígitos de N.
+    int n, cont = 0;
+    cout << "Ingrese el numero N:"; cin >> n;
+
+    while(n > 0){
+        n /= 10;
+        cont ++;
+    }
+
+    cout << "La cantidad de digitos es: " << cont << endl;
 
 
 }
 
-void ejercicio27(){
-    //Escriba un programa que actúe como una calculadora con operaciones de suma, resta, multiplicación y división,
-    //el usuario debe ingresar los operandos y la operación a realizar.
+void ejercicio27() {
+    // Escriba un programa que actúe como una calculadora con operaciones de suma, resta, multiplicación y división,
+    // el usuario debe ingresar los operandos y la operación a realizar.
+    int A, B;
+    char operando;
 
+    cout << "Ingrese el numero A: "; cin >> A;
+    cout << "Ingrese el numero B: "; cin >> B;
+    cout << "Ingrese el operando: "; cin >> operando;
 
+    if (operando == '+') {
+        cout << A << "+" << B << "=" << A + B << endl;
+    }
+    else if (operando == '-') {
+        cout << A << "-" << B << "=" << A - B << endl;
+    }
+    else if (operando == 'x' || operando == 'X') {
+        cout << A << "x" << B << "=" << A * B << endl;
+    }
+    else if (operando == '/') {
+        if (B != 0) {
+            cout << A << "/" << B << "=" << A / B << endl;
+        } else {
+            cout << "No se puede dividir entre cero" << endl;
+        }
+    }
+    else {
+        cout << "El operador no es valido" << endl;
+    }
 }
 
 void ejercicio29(){

@@ -23,6 +23,7 @@ void problema1() {
 void problema3(){
     //Escriba un programa que debe leer un mes y un día de dicho mes para luego decir si esa combinación de mes
     //y día son válidos. El caso más especial es el 29 de febrero, en dicho caso imprimir posiblemente año bisiesto.
+
 }
 
 void problema5(){
@@ -35,6 +36,49 @@ void problema5(){
     //   ***
     //    *
 
+    short int n;
+    cout << "Ingrese un numero impar: ";cin >> n;
+    short int esp_blancos = (n-1)/2, ast = 1;
+
+
+    for(short i = 0; i < (n+1)/2; i++){
+
+        for(short int j = 0; j < esp_blancos; j++){
+            cout << " ";
+        }
+
+        for(short int k = 0; k < ast; k++){
+            cout << "*";
+        }
+
+        for(short int m = 0; m < esp_blancos; m++){
+            cout << " ";
+        }
+        esp_blancos -= 1;
+        ast += 2;
+        cout << endl;
+    }
+
+    esp_blancos += 2;
+    ast -= 4;
+
+    for(short i = (n-1)/2; i > 0; i--){
+        for(short int j = 0; j < esp_blancos; j++){
+            cout << " ";
+        }
+
+        for(short int k = 0; k < ast; k++){
+            cout << "*";
+        }
+
+        for(short int m = 0; m < esp_blancos; m++){
+            cout << " ";
+        }
+        esp_blancos += 1;
+        ast -= 2;
+        cout << endl;
+
+    }
 }
 
 void problema7(){

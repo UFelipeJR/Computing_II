@@ -6,6 +6,6 @@ using namespace std;
 
 int main()
 {
-    problema1();
+    ejercicio27();
     return 0;
 }
