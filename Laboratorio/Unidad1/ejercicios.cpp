@@ -230,9 +230,24 @@ void ejercicio29(){
     que A. El programa imprimira un nuevo número B, con base en simbolo ingresado por el usuario, y
     repetira el proceso hasta acertar el número seleccionado por usuario.*/
 
-    int numero;
-    cout << "Ingrese el numero que el sistema adivinara"; cin >> numero;
-    cout << numero;
+    int minimo = 0, maximo = 100, sel = (minimo+maximo)/2;
+    char indicacion;
+    while(sel != '='){
+        cout << "Creo que el numero es: " << sel << endl;
+        cout << "Ingrese <> o = para dar una indicacion:"; cin >> indicacion;
+        if(indicacion == '='){
+            cout << "El numero es: " << sel << endl;
+            break;
+        }
+        else if(indicacion == '<'){
+            sel-=1;
+        }
+        else if(indicacion == '>'){
+            sel+=1;
+        }
+    }
+
+
 
 }
 

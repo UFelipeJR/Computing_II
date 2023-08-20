@@ -27,6 +27,7 @@ void problema3(){
 }
 
 void problema5(){
+    //Este ejericicio se debe optimizar
     //Escriba un programa que muestre el siguiente patrón en la pantalla:
     //    *
     //   ***
@@ -107,19 +108,78 @@ void problema7(){
 void problema9(){
     //Escriba un programa que pida un número entero N e imprima el resultado de la suma
     //de todos sus dígitos elevados a sí mismos.
+    int n,digito,cont;
+    cout << "Ingrese el numero N:"; cin>>n;
+
+    while(n>0){
+        digito = n%10;
+        n /= 10;
+        int potencia = 1;
+        for(int i = 1; i<=digito;i++){
+            potencia = potencia*digito;
+        }
+        cont += potencia;
+    }
+    cout << "La suma de los digitos elevados por si mismos es: " << cont << endl;
 
 
+}
+
+
+// Problema 11
+
+int mcm(int A, int B) {
+
+    // Se calcula el MCM de dos numeros
+    int i = 1;
+    bool estado = false;
+
+    while (!estado) {
+        if (i % A == 0 && i % B == 0) {
+            estado = true;
+        }
+        i += 1;
+    }
+    return i - 1;
 }
 
 void problema11(){
     //Escriba un programa que reciba un número y calcule el mínimo común múltiplo de
     //todos los números enteros entre 1 y el número ingresado.
 
+
+    short int n, resultado = 1;
+    cout << "Ingrese un numero N:"; cin >> n;
+
+    for(int i=1;i<=n;i++){
+        resultado = mcm(resultado,i);
+    }
+
+    cout << "El minimo comun multiplo es: " << resultado << endl;
+
 }
+
 
 void problema13(){
     //Escriba un programa que reciba un número y calcule la suma de todos los primos
     //menores que el número ingresado.
+    int n, contT = 0;
+    cout << "Ingrese un numero N: ";
+    cin >> n;
+
+    for (int i = 2; i < n; i++) {
+        int contDiv = 0;
+        for (int j = 1; j <= i; j++) {
+            if (i % j == 0) {
+                contDiv++;
+            }
+        }
+        if (contDiv == 2) {
+            contT += i;
+        }
+    }
+
+    cout << "El resultado de la suma es: " << contT << endl;
 
 }
 
@@ -135,12 +195,31 @@ void problema15(){
     */
 
 
-
 }
 
 void problema17(){
     //La secuencia de números triangulares se forma al sumar su posición en el arreglo
     //con el valor del número anterior: 1, 1+2=3, 3+3=6, 6+4=10, 10+5=15, 15+6=21, 21+7=28...
-    //Si listamos los números triangulares y sus divisores tenemos:
+    int k;
+    cout << "Ingrese el minimo de divisores:"; cin >>k;
+    bool state = false;
+
+    int i=1;
+    while(state != true){
+        int aux = i*(i+1)/2,contDiv = 0;
+        for(int j = 1; j<= aux; j++){
+            if(aux%j == 0){
+                contDiv += 1;
+            }
+        }
+
+        if(contDiv > k){
+            state = true;
+            cout << "El numero es "<<aux << " que tiene " << contDiv << " divisores" << endl;
+        }
+
+        i += 1;
+
+    }
 
 }
