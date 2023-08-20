@@ -50,7 +50,7 @@ void ejercicio5(){
 
 void ejercicio7(){
     // Escriba un programa que pida un número N e imprima en pantalla la suma de todos los números entre 0 y N (incluyéndose el mismo).
-    short n, count = 0;
+    short int n, count = 0;
     cout << "Ingrese un numero:"; cin >> n;
 
     for(int i = 1; i <= n; i++){

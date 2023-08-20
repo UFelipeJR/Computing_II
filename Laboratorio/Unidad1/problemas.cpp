@@ -3,9 +3,21 @@
 using namespace std;
 
 
-void problema1(){
-    //Escriba un programa que identique si un carácter ingresado es una vocal, una consonante
-    //o ninguna de las 2 e imprima un mensaje según el caso.
+void problema1() {
+    // Escriba un programa que identifique si un carácter ingresado es una vocal, una consonante
+    // o ninguna de las 2 e imprima un mensaje según el caso.
+    char A;
+    cout << "Ingrese un caracter: "; cin >> A;
+
+    if ((A >= 'a' && A <= 'z') || (A >= 'A' && A <= 'Z')) {
+        if (A == 'a' || A == 'e' || A == 'i' || A == 'o' || A == 'u' || A == 'A' || A == 'E' || A == 'I' || A == 'O' || A == 'U') {
+            cout << "Es una vocal" << endl;
+        } else {
+            cout << "Es una consonante" << endl;
+        }
+    } else {
+        cout << "No es una letra" << endl;
+    }
 }
 
 void problema3(){
@@ -31,11 +43,27 @@ void problema7(){
     //Escriba un programa que reciba un número n y halle la suma de todos los números pares en la serie
     //de Fibonacci menores a n.
 
+    int n, x=0,y=1,z=1, cont = 0;
+
+    cout << "Ingrese el numero n: ";cin >> n;
+    for(short int i = 1; i <n; i++){
+        z = x+y;
+        if(z%2 == 0 && z<n){
+            cont += z;
+        }
+        x = y;
+        y = z;
+    }
+
+    cout << "La suma de los elementos pares es: " << cont << endl;
+
+
 }
 
 void problema9(){
     //Escriba un programa que pida un número entero N e imprima el resultado de la suma
     //de todos sus dígitos elevados a sí mismos.
+
 
 }
 
@@ -61,11 +89,14 @@ void problema15(){
     18 5  4  3  12
     17 16 15 14 13
     */
+
+
+
 }
 
 void problema17(){
     //La secuencia de números triangulares se forma al sumar su posición en el arreglo
     //con el valor del número anterior: 1, 1+2=3, 3+3=6, 6+4=10, 10+5=15, 15+6=21, 21+7=28...
-                                                                                                      Si listamos los números triangulares y sus divisores tenemos:
+    //Si listamos los números triangulares y sus divisores tenemos:
 
 }
