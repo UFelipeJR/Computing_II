@@ -23,6 +23,23 @@ void problema1() {
 void problema3(){
     //Escriba un programa que debe leer un mes y un día de dicho mes para luego decir si esa combinación de mes
     //y día son válidos. El caso más especial es el 29 de febrero, en dicho caso imprimir posiblemente año bisiesto.
+    int mes,dia;
+    cout << "Ingrese el mes:"; cin >> mes;
+    cout << "Ingrese el dia:"; cin >> dia;
+
+    if(mes > 12 || dia > 30 ){
+        cout << dia << "/" << mes <<  " no es valida " << endl;
+    }
+
+
+    else if(dia == 29 && mes ==2){
+        cout << dia << "/" << mes <<  " es una fecha invalida para bisiesto" << endl;
+    }
+
+    else{
+        cout << dia << "/" << mes <<  " es una fecha valida " << endl;
+    }
+
 
 }
 
@@ -183,7 +200,8 @@ void problema13(){
 
 }
 
-void problema15(){
+
+void problema15() {
     //Empezando con el número 1 y moviéndose hacia la izquierda y en sentido horario
     //se genera una espiral de números como la siguiente:
     /*
@@ -194,8 +212,73 @@ void problema15(){
     17 16 15 14 13
     */
 
+    int n;
+    cout << "Ingrese un numero impar N: ";
+    cin >> n;
+
+    int espiral[n][n] = {};
+    int maximo = n*n;
+
+    int inicioFila = 0, finFila = n-1;
+    int inicioColumna = 0, finColumna = n-1;
+
+    while(maximo >= 1){
+        for(int i = finColumna; i >= inicioColumna; --i){
+            espiral[inicioFila][i] = maximo --;
+        }
+
+        for(int i = inicioFila +1;i <= finFila; ++i){
+            espiral[i][inicioColumna] = maximo--;
+        }
+
+        if(inicioFila < finFila){
+            for(int i = inicioColumna+1; i<=finColumna;i++){
+                espiral[finFila][i] = maximo--;
+            }
+        }
+
+        if(inicioColumna < finColumna){
+            for(int i = finFila -1; i > inicioFila; --i)
+                espiral[i][finColumna] = maximo--;
+        }
+
+        inicioFila += 1;
+        finFila -= 1;
+        inicioColumna += 1;
+        finColumna -= 1;
+
+    }
+
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            if(espiral[i][j] < 10){
+                cout << espiral[i][j] << "  ";
+            }
+            else{
+                cout << espiral[i][j] << " ";
+
+            }
+        }
+        cout << endl;
+    }
+
+    int inicial = 0, final = n - 1, cont = 0;
+    while (inicial < final) {
+
+        cont += espiral[inicial][inicial];
+        cont += espiral[inicial][final];
+        cont += espiral[final][inicial];
+        cont += espiral[final][final];
+        inicial++;
+        final--;
+    }
+
+    cout << "La sumatoria de la diagonal es: " << cont + 1 << endl;
 
 }
+
+
+
 
 void problema17(){
     //La secuencia de números triangulares se forma al sumar su posición en el arreglo

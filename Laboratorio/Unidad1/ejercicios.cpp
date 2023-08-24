@@ -13,14 +13,14 @@ void ejercicio1(){
 void ejercicio3(){
     // Escriba un programa que pida dos números A y B e imprima en pantalla el mayor.
     short A,B;
-    cout << "Ingrese el numero B: "; cin >> B;
     cout << "Ingrese el numero A: "; cin >> A;
+    cout << "Ingrese el numero B: "; cin >> B;
 
     if(A > B){
         cout << A << endl;
     }
 
-    else if(B > A){
+    else{
         cout << B << endl;
     }
 }
