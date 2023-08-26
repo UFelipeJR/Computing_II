@@ -1,11 +1,11 @@
 #include <iostream>
-#include "ejercicios.h"
-#include "problemas.h"
+#include "unidad1.h"
 
 using namespace std;
 
 int main()
 {
-    ejercicio3();
+    srand(time(NULL));
+    ejercicio26();
     return 0;
 }
