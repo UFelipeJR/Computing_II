@@ -15,6 +15,18 @@ void ejercicio1(){
     cout << A%B << endl;
 }
 
+void ejercicio2(){
+    //Escriba un programa que pida un número N e imprima en pantalla si es par o impar.
+    short N;
+    cout << "Ingrese el numero N: "; cin >> N;
+
+    if(N % 2 == 0){
+        cout << N << " es par" << endl;
+    }
+    else{
+        cout << N << " es impar" << endl;
+    }
+}
 
 void ejercicio3(){
     // Escriba un programa que pida dos números A y B e imprima en pantalla el mayor.
@@ -28,6 +40,21 @@ void ejercicio3(){
 
     else{
         cout << B << endl;
+    }
+}
+
+void ejercicio4(){
+    //Escriba un programa que pida dos números A y B e imprima en pantalla el menor.
+    short A, B;
+    cout << "Ingrese el numero A: "; cin >> A;
+    cout << "Ingrese el numero B: "; cin >> B;
+
+    if(A > B){
+        cout << B << endl;
+    }
+
+    else{
+        cout << A << endl;
     }
 }
 
@@ -53,6 +80,24 @@ void ejercicio5(){
     }
 }
 
+void ejercicio6(){
+    //Escriba un programa que pida dos números A y B e imprima en pantalla la potencia A^B, sin hacer uso de librerías matemáticas.
+    short A, B, pwr = 1;
+    cout << "Ingrese el numero A: "; cin >> A;
+    cout << "Ingrese el numero B: "; cin >> B;
+
+    if(B == 0){
+        pwr = 1;
+        A = 1;
+    }
+
+    for(int i = 1; i <= B; i++){
+        pwr *= A;
+    }
+
+    cout << pwr << endl;
+
+}
 
 void ejercicio7(){
     // Escriba un programa que pida un número N e imprima en pantalla la suma de todos los números entre 0 y N (incluyéndose el mismo).
@@ -66,12 +111,40 @@ void ejercicio7(){
     cout << count << endl;
 }
 
+void ejercicio8(){
+    //Escriba un programa que pida un número N e imprima en pantalla su factorial.
+    short n, fact = 1;
+    cout << "Ingrese un numero: "; cin >> n;
+    for(int i = 1; i <= n; i++){
+        fact *= i;
+    }
+
+    cout << fact << endl;
+}
+
 void ejercicio9(){
     // Escriba un programa que pida un número N e imprima el perímetro y área de un círculo con radio N.
     short n;
     cout << "Ingrese el numero N: "; cin >> n;
     cout << "El perimetro es: " << 2*3.1416*n << endl;
     cout << "El area es: " << 3.1416*(n*n) << endl;
+}
+
+void ejercicio10(){
+    //Escriba un programa que pida un número N e imprima en pantalla todos los múltiplos de dicho número entre 1 y 100.
+    short n, tiplos = 0;
+    cout << "Ingrese un numero N: "; cin >> n;
+    for(int i = 1; i <= 100; i++){
+
+        if(tiplos <= 100){
+            cout << tiplos << endl;
+            tiplos = n * i;
+        }
+
+        else if(tiplos >= 100){
+            break;
+        }
+    }
 }
 
 void ejercicio11(){
@@ -81,6 +154,21 @@ void ejercicio11(){
 
     for(short int i = 1; i <= 10; i++){
         cout << n << "x" << i << "=" << n*i << endl;
+    }
+}
+
+void ejercicio12(){
+    //Escriba un programa que pida un número N e imprima todas las potencias desde N1
+    //hasta N5
+    int n = 0;
+    cout << "Ingrese un numero N:";cin >> n;
+
+    for(int i = 1; i <= 5; i++){
+        int potencia = 1;
+        for(int j = 1; j <= i; j++){
+            potencia *= n;
+        }
+        cout << n << "^" << i << "=" << potencia << endl;
     }
 }
 
@@ -95,6 +183,21 @@ void ejercicio13(){
         }
     }
 }
+
+void ejercicio14(){
+    // Escriba un programa que imprima dos columnas paralelas, una con los números del
+    // 1 al 50 y otra con los números del 50 al 1.
+
+    int i = 1, j = 50;
+
+    while(i <= 50){
+        cout << i << " " << j << endl;
+        i++;
+        j--;
+    }
+
+}
+
 
 void ejercicio15(){
     //Escriba un programa que pida constantemente números hasta que se ingrese el número cero e imprima en
@@ -346,6 +449,23 @@ void ejercicio27() {
 void ejercicio28(){
     // Escriba un programa que encuentre el valor aproximado de pi en base a la siguiente
     //suma innita. El usuario debe ingresar el número de elementos usados en la aproximación.
+    int n = 0, indicador = 1;
+    float pi = 0, incrementos = 1.0;
+    cout << "Ingrese un numero N:"; cin >> n;
+
+    for(int i = 1; i<= n;i++){
+        if(indicador == 1){
+            pi += 1.0/incrementos;
+            indicador+=1;
+        }
+        else {
+            pi -= 1.0/incrementos;
+            indicador = 1;
+        }
+        incrementos += 2.0;
+
+    }
+    cout << "Pi es aproximadamente:" << 4*pi << endl;
 
 }
 
@@ -377,13 +497,30 @@ void ejercicio29(){
 }
 
 void ejercicio30(){
-    int n = rand()%100, user = 0;
-    cout << n << endl;
-    bool estado = false;
+    /*
+    Escriba un programa que genere un número aleatorio A (entre 0 y 100) y le pida al
+    usuario que lo adivine, el usuario ingresa un número B y el programa le dirá si B es mayor o menor
+    que A, esto se repetirá hasta que el usuario adivine el número, en ese momento el programa le dirá
+    el número de intentos que tardo el usuario en adivinar el número.
+    */
 
+    int n = rand()%100, user = 0, intentos = 0;
+    bool estado = false;
+    cout << n << endl;
     while(estado != true){
-        cout << "Ingrese un numero: "; cin >> user;
-        estado = true;
+        cout << "Ingrese un numero del 0 al 100: "; cin >> user;
+        if(user < n){
+            cout << "El numero secreto es mayor que " << user << endl;
+            intentos ++;
+        }
+        else if (user > n){
+            cout << "El numero secreto es menor que " << user << endl;
+            intentos ++;
+        }
+        else if(n == user){
+            cout << "Has adivinado el numero " << n << " con " << intentos << " intentos" << endl;
+            estado = true;
+        }
     }
 
 
