@@ -546,6 +546,35 @@ void problema1() {
     }
 }
 
+void problema2() {
+    //Se necesita un programa que permita determinar la mínima combinación de billetes
+    //y monedas para una cantidad de dinero determinada.
+    int n;
+    cout << "Ingrese un numero para devuelta: "; cin >> n;
+    cout << "50000 = " << n/50000 << endl;
+    n = n%50000;
+    cout << "20000 = " << n/20000 << endl;
+    n = n%20000;
+    cout << "10000 = " << n/10000 << endl;
+    n = n%10000;
+    cout << "5000 = " << n/5000 << endl;
+    n = n%5000;
+    cout << "2000 = " << n/2000 << endl;
+    n = n%2000;
+    cout << "1000 = " << n/1000 << endl;
+    n = n%1000;
+    cout << "500 = " << n/500 << endl;
+    n = n%500;
+    cout << "200 = " << n/200 << endl;
+    n = n%200;
+    cout << "100 = " << n/100 << endl;
+    n = n%100;
+    cout << "50 = " << n/50 << endl;
+    n = n%50;
+    cout << "Restante = " << n << endl;
+
+}
+
 void problema3(){
     //Escriba un programa que debe leer un mes y un día de dicho mes para luego decir si esa combinación de mes
     //y día son válidos. El caso más especial es el 29 de febrero, en dicho caso imprimir posiblemente año bisiesto.
@@ -567,6 +596,32 @@ void problema3(){
     }
 
 
+}
+
+void problema4(){
+    //Escriba un programa para leer dos números enteros con el siguiente signicado: el
+    //valor del primer número representa una hora del día en un reloj de 24 horas, de modo que 1245
+    //representa las doce y cuarenta y cinco de la tarde.
+    int hora_p, hora_e, hora, min;
+    cout << "Ingrese la primer hora: "; cin >> hora_p;
+    if(hora_p>2359){
+        cout << "Ingrese un formato de hora valido" << endl;
+    }
+    else{
+        cout << "Ingrese el tiempo a agregar: "; cin >> hora_e;
+        hora = (hora_p/100) + (hora_e/100);
+        cout << hora << endl;
+        min = (hora_p%100) + (hora_e%100);
+        cout << min << endl;
+        if(hora>23){
+        hora -= 23;
+        }
+        if(min>=60){
+        min -= 60;
+        hora += 1;
+        }
+        cout << hora << min << endl;
+    }
 }
 
 void problema5(){
@@ -625,6 +680,22 @@ void problema5(){
     }
 }
 
+void problema6(){
+    //Escriba un programa que encuentre el valor aproximado del número de euler en base
+    //a la siguiente suma innita
+    float base, fact = 1;
+    float sum = 1;
+    cout << "Ingrese un numero: "; cin >> base;
+    base -= 1;
+    for(int i = 1; i <= base; i++){
+        fact *= i;
+        sum += 1/fact;
+        cout << "base = " << fact << endl;
+        cout << "sum = " << sum << endl;
+    }
+}
+
+
 void problema7(){
     //En la serie de Fibonacci, cada número es la suma de los 2 anteriores e inicia con 1 y
     //1. Ej: 1, 1, 2, 3, 5, 8, ....
@@ -648,6 +719,40 @@ void problema7(){
 
 }
 
+void problema8(){
+    //Escriba un programa que reciba 3 números a, b, c, y calcule la suma de todos los
+    //múltiplos de a y b que sean menores a c. Tenga en cuenta no sumar 2 veces los múltiplos comunes.
+        int a, b, c;
+        cout << "Ingrese tres numeros (a, b, c): ";
+        cin >> a >> b >> c;
+
+        int suma = 0;
+        bool primerMultiplo = true;
+
+        cout << "Multiplos sumados: ";
+
+        for (int i = a; i < c; i += a) {
+            if (!primerMultiplo) {
+                cout << " + ";
+            }
+            cout << i;
+            suma += i;
+            primerMultiplo = false;
+        }
+
+        for (int i = b; i < c; i += b) {
+            if (!primerMultiplo) {
+                cout << " + ";
+            }
+            cout << i;
+            suma += i;
+            primerMultiplo = false;
+        }
+
+        cout << " = " << suma << endl;
+
+    }
+
 void problema9(){
     //Escriba un programa que pida un número entero N e imprima el resultado de la suma
     //de todos sus dígitos elevados a sí mismos.
@@ -664,9 +769,18 @@ void problema9(){
         cont += potencia;
     }
     cout << "La suma de los digitos elevados por si mismos es: " << cont << endl;
+}
 
+
+// Problema 10
+void problema10(){
+    //Escriba un programa que reciba un número n e imprima el enésimo número primo.
+
+    int n;
+    cout << "Ingrese un número: "; cin >> n;
 
 }
+
 
 
 // Problema 11
