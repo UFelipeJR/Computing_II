@@ -773,21 +773,43 @@ void problema9(){
 
 
 // Problema 10
-void problema10(){
-    //Escriba un programa que reciba un número n e imprima el enésimo número primo.
 
-    int n;
-    cout << "Ingrese un número: "; cin >> n;
+bool esPrimo(int n) {
+    if (n <= 1)
+        return false;
+    if (n <= 3)
+        return true;
+    if (n % 2 == 0 || n % 3 == 0)
+        return false;
 
+    for (int i = 5; i * i <= n; i += 6) {
+        if (n % i == 0 || n % (i + 2) == 0)
+            return false;
+    }
+
+    return true;
 }
 
+void problema10() {
+    int n, count = 0, num = 2;
+    cout << "Ingrese un numero para encontrar el n-esimo numero primo: "; cin >> n;
+
+    while (count < n) {
+        if (esPrimo(num)) {
+            ++count;
+        }
+        ++num;
+    }
+
+    cout << "El " << n << "-esimo numero primo es: " << num - 1 << endl;
+}
 
 
 // Problema 11
 
 int mcm(int A, int B) {
 
-    // Se calcula el MCM de dos numeros
+    // Se calcula el MCM de dos neros
     int i = 1;
     bool estado = false;
 
@@ -816,6 +838,32 @@ void problema11(){
 
 }
 
+void problema12() {
+    int n;
+    cout << "Ingrese un numero n: "; cin >> n;
+
+    int mfc = -1;
+
+    while (n % 2 == 0) {
+        mfc = 2;
+        n /= 2;
+    }
+
+    for (int i = 3; i * i <= n; i += 2) {
+        while (n % i == 0) {
+            mfc = i;
+            n /= i;
+        }
+    }
+
+    if (n > 2) {
+        mfc = n;
+    }
+
+    cout << "El maximo factor primo es: " << mfc << endl;
+}
+
+
 
 void problema13(){
     //Escriba un programa que reciba un número y calcule la suma de todos los primos
@@ -840,6 +888,26 @@ void problema13(){
 
 }
 
+//Problema 14
+
+bool esPalindrome(int num) {
+
+    int original = num, rev = 0;
+
+    while (num > 0) {
+        int digit = num % 10;
+        rev = rev * 10 + digit;
+        num /= 10;
+        }
+
+        return original == rev;
+    }
+
+void problema14() {
+    //Un número palíndromo es igual de derecha a izquierda y de izquierda a derecha,
+    //escriba un programa que calcule el número palíndromo más grande que se puede obtener
+    //como una multiplicación de números de 3 dígitos.
+}
 
 void problema15() {
     // Empezando con el número 1 y moviéndose hacia la izquierda y en sentido horario
@@ -869,6 +937,13 @@ void problema15() {
 
     cout << "La suma de la diagonal es: " << sumaDiagonal << endl;
 
+}
+
+void problema16(){
+    //La serie de Collatz se conforma con la siguiente regla: sea n un elemento de la serie,
+    //si n es par, el siguiente elemento es n/2, y si n es impar, el siguiente elemento es 3n+1.
+    //Escriba un programa que reciba un número k y calcule cual es el elemento inicial j (semilla), menor
+    //que k, que produce la serie más larga y diga cuantos términos m tiene la serie.
 }
 
 void problema17(){

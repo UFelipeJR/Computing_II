@@ -6,6 +6,6 @@ using namespace std;
 int main()
 {
     srand(time(NULL));
-    ejercicio30();
+    problema12();
     return 0;
 }
