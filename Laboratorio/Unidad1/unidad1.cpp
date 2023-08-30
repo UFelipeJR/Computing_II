@@ -41,7 +41,6 @@ int esPrimo(int n = 0){
     }
 }
 
-
 bool esPalindrome(int num) {
 
     int original = num, rev = 0;
@@ -75,10 +74,10 @@ int lenCollatz(int n) {
 
 void ejercicio1(){
     // Escriba un programa que pida dos números A y B e imprima en pantalla el residuo de la división A/B.
-    short A,B;
+    short int A,B;
     cout << "Ingrese el numero A: "; cin >> A;
     cout << "Ingrese el numero B: "; cin >> B;
-    cout << A%B << endl;
+    cout << "El residuo de la division " << A << "/" << B << " es:" << A%B << endl;
 }
 
 void ejercicio2(){
@@ -1043,7 +1042,7 @@ void menuPrincipal(){
         problemas();
     case 3:
         cout << "Se ha finalizado la ejecucion del menu" << endl;
-        break;
+        exit(0);
 
     }
 }
