@@ -572,7 +572,6 @@ void ejercicio30(){
 
     int n = rand()%100, user = 0, intentos = 0;
     bool estado = false;
-    cout << n << endl;
     while(estado != true){
         cout << "Ingrese un numero del 0 al 100: "; cin >> user;
         if(user < n){
@@ -1019,47 +1018,7 @@ void problema17(){
 }
 
 
-// Menu
-/*
-void menu_principal(){
-    int n = 0, EjerProblem = 1;
-    cout << "*************************************************************************\n";
-    cout << "*                          Menu Principal                               *\n";
-    cout << "*************************************************************************\n";
-
-
-    cout << "Seleccione:\n1. Ejercicios \n2. Problemas \n";
-    cin >> n;
-
-    if(n == 1){
-        cout << "Ingrese el numero correspondiente al ejercicio que desea visualizar:" << endl; cin >> EjerProblem;
-        switch(EjerProblem){
-            case 1:
-                ejercicio1();
-                break;
-            default:
-                cout << "No ha seleccionado una opcion valida.";
-        }
-
-    }
-
-    else if(n == 2){
-        cout << "Ingrese el numero correspondiente al problema que desea visualizar:" << endl; cin >> EjerProblem;
-        switch(EjerProblem){
-            case 1:
-                problema1();
-                break;
-
-            default:
-                cout << "No ha seleccionado una opcion valida.";
-        }
-    }
-
-    else{
-        cout << "No ha seleccionado una opcion valida.";
-    }
-}
-*/
+//Menu
 
 void menuPrincipal(){
     int n = 0;
@@ -1238,7 +1197,6 @@ void problemas(){
     case 1:
         cout << "Problema 1:" << endl;
         problema1();
-        problemas();
         menuPrincipal();
     case 2:
         cout << "Problema 2:" << endl;
