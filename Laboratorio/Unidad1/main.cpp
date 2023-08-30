@@ -6,6 +6,6 @@ using namespace std;
 int main()
 {
     srand(time(NULL));
-    problema12();
+    menuPrincipal();
     return 0;
 }

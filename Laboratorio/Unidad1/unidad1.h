@@ -54,7 +54,16 @@ void problema15();
 void problema16();
 void problema17();
 
+//Funciones con retorno
+int esPrimo(int);
+int mcm(int,int);
+bool esPalindrome(int);
+int lenCollatz(int);
+
+
 //Menú
-void menu_principal();
+void menuPrincipal();
+void ejercicios();
+void problemas();
 
 #endif // UNIDAD1_H

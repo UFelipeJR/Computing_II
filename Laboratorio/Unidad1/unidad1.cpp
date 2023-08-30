@@ -4,14 +4,80 @@
 #include "unidad1.h"
 using namespace std;
 
+//Funciones con Retorno
+
+int mcm(int A, int B) {
+
+    // Se calcula el MCM de dos numeros
+    int i = 1;
+    bool estado = false;
+
+    while (!estado) {
+        if (i % A == 0 && i % B == 0) {
+            estado = true;
+        }
+        i += 1;
+    }
+    return i - 1;
+}
+
+int esPrimo(int n = 0){
+    //Escriba un programa que pida un número N e imprima si es o no un número primo.
+
+    int cont = 0;
+
+    for(short int i = 1; i <= n; i++){
+        if(n%i == 0){
+            cont += 1;
+        }
+
+    }
+
+    if(cont == 2){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+
+bool esPalindrome(int num) {
+
+    int original = num, rev = 0;
+
+    while (num > 0) {
+        int digit = num % 10;
+        rev = rev * 10 + digit;
+        num /= 10;
+    }
+
+    return original == rev;
+}
+
+int lenCollatz(int n) {
+    int longitud = 1;
+
+    while (n != 1) {
+        if (n % 2 == 0) {
+            n /= 2;
+        } else {
+            n = 3 * n + 1;
+        }
+        longitud++;
+    }
+
+    return longitud;
+}
+
 
 //Ejercicios
 
 void ejercicio1(){
     // Escriba un programa que pida dos números A y B e imprima en pantalla el residuo de la división A/B.
     short A,B;
-    cout << "Ingrese el numero B: "; cin >> B;
     cout << "Ingrese el numero A: "; cin >> A;
+    cout << "Ingrese el numero B: "; cin >> B;
     cout << A%B << endl;
 }
 
@@ -252,7 +318,7 @@ void ejercicio18(){
     for(int i = 0; i*i<=n;i++){
         if (i*i == n){
             raiz = true;
-            }
+        }
     }
 
     if( raiz == true){
@@ -263,7 +329,7 @@ void ejercicio18(){
     }
 
 
-    }
+}
 
 
 void ejercicio19(){
@@ -614,11 +680,11 @@ void problema4(){
         min = (hora_p%100) + (hora_e%100);
         cout << min << endl;
         if(hora>23){
-        hora -= 23;
+            hora -= 23;
         }
         if(min>=60){
-        min -= 60;
-        hora += 1;
+            min -= 60;
+            hora += 1;
         }
         cout << hora << min << endl;
     }
@@ -695,7 +761,6 @@ void problema6(){
     }
 }
 
-
 void problema7(){
     //En la serie de Fibonacci, cada número es la suma de los 2 anteriores e inicia con 1 y
     //1. Ej: 1, 1, 2, 3, 5, 8, ....
@@ -722,36 +787,37 @@ void problema7(){
 void problema8(){
     //Escriba un programa que reciba 3 números a, b, c, y calcule la suma de todos los
     //múltiplos de a y b que sean menores a c. Tenga en cuenta no sumar 2 veces los múltiplos comunes.
-        int a, b, c;
-        cout << "Ingrese tres numeros (a, b, c): ";
-        cin >> a >> b >> c;
+    int a, b, c;
+    cout << "Ingrese tres numeros (a, b, c): ";
+    cin >> a >> b >> c;
 
-        int suma = 0;
-        bool primerMultiplo = true;
+    int suma = 0;
+    bool primerMultiplo = true;
 
-        cout << "Multiplos sumados: ";
+    cout << "Multiplos sumados: ";
 
-        for (int i = a; i < c; i += a) {
-            if (!primerMultiplo) {
-                cout << " + ";
-            }
-            cout << i;
-            suma += i;
-            primerMultiplo = false;
+    for (int i = a; i < c; i += a) {
+        if (!primerMultiplo) {
+            cout << " + ";
         }
-
-        for (int i = b; i < c; i += b) {
-            if (!primerMultiplo) {
-                cout << " + ";
-            }
-            cout << i;
-            suma += i;
-            primerMultiplo = false;
-        }
-
-        cout << " = " << suma << endl;
-
+        cout << i;
+        suma += i;
+        primerMultiplo = false;
     }
+
+    for (int i = b; i < c; i += b) {
+        if (!primerMultiplo) {
+            cout << " + ";
+        }
+        cout << i;
+        suma += i;
+        primerMultiplo = false;
+    }
+
+    cout << " = " << suma << endl;
+
+}
+
 
 void problema9(){
     //Escriba un programa que pida un número entero N e imprima el resultado de la suma
@@ -772,55 +838,22 @@ void problema9(){
 }
 
 
-// Problema 10
+void problema10(){
+    //Escriba un programa que reciba un número n e imprima el enésimo número primo.
+    int n = 0, cont = 0, i = 1;
+    cout << "Ingrese el numero N:";cin>>n;
 
-bool esPrimo(int n) {
-    if (n <= 1)
-        return false;
-    if (n <= 3)
-        return true;
-    if (n % 2 == 0 || n % 3 == 0)
-        return false;
-
-    for (int i = 5; i * i <= n; i += 6) {
-        if (n % i == 0 || n % (i + 2) == 0)
-            return false;
-    }
-
-    return true;
-}
-
-void problema10() {
-    int n, count = 0, num = 2;
-    cout << "Ingrese un numero para encontrar el n-esimo numero primo: "; cin >> n;
-
-    while (count < n) {
-        if (esPrimo(num)) {
-            ++count;
+    while(cont != n){
+        if(esPrimo(i)==1){
+            cont += 1;
         }
-        ++num;
-    }
 
-    cout << "El " << n << "-esimo numero primo es: " << num - 1 << endl;
-}
-
-
-// Problema 11
-
-int mcm(int A, int B) {
-
-    // Se calcula el MCM de dos neros
-    int i = 1;
-    bool estado = false;
-
-    while (!estado) {
-        if (i % A == 0 && i % B == 0) {
-            estado = true;
-        }
         i += 1;
     }
-    return i - 1;
+
+    cout << "El primo numero " << n << " es: " << i-1 << endl;
 }
+
 
 void problema11(){
     //Escriba un programa que reciba un número y calcule el mínimo común múltiplo de
@@ -838,32 +871,20 @@ void problema11(){
 
 }
 
-void problema12() {
-    int n;
-    cout << "Ingrese un numero n: "; cin >> n;
 
-    int mfc = -1;
+void problema12(){
+    int n = 0, max = 0;
+    cout << "Ingrese un numero N:"; cin >> n;
 
-    while (n % 2 == 0) {
-        mfc = 2;
-        n /= 2;
-    }
-
-    for (int i = 3; i * i <= n; i += 2) {
-        while (n % i == 0) {
-            mfc = i;
-            n /= i;
+    for(int i = 1; i<= n;i++){
+        if(esPrimo(i) == 1 && i > max && n%i == 0){
+            max = i;
         }
     }
 
-    if (n > 2) {
-        mfc = n;
-    }
+    cout << "El maximo factor primo es:" << max << endl;
 
-    cout << "El maximo factor primo es: " << mfc << endl;
 }
-
-
 
 void problema13(){
     //Escriba un programa que reciba un número y calcule la suma de todos los primos
@@ -888,26 +909,29 @@ void problema13(){
 
 }
 
-//Problema 14
+void problema14(){
+    /*
+     * Un número palíndromo es igual de derecha a izquierda y de izquierda a derecha,
+    Ej: 969. escriba un programa que calcule el número palíndromo más grande que se puede obtener
+    como una multiplicación de números de 3 dígitos.
+    Ej: una de las posibles respuestas es: 143*777=111111.
+    Nota: la salida del programa debe ser: 143*777=111111
+    */
+    int masGrande = 0, factor1 = 0, factor2 = 0;
 
-bool esPalindrome(int num) {
-
-    int original = num, rev = 0;
-
-    while (num > 0) {
-        int digit = num % 10;
-        rev = rev * 10 + digit;
-        num /= 10;
+    for (int i = 999; i >= 100; i--) {
+        for (int j = 999; j >= 100; j--) {
+            int producto = i * j;
+            if (producto > masGrande && esPalindrome(producto)) {
+                masGrande = producto;
+                factor1 = i;
+                factor2 = j;
+            }
         }
-
-        return original == rev;
     }
-
-void problema14() {
-    //Un número palíndromo es igual de derecha a izquierda y de izquierda a derecha,
-    //escriba un programa que calcule el número palíndromo más grande que se puede obtener
-    //como una multiplicación de números de 3 dígitos.
+    cout << factor1 << "*" << factor2 << "=" << masGrande << endl;
 }
+
 
 void problema15() {
     // Empezando con el número 1 y moviéndose hacia la izquierda y en sentido horario
@@ -940,10 +964,31 @@ void problema15() {
 }
 
 void problema16(){
-    //La serie de Collatz se conforma con la siguiente regla: sea n un elemento de la serie,
-    //si n es par, el siguiente elemento es n/2, y si n es impar, el siguiente elemento es 3n+1.
-    //Escriba un programa que reciba un número k y calcule cual es el elemento inicial j (semilla), menor
-    //que k, que produce la serie más larga y diga cuantos términos m tiene la serie.
+    /*
+    La serie de Collatz se conforma con la siguiente regla: sea n un elemento de la serie,
+    si n es par, el siguiente elemento es n/2, y si n es impar, el siguiente elemento es 3n+1.
+    Escriba un programa que reciba un número k y calcule cual es el elemento inicial j (semilla), menor
+    que k, que produce la serie más larga y diga cuantos términos m tiene la serie.
+    Tip: la serie termina al llegar a un elemento cuyo valor sea 1.
+    Ej: para la semilla 13: 13, 40, 20, 10, 5, 16, 8, 4, 2, 1
+    Nota: la salida del programa debe ser:
+    La serie mas larga es con la semilla: j, teniendo m terminos.
+    Otra nota: se le dará una bonicación si imprime la serie.
+    */
+
+    int k = 0, semL = 0, maxLen = 0;
+    cout << "Ingrese el numero K:";
+    cin >> k;
+
+    for (int i = 1; i < k; ++i) {
+        int longitud = lenCollatz(i);
+        if (longitud > maxLen) {
+            maxLen = longitud;
+            semL = i;
+        }
+    }
+
+    cout << "La serie mas larga es con la semilla: " << semL << ", teniendo " << maxLen << " terminos." << endl;
 }
 
 void problema17(){
@@ -975,8 +1020,9 @@ void problema17(){
 
 
 // Menu
+/*
 void menu_principal(){
-    int n = 0, modo = 0, EjerProblem = 1;
+    int n = 0, EjerProblem = 1;
     cout << "*************************************************************************\n";
     cout << "*                          Menu Principal                               *\n";
     cout << "*************************************************************************\n";
@@ -991,7 +1037,6 @@ void menu_principal(){
             case 1:
                 ejercicio1();
                 break;
-
             default:
                 cout << "No ha seleccionado una opcion valida.";
         }
@@ -1009,7 +1054,259 @@ void menu_principal(){
                 cout << "No ha seleccionado una opcion valida.";
         }
     }
+
+    else{
+        cout << "No ha seleccionado una opcion valida.";
+    }
+}
+*/
+
+void menuPrincipal(){
+    int n = 0;
+    cout << "*************************************************************************\n";
+    cout << "*                          Menu Principal                               *\n";
+    cout << "*************************************************************************\n";
+
+    while (n != 1 && n != 2 && n!=3){
+        if(n != 1 && n != 2 && n!=3){
+            cout << "Seleccione:\n1. Ejercicios \n2. Problemas \n3. Finalizar ejecucion \n";cin >> n;
+            if(n == 1 || n == 2 || n == 3){
+                break;
+            }
+            cout << "Ingrese una opcion valida" << endl;
+        }
+
+    }
+    switch(n){
+    case 1:
+        ejercicios();
+    case 2:
+        problemas();
+    case 3:
+        cout << "Se ha finalizado la ejecucion del menu" << endl;
+        break;
+
+    }
 }
 
+void ejercicios() {
+    int ejerProblem = -1;
+    while (!(ejerProblem > 0) || !(ejerProblem <= 31)) {
+        cout << "Ingrese el numero correspondiente al ejercicio que desea visualizar o 31 para volver al menu inicial:" << endl; cin >> ejerProblem;
+        if(!(ejerProblem > 0) || !(ejerProblem <= 31)){
+            cout << "Ingrese una opcion valida" << endl;
+        }
+    }
+
+    switch(ejerProblem){
+    case 1:
+        cout << "Ejercicio 1:" << endl;
+        ejercicio1();
+        menuPrincipal();
+    case 2:
+        cout << "Ejercicio 2:" << endl;
+        ejercicio2();
+        menuPrincipal();
+    case 3:
+        cout << "Ejercicio 3:" << endl;
+        ejercicio3();
+        menuPrincipal();
+    case 4:
+        cout << "Ejercicio 4:" << endl;
+        ejercicio4();
+        menuPrincipal();
+    case 5:
+        cout << "Ejercicio 5:" << endl;
+        ejercicio5();
+        menuPrincipal();
+    case 6:
+        cout << "Ejercicio 6:" << endl;
+        ejercicio6();
+        menuPrincipal();
+    case 7:
+        cout << "Ejercicio 7:" << endl;
+        ejercicio7();
+        menuPrincipal();
+    case 8:
+        cout << "Ejercicio 8:" << endl;
+        ejercicio8();
+        menuPrincipal();
+    case 9:
+        cout << "Ejercicio 9:" << endl;
+        ejercicio9();
+        menuPrincipal();
+    case 10:
+        cout << "Ejercicio 10:" << endl;
+        ejercicio10();
+        menuPrincipal();
+    case 11:
+        cout << "Ejercicio 11:" << endl;
+        ejercicio11();
+        menuPrincipal();
+    case 12:
+        cout << "Ejercicio 12:" << endl;
+        ejercicio12();
+        menuPrincipal();
+    case 13:
+        cout << "Ejercicio 13:" << endl;
+        ejercicio13();
+        menuPrincipal();
+    case 14:
+        cout << "Ejercicio 14:" << endl;
+        ejercicio14();
+        menuPrincipal();
+    case 15:
+        cout << "Ejercicio 15:" << endl;
+        ejercicio15();
+        menuPrincipal();
+    case 16:
+        cout << "Ejercicio 16:" << endl;
+        ejercicio16();
+        menuPrincipal();
+    case 17:
+        cout << "Ejercicio 17:" << endl;
+        ejercicio17();
+        menuPrincipal();
+    case 18:
+        cout << "Ejercicio 18:" << endl;
+        ejercicio18();
+        menuPrincipal();
+    case 19:
+        cout << "Ejercicio 19:" << endl;
+        ejercicio19();
+        menuPrincipal();
+    case 20:
+        cout << "Ejercicio 20:" << endl;
+        ejercicio20();
+        menuPrincipal();
+    case 21:
+        cout << "Ejercicio 21:" << endl;
+        ejercicio21();
+        menuPrincipal();
+    case 22:
+        cout << "Ejercicio 22:" << endl;
+        ejercicio22();
+        menuPrincipal();
+    case 23:
+        cout << "Ejercicio 23:" << endl;
+        ejercicio23();
+        menuPrincipal();
+    case 24:
+        cout << "Ejercicio 24:" << endl;
+        ejercicio24();
+        menuPrincipal();
+    case 25:
+        cout << "Ejercicio 25:" << endl;
+        ejercicio25();
+        menuPrincipal();
+    case 26:
+        cout << "Ejercicio 26:" << endl;
+        ejercicio26();
+        menuPrincipal();
+    case 27:
+        cout << "Ejercicio 27:" << endl;
+        ejercicio27();
+        menuPrincipal();
+    case 28:
+        cout << "Ejercicio 28:" << endl;
+        ejercicio28();
+        menuPrincipal();
+    case 29:
+        cout << "Ejercicio 29:" << endl;
+        ejercicio29();
+        menuPrincipal();
+    case 30:
+        cout << "Ejercicio 30:" << endl;
+        ejercicio30();
+        menuPrincipal();
+    case 31:
+        menuPrincipal();
+    }
+
+}
+
+void problemas(){
+    int ejerProblem = -1;
+    while (!(ejerProblem > 0) || !(ejerProblem <= 18)) {
+        cout << "Ingrese el numero correspondiente al problema que desea visualizar o 18 para volver al menu inicial:" << endl; cin >> ejerProblem;
+        if(!(ejerProblem > 0) || !(ejerProblem <= 18)){
+            cout << "Ingrese una opcion valida" << endl;
+        }
+    }
+
+    switch(ejerProblem){
+    case 1:
+        cout << "Problema 1:" << endl;
+        problema1();
+        problemas();
+        menuPrincipal();
+    case 2:
+        cout << "Problema 2:" << endl;
+        menuPrincipal();
+    case 3:
+        cout << "Problema 3:" << endl;
+        problema3();
+        menuPrincipal();
+    case 4:
+        cout << "Problema 4:" << endl;
+        problema4();
+        menuPrincipal();
+    case 5:
+        cout << "Problema 5:" << endl;
+        problema5();
+        menuPrincipal();
+    case 6:
+        cout << "Problema 6:" << endl;
+        problema6();
+        menuPrincipal();
+    case 7:
+        cout << "Problema 7:" << endl;
+        problema7();
+        menuPrincipal();
+    case 8:
+        cout << "Problema 8:" << endl;
+        problema8();
+        menuPrincipal();
+    case 9:
+        cout << "Problema 9:" << endl;
+        problema9();
+        menuPrincipal();
+    case 10:
+        cout << "Problema 10:" << endl;
+        problema10();
+        menuPrincipal();
+    case 11:
+        cout << "Problema 11:" << endl;
+        problema11();
+        menuPrincipal();
+    case 12:
+        cout << "Problema 12:" << endl;
+        problema12();
+        menuPrincipal();
+    case 13:
+        cout << "Problema 13:" << endl;
+        problema13();
+        menuPrincipal();
+    case 14:
+        cout << "Problema 14:" << endl;
+        problema14();
+        menuPrincipal();
+    case 15:
+        cout << "Problema 15:" << endl;
+        problema15();
+        menuPrincipal();
+    case 16:
+        cout << "Problema 16:" << endl;
+        problema16();
+        menuPrincipal();
+    case 17:
+        cout << "Problema 17:" << endl;
+        problema17();
+        menuPrincipal();
+    case 18:
+        menuPrincipal();
+
+    }
+}
 
 
