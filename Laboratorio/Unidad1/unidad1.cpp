@@ -699,6 +699,11 @@ void problema4(){
     if(hora_p>2359){
         cout << "Ingrese un formato de hora valido" << endl;
     }
+
+    else if(hora_p/100 > 24 || hora_e%100 > 60){
+        cout <<" Ingrese un formato de hora valido" << endl;
+
+    }
     else{
         cout << "Ingrese el tiempo a agregar: "; cin >> hora_e;
         hora = (hora_p/100) + (hora_e/100);
@@ -714,7 +719,7 @@ void problema4(){
             cout << "La hora es "<< hora << min << endl;
         }
         else{
-            cout << hora << min << "es un tiempo invalido"<< endl;
+            cout << hora << min << " es un tiempo invalido"<< endl;
         }
 
 
