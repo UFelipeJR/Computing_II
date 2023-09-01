@@ -82,7 +82,7 @@ void ejercicio1(){
 
 void ejercicio2(){
     //Escriba un programa que pida un número N e imprima en pantalla si es par o impar.
-    short N;
+    short N = 0;
     cout << "Ingrese el numero N: "; cin >> N;
 
     if(N % 2 == 0){
@@ -95,37 +95,37 @@ void ejercicio2(){
 
 void ejercicio3(){
     // Escriba un programa que pida dos números A y B e imprima en pantalla el mayor.
-    short A,B;
+    short A = 0,B = 0;
     cout << "Ingrese el numero A: "; cin >> A;
     cout << "Ingrese el numero B: "; cin >> B;
 
     if(A > B){
-        cout << A << endl;
+        cout << "El mayor es " << A << endl;
     }
 
     else{
-        cout << B << endl;
+        cout << "El mayor es " << B << endl;
     }
 }
 
 void ejercicio4(){
     //Escriba un programa que pida dos números A y B e imprima en pantalla el menor.
-    short A, B;
+    short A = 0, B = 0;
     cout << "Ingrese el numero A: "; cin >> A;
     cout << "Ingrese el numero B: "; cin >> B;
 
     if(A > B){
-        cout << B << endl;
+        cout << "El menor es " << B << endl;
     }
 
     else{
-        cout << A << endl;
+        cout << "El menor es " << A << endl;
     }
 }
 
 void ejercicio5(){
     // Escriba un programa que pida dos números A y B e imprima en pantalla la división
-    float A,B;
+    float A = 0,B = 0;
     cout << "Ingrese el numero A: "; cin >> A;
     cout << "Ingrese el numero B: "; cin >> B;
 
@@ -136,18 +136,17 @@ void ejercicio5(){
     else{
 
         if((A/B)-int(A/B) >= 0.5){
-            cout << "El numero redondeado es: " << int((A/B)+1) << endl;
+                cout << A << "/" << B << "=" << int((A/B)+1) << endl;
         }
         else{
-
-            cout << "El numero redondeado es:" << int((A/B)) << endl;
+            cout << A << "/" << B << "=" << int((A/B)) << endl;
         }
     }
 }
 
 void ejercicio6(){
     //Escriba un programa que pida dos números A y B e imprima en pantalla la potencia A^B, sin hacer uso de librerías matemáticas.
-    short A, B, pwr = 1;
+    short A = 0, B = 0, pwr = 1;
     cout << "Ingrese el numero A: "; cin >> A;
     cout << "Ingrese el numero B: "; cin >> B;
 
@@ -160,36 +159,37 @@ void ejercicio6(){
         pwr *= A;
     }
 
-    cout << pwr << endl;
+    cout << A << "**" << B << "=" << pwr << endl;
 
 }
 
 void ejercicio7(){
     // Escriba un programa que pida un número N e imprima en pantalla la suma de todos los números entre 0 y N (incluyéndose el mismo).
-    short int n, count = 0;
+    short int n = 0, count = 0;
     cout << "Ingrese un numero:"; cin >> n;
 
     for(int i = 1; i <= n; i++){
         count += i;
     }
 
-    cout << count << endl;
+    cout << "La sumatoria desde 0 hasta " << n << " es: " << count << endl;
 }
 
 void ejercicio8(){
     //Escriba un programa que pida un número N e imprima en pantalla su factorial.
-    short n, fact = 1;
+    short n = 0, fact = 1;
     cout << "Ingrese un numero: "; cin >> n;
     for(int i = 1; i <= n; i++){
         fact *= i;
     }
 
-    cout << fact << endl;
+
+    cout << n << "!=" << fact << endl;
 }
 
 void ejercicio9(){
     // Escriba un programa que pida un número N e imprima el perímetro y área de un círculo con radio N.
-    short n;
+    short n = 0;
     cout << "Ingrese el numero N: "; cin >> n;
     cout << "El perimetro es: " << 2*3.1416*n << endl;
     cout << "El area es: " << 3.1416*(n*n) << endl;
@@ -197,12 +197,14 @@ void ejercicio9(){
 
 void ejercicio10(){
     //Escriba un programa que pida un número N e imprima en pantalla todos los múltiplos de dicho número entre 1 y 100.
-    short n, tiplos = 0;
+    short n = 0, tiplos = 0;
     cout << "Ingrese un numero N: "; cin >> n;
     for(int i = 1; i <= 100; i++){
 
         if(tiplos <= 100){
-            cout << tiplos << endl;
+            if(tiplos != 0){
+                cout << tiplos << endl;
+            }
             tiplos = n * i;
         }
 
@@ -214,7 +216,7 @@ void ejercicio10(){
 
 void ejercicio11(){
     // Escriba un programa que pida un número N e imprima en pantalla su tabla de multiplicar hasta 10xN.
-    short n;
+    short n = 0;
     cout << "Ingrese el numero N para calcular la tabla de multiplicar: "; cin >> n;
 
     for(short int i = 1; i <= 10; i++){
@@ -239,7 +241,7 @@ void ejercicio12(){
 
 void ejercicio13(){
     // Escriba un programa que pida un número N e imprima todos los divisores de N.
-    short n;
+    short n = 0;
     cout << "Ingrese el numero N para calcular los divisores: "; cin >> n;
 
     for (short int i = 1; i <= n; i++) {
@@ -295,7 +297,7 @@ void ejercicio17() {
     //Escriba un programa que pida constantemente números hasta que se ingrese el número cero e imprima en
     //pantalla el mayor de todos los números ingresados.
 
-    short int n, mayor = 0;
+    short int n = 0, mayor = 0;
 
     do {
         cout << "Ingrese un numero para encontrar el mayor y 0 para finalizar: ";
@@ -309,6 +311,7 @@ void ejercicio17() {
 }
 
 void ejercicio18(){
+    //Determine si es cuadrado perfecto
 
     int n = 0;
     cout << "Ingrese un numero N:"; cin >> n;
@@ -324,7 +327,7 @@ void ejercicio18(){
         cout << n << " es cuadrado perfecto." << endl;
     }
     else{
-        cout << n << " no es cudraddo perfecto." << endl;
+        cout << n << " no es cudradrado perfecto." << endl;
     }
 
 
@@ -334,7 +337,7 @@ void ejercicio18(){
 void ejercicio19(){
     //Escriba un programa que pida un número N e imprima si es o no un número primo.
 
-    short int n, cont = 0;
+    short int n = 0, cont = 0;
     cout << "Ingrese un numero:"; cin >> n;
 
     for(short int i = 1; i <= n; i++){
@@ -345,10 +348,10 @@ void ejercicio19(){
     }
 
     if(cont == 2){
-        cout << "Es primo" << endl;
+        cout << n << " es primo" << endl;
     }
     else{
-        cout << "No es primo" << endl;
+        cout << n << " NO es primo" << endl;
     }
 }
 
@@ -366,7 +369,11 @@ void ejercicio20(){
     }
 
     if(n == invertido){
-        cout << "El numero ingresado es palindromo" << endl;
+        cout << n << " ingresado es un numero palindromo" << endl;
+    }
+
+    else{
+        cout << n << " no es un numero palindromo" << endl;
     }
 
 }
@@ -388,7 +395,7 @@ void ejercicio21(){
 }
 
 void ejercicio22(){
-    int n, h = 0, m = 0, s = 0;
+    int n = 0, h = 0, m = 0, s = 0;
     cout << "Ingrese el numero para calcular HH/MM/SS: "; cin >> n;
 
     h = (n/3600);
@@ -403,7 +410,7 @@ void ejercicio23(){
     //Escriba un programa que pida dos números A y B e imprima en pantalla el mínimo común múltiplo
     //entre los dos.
 
-    short int A,B,i=1;
+    short int A = 0,B = 0,i=1;
     bool estado = false;
     cout << "Ingrese el numero A:"; cin >> A;
     cout << "Ingrese el numero B:"; cin >> B;
@@ -414,13 +421,13 @@ void ejercicio23(){
         }
         i += 1;
     }
-    cout << "El MCM de los dos numeros es: " << i-1 << endl;
+    cout << "El MCM de " << A << " y " << B << " es: " <<i-1 << endl;
 }
 
 void ejercicio24(){
     //Escriba un programa que pida una número entero e imprima un cuadrado de dicho
     //tamaño, los bordes del cuadrado deben estar hechos con el carácter `+' y el interior debe estar vacío.
-    int n;
+    int n = 0;
     cout << "Ingrese un numero N:"; cin >> n;
 
     for(int i = 0; i < n; i++){
@@ -447,15 +454,16 @@ void ejercicio24(){
 void ejercicio25(){
     //Escriba un programa que pida un número N e imprima en pantalla la cantidad de
     //dígitos de N.
-    int n, cont = 0;
+    int n = 0,nAux = 0, cont = 0;
     cout << "Ingrese el numero N:"; cin >> n;
+    nAux = n;
 
     while(n > 0){
         n /= 10;
         cont ++;
     }
 
-    cout << "La cantidad de digitos es: " << cont << endl;
+    cout << nAux << " tiene " << cont << " digitos " << endl;
 
 
 }
@@ -471,7 +479,16 @@ void ejercicio26(){
     cout << "Ingrese el valor de c:"; cin >> c;
 
     if(a + b > c && a + c > b && b + c > a){
-        cout << "Es posible crear un triangulo con estas medidas de lados \n";
+        if(a==b && b==c){
+            cout << "Se forma un triangulo equilatero" << endl;
+        }
+        else if(a != b && a != c && b != c){
+            cout << "Se forma un triangulo escaleno" << endl;
+        }
+
+        else{
+            cout << "Se forma un triangulo isosceles" << endl;
+        }
     }
 
     else{
@@ -483,7 +500,7 @@ void ejercicio26(){
 void ejercicio27() {
     // Escriba un programa que actúe como una calculadora con operaciones de suma, resta, multiplicación y división,
     // el usuario debe ingresar los operandos y la operación a realizar.
-    int A, B;
+    int A = 0, B = 0;
     char operando;
 
     cout << "Ingrese el numero A: "; cin >> A;
@@ -613,7 +630,7 @@ void problema1() {
 void problema2() {
     //Se necesita un programa que permita determinar la mínima combinación de billetes
     //y monedas para una cantidad de dinero determinada.
-    int n;
+    int n = 0;
     cout << "Ingrese un numero para devuelta: "; cin >> n;
     cout << "50000 = " << n/50000 << endl;
     n = n%50000;
@@ -635,38 +652,49 @@ void problema2() {
     n = n%100;
     cout << "50 = " << n/50 << endl;
     n = n%50;
-    cout << "Restante = " << n << endl;
+    cout << "Faltante = " << n << endl;
 
 }
 
 void problema3(){
-    //Escriba un programa que debe leer un mes y un día de dicho mes para luego decir si esa combinación de mes
-    //y día son válidos. El caso más especial es el 29 de febrero, en dicho caso imprimir posiblemente año bisiesto.
-    int mes,dia;
+    //Escriba un programa que debe leer un mes y un día de dicho mes para luego decir
+    //si esa combinación de mes y día son válidos. El caso más especial es el 29 de febrero, en dicho caso
+    //imprimir posiblemente año bisiesto.
+
+    int mes = 0,dia = 0;
     cout << "Ingrese el mes:"; cin >> mes;
     cout << "Ingrese el dia:"; cin >> dia;
 
-    if(mes > 12 || dia > 30 ){
-        cout << dia << "/" << mes <<  " no es valida " << endl;
+    if(mes > 12){
+        cout << mes << " es un mes invalido" << endl;
     }
 
-
-    else if(dia == 29 && mes ==2){
-        cout << dia << "/" << mes <<  " es una fecha invalida para bisiesto" << endl;
+    else if ( dia == 29 && mes == 2){
+        cout << dia << "/" << mes << " es valida en bisiesto" << endl;
     }
 
-    else{
-        cout << dia << "/" << mes <<  " es una fecha valida " << endl;
+    else if(dia > 30){
+        cout << dia << "/" << mes << " es una fecha invalida" << endl;
     }
 
+    else if (dia >= 1 && dia <= 30){
+        cout << dia << "/" << mes << " es una fecha valida" << endl;
+    }
 
 }
 
+
 void problema4(){
-    //Escriba un programa para leer dos números enteros con el siguiente signicado: el
-    //valor del primer número representa una hora del día en un reloj de 24 horas, de modo que 1245
-    //representa las doce y cuarenta y cinco de la tarde.
-    int hora_p, hora_e, hora, min;
+    /*
+    Problema 4. Escriba un programa para leer dos números enteros con el siguiente signicado: el
+    valor del primer número representa una hora del día en un reloj de 24 horas, de modo que 1245
+    representa las doce y cuarenta y cinco de la tarde. El segundo entero representa un tiempo de du-
+    ración de la misma manera, por lo que 345 representa tres horas y 45 minutos. El programa debe
+    sumar esta duración primer número, y el resultado será impreso en la misma notación, en este caso
+    1630, que es el tiempo de 3 horas y 45 minutos después de 12:45.
+    Nota: el formato de salida debe ser: La hora es 1630. */
+
+    int hora_p = 0, hora_e = 0, hora = 0, min = 0;
     cout << "Ingrese la primer hora: "; cin >> hora_p;
     if(hora_p>2359){
         cout << "Ingrese un formato de hora valido" << endl;
@@ -674,9 +702,7 @@ void problema4(){
     else{
         cout << "Ingrese el tiempo a agregar: "; cin >> hora_e;
         hora = (hora_p/100) + (hora_e/100);
-        cout << hora << endl;
         min = (hora_p%100) + (hora_e%100);
-        cout << min << endl;
         if(hora>23){
             hora -= 23;
         }
@@ -684,12 +710,19 @@ void problema4(){
             min -= 60;
             hora += 1;
         }
-        cout << hora << min << endl;
+        if(hora <= 24 && min < 60){
+            cout << "La hora es "<< hora << min << endl;
+        }
+        else{
+            cout << hora << min << "es un tiempo invalido"<< endl;
+        }
+
+
     }
 }
 
+
 void problema5(){
-    //Este ejericicio se debe optimizar
     //Escriba un programa que muestre el siguiente patrón en la pantalla:
     //    *
     //   ***
@@ -699,7 +732,7 @@ void problema5(){
     //   ***
     //    *
 
-    short int n;
+    short int n = 0;
     cout << "Ingrese un numero impar: ";cin >> n;
     short int esp_blancos = (n-1)/2, ast = 1;
 
@@ -754,9 +787,8 @@ void problema6(){
     for(int i = 1; i <= base; i++){
         fact *= i;
         sum += 1/fact;
-        cout << "base = " << fact << endl;
-        cout << "sum = " << sum << endl;
     }
+    cout << "e es aproximadamente: " << sum << endl;
 }
 
 void problema7(){
@@ -765,7 +797,7 @@ void problema7(){
     //Escriba un programa que reciba un número n y halle la suma de todos los números pares en la serie
     //de Fibonacci menores a n.
 
-    int n, x=0,y=1,z=1, cont = 0;
+    int n = 0, x=0,y=1,z=1, cont = 0;
 
     cout << "Ingrese el numero n: ";cin >> n;
     for(short int i = 1; i <n; i++){
@@ -777,15 +809,14 @@ void problema7(){
         y = z;
     }
 
-    cout << "La suma de los elementos pares es: " << cont << endl;
-
+    cout << "El resultado de la suma es: " << cont << endl;
 
 }
 
 void problema8(){
     //Escriba un programa que reciba 3 números a, b, c, y calcule la suma de todos los
     //múltiplos de a y b que sean menores a c. Tenga en cuenta no sumar 2 veces los múltiplos comunes.
-    int a, b, c;
+    int a = 0, b = 0, c = 0;
     cout << "Ingrese tres numeros (a, b, c): ";
     cin >> a >> b >> c;
 
@@ -820,7 +851,7 @@ void problema8(){
 void problema9(){
     //Escriba un programa que pida un número entero N e imprima el resultado de la suma
     //de todos sus dígitos elevados a sí mismos.
-    int n,digito,cont;
+    int n = 0,digito = 0,cont = 0;
     cout << "Ingrese el numero N:"; cin>>n;
 
     while(n>0){
@@ -832,7 +863,7 @@ void problema9(){
         }
         cont += potencia;
     }
-    cout << "La suma de los digitos elevados por si mismos es: " << cont << endl;
+    cout << "El resultado de la suma es: " << cont << endl;
 }
 
 
@@ -858,7 +889,7 @@ void problema11(){
     //todos los números enteros entre 1 y el número ingresado.
 
 
-    short int n, resultado = 1;
+    short int n = 0, resultado = 1;
     cout << "Ingrese un numero N:"; cin >> n;
 
     for(int i=1;i<=n;i++){
@@ -880,14 +911,14 @@ void problema12(){
         }
     }
 
-    cout << "El maximo factor primo es:" << max << endl;
+    cout << "El mayor factor primo" << " de " << n << " es: " << max << endl;
 
 }
 
 void problema13(){
     //Escriba un programa que reciba un número y calcule la suma de todos los primos
     //menores que el número ingresado.
-    int n, contT = 0;
+    int n = 0, contT = 0;
     cout << "Ingrese un numero N: ";
     cin >> n;
 
@@ -942,7 +973,7 @@ void problema15() {
     17 16 15 14 13
     */
 
-    int n;
+    int n = 0;
     cout << "Ingrese un numero impar N: ";cin >> n;
 
     int sumaDiagonal = 1;
@@ -992,7 +1023,7 @@ void problema16(){
 void problema17(){
     //La secuencia de números triangulares se forma al sumar su posición en el arreglo
     //con el valor del número anterior: 1, 1+2=3, 3+3=6, 6+4=10, 10+5=15, 15+6=21, 21+7=28...
-    int k;
+    int k = 0;
     cout << "Ingrese el minimo de divisores:"; cin >>k;
     bool state = false;
 
@@ -1199,6 +1230,7 @@ void problemas(){
         menuPrincipal();
     case 2:
         cout << "Problema 2:" << endl;
+        problema2();
         menuPrincipal();
     case 3:
         cout << "Problema 3:" << endl;
