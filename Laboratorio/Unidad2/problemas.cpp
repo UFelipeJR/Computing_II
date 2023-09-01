@@ -6,6 +6,7 @@ using namespace std;
 
 
 void splitCharNum_Problema8() {
+
     /*
      * Problema 8
      * Escriba un programa que reciba una cadena de caracteres y separe los números del resto de caracteres,
