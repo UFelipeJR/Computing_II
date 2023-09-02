@@ -1,5 +1,8 @@
 #include <iostream>
 #include "funcionalidades.h"
+#include <cstdlib>
+#include <ctime>
+
 using namespace std;
 
 char* genDinamicCharArray(const int size){
@@ -17,6 +20,24 @@ char* genDinamicCharArray(const int size){
     //cin >> arrayC; // Por definir
     cin.getline(arrayC,size); // Por definir
     return arrayC;
+}
+
+
+char* genDinamicRandomAlphabet(const int size){
+    srand(time(NULL));
+    char* arrayRandom = new char[size];
+    char* punteroPrimario = arrayRandom;
+    int indiceRandom;
+    char letraRandom;
+
+    for(int i = 0; i < size; i++){
+        indiceRandom = rand() % 26;
+        letraRandom = 'A' + indiceRandom;
+        *punteroPrimario = letraRandom;
+        punteroPrimario++;
+    }
+
+    return arrayRandom;
 }
 
 

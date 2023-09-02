@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-    stringToInt_Problema4();
+    genDinamicRandomAlphabet(200);
     return 0;
 }
 
