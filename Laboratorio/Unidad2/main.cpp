@@ -1,11 +1,16 @@
 #include <iostream>
 #include "problemas.h"
-#include "ejercicios.h"
+#include "funcionalidades.h"
 
 using namespace std;
 
+
+
 int main()
 {
-    splitCharNum();
+    splitCharNum_Problema8();
     return 0;
 }
+
+
+

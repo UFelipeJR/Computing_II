@@ -1,11 +1,10 @@
 #include <iostream>
 #include "problemas.h"
+#include "funcionalidades.h"
 using namespace std;
 
 
-
-
-void splitCharNum_Problema8() {
+void splitCharNum_Problema8(){
 
     /*
      * Problema 8
@@ -13,25 +12,17 @@ void splitCharNum_Problema8() {
      * generando una cadena que no tiene números y otra con los números que había en la cadena original.
      *
      * Variables, constantes y arreglos.
-     * size: tamaño máximo definido como constante para el arreglo.
-     * cadenaC: definicion de arreglo con tamaño constante.
+     * cadenaC: definicion de arreglo con el uso de una funcion.
      * punteroPrimario: almacena dirección de memoria del primer elemento de CadenaC
      * punteroSecundario: almacena dirección de memoria del primer elemento de CadenaC
     */
 
-    const int size = 50;
-    char cadenaC[size];
-    char *punteroPrimario;
-    char *punteroSecundario;
-    cout << "Ingrese la cadena de caracteres:";
-    cin >> cadenaC;
-    //cin.getline(cadenaC,size) Por definir
-    punteroPrimario = cadenaC;
-    punteroSecundario = cadenaC;
-
+    char* cadenaC = genDinamicCharArray(50);
+    char* punteroPrimario = cadenaC;
+    char* punteroSecundario = cadenaC;
 
     //Se itera en todo el arreglo con el rango de las letras mayúsculas y minúsculas en ASCII
-    while (*punteroPrimario != '\0') {
+    while(*punteroPrimario != '\0'){
         if((*punteroPrimario >= 'a' && *punteroPrimario <= 'z') || (*punteroPrimario >= 'A' && *punteroPrimario <= 'Z') ){
             cout << *punteroPrimario;
         }
@@ -41,7 +32,7 @@ void splitCharNum_Problema8() {
     cout << " y ";
 
     //Se itera en todo el arreglo con el rango de los números en ASCII
-    while (*punteroSecundario != '\0') {
+    while(*punteroSecundario != '\0'){
         if(*punteroSecundario >= '0' && *punteroSecundario <= '9'){
             cout << *punteroSecundario;
         }
@@ -50,4 +41,5 @@ void splitCharNum_Problema8() {
 
     cout << endl;
 
+    delete[] cadenaC;
 }
