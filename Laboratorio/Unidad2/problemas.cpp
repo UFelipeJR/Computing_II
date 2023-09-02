@@ -4,6 +4,17 @@
 using namespace std;
 
 
+void stringToInt_Problema4(){
+    char* CadenaD = genDinamicCharArray(50);
+
+
+}
+
+
+
+
+
+
 void splitCharNum_Problema8(){
 
     /*

@@ -18,3 +18,5 @@ char* genDinamicCharArray(const int size){
     cin.getline(arrayC,size); // Por definir
     return arrayC;
 }
+
+

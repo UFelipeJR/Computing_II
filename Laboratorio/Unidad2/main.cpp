@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-    splitCharNum_Problema8();
+    stringToInt_Problema4();
     return 0;
 }
 
