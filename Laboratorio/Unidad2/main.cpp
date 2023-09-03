@@ -8,7 +8,8 @@ using namespace std;
 
 int main()
 {
-    genDinamicRandomAlphabet(200);
+    srand(time(NULL));
+    romanToArabic_problema10();
     return 0;
 }
 
