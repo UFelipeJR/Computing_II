@@ -6,5 +6,6 @@ void charsToInt_Problema4();
 void upperWord_Problema6();
 void splitCharNum_Problema8();
 void romanToArabic_problema10();
+void magicSquare_Problema12();
 
 #endif // PROBLEMAS_H

@@ -231,3 +231,69 @@ void romanToArabic_problema10() {
     delete[] romanNumber;
 }
 
+
+void magicSquare_Problema12(){
+
+    /*
+     * Problema 12
+     * Un cuadrado mágico es una matriz de números enteros sin repetir, en la que la suma de los números
+     * en cada columna, cada fila y cada diagonal principal tienen como resultado la misma constante. Escriba
+     * un programa que permita al usuario ingresar una matriz cuadrada, imprima la matriz y verifique si la
+     * matriz es un cuadrado mágico.
+     *
+     * Nota:
+     * 4 9 2
+     * 3 5 7
+     * 8 1 6
+     *
+     * Variables, constantes y arreglos:
+     * arreglo: definicion de arreglo con el uso de una funcion.
+     * n: tamaño de uno de los lados de la matriz.
+     * sumConst: total de la suma de la diagonal que será usada como referencia.
+     * sumFilas: suma de las filas.
+     * sumColumnas: suma de las columnas.
+     * estado: indicador de si es o no cudrado mágico.
+     *
+     * Retorno:
+     * vacio
+    */
+
+    int** arreglo;
+    int n = 0;
+    int sumConst = 0;
+    int sumFilas = 0;
+    int sumColumnas = 0;
+    bool estado = true;
+
+    cout << "Ingrese el tamano de un lado de la matriz: ";cin>> n;
+
+    arreglo = genDinamicMatriz(n,n);
+    fillMatriz(arreglo,n,n);
+    printMatriz(arreglo,n,n);
+
+    for(int i = 0; i < n; i++){
+        sumConst += arreglo[i][i];
+    }
+
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            sumFilas += arreglo[i][j];
+            sumColumnas += arreglo[j][i];
+        }
+        if(sumFilas != sumConst || sumColumnas != sumConst){
+            estado = false;
+            break;
+        }
+        sumFilas = 0;
+        sumColumnas = 0;
+    }
+
+    if(estado != true){
+        cout << "No es un cuadrado magico" << endl;
+    }
+    else{
+        cout << "Es un cuadrado magico" << endl;
+    }
+
+    cleanMemoryMatrizmxn(n,arreglo);
+}

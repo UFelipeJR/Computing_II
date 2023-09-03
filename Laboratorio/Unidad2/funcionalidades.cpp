@@ -134,3 +134,94 @@ int equivRoman(char caracter){
 
     return -1;
 }
+
+
+
+//SIN DOCUMENTAR
+
+int** genDinamicMatriz(int filas, int columnas) {
+
+    /*
+     * Generador de matriz dinamica vacia mxn
+     *
+     * Variables, constantes y arreglos.
+     * matriz: doble puntero indicador del espacio en memoria donde estará almacenada la matriz.
+     * filas: numero de filas de la matriz.
+     * columnas: numero de columnas de la matriz.
+     *
+     * Retorno:
+     * vacio.
+    */
+
+    int** matriz = new int*[filas];
+
+    for (int i = 0; i < filas; i++) {
+        matriz[i] = new int[columnas];
+    }
+
+    return matriz;
+}
+
+void cleanMemoryMatrizmxn(int filas, int **matriz){
+
+    /*
+     * Liberador de memoria matriz dinamica
+     *
+     * Variables, constantes y arreglos.
+     * matriz: doble puntero indicador del espacio en memoria donde estará almacenada la matriz.
+     * filas: numero de filas de la matriz.
+     *
+     * Retorno:
+     * vacio.
+    */
+
+    for (int i = 0; i < filas; i++) {
+        delete[] matriz[i];
+    }
+    delete[] matriz;
+}
+
+void fillMatriz(int** matriz, int filas, int columnas){
+
+    /*
+     * Rellenador de matriz
+     *
+     * Variables, constantes y arreglos.
+     * matriz: matriz o doble puntero donde está almacenada.
+     * filas: numero de filas de la matriz.
+     * columnas: numero de columnas de la matriz.
+     *
+     * Retorno:
+     * vacio.
+    */
+
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < columnas; j++) {
+            cout << "Ingrese el valor para la posicion [" << i + 1 << "][" << j + 1 << "]: ";
+            cin >> *(*(matriz + i) + j);
+        }
+    }
+
+}
+
+void printMatriz(int** matriz, int filas, int columnas){
+
+    /*
+     * Impresor de matriz mxn
+     *
+     * Variables, constantes y arreglos.
+     * matriz: matriz o doble puntero donde está almacenada.
+     * filas: numero de filas de la matriz.
+     * columnas: numero de columnas de la matriz.
+     *
+     * Retorno:
+     * vacio.
+    */
+
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < columnas; j++) {
+            cout << matriz[i][j] << " ";
+        }
+        cout << endl;
+}
+}

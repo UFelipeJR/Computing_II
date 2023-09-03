@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
     srand(time(NULL));
-    romanToArabic_problema10();
+    magicSquare_Problema12();
     return 0;
 }
 
