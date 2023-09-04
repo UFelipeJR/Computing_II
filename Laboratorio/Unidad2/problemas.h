@@ -7,5 +7,7 @@ void upperWord_Problema6();
 void splitCharNum_Problema8();
 void romanToArabic_problema10();
 void magicSquare_Problema12();
+void rotatedMatriz_Problema14();
+void CombiPaths_Problema16();
 
 #endif // PROBLEMAS_H

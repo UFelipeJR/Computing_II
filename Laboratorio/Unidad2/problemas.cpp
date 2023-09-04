@@ -297,3 +297,78 @@ void magicSquare_Problema12(){
 
     cleanMemoryMatrizmxn(n,arreglo);
 }
+
+void rotatedMatriz_Problema14(){
+
+    /*
+     * Problema 14
+     *
+     * Elabore un programa que llene una matriz 5x5 con los números del 1 al 25 y la imprima, luego
+     * imprima la matriz rotada 90, 180 y 270 grados.
+     *
+     * Variables, constantes y arreglos.
+     * matriz: matriz o doble puntero donde está almacenada.
+     * val: inicialización del elemento inicial de la matriz
+     *
+     * Retorno:
+     * vacio.
+    */
+
+    int** matriz = genDinamicMatriz(5,5);
+    int val = 1;
+
+    for(int i = 0; i<5;i++){
+        for(int j = 0; j<5;j++){
+            matriz[i][j] = val;
+            val ++;
+        }
+    }
+
+    cout << "Matriz Original:" << endl;
+    rotatedMatriz(matriz,5,5,0);
+
+    cout << "\nMatriz Rotada 90 Grados:" << endl;
+    rotatedMatriz(matriz,5,5,90);
+
+    cout << "\nMatriz Rotada 180 Grados:" << endl;
+    rotatedMatriz(matriz,5,5,180);
+
+    cout << "\nMatriz Rotada 270 Grados:" << endl;
+    rotatedMatriz(matriz,5,5,270);
+
+    cleanMemoryMatrizmxn(5,matriz);
+
+}
+
+void CombiPaths_Problema16(){
+
+    /*
+     * Problema 16
+     *
+     * En una malla de 2x2, realizando únicamente movimientos hacia la derecha y hacia abajo hay 6
+     * posibles caminos para llegar de la esquina superior izquierda a la inferior derecha.
+     *
+     * Generalización de la combinatoria coeficiente binomial (nb,k)
+     * C(n, k) = n! / (k! * (n - k)!)
+     *
+     * Variables, constantes y arreglos.
+     * n: numero ingresado por el usuario que determina el tamaño de la malla.
+     *
+     * Retorno:
+     * vacio.
+    */
+
+
+    int n = 0;
+    unsigned long long caminos = 1;
+
+    cout << "Ingrese el valor de N: ";
+    cin >> n;
+
+    for (int i = 0; i < n; ++i) {
+        caminos *= (2 * n - i);
+        caminos /= (i + 1);
+    }
+
+    cout << "Para una malla de " << n << "x" << n << " puntos hay " << caminos << " caminos." << endl;
+}

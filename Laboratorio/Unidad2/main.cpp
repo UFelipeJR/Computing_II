@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
     srand(time(NULL));
-    magicSquare_Problema12();
+    CombiPaths_Problema16();
     return 0;
 }
 

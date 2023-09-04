@@ -225,3 +225,76 @@ void printMatriz(int** matriz, int filas, int columnas){
         cout << endl;
 }
 }
+
+void rotatedMatriz(int** matriz,int filas,int columnas, int angulo){
+
+    /*
+     * Rotador de matriz nxn
+     *
+     * Variables, constantes y arreglos.
+     * matriz: matriz o doble puntero donde está almacenada.
+     * filas: numero de filas de la matriz.
+     * columnas: numero de columnas de la matriz.
+     * angulo: angulo en el que se quiere rotar la materia, puede ser 0,90,180 y 270.
+     *
+     * Retorno:
+     * vacio.
+    */
+
+    switch (angulo) {
+        case 0:
+            printMatriz(matriz,filas,columnas);
+            break;
+        case 90:
+            for (int j = 0; j < columnas; j++) {
+                for (int i = filas - 1; i >= 0; i--) {
+                    cout << matriz[i][j] << " ";
+                }
+                cout << endl;
+            }
+            break;
+        case 180:
+            for(int i = filas-1; i>=0; i--){
+                for(int j = columnas-1; j>=0;j--){
+                    cout << matriz[i][j] << " ";
+                }
+                cout << endl;
+            }
+            break;
+        case 270:
+            for (int j = columnas - 1; j >= 0; j--) {
+                for (int i = 0; i < filas; i++) {
+                    cout << matriz[i][j] << " ";
+                }
+                cout << endl;
+            }
+
+            break;
+
+    }
+
+}
+
+int factorial(int numero){
+
+    /*
+     * Calculo de factorial
+     *
+     * Variables, constantes y arreglos.
+     * numero: numero al que se le calculará el factorial
+     *
+     * Retorno:
+     * vacio.
+    */
+
+    //Caso base
+    if(numero == 0){
+        return 1;
+    }
+
+    //La función se llama así misma hasta que llega al caso base
+    else{
+        return numero*factorial(numero-1);
+    }
+
+}
