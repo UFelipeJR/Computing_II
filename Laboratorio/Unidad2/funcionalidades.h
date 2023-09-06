@@ -11,6 +11,8 @@ void cleanMemoryMatrizmxn(int, int **);
 void fillMatriz(int**, int , int );
 void printMatriz(int** , int, int);
 void rotatedMatriz(int**,int ,int, int);
-int factorial(int numero);
+unsigned long long factorial(int);
+long long int n_permutacion_lexicografica(int);
+
 
 #endif // FUNCIONALIDADES_H

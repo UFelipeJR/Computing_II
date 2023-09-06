@@ -77,6 +77,10 @@ void charsToInt_Problema4(){
     cout << "El numero entero es: " << resultado * signo << endl;
 
     delete[] cadenaD;
+
+    // Si se quisiera retornar el numero en entero
+    // return resultado * signo;
+
 }
 
 void upperWord_Problema6(){
@@ -348,8 +352,8 @@ void CombiPaths_Problema16(){
      * En una malla de 2x2, realizando únicamente movimientos hacia la derecha y hacia abajo hay 6
      * posibles caminos para llegar de la esquina superior izquierda a la inferior derecha.
      *
-     * Generalización de la combinatoria coeficiente binomial (nb,k)
-     * C(n, k) = n! / (k! * (n - k)!)
+     * Se usa una generalización de la combinatoria coeficiente binomial (nb,k)
+     * C(n, k) = n! / (k! * (n - k)!))
      *
      * Variables, constantes y arreglos.
      * n: numero ingresado por el usuario que determina el tamaño de la malla.
@@ -371,4 +375,28 @@ void CombiPaths_Problema16(){
     }
 
     cout << "Para una malla de " << n << "x" << n << " puntos hay " << caminos << " caminos." << endl;
+}
+
+void permulexicographical_Problema18(){
+
+    /*
+     * Problema 18
+     *
+     * Las permutaciones lexicográficas son permutaciones ordenadas numérica o alfabéticamente, por ejemplo
+     * las permutaciones lexicográficas de 0,1 y 2 son: 012, 021, 102, 120, 201, 210. Escribir un programa que
+     * reciba un número n y halle la enésima permutación lexicográfica de los números entre 0 y 9.
+     *
+     * Variables, constantes y arreglos.
+     * n: numero ingresado por el usuario para determinar la enesima permutación.
+     *
+     * Retorno:
+     * vacio.
+    */
+
+    int n;
+    cout << "Ingrese el numero N:";
+    cin >> n;
+
+    cout << "La permutacion numero " << n << " es:" << n_permutacion_lexicografica(n) << endl;
+
 }

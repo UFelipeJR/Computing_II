@@ -275,7 +275,7 @@ void rotatedMatriz(int** matriz,int filas,int columnas, int angulo){
 
 }
 
-int factorial(int numero){
+unsigned long long factorial(int n) {
 
     /*
      * Calculo de factorial
@@ -288,13 +288,44 @@ int factorial(int numero){
     */
 
     //Caso base
-    if(numero == 0){
+    if (n == 0) {
         return 1;
     }
 
     //La función se llama así misma hasta que llega al caso base
-    else{
-        return numero*factorial(numero-1);
+    return n * factorial(n - 1);
+}
+
+
+long long n_permutacion_lexicografica(int n) {
+
+    /*
+     * Calculo de n permutación lexicografica
+     *
+     * Variables, constantes y arreglos.
+     * numeros: arreglo con numeros del 0 al 9.
+     * permutacion: valor de la enesima permutación.
+     *
+     * Retorno:
+     * permutacion.
+    */
+
+    int numeros[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    long long permutacion = 0;
+    n--;
+
+    for (int i = 9; i >= 0; i--) {
+        long long fact = factorial(i);
+        int indice = n / fact;
+        permutacion = permutacion * 10 + numeros[indice];
+
+        // Eliminar el número usado moviendo los elementos a la izquierda
+        for (int j = indice; j < 9; j++) {
+                numeros[j] = numeros[j + 1];
+        }
+
+        n %= fact;
     }
 
+    return permutacion;
 }
