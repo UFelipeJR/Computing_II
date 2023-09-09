@@ -3,6 +3,22 @@
 #include "funcionalidades.h"
 using namespace std;
 
+void MachineMoney_Problema1(){
+    int dinero_restante = 0;
+    int denominaciones[10] = {50000, 20000, 10000, 5000, 2000, 1000, 500, 200, 100, 50};
+    int cantidad[10];
+    cout << "Ingrese la devuelta: ";
+    cin >> dinero_restante;
+
+    for(int i = 0; i < 10; i++){
+        cantidad[i] = dinero_restante / denominaciones[i];
+        dinero_restante %= denominaciones[i];
+        cout << "De " << denominaciones[i] << ": " << cantidad[i] << endl;
+        if(i == 9){
+            cout << "El dinero restante es: " << dinero_restante << endl;
+        }
+    }
+}
 
 void contAlphabet_Problema2(){
 
@@ -40,6 +56,25 @@ void contAlphabet_Problema2(){
 
 }
 
+bool sameChain_Problema3(){
+    cout << "Ingrese dos cadenas de caracteres\n";
+    char* cadena1 = genDinamicCharArray(50);
+    char* cadena2 = genDinamicCharArray(50);
+
+    if(lenChar(cadena1)!= lenChar(cadena2)){
+        return false;
+    }
+
+    for(int i = 0; i < lenChar(cadena1); i++){
+        if(cadena1[i] != cadena2[i]){
+            return false;
+        }
+    }
+    delete[] cadena1;
+    delete[] cadena2;
+    return true;
+
+}
 
 void charsToInt_Problema4(){
 
@@ -78,8 +113,12 @@ void charsToInt_Problema4(){
 
     delete[] cadenaD;
 
-    // Si se quisiera retornar el numero en entero
-    // return resultado * signo;
+    //return resultado * signo; si se quiere retornar
+
+}
+
+void Problema5(){
+    //Falta
 
 }
 
@@ -119,6 +158,35 @@ void upperWord_Problema6(){
     cout << endl;
     delete[] cadenaC;
 
+}
+
+
+
+void Problema7() {
+    char* cadena = genDinamicCharArray(50);
+    char caracteres[lenChar(cadena)] = " ";
+    bool encontrado = false;
+
+
+    for(int i = 0; i < lenChar(cadena); i++) {
+        encontrado = false;
+
+        for(int j = 0; j < lenChar(cadena); j++) {
+            if(cadena[i] == caracteres[j]) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if(!encontrado) {
+            caracteres[i] = cadena[i];
+            cout << cadena[i];
+
+        }
+    }
+    cout << endl;
+
+    delete[] cadena;
 }
 
 
@@ -164,6 +232,54 @@ void splitCharNum_Problema8(){
 
     delete[] cadenaC;
 }
+
+
+void Problema9(){
+
+
+    char* cadenaC = genDinamicCharArray(50);
+    int n = 0;
+    int faltantes = 0;
+    int longitudOriginal = lenChar(cadenaC);
+    int extremoInferior = 0;
+    int extremoSuperior = 0;
+    int suma = 0;
+
+
+    cout << "Ingrese el numero N:"; cin >>n;
+    faltantes = NearbyDivisor(n, longitudOriginal) - longitudOriginal;
+
+    char* arregloAux = new char[longitudOriginal + faltantes + 1];
+
+
+    int i = 0;
+    while (i < faltantes + longitudOriginal) {
+        if (i < faltantes) {
+            arregloAux[i] = '0';
+        } else {
+            arregloAux[i] = cadenaC[i - faltantes];
+        }
+        i++;
+    }
+
+    arregloAux[i] = '\0';
+
+    extremoSuperior += n;
+
+    while(extremoSuperior <= lenChar(arregloAux)){
+        suma += charToInt(slicing(arregloAux,extremoInferior,extremoSuperior));
+        extremoInferior += n;
+        extremoSuperior += n;
+    }
+
+    cout << "El numero original es: " << cadenaC << endl;
+    cout << "La suma es: " << suma << endl;
+
+    delete[] arregloAux;
+
+
+}
+
 
 
 void romanToArabic_problema10() {

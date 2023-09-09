@@ -329,3 +329,59 @@ long long n_permutacion_lexicografica(int n) {
 
     return permutacion;
 }
+
+int lenChar(char* cadena){
+    int len = 0;
+    while(cadena[len] != '\0'){
+        len ++;
+    }
+
+    return len;
+}
+
+
+int NearbyDivisor(int numero, int longitudMinima) {
+    int multiplo = (longitudMinima / numero) * numero;
+    if (multiplo < longitudMinima) {
+        multiplo += numero;
+    }
+    return multiplo;
+}
+
+
+char* slicing(char* cadenaOriginal, int indiceInicio, int indiceFin){
+    int nuevaLongitud = indiceFin - indiceInicio;
+    char* nuevaCadena = new char[nuevaLongitud + 1];
+    int iGen = 0;
+
+    for (int i = indiceInicio; i < indiceFin; i++) {
+        nuevaCadena[iGen] =  cadenaOriginal[i];
+        iGen ++;
+    }
+    nuevaCadena[nuevaLongitud] = '\0';
+
+    return nuevaCadena;
+
+}
+
+
+int charToInt(char* cadena){
+    int resultado = 0;
+    char* punteroIterador = cadena;
+    int signo = 1;
+
+    if(*punteroIterador == '-'){
+        signo = -1;
+    }
+
+    while(*punteroIterador != '\0'){
+        if(*punteroIterador >= '0' && *punteroIterador <= '9'){
+                resultado = resultado * 10 + (*punteroIterador - '0');
+        }
+        punteroIterador ++;
+    }
+
+    return resultado * signo;
+
+}
+
