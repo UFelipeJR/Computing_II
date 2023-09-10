@@ -137,8 +137,6 @@ int equivRoman(char caracter){
 
 
 
-//SIN DOCUMENTAR
-
 int** genDinamicMatriz(int filas, int columnas) {
 
     /*
@@ -307,7 +305,7 @@ long long n_permutacion_lexicografica(int n) {
      * permutacion: valor de la enesima permutación.
      *
      * Retorno:
-     * permutacion.
+     * permutacion: cantidad de combinaciones.
     */
 
     int numeros[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -331,6 +329,17 @@ long long n_permutacion_lexicografica(int n) {
 }
 
 int lenChar(char* cadena){
+
+    /*
+     * Contador de longitud de un arreglo caracteres
+     *
+     * Variables, constantes y arreglos.
+     * cadena: arreglo de caracteres.
+     *
+     * Retorno:
+     * len: longitud de la cadena.
+    */
+
     int len = 0;
     while(cadena[len] != '\0'){
         len ++;
@@ -340,7 +349,19 @@ int lenChar(char* cadena){
 }
 
 
-int NearbyDivisor(int numero, int longitudMinima) {
+int NearbyMulti(int numero, int longitudMinima) {
+
+    /*
+     * Calculador del minimo multiplo más cercano
+     *
+     * Variables, constantes y arreglos.
+     * numero: numero del cual se calculará el minimo multiplo no menor a longitudMinima.
+     * longitudMinima: el valor minimo que se debe alcanzar.
+     *
+     * Retorno:
+     * multiplo: minimo multiplo no menor a longitudMinima.
+    */
+
     int multiplo = (longitudMinima / numero) * numero;
     if (multiplo < longitudMinima) {
         multiplo += numero;
@@ -350,6 +371,19 @@ int NearbyDivisor(int numero, int longitudMinima) {
 
 
 char* slicing(char* cadenaOriginal, int indiceInicio, int indiceFin){
+
+    /*
+     * Slicing de arreglos de caracteres
+     *
+     * Variables, constantes y arreglos.
+     * cadenaOriginal: cadena de la cuál se extraerá la subcadena.
+     * indiceInicio: extremo inferior para la subcadena.
+     * indiceFin: extremo superior para la subcadena.
+     *
+     * Retorno:
+     * nuevaCadena: subcadena generada en base a los indices.
+    */
+
     int nuevaLongitud = indiceFin - indiceInicio;
     char* nuevaCadena = new char[nuevaLongitud + 1];
     int iGen = 0;
@@ -366,6 +400,17 @@ char* slicing(char* cadenaOriginal, int indiceInicio, int indiceFin){
 
 
 int charToInt(char* cadena){
+
+    /*
+     * Conversor de caracter a entero
+     *
+     * Variables, constantes y arreglos.
+     * cadena: cadena de caracteres númericos.
+     *
+     * Retorno:
+     * resultado*signo: cadena de caracteres casteada a entero con su respectivo signo.
+    */
+
     int resultado = 0;
     char* punteroIterador = cadena;
     int signo = 1;
@@ -385,3 +430,28 @@ int charToInt(char* cadena){
 
 }
 
+
+int contDigits(int n){
+
+    /*
+     * Contador de digitos
+     *
+     * Variables, constantes y arreglos.
+     * n: numero n del que se calculará la longitud.
+     *
+     * Retorno:
+     * cont: cantidad de digitos.
+    */
+
+    int nAux = 0;
+    int cont = 0;
+    nAux = n;
+
+    while(n > 0){
+        n /= 10;
+        cont ++;
+    }
+
+    return cont;
+
+}

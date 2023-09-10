@@ -4,6 +4,26 @@
 using namespace std;
 
 void MachineMoney_Problema1(){
+
+    /*
+     * Problema 1
+     * Se necesita un programa que permita determinar la mínima combinación de billetes y monedas para
+     * una cantidad de dinero determinada. Los billetes en circulación son de $50.000, $20.000, $10.000, $5.000, $2.000
+     * y $1.000, y las monedas son de $500, $200, $100 y $50. Hacer un programa que entregue el número de billetes
+     * y monedas de cada denominación para completar la cantidad deseada. Si por medio de los billetes y monedas
+     * disponibles no se puede lograr la cantidad deseada, el sistema deberá decir lo que resta para lograrla. Use arreglos
+     * y ciclos para realizar el programa.
+     *
+     * Variables, constantes y arreglos:
+     * dinero_restante: variable que almacena el dinero restante durante el tiempo de ejecución.
+     * denominaciones: arreglo de numeros enteros con todas las denominaciones posibles de las monedas.
+     * cantidad: arreglo donde se almacenerá la cantidad de billetes o monedas necesarias para cada denominación.
+     *
+     * Retorno:
+     * Vacio
+    */
+
+
     int dinero_restante = 0;
     int denominaciones[10] = {50000, 20000, 10000, 5000, 2000, 1000, 500, 200, 100, 50};
     int cantidad[10];
@@ -57,6 +77,22 @@ void contAlphabet_Problema2(){
 }
 
 bool sameChain_Problema3(){
+
+    /*
+     * Problema 3
+     * Haga una función que compare 2 cadenas de caracteres y retorno un valor lógico verdadero si son
+     * iguales y falso en caso contrario, no olvide también tener en cuenta la longitud de las cadenas.
+     * Escriba un programa de prueba.
+     *
+     * Variables, constantes y arreglos:
+     * cadena1: primera cadena utilizada para la comparación.
+     * cadena2: segunda cadena utilizada para la compatación.
+     *
+     * Retorno:
+     * Valor booleano en base a la comparación.
+     *
+    */
+
     cout << "Ingrese dos cadenas de caracteres\n";
     char* cadena1 = genDinamicCharArray(50);
     char* cadena2 = genDinamicCharArray(50);
@@ -91,7 +127,7 @@ void charsToInt_Problema4(){
      * signo: valor que determina si el valor entero será positivo o negativo.
      *
      * Retorno:
-     * vacio
+     * Vacio
     */
 
     int resultado = 0;
@@ -117,9 +153,58 @@ void charsToInt_Problema4(){
 
 }
 
-void Problema5(){
-    //Falta
+void IntToChar_Problema5(int numero, char cadena[], int& longitud){
 
+    /*
+     * Problema 5
+     * Haga una función que reciba un numero entero (int) y lo convierta a cadena de caracteres. Use
+     * parámetros por referencia para retornar la cadena. Escriba un programa de prueba.
+     * Ejemplo: si recibe un int con valor 123, la cadena que se retorne debe ser “123”.
+     *
+     * Variables, constantes y arreglos:
+     * numero: numero entero que será convertido a un arreglo de caracteres.
+     * cadena: cadena en la que será almacenado el valor entero.
+     * longitud: tamaño de la cadena que será cambiado por referencia.
+     *
+     * Retorno:
+     * Vacio.
+     *
+     * Ejemplo de uso
+     * int numero = 1234567;
+     * char resultado[20];
+     * int longitud;
+     * IntToChar_Problema5(numero, resultado, longitud);
+     * cout << "El numero " << numero << " convertido a cadena es: " << resultado << endl;
+     *
+    */
+
+    int num = numero;
+    int digitos = contDigits(numero);
+    int indice = 0;
+
+    if (numero == 0) {
+        cadena[0] = '0';
+        cadena[1] = '\0';
+        longitud = 1;
+        return;
+    }
+
+    if (numero < 0) {
+        digitos++;
+        num = -numero;
+        cadena[0] = '-';
+    }
+
+    indice = digitos - 1;
+    while (num != 0) {
+        int digito = num % 10;
+        cadena[indice] = '0' + digito;
+        num /= 10;
+        indice--;
+    }
+
+    cadena[digitos] = '\0';
+    longitud = digitos;
 }
 
 void upperWord_Problema6(){
@@ -135,7 +220,7 @@ void upperWord_Problema6(){
      * punteroIterador: almacena dirección de memoria del primer elemento de CadenaC.
      *
      * Retorno:
-     * vacio
+     * Vacio
     */
 
     char* cadenaC = genDinamicCharArray(50);
@@ -162,11 +247,30 @@ void upperWord_Problema6(){
 
 
 
-void Problema7() {
+void DeleteRepeatedCharacters_Problema7(){
+
+    /*
+     * Problema 7. Escriba un programa que reciba una cadena de caracteres y elimine los caracteres repetidos.
+     * Ejemplo: se recibe bananas debe mostrar bans.
+     * Nota: la salida del programa debe ser: Original: bananas. Sin repetidos: bans.
+     *
+     * Variables, constantes y arreglos:
+     * cadena: cadena original.
+     * caracteres: arreglo de caracteres que se van encontrando en la cadena.
+     * encontrado: variable booleana para indentificar aparición de caracter.
+     *
+     * Retorno:
+     * Vacio.
+     *
+    */
+
     char* cadena = genDinamicCharArray(50);
     char caracteres[lenChar(cadena)] = " ";
     bool encontrado = false;
 
+
+    cout << "Original: " << cadena << endl;
+    cout << "Sin repetidos: ";
 
     for(int i = 0; i < lenChar(cadena); i++) {
         encontrado = false;
@@ -185,7 +289,6 @@ void Problema7() {
         }
     }
     cout << endl;
-
     delete[] cadena;
 }
 
@@ -203,7 +306,7 @@ void splitCharNum_Problema8(){
      * punteroIterador: almacena dirección de memoria del primer elemento de CadenaC.
      *
      * Retorno:
-     * vacio
+     * Vacio.
     */
 
     char* cadenaC = genDinamicCharArray(50);
@@ -234,8 +337,30 @@ void splitCharNum_Problema8(){
 }
 
 
-void Problema9(){
+void SumSubstring_Problema9(){
 
+    /*
+     * Problema 9. Escribir un programa que reciba un número n y lea una cadena de caracteres numéricos, el programa
+     * debe separar la cadena de caracteres en números de n cifras, sumarlos e imprimir el resultado. En caso de no poderse
+     * dividir exactamente en números de n cifras se colocan ceros a la izquierda del primer número.
+     * Ejemplo: Si n=3 y se lee el arreglo 87512395 la suma seria 087+512+395=994.
+     * Nota: la salida del programa debe ser:
+     * Original: 87512395.
+     * Suma: 994.
+     *
+     * Variables, constantes y arreglos:
+     * cadenaC: cadena de caracteres numericos.
+     * n: numero n ingresado por el usuario.
+     * faltantes: cantidad de caracteres faltantes para ser divisible entre n.
+     * longitudOriginal: longitud de la cadena numerica original.
+     * extremoInferior: extremo inferior para extraer la subcadena.
+     * extremoSuperior: extremo superior para extraer la subcadena.
+     * suma:
+     *
+     * Retorno:
+     * Vacio.
+     *
+    */
 
     char* cadenaC = genDinamicCharArray(50);
     int n = 0;
@@ -247,7 +372,7 @@ void Problema9(){
 
 
     cout << "Ingrese el numero N:"; cin >>n;
-    faltantes = NearbyDivisor(n, longitudOriginal) - longitudOriginal;
+    faltantes = NearbyMulti(n, longitudOriginal) - longitudOriginal;
 
     char* arregloAux = new char[longitudOriginal + faltantes + 1];
 
@@ -276,6 +401,7 @@ void Problema9(){
     cout << "La suma es: " << suma << endl;
 
     delete[] arregloAux;
+    delete[] slicing(arregloAux,extremoInferior,extremoSuperior);
 
 
 }
@@ -305,7 +431,7 @@ void romanToArabic_problema10() {
      * total: contador total de numero arabico.
      *
      * Retorno:
-     * vacio
+     * Vacio.
     */
 
     char* romanNumber = genDinamicCharArray(50);
@@ -375,7 +501,7 @@ void magicSquare_Problema12(){
      * estado: indicador de si es o no cudrado mágico.
      *
      * Retorno:
-     * vacio
+     * Vacio.
     */
 
     int** arreglo;
@@ -431,7 +557,7 @@ void rotatedMatriz_Problema14(){
      * val: inicialización del elemento inicial de la matriz
      *
      * Retorno:
-     * vacio.
+     * Vacio.
     */
 
     int** matriz = genDinamicMatriz(5,5);
@@ -475,7 +601,7 @@ void CombiPaths_Problema16(){
      * n: numero ingresado por el usuario que determina el tamaño de la malla.
      *
      * Retorno:
-     * vacio.
+     * Vacio.
     */
 
 
@@ -506,7 +632,7 @@ void permulexicographical_Problema18(){
      * n: numero ingresado por el usuario para determinar la enesima permutación.
      *
      * Retorno:
-     * vacio.
+     * Vacio.
     */
 
     int n;

@@ -14,8 +14,9 @@ void rotatedMatriz(int**,int ,int, int);
 unsigned long long factorial(int);
 long long int n_permutacion_lexicografica(int);
 int lenChar(char*);
-int NearbyDivisor(int, int);
+int NearbyMulti(int, int);
 char* slicing(char*, int, int);
 int charToInt(char* cadena);
+int contDigits(int);
 
 #endif // FUNCIONALIDADES_H

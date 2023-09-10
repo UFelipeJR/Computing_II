@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
     srand(time(NULL));
-    Problema9();
+    DeleteRepeatedCharacters_Problema7();
     return 0;
 }
 
