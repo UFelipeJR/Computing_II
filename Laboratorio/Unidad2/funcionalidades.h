@@ -18,5 +18,11 @@ int NearbyMulti(int, int);
 char* slicing(char*, int, int);
 int charToInt(char* cadena);
 int contDigits(int);
+char** llenarMatrizCine();
+void printMatrizCine(char** arreglo);
+void cleanMatrizCine(char filas, char **matriz);
+void fillMatrizRandomN(int** matriz, int filas, int columnas);
+int divisoresSum(int num);
+void sumAmigablesMin(int limite);
 
 #endif // FUNCIONALIDADES_H

@@ -477,6 +477,95 @@ void romanToArabic_problema10() {
     delete[] romanNumber;
 }
 
+void cinemaSeats_Problema11(){
+    /*
+     * Problema 11
+     *
+     * Escriba un programa que permita manejar las reservas de asientos en una sala de cine, los asientos de
+     * la sala de cine están organizados en 15 filas con 20 asientos cada una. El programa debe mostrar una representación
+     * de la sala que indique que asientos están disponibles y cuales se encuentran reservados. Además debe permitir
+     * realizar reservas o cancelaciones al ingresar la fila (letras A-O) y el número del asiento (números 1-20).
+     *
+     * Que se muestre como:
+     *
+     * A1 +   +   +   +
+     * B1 -   -   +   +
+     * C1 -   -   -   - , Donde + representa los asientos reservados y - representa asientos disponibles.
+     *
+     */
+
+    char letterReservation;
+    int numberSeat;
+    int optionSeats;
+    char **arreglo;
+    arreglo = llenarMatrizCine();
+    cout << "*** Menu del Cine ***" << endl;
+    cout << "1. Para reservar una silla" << endl << "2. Para cancelar una reserva" << endl << "3. Para salir" << endl;
+    cin >> optionSeats;
+    while(optionSeats != 0){
+        if (optionSeats == 1){
+            int columna = -1;
+            int fila = 0;
+            cout << "Ingrese la fila a reservar: ";
+            cin >> letterReservation;
+
+            cout << "Ingrese el numero de asiento: ";
+            cin >> numberSeat;
+
+            for(char i = 'A'; i <= letterReservation; i++){
+                if(i == letterReservation){
+                    for(int j = 0; j <= numberSeat; ++j){
+                        if(j == numberSeat){
+                            arreglo[fila][columna] = '+';
+                        }
+                        else{
+                            columna++;
+                        }
+                    }
+                }
+                else{
+                    fila++;
+                }
+            }
+            cout << "1. Para reservar otro asiento" << endl << "2. Para cancelar una reserva" << endl << "3. Para salir" << endl;
+            cin >> optionSeats;
+        }
+        else if(optionSeats == 2){
+            int columna = -1;
+            int fila = 0;
+            cout << "Ingrese la fila a reservar: ";
+            cin >> letterReservation;
+
+            cout << "Ingrese el numero de asiento: ";
+            cin >> numberSeat;
+
+            for(char i = 'A'; i <= letterReservation; i++){
+                if(i == letterReservation){
+                    for(int j = 0; j <= numberSeat; ++j){
+                        if(j == numberSeat){
+                            arreglo[fila][columna] = '-';
+                        }
+                        else{
+                            columna++;
+                        }
+                    }
+                }
+                else{
+                    fila++;
+                }
+            }
+            cout << "1. Para reservar un asiento" << endl << "2. Para cancelar otra reserva" << endl << "3. Para salir" << endl;
+            cin >> optionSeats;
+        }
+        else if(optionSeats == 3){
+            printMatrizCine(arreglo);
+            cout << "*** Vuelva pronto ***" << endl;
+            break;
+        }
+    }
+    delete[] arreglo;
+}
+
 
 void magicSquare_Problema12(){
 
@@ -544,6 +633,31 @@ void magicSquare_Problema12(){
     cleanMemoryMatrizmxn(n,arreglo);
 }
 
+int starmatrix_Problema13(int** imagen, int fil, int col){
+    /*
+     * Problema 13
+     *
+     * Se tiene una fotografía digitalizada de una porción de la galaxia NGC 1300 que está ubicada a
+     * 61.000.000 de años luz del planeta Tierra. La representación digital de la imagen está constituida por una matriz
+     * de números enteros; en la cual, cada uno representa la cantidad de luz en ese punto de la imagen.
+     *
+     * La ecuacion de indices es (E(i, j)+E(i, j-1)+E(i-1,j)+E(i+1, j))/5 > 6
+     *
+     */
+    int cuentas;
+    int stars;
+    for(int i = 1; i < col-1;i++){
+        for(int j = 1; j < fil-1; j++){
+            cuentas = imagen[i][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i-1][j]+imagen[i+1][j];
+            if(cuentas/5 > 6){
+                stars++;
+            }
+        }
+    }
+    cout << "Hay " << stars << " estrellas" << endl;
+    return stars;
+}
+
 void rotatedMatriz_Problema14(){
 
     /*
@@ -586,6 +700,64 @@ void rotatedMatriz_Problema14(){
 
 }
 
+void squareintersec_Problema15(){
+    /*
+     * Problema 15
+     *
+     * Implemente una función que reciba 2 arreglos que representen los rectángulos A y B, y por referencia retorne un
+     * rectángulo C (con la misma estructura descrita anteriormente) que corresponda a la intersección de A y B
+     *
+     */
+
+    int arregloA[4] = {7, 7, 5, 5};
+    int arregloB[4] = {7, 7, 4, 2};
+    int interseccion[4];
+    if (arregloA[0] > arregloB[0]) {
+            interseccion[0] = arregloA[0];
+    }
+
+    else {
+        interseccion[0] = arregloB[0];
+    }
+
+    if (arregloA[1] > arregloB[1]) {
+        interseccion[1] = arregloA[1];
+    }
+
+    else {
+        interseccion[1] = arregloB[1];
+    }
+
+    int x1_arregloA = arregloA[0] + arregloA[2];
+    int x1_arregloB = arregloB[0] + arregloB[2];
+
+    if (x1_arregloA < x1_arregloB) {
+        interseccion[2] = x1_arregloA - interseccion[0];
+    }
+
+    else {
+        interseccion[2] = x1_arregloB - interseccion[0];
+    }
+
+    int y1_arregloA = arregloA[1] + arregloA[3];
+    int y1_arregloB = arregloB[1] + arregloB[3];
+    if (y1_arregloA < y1_arregloB) {
+        interseccion[3] = y1_arregloA - interseccion[1];
+    }
+
+    else {
+        interseccion[3] = y1_arregloB - interseccion[1];
+    }
+    if (interseccion[2] == 0 || interseccion[3] == 0) {
+        cout << "No hay interseccion" << endl;
+    }
+
+    else {
+        cout << "Rectangulo de interseccion: x = " << interseccion[0] << ", y = " << interseccion[1]
+                  << ", base = " << interseccion[2] << ", altura = " << interseccion[3] << endl;
+    }
+}
+
 void CombiPaths_Problema16(){
 
     /*
@@ -617,6 +789,23 @@ void CombiPaths_Problema16(){
     }
 
     cout << "Para una malla de " << n << "x" << n << " puntos hay " << caminos << " caminos." << endl;
+}
+
+void friendlynumbers_Problema17(){
+    /*
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     */
+    int limite;
+    cout << "Ingrese un numero: ";
+    cin >> limite;
+    sumAmigablesMin(limite);
 }
 
 void permulexicographical_Problema18(){

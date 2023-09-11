@@ -179,6 +179,25 @@ void cleanMemoryMatrizmxn(int filas, int **matriz){
     delete[] matriz;
 }
 
+void cleanMatrizCine(int filas, char **arreglo){
+
+    /*
+     * Liberador de memoria matriz dinamica de Caracteres.
+     *
+     * Variables, constantes y arreglos.
+     * matriz: doble puntero indicador del espacio en memoria donde estará almacenada la matriz.
+     * filas: numero de filas de la matriz.
+     *
+     * Retorno:
+     * vacio.
+    */
+
+    for (int i = 0; i < filas; i++) {
+        delete[] arreglo[i];
+    }
+    delete[] arreglo;
+}
+
 void fillMatriz(int** matriz, int filas, int columnas){
 
     /*
@@ -455,3 +474,91 @@ int contDigits(int n){
     return cont;
 
 }
+
+char** llenarMatrizCine() {
+    /*
+     * Rellenadora de matriz, por char
+     * Única aplicación para problema 11
+     *
+    */
+    char** matriz = new char*[15];
+    for (int i = 0; i < 15; ++i) {
+        matriz[i] = new char[20];
+        for (int j = 0; j < 20; ++j) {
+                matriz[i][j] = '-';
+        }
+    }
+    return matriz;
+}
+
+void printMatrizCine(char** arreglo){
+    /*
+     * Para mostrar la matriz en pantalla,
+     * Justo como la anterior funcion pero
+     * cambiada por un ocasional glitch del .h
+     *
+    */
+    for (int i = 0; i < 15; ++i) {
+        for (int j = 0; j < 20; ++j) {
+                cout << arreglo[i][j] << "  ";
+        }
+        cout << endl;
+    }
+}
+
+void fillMatrizRandomN(int** matriz, int filas, int columnas){
+
+    /*
+     * Rellenador de matriz
+     *
+     * Variables, constantes y arreglos.
+     * matriz: matriz o doble puntero donde está almacenada.
+     * filas: numero de filas de la matriz.
+     * columnas: numero de columnas de la matriz.
+     *
+     * Retorno:
+     * vacio.
+    */
+    srand(time(0));
+
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < columnas; j++) {
+                matriz[i][j] = rand() % 15+1;
+        }
+    }
+
+}
+
+
+int divisoresSum(int num){
+    /*
+     * Suma de divisores de un número
+     *
+     * Variables, constantes.
+     * num: número para determinar sus divisores
+     * suma: lleva el resultado de la suma de sus divisores (v.r)
+     *
+     */
+    int suma = 1;
+    for(int i = 2; i < num; ++i){
+        if(num%i == 0){
+            suma += i;
+        }
+    }
+    return suma;
+}
+
+void sumAmigablesMin(int limite) {
+    /*
+     * Suma de amigables menores a un número
+     *
+     * Variables, constantes.
+     * limite: número "máximo" para que se detenga el calculo de la suma
+     * a, b, sumatotal: variables operativas para el cálculo de la suma.
+     *
+     */
+    int sumaTotal = 1;
+    for (int a = 2; a < limite; a++) {
+    }
+}
+

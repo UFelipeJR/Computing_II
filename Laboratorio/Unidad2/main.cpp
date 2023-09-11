@@ -6,10 +6,8 @@ using namespace std;
 
 
 
-int main()
-{
-    srand(time(NULL));
-    DeleteRepeatedCharacters_Problema7();
+int main() {
+    friendlynumbers_Problema17();
     return 0;
 }
 
