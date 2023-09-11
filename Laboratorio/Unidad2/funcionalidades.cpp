@@ -548,7 +548,7 @@ int divisoresSum(int num){
     return suma;
 }
 
-void sumAmigablesMin(int limite) {
+/*void sumAmigablesMin(int limite) {
     /*
      * Suma de amigables menores a un número
      *
@@ -557,8 +557,9 @@ void sumAmigablesMin(int limite) {
      * a, b, sumatotal: variables operativas para el cálculo de la suma.
      *
      */
-    int sumaTotal = 1;
+   /* int sumaTotal = 1;
     for (int a = 2; a < limite; a++) {
     }
 }
 
+*/

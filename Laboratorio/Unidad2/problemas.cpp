@@ -797,15 +797,29 @@ void friendlynumbers_Problema17(){
      *
      *
      *
-     *
+     * 6, 4, 3, 2 ---> div de 12
      *
      *
      *
      */
-    int limite;
+    int numero;
     cout << "Ingrese un numero: ";
-    cin >> limite;
-    sumAmigablesMin(limite);
+    cin >> numero;
+
+    int sumaAmigables = 0;
+
+    for(int a = 1; a <= numero; a++) {
+        int b = divisoresSum(a);
+        cout << "B: ..." <<  b << endl;
+        cout << "A: ..." << a << endl;
+        if (a == numero) {
+            sumaAmigables += b;
+            cout << sumaAmigables << endl;
+            }
+        }
+
+    cout << "El resultado de la suma es: " << sumaAmigables << endl;
+
 }
 
 void permulexicographical_Problema18(){
