@@ -492,6 +492,12 @@ void cinemaSeats_Problema11(){
      * B1 -   -   +   +
      * C1 -   -   -   - , Donde + representa los asientos reservados y - representa asientos disponibles.
      *
+     * Variables, constantes y arreglos-
+     * letterReservation: letra para indicar en que fila nos vamos a ubicar de la matriz
+     * numberSeat: numero de columna donde nos iremos a ubicar
+     * arreglo: variable que lleva la matriz completa de chars
+     *
+     *
      */
 
     char letterReservation;
@@ -643,6 +649,13 @@ int starmatrix_Problema13(int** imagen, int fil, int col){
      *
      * La ecuacion de indices es (E(i, j)+E(i, j-1)+E(i-1,j)+E(i+1, j))/5 > 6
      *
+     * Variables, constantes o arreglos.
+     * cuentas: variable que me lleva la sumatoria de los indices en la matriz (sea Eij)
+     * stars: cuantas estrellas habra dentro de la matriz impuesta.
+     *
+     * Retorno:
+     *  - stars
+     *
      */
     int cuentas;
     int stars;
@@ -700,17 +713,25 @@ void rotatedMatriz_Problema14(){
 
 }
 
-void squareintersec_Problema15(){
+void squareintersec_Problema15(int arregloA[4] , int arregloB[4]){
     /*
      * Problema 15
      *
      * Implemente una función que reciba 2 arreglos que representen los rectángulos A y B, y por referencia retorne un
      * rectángulo C (con la misma estructura descrita anteriormente) que corresponda a la intersección de A y B
      *
+     * Variables, constantes y arreglos.
+     * arregloA: para tener de manera de arreglo los datos (x , y, base, altura)
+     * arregloB: misma logica del A (x , y, base, altura)
+     * interseccion: arreglo vacio donde tenemos que ubicar nuestros datos de la interseccion
+     *
+     * Retorno:
+     * n/a
+     *
      */
 
-    int arregloA[4] = {7, 7, 5, 5};
-    int arregloB[4] = {7, 7, 4, 2};
+    //int arregloA[4] = {0, 0, 8, 4};
+    //int arregloB[4] = {5, 2, 6, 7};
     int interseccion[4];
     if (arregloA[0] > arregloB[0]) {
             interseccion[0] = arregloA[0];
@@ -793,12 +814,18 @@ void CombiPaths_Problema16(){
 
 void friendlynumbers_Problema17(){
     /*
+     * Problema 17
      *
+     * Dos números a y b (a != b) son amigables si la suma de los divisores de a (excluyéndose el mismo)
+     * es igual a b, y viceversa. Ej: los divisores de 220 son 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 y 110; y suman 284. Los divisores
+     * de 284 son 1, 2, 4, 71 y 142; y suman 220. Entonces 220 y 284 son amigables. Escribir un programa que reciba un
+     * número y halle la suma de todos los números amigables menores al número ingresado.
      *
+     * Variables, constantes y arreglos.
+     * numero: el numero ingresado por el usuario que determina el "limite" para calcular sus amigables
      *
-     *
-     * 6, 4, 3, 2 ---> div de 12
-     *
+     * Retorno:
+     * n/a
      *
      *
      */
@@ -810,8 +837,8 @@ void friendlynumbers_Problema17(){
 
     for(int a = 1; a <= numero; a++) {
         int b = divisoresSum(a);
-        cout << "B: ..." <<  b << endl;
-        cout << "A: ..." << a << endl;
+        //cout << "B: ..." <<  b << endl; //Esto era para debuggear
+        //cout << "A: ..." << a << endl; //Esto era para debuggear
         if (a == numero) {
             sumaAmigables += b;
             cout << sumaAmigables << endl;

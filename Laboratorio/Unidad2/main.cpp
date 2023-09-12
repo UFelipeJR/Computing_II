@@ -7,7 +7,7 @@ using namespace std;
 
 
 int main() {
-    friendlynumbers_Problema17();
+    squareintersec_Problema15();
     return 0;
 }
 
