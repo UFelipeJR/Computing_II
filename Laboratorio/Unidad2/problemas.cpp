@@ -1,7 +1,6 @@
-#include <iostream>
-#include "problemas.h"
 #include "funcionalidades.h"
-using namespace std;
+#include "problemas.h"
+
 
 void MachineMoney_Problema1(){
 
@@ -76,7 +75,8 @@ void contAlphabet_Problema2(){
 
 }
 
-bool sameChain_Problema3(){
+
+bool sameChain_Problema3(char* cadena1,char* cadena2){
 
     /*
      * Problema 3
@@ -93,10 +93,6 @@ bool sameChain_Problema3(){
      *
     */
 
-    cout << "Ingrese dos cadenas de caracteres\n";
-    char* cadena1 = genDinamicCharArray(50);
-    char* cadena2 = genDinamicCharArray(50);
-
     if(lenChar(cadena1)!= lenChar(cadena2)){
         return false;
     }
@@ -106,13 +102,12 @@ bool sameChain_Problema3(){
             return false;
         }
     }
-    delete[] cadena1;
-    delete[] cadena2;
     return true;
 
 }
 
-void charsToInt_Problema4(){
+
+int charsToInt_Problema4(char* cadenaD){
 
     /*
      * Problema 4
@@ -131,7 +126,6 @@ void charsToInt_Problema4(){
     */
 
     int resultado = 0;
-    char* cadenaD = genDinamicCharArray(50);
     char* punteroIterador = cadenaD;
     int signo = 1;
 
@@ -147,11 +141,10 @@ void charsToInt_Problema4(){
 
     cout << "El numero entero es: " << resultado * signo << endl;
 
-    delete[] cadenaD;
-
-    //return resultado * signo; si se quiere retornar
+    return resultado * signo;
 
 }
+
 
 void IntToChar_Problema5(int numero, char cadena[], int& longitud){
 
@@ -207,7 +200,7 @@ void IntToChar_Problema5(int numero, char cadena[], int& longitud){
     longitud = digitos;
 }
 
-void upperWord_Problema6(){
+void upperWord_Problema6(char* cadenaC){
 
     /*
      * Problema 6
@@ -223,7 +216,6 @@ void upperWord_Problema6(){
      * Vacio
     */
 
-    char* cadenaC = genDinamicCharArray(50);
     char* punteroIterador = cadenaC;
 
     cout << "Original: ";
@@ -241,13 +233,11 @@ void upperWord_Problema6(){
     }
 
     cout << endl;
-    delete[] cadenaC;
 
 }
 
 
-
-void DeleteRepeatedCharacters_Problema7(){
+void DeleteRepeatedCharacters_Problema7(char* cadena){
 
     /*
      * Problema 7. Escriba un programa que reciba una cadena de caracteres y elimine los caracteres repetidos.
@@ -264,7 +254,6 @@ void DeleteRepeatedCharacters_Problema7(){
      *
     */
 
-    char* cadena = genDinamicCharArray(50);
     char caracteres[lenChar(cadena)] = " ";
     bool encontrado = false;
 
@@ -289,11 +278,9 @@ void DeleteRepeatedCharacters_Problema7(){
         }
     }
     cout << endl;
-    delete[] cadena;
 }
 
-
-void splitCharNum_Problema8(){
+void splitCharNum_Problema8(char* cadenaC){
 
     /*
      * Problema 8
@@ -309,7 +296,6 @@ void splitCharNum_Problema8(){
      * Vacio.
     */
 
-    char* cadenaC = genDinamicCharArray(50);
     char* punteroIterador = cadenaC;
 
     //Se itera en todo el arreglo con el rango de las letras mayúsculas y minúsculas en ASCII
@@ -333,11 +319,9 @@ void splitCharNum_Problema8(){
 
     cout << endl;
 
-    delete[] cadenaC;
 }
 
-
-void SumSubstring_Problema9(){
+void SumSubstring_Problema9(char* cadenaC, int n){
 
     /*
      * Problema 9. Escribir un programa que reciba un número n y lea una cadena de caracteres numéricos, el programa
@@ -355,29 +339,25 @@ void SumSubstring_Problema9(){
      * longitudOriginal: longitud de la cadena numerica original.
      * extremoInferior: extremo inferior para extraer la subcadena.
      * extremoSuperior: extremo superior para extraer la subcadena.
-     * suma:
+     * suma: suma de substrings.
+     * i: variable de control del while
      *
      * Retorno:
      * Vacio.
      *
     */
 
-    char* cadenaC = genDinamicCharArray(50);
-    int n = 0;
     int faltantes = 0;
     int longitudOriginal = lenChar(cadenaC);
     int extremoInferior = 0;
     int extremoSuperior = 0;
     int suma = 0;
-
-
-    cout << "Ingrese el numero N:"; cin >>n;
+    int i = 0;
     faltantes = NearbyMulti(n, longitudOriginal) - longitudOriginal;
-
     char* arregloAux = new char[longitudOriginal + faltantes + 1];
 
 
-    int i = 0;
+
     while (i < faltantes + longitudOriginal) {
         if (i < faltantes) {
             arregloAux[i] = '0';
@@ -400,15 +380,9 @@ void SumSubstring_Problema9(){
     cout << "El numero original es: " << cadenaC << endl;
     cout << "La suma es: " << suma << endl;
 
-    delete[] arregloAux;
-    delete[] slicing(arregloAux,extremoInferior,extremoSuperior);
-
-
 }
 
-
-
-void romanToArabic_problema10() {
+void romanToArabic_problema10(char* romanNumber){
 
     /*
      * Problema 10
@@ -434,13 +408,10 @@ void romanToArabic_problema10() {
      * Vacio.
     */
 
-    char* romanNumber = genDinamicCharArray(50);
     char* punteroIterador = romanNumber;
     int romanoActual = 0;
     int romanoSiguiente = 0;
     int total = 0;
-
-    cout << "El numero ingresado fue: ";
 
     if (!checkRoman(romanNumber)) {
         cout << "El numero romano ingresado no es valido" << endl;
@@ -474,9 +445,104 @@ void romanToArabic_problema10() {
     }
 
     cout << endl << "Corresponde a: " << total << endl;
-    delete[] romanNumber;
 }
 
+void cinemaSeats_Problema11(){
+    /*
+     * Problema 11
+     *
+     * Escriba un programa que permita manejar las reservas de asientos en una sala de cine, los asientos de
+     * la sala de cine están organizados en 15 filas con 20 asientos cada una. El programa debe mostrar una representación
+     * de la sala que indique que asientos están disponibles y cuales se encuentran reservados. Además debe permitir
+     * realizar reservas o cancelaciones al ingresar la fila (letras A-O) y el número del asiento (números 1-20).
+     *
+     * Que se muestre como:
+     *
+     * A1 +   +   +   +
+     * B1 -   -   +   +
+     * C1 -   -   -   - , Donde + representa los asientos reservados y - representa asientos disponibles.
+     *
+     * Variables, constantes y arreglos-
+     * letterReservation: letra para indicar en que fila nos vamos a ubicar de la matriz
+     * numberSeat: numero de columna donde nos iremos a ubicar
+     * arreglo: variable que lleva la matriz completa de chars
+     *
+     * Retorno:
+     * Vacio.
+     */
+
+    char letterReservation;
+    int numberSeat;
+    int optionSeats;
+    char **arreglo;
+    arreglo = llenarMatrizCine();
+    cout << "*** Menu del Cine ***" << endl;
+    cout << "1. Para reservar una silla" << endl << "2. Para cancelar una reserva" << endl << "3. Para salir" << endl;
+    cin >> optionSeats;
+
+    while(optionSeats != 0){
+        if (optionSeats == 1){
+            int columna = -1;
+            int fila = 0;
+            cout << "Ingrese la fila a reservar: ";
+            cin >> letterReservation;
+
+            cout << "Ingrese el numero de asiento: ";
+            cin >> numberSeat;
+
+            for(char i = 'A'; i <= letterReservation; i++){
+                if(i == letterReservation){
+                    for(int j = 0; j <= numberSeat; ++j){
+                        if(j == numberSeat){
+                            arreglo[fila][columna] = '+';
+                        }
+                        else{
+                            columna++;
+                        }
+                    }
+                }
+                else{
+                    fila++;
+                }
+            }
+            cout << "1. Para reservar otro asiento" << endl << "2. Para cancelar una reserva" << endl << "3. Para salir" << endl;
+            cin >> optionSeats;
+        }
+        else if(optionSeats == 2){
+            int columna = -1;
+            int fila = 0;
+            cout << "Ingrese la fila a reservar: ";
+            cin >> letterReservation;
+
+            cout << "Ingrese el numero de asiento: ";
+            cin >> numberSeat;
+
+            for(char i = 'A'; i <= letterReservation; i++){
+                if(i == letterReservation){
+                    for(int j = 0; j <= numberSeat; ++j){
+                        if(j == numberSeat){
+                            arreglo[fila][columna] = '-';
+                        }
+                        else{
+                            columna++;
+                        }
+                    }
+                }
+                else{
+                    fila++;
+                }
+            }
+            cout << "1. Para reservar un asiento" << endl << "2. Para cancelar otra reserva" << endl << "3. Para salir" << endl;
+            cin >> optionSeats;
+        }
+        else if(optionSeats == 3){
+            printMatrizCine(arreglo);
+            cout << "*** Vuelva pronto ***" << endl;
+            break;
+        }
+    }
+    delete[] arreglo;
+}
 
 void magicSquare_Problema12(){
 
@@ -544,6 +610,39 @@ void magicSquare_Problema12(){
     cleanMemoryMatrizmxn(n,arreglo);
 }
 
+
+int starmatrix_Problema13(int** imagen, int fil, int col){
+    /*
+     * Problema 13
+     *
+     * Se tiene una fotografía digitalizada de una porción de la galaxia NGC 1300 que está ubicada a
+     * 61.000.000 de años luz del planeta Tierra. La representación digital de la imagen está constituida por una matriz
+     * de números enteros; en la cual, cada uno representa la cantidad de luz en ese punto de la imagen.
+     *
+     * La ecuacion de indices es (E(i, j)+E(i, j-1)+E(i-1,j)+E(i+1, j))/5 > 6
+     *
+     * Variables, constantes o arreglos.
+     * cuentas: variable que me lleva la sumatoria de los indices en la matriz (sea Eij)
+     * stars: cuantas estrellas habra dentro de la matriz impuesta.
+     *
+     * Retorno:
+     *  - stars
+     *
+     */
+    int cuentas;
+    int stars;
+    for(int i = 1; i < col-1;i++){
+        for(int j = 1; j < fil-1; j++){
+            cuentas = imagen[i][j]+imagen[i][j-1]+imagen[i][j+1]+imagen[i-1][j]+imagen[i+1][j];
+            if(cuentas/5 > 6){
+                stars++;
+            }
+        }
+    }
+    cout << "Hay " << stars << " estrellas" << endl;
+    return stars;
+}
+
 void rotatedMatriz_Problema14(){
 
     /*
@@ -586,7 +685,70 @@ void rotatedMatriz_Problema14(){
 
 }
 
-void CombiPaths_Problema16(){
+void squareintersec_Problema15(int arregloA[4] , int arregloB[4], int (&interseccion)[4]){
+    /*
+     * Problema 15
+     *
+     * Implemente una función que reciba 2 arreglos que representen los rectángulos A y B, y por referencia retorne un
+     * rectángulo C (con la misma estructura descrita anteriormente) que corresponda a la intersección de A y B
+     *
+     * Variables, constantes y arreglos.
+     * x1_arregloA: componente x del rectangulo A
+     * x1_arregloB: componente x del rectangulo B
+     * y1_arregloA: componente y del rectangulo A
+     * y1_arregloB: componente y del rectangulo A
+     *
+     * interseccion: arreglo vacio donde tenemos que ubicar nuestros datos de la interseccion
+     *
+     * Retorno:
+     * n/a
+     *
+     */
+    int x1_arregloA = 0;
+    int x1_arregloB = 0;
+    int y1_arregloA = 0;
+    int y1_arregloB = 0;
+
+    if (arregloA[0] > arregloB[0]) {
+        interseccion[0] = arregloA[0];
+    }
+
+    else {
+        interseccion[0] = arregloB[0];
+    }
+
+    if (arregloA[1] > arregloB[1]) {
+        interseccion[1] = arregloA[1];
+    }
+
+    else {
+        interseccion[1] = arregloB[1];
+    }
+
+    x1_arregloA = arregloA[0] + arregloA[2];
+    x1_arregloB = arregloB[0] + arregloB[2];
+
+    if (x1_arregloA < x1_arregloB) {
+        interseccion[2] = x1_arregloA - interseccion[0];
+    }
+
+    else {
+        interseccion[2] = x1_arregloB - interseccion[0];
+    }
+
+    y1_arregloA = arregloA[1] + arregloA[3];
+    y1_arregloB = arregloB[1] + arregloB[3];
+    if (y1_arregloA < y1_arregloB) {
+        interseccion[3] = y1_arregloA - interseccion[1];
+    }
+
+    else {
+        interseccion[3] = y1_arregloB - interseccion[1];
+    }
+
+}
+
+void CombiPaths_Problema16(int n){
 
     /*
      * Problema 16
@@ -604,12 +766,7 @@ void CombiPaths_Problema16(){
      * Vacio.
     */
 
-
-    int n = 0;
     unsigned long long caminos = 1;
-
-    cout << "Ingrese el valor de N: ";
-    cin >> n;
 
     for (int i = 0; i < n; ++i) {
         caminos *= (2 * n - i);
@@ -619,7 +776,42 @@ void CombiPaths_Problema16(){
     cout << "Para una malla de " << n << "x" << n << " puntos hay " << caminos << " caminos." << endl;
 }
 
-void permulexicographical_Problema18(){
+void friendlynumbers_Problema17(int numero){
+
+    /*
+     * Problema 17
+     *
+     * Dos números a y b (a != b) son amigables si la suma de los divisores de a (excluyéndose el mismo)
+     * es igual a b, y viceversa. Ej: los divisores de 220 son 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 y 110; y suman 284. Los divisores
+     * de 284 son 1, 2, 4, 71 y 142; y suman 220. Entonces 220 y 284 son amigables. Escribir un programa que reciba un
+     * número y halle la suma de todos los números amigables menores al número ingresado.
+     *
+     * Variables, constantes y arreglos.
+     * numero: el numero ingresado por el usuario que determina el "limite" para calcular sus amigables
+     *
+     * Retorno:
+     * n/a
+     *
+     *
+     */
+    int sumaAmigables = 0;
+    int b = 0;
+
+
+    for(int a = 1; a <= numero; a++) {
+        b = divisoresSum(a);
+        if (a == numero) {
+            sumaAmigables += b;
+            cout << sumaAmigables << endl;
+        }
+    }
+
+    cout << "El resultado de la suma es: " << sumaAmigables << endl;
+
+}
+
+
+void permulexicographical_Problema18(int n){
 
     /*
      * Problema 18
@@ -635,10 +827,25 @@ void permulexicographical_Problema18(){
      * Vacio.
     */
 
-    int n;
-    cout << "Ingrese el numero N:";
-    cin >> n;
 
-    cout << "La permutacion numero " << n << " es:" << n_permutacion_lexicografica(n) << endl;
+    int numeros[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    long long permutacion = 0;
+    int nAux = n;
+    n--;
+
+    for (int i = 9; i >= 0; i--) {
+        long long fact = factorial(i);
+        int indice = n / fact;
+        permutacion = permutacion * 10 + numeros[indice];
+
+        // Eliminar el número usado moviendo los elementos a la izquierda
+        for (int j = indice; j < 9; j++) {
+            numeros[j] = numeros[j + 1];
+        }
+
+        n %= fact;
+    }
+
+    cout << "La permutacion numero " << nAux << " es: " << permutacion << endl;
 
 }

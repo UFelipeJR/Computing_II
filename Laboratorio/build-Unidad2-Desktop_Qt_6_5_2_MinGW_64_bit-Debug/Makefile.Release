@@ -108,14 +108,16 @@ compiler_clean:
 
 ####### Compile
 
-release/funcionalidades.o: ../Unidad2/funcionalidades.cpp ../Unidad2/funcionalidades.h
+release/funcionalidades.o: ../Unidad2/funcionalidades.cpp ../Unidad2/funcionalidades.h \
+		../Unidad2/problemas.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/funcionalidades.o ../Unidad2/funcionalidades.cpp
 
 release/main.o: ../Unidad2/main.cpp ../Unidad2/problemas.h \
 		../Unidad2/funcionalidades.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/main.o ../Unidad2/main.cpp
 
-release/problemas.o: ../Unidad2/problemas.cpp 
+release/problemas.o: ../Unidad2/problemas.cpp ../Unidad2/funcionalidades.h \
+		../Unidad2/problemas.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/problemas.o ../Unidad2/problemas.cpp
 
 ####### Install
