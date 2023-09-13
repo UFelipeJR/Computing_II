@@ -48,8 +48,8 @@ void contAlphabet_Problema2(){
      * Ejemplo: supóngase que se genera el arreglo de 10 elementos: ABARSECAAB. El programa debe imprimir: ABAR-SECAAB
      *
      * Variables, constantes y arreglos:
-     * arregloLetras: definición de arreglo con uso de una función.
-     * punteroIterador: almacena la dirección de memoria del primer elemento del arreglo dinamico.
+     * arregloLetras: arreglo definido por el usuario y dado como parametro.
+     * punteroIterador: almacena la dirección de memoria del primer elemento del arreglo.
      * contAparicion: contador de apariciones de una letra.
      *
      * Retorno:
@@ -117,8 +117,8 @@ int charsToInt_Problema4(char* cadenaD){
      *
      * Variables, constantes y arreglos:
      * resultado: calculo inicial equivalente a las cadenas de caracteres.
-     * cadenaD: definicion de arreglo con el uso de una funcion.
-     * punteroIterador: almacena la dirección de memoria del primer elemento del arreglo dinamico.
+     * cadenaD: arreglo definido por el usuario y dado como parametro.
+     * punteroIterador: almacena la dirección de memoria del primer elemento del arreglo.
      * signo: valor que determina si el valor entero será positivo o negativo.
      *
      * Retorno:
@@ -209,7 +209,7 @@ void upperWord_Problema6(char* cadenaC){
      * Ejemplo: se recibe Man-zana debe mostrar MAN-ZANA.
      *
      * Variables, constantes y arreglos:
-     * cadenaC: definicion de arreglo con el uso de una funcion.
+     * cadenaC: arreglo definido por el usuario y dado como parametro.
      * punteroIterador: almacena dirección de memoria del primer elemento de CadenaC.
      *
      * Retorno:
@@ -289,7 +289,7 @@ void splitCharNum_Problema8(char* cadenaC){
      * Si se recibe abc54rst el programa debe imprimir las cadenas: abcrst y 54.
      *
      * Variables, constantes y arreglos:
-     * cadenaC: definicion de arreglo con el uso de una funcion.
+     * cadenaC: arreglo definido por el usuario y dado como parametro.
      * punteroIterador: almacena dirección de memoria del primer elemento de CadenaC.
      *
      * Retorno:
@@ -334,7 +334,7 @@ void SumSubstring_Problema9(char* cadenaC, int n){
      *
      * Variables, constantes y arreglos:
      * cadenaC: cadena de caracteres numericos.
-     * n: numero n ingresado por el usuario.
+     * n: numero n que determina la cantidad de elementos que tendrá cada subcadena.
      * faltantes: cantidad de caracteres faltantes para ser divisible entre n.
      * longitudOriginal: longitud de la cadena numerica original.
      * extremoInferior: extremo inferior para extraer la subcadena.
@@ -398,7 +398,7 @@ void romanToArabic_problema10(char* romanNumber){
      * I: 1
      *
      * Variables, constantes y arreglos:
-     * romanNumber: definicion de arreglo con el uso de una funcion.
+     * romanNumber: arreglo definido por el usuario y dado como parametro.
      * punteroIterador: almacena dirección de memoria del primer elemento de romanNumber.
      * romanoActual: numero romano equivalente relacionado a una posicion y una letra.
      * romanoSiguiente: numero siguiente a romano actual.
@@ -559,7 +559,7 @@ void magicSquare_Problema12(){
      * 8 1 6
      *
      * Variables, constantes y arreglos:
-     * arreglo: definicion de arreglo con el uso de una funcion.
+     * arreglo: arreglo definido por el usuario y dado como parametro.
      * n: tamaño de uno de los lados de la matriz.
      * sumConst: total de la suma de la diagonal que será usada como referencia.
      * sumFilas: suma de las filas.
@@ -802,7 +802,6 @@ void friendlynumbers_Problema17(int numero){
         b = divisoresSum(a);
         if (a == numero) {
             sumaAmigables += b;
-            cout << sumaAmigables << endl;
         }
     }
 

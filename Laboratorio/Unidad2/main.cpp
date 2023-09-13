@@ -15,7 +15,7 @@ int main() {
     //Problema 3
     //char* cadena1 = genDinamicCharArray(50);
     //char* cadena2 = genDinamicCharArray(50);
-    //cout << sameChain_Problema3(cadena1,cadena2) << endl;
+    //cout << sameChain_Problema3(cadena1,cadena2) << endl;  //Retorna 0 si son diferentes o 1 si son iguales
 
     //Problema 4
     //char numero[] = "12345";
@@ -25,6 +25,8 @@ int main() {
     //int lenCadena = 0;
     //char numero[20];
     //IntToChar_Problema5(12345, numero, lenCadena);
+    //cout << numero << endl;
+    //cout << lenCadena << endl;
 
     //Problema 6
     //char cadena[] = "Man-zana"; //Definición completa
@@ -43,7 +45,6 @@ int main() {
 
     //Problema 9
     //char cadena[] = "87512395";
-    //
     //int n = 3;
     //SumSubstring_Problema9(cadena, n);
 
@@ -51,7 +52,6 @@ int main() {
     //char cadena[] = "DCLXVI";
     //char* cadena = genDinamicCharArray(50);
     //romanToArabic_problema10(cadena);
-
     //Problema 11
     //cinemaSeats_Problema11();
 
@@ -75,16 +75,17 @@ int main() {
     //     << ", base = " << interseccion[2] << ", altura = " << interseccion[3] << endl;
 
     //Problema 16
-    //int n = 8;
+    //int n = 100;
     //CombiPaths_Problema16(n);
 
     //Problema 17
     //int n = 284;
-    //friendlynumbers_Problema17();
+    //friendlynumbers_Problema17(n);
 
     //Problema 18
-    //int n = 1000000;
+    //n = 1000000;
     //permulexicographical_Problema18(n);
+
     return 0;
 }
 
