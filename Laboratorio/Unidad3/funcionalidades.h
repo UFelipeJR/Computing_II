@@ -14,5 +14,6 @@ int contChars(const string);
 char* genDinamicCharArray(int);
 int lenChar(char*);
 string slicing(string, int, int);
+void write_file(string, string);
 
 #endif // FUNCIONALIDADES_H

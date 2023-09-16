@@ -10,7 +10,7 @@
 using namespace std;
 
 void arrayToBinary(string&,char*);
-void metodo1(int, string);
+string metodo1(int, string);
 string bitInverter(string);
 int contUnosCeros(char, string);
 string invertedNBits(int, string);

@@ -1,12 +1,7 @@
 #include <funcionalidades.h>
 
 
-string charToBinary(char caracter){
-
-    /*
-    Función que convierte numero entero a su correspondiente forma binaria y agrega un bit nulo en dado
-    caso de que la longitud de este sea diferente de cero
-    */
+string charToBinary(char caracter) {
 
     string chainBinaryInverse = "";
     string Binary = "";
@@ -14,22 +9,21 @@ string charToBinary(char caracter){
     int valAscii = int(caracter);
     int residuo = 0;
 
-    while(valAscii > 0){
+    while (valAscii > 0) {
         residuo = valAscii % 2;
         chainBinaryInverse += to_string(residuo);
         valAscii /= 2;
     }
 
-    bitMissing =  8 - chainBinaryInverse.length();
+    bitMissing = 8 - chainBinaryInverse.length();
 
-    if(chainBinaryInverse.length() != 8){
-        for(int i = 0; i < bitMissing ; i++){
+    if (chainBinaryInverse.length() != 8) {
+        for (int i = 0; i < bitMissing; i++) {
             Binary += '0';
         }
     }
 
-
-    for(int i = 6; i >= bitMissing-1; i--){
+    for (int i = chainBinaryInverse.length() - 1; i >= 0; i--) {
         Binary += chainBinaryInverse[i];
     }
 
@@ -141,4 +135,12 @@ string slicing(string cadenaOriginal, int indiceInicio, int indiceFin){
 
     return nuevaCadena;
 
+}
+
+
+void write_file(string name, string info){
+    fstream file;
+    file.open(name,ios::out);
+    file << info;
+    file.close();
 }

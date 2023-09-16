@@ -7,6 +7,8 @@ void arrayToBinary(string &stringBin,char* array){
         stringBin += charToBinary(array[i]);
     }
 
+    cout << stringBin << endl;
+
 }
 
 string bitInverter(string cadena){
@@ -37,12 +39,12 @@ int contUnosCeros(char parametro, string subcadena){
 }
 
 
-string invertedNBits(int nBits, string subcadena){
-
+string invertedNBits(int nBits, string subcadena) {
     int indicador = 1;
+    int i = 0;
     string nuevaCadena = "";
 
-    for(int i = 0; i < subcadena.length(); i++){
+    for(int i = 0; i != subcadena.length();i++){
         if(indicador == nBits){
             if(subcadena[i] == '0'){
                 nuevaCadena += '1';
@@ -50,15 +52,15 @@ string invertedNBits(int nBits, string subcadena){
             else{
                 nuevaCadena += '0';
             }
-            indicador = 1;
+            indicador = 0;
         }
-        else {
+        else{
             nuevaCadena += subcadena[i];
         }
+
         indicador++;
+
     }
-
-
     return nuevaCadena;
 }
 
@@ -71,76 +73,62 @@ string genCodi(string anterior, string actual){
     unos = contUnosCeros('1',anterior);
     ceros = contUnosCeros('0',anterior);
 
-    //cout << anterior;
-    //cout << " " << unos << " " << ceros << endl;
-
 
     if(unos == ceros){
-        cout << actual << endl;
-        cout << bitInverter(actual) << endl;
         return bitInverter(actual);
     }
 
     else if(ceros > unos){
-        cout << actual << endl;
-        cout << invertedNBits(2,actual) << endl;
         return invertedNBits(2,actual);
 
     }
 
     else if(unos < ceros){
-        cout << actual << endl;
-        cout << invertedNBits(3,actual) << endl;
         return invertedNBits(3,actual);
     }
 
 }
 
 
-void metodo1(int seed, string filePath){
-
+string metodo1(int seed, string filePath){
     char* arreglo = genDinamicCharArray(contChars(filePath));
-
+    int residuo = 0;
     string decodedBinary = "";
     string codedBinary = "";
     string subcadenaAnterior = "";
     string subcadenaActual = "";
-    int unos = 0, ceros = 0;
+    string subcadenaAjustada = "";
 
 
     FileToArray(arreglo,filePath);
     arrayToBinary(decodedBinary,arreglo);
-    cout << decodedBinary << endl;
 
-
-
-    if(decodedBinary.length() % seed == 0){
-        subcadenaActual = slicing(decodedBinary,0,seed);
-        codedBinary += bitInverter(subcadenaActual);
-        codedBinary += " ";
-
-        for(int i = 0;  i <= decodedBinary.length() - 2*seed ; i+=seed){
-            subcadenaAnterior = slicing(decodedBinary,i,i+seed);
-            subcadenaActual = slicing(decodedBinary,i+seed,i+2*seed);
-
-            unos = contUnosCeros('1',subcadenaAnterior);
-            ceros = contUnosCeros('0',subcadenaAnterior);
-
-            cout << "Division" << endl;
-            genCodi(subcadenaAnterior,subcadenaActual);
-
-
-        }
-
-
+    if(decodedBinary.length() % seed != 0){
+        residuo = decodedBinary.length() % seed;
+        subcadenaAjustada = slicing(decodedBinary,0,decodedBinary.length()-residuo);
     }
+
     else{
-        cout << decodedBinary.length() % seed;
+        subcadenaAjustada += decodedBinary;
     }
 
-    cout << "La cadena codificada es: " << codedBinary << endl;
+    subcadenaActual = slicing(subcadenaAjustada,0,seed);
+    codedBinary += bitInverter(subcadenaActual);
+
+    for(int i = 0;  i <= decodedBinary.length() - 2*seed ; i+=seed){
+        subcadenaAnterior = slicing(decodedBinary,i,i+seed);
+        subcadenaActual = slicing(decodedBinary,i+seed,i+2*seed);
+        codedBinary += genCodi(subcadenaAnterior,subcadenaActual);
+    }
+
+
+    if(residuo != 0){
+        subcadenaActual = slicing(decodedBinary,decodedBinary.length()-residuo,decodedBinary.length());
+        subcadenaAnterior = slicing(decodedBinary,decodedBinary.length()-residuo*2,decodedBinary.length()-residuo);
+        codedBinary += genCodi(subcadenaAnterior,subcadenaActual);
+    }
 
     delete[] arreglo;
-
+    return codedBinary;
 
 }
