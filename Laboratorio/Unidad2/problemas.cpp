@@ -830,10 +830,11 @@ void permulexicographical_Problema18(int n){
     int numeros[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     long long permutacion = 0;
     int nAux = n;
+    long long fact = 0;
     n--;
 
     for (int i = 9; i >= 0; i--) {
-        long long fact = factorial(i);
+        fact = factorial(i);
         int indice = n / fact;
         permutacion = permutacion * 10 + numeros[indice];
 

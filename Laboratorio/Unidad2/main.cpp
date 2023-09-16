@@ -4,7 +4,7 @@
 int main() {
     srand(time(NULL));
 
-    // Acá se llama la función que se desea probar y si se usa genDinamicCharArray()
+    // Acá se llama la función que se desea probar.
 
     //Problema 1
     //MachineMoney_Problema1();
@@ -52,6 +52,7 @@ int main() {
     //char cadena[] = "DCLXVI";
     //char* cadena = genDinamicCharArray(50);
     //romanToArabic_problema10(cadena);
+
     //Problema 11
     //cinemaSeats_Problema11();
 
