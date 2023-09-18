@@ -5,15 +5,12 @@ int main()
 {
 
     string ruta = "../Unidad3/archivo.txt";
-    string destino = "../Unidad3/coded.dat";
-    string coded = "";
     int n =4;
+    metodo2(n,ruta);
 
 
-    coded = metodo1(n,ruta);
-    cout << coded << endl;
 
-    write_file(destino, coded);
+
 
 
     return 0;

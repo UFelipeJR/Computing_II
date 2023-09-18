@@ -7,8 +7,6 @@ void arrayToBinary(string &stringBin,char* array){
         stringBin += charToBinary(array[i]);
     }
 
-    cout << stringBin << endl;
-
 }
 
 string bitInverter(string cadena){
@@ -90,6 +88,26 @@ string genCodi(string anterior, string actual){
 }
 
 
+
+string displaceBit(string bit) {
+
+    if (bit.length() < 2) {
+        return bit;
+    }
+
+    string cadenaCodificada = "";
+
+    cadenaCodificada += bit[bit.length() - 1];
+
+    for (int i = 0; i < bit.length() - 1; i++) {
+        cadenaCodificada += bit[i];
+    }
+
+    return cadenaCodificada;
+}
+
+
+
 string metodo1(int seed, string filePath){
     char* arreglo = genDinamicCharArray(contChars(filePath));
     int residuo = 0;
@@ -115,7 +133,7 @@ string metodo1(int seed, string filePath){
     subcadenaActual = slicing(subcadenaAjustada,0,seed);
     codedBinary += bitInverter(subcadenaActual);
 
-    for(int i = 0;  i <= decodedBinary.length() - 2*seed ; i+=seed){
+    for(int i = 0;  i <= (decodedBinary.length() - 2*seed); i+=seed){
         subcadenaAnterior = slicing(decodedBinary,i,i+seed);
         subcadenaActual = slicing(decodedBinary,i+seed,i+2*seed);
         codedBinary += genCodi(subcadenaAnterior,subcadenaActual);
@@ -130,5 +148,39 @@ string metodo1(int seed, string filePath){
 
     delete[] arreglo;
     return codedBinary;
+
+}
+
+
+string metodo2(int seed, string filePath){
+    int residuo = 0;
+    char* arreglo = genDinamicCharArray(contChars(filePath));
+    string decodedBinary = "";
+    string subcadenaAjustada = "";
+    string codedBinary = "";
+
+
+    FileToArray(arreglo,filePath);
+    arrayToBinary(decodedBinary,arreglo);
+
+    if(decodedBinary.length() % seed != 0){
+        residuo = decodedBinary.length() % seed;
+        subcadenaAjustada = slicing(decodedBinary,0,decodedBinary.length()-residuo);
+    }
+
+    else{
+        subcadenaAjustada += decodedBinary;
+    }
+
+
+    for(int i = 0; i < subcadenaAjustada.length(); i+=seed){
+        codedBinary += displaceBit(slicing(decodedBinary,i,i+seed));
+    }
+
+    if(residuo != 0){
+        codedBinary += displaceBit(slicing(decodedBinary,decodedBinary.length()-residuo,decodedBinary.length()));
+
+    }
+    cout << codedBinary << endl;
 
 }
