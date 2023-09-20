@@ -1,5 +1,38 @@
 #include <funcionalidades.h>
 
+int charToInt(char* cadena){
+
+    /*
+     * Conversor de caracter a entero
+     * Cabe decir que esta funcion hace lo mismo que uno de los problemas sin embargo se separó para mayor orden
+     *
+     * Variables, constantes y arreglos.
+     * cadena: cadena de caracteres númericos.
+     *
+     * Retorno:
+     * resultado*signo: cadena de caracteres casteada a entero con su respectivo signo.
+    */
+
+    int resultado = 0;
+    char* punteroIterador = cadena;
+    int signo = 1;
+
+    if(*punteroIterador == '-'){
+        signo = -1;
+    }
+
+    while(*punteroIterador != '\0'){
+        if(*punteroIterador >= '0' && *punteroIterador <= '9'){
+            resultado = resultado * 10 + (*punteroIterador - '0');
+        }
+        punteroIterador ++;
+    }
+
+    return resultado * signo;
+
+}
+
+
 
 string charToBinary(char caracter) {
 
@@ -30,6 +63,41 @@ string charToBinary(char caracter) {
     return Binary;
 }
 
+int binaryToInt(string binary){
+    int valorDecimal = 0;
+    int lsb = 7;
+    char posCaracter[] = "\0";
+
+    for(int i = 0; i<8; i++){
+        posCaracter[0] = binary[i];
+        valorDecimal += charToInt(posCaracter)*pow(2,lsb);
+        lsb --;
+    }
+
+    return valorDecimal;
+
+
+}
+
+
+char* binaryToArray(string binario){
+    int size = binario.length() / 8;
+    char* array = genDinamicCharArray(size);
+    string subcadena = "";
+    int pos = 0;
+
+    for(int i = 8; i <= binario.length(); i+=8){
+        subcadena = slicing(binario,i-8,i);
+        array[pos] = char(binaryToInt(subcadena));
+        pos ++;
+    }
+
+    array[size] = '\0';
+    return array;
+
+}
+
+
 
 void makeFile(const string ruta = ""){
     fstream file(ruta, ios::out);
@@ -45,14 +113,15 @@ void makeFile(const string ruta = ""){
 }
 
 void FileToArray(char* array, const string ruta = "") {
-    ifstream file;
+    fstream file;
     int i = 0;
     char letra;
     file.open(ruta.c_str());
 
     if (file.fail()) {
         cout << "No se pudo abrir el archivo" << endl;
-    } else {
+    }
+    else {
         while (file.get(letra)) {
             if (letra != '\n' && letra != ' ') {
                 array[i] = letra;
@@ -67,8 +136,30 @@ void FileToArray(char* array, const string ruta = "") {
 
 
 
+void fileToString(string& str, const string ruta = ""){
+    fstream file;
+    char letra;
+    int i = 0;
+
+    file.open(ruta.c_str());
+    if (file.fail()) {
+        cout << "No se pudo abrir el archivo" << endl;
+    }
+    else{
+        while (file.get(letra)){
+            if (letra != '\n' && letra != ' ') {
+                str += letra;
+                i++;
+            }
+
+        }
+    }
+    file.close();
+}
+
+
 int contChars(const string ruta = ""){
-    ifstream file;
+    fstream file;
     char letra;
     int cont = 0;
 
@@ -123,7 +214,6 @@ string slicing(string cadenaOriginal, int indiceInicio, int indiceFin){
      * nuevaCadena: subcadena generada en base a los indices.
     */
 
-    int nuevaLongitud = indiceFin - indiceInicio;
     string nuevaCadena = "";
     int iGen = 0;
 
@@ -136,6 +226,8 @@ string slicing(string cadenaOriginal, int indiceInicio, int indiceFin){
     return nuevaCadena;
 
 }
+
+
 
 
 void write_file(string name, string info){

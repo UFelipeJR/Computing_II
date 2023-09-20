@@ -90,12 +90,11 @@ string genCodi(string anterior, string actual){
 
 
 string displaceBit(string bit) {
+    string cadenaCodificada = "";
 
     if (bit.length() < 2) {
         return bit;
     }
-
-    string cadenaCodificada = "";
 
     cadenaCodificada += bit[bit.length() - 1];
 
@@ -182,5 +181,39 @@ string metodo2(int seed, string filePath){
 
     }
     cout << codedBinary << endl;
+
+}
+
+
+string decodificador1(int seed, string filePath){
+    string texto = "";
+    string subcadenaAjustada = "";
+    string subcadenaAnterior = "";
+    string subcadenaActual = "";
+    string decodedBinary = "";
+    int residuo = 0;
+    fileToString(texto, filePath);
+
+
+    if(texto.length() % seed  != 0){
+        residuo = texto.length() % seed;
+        subcadenaAjustada = slicing(texto,0,texto.length()-residuo);
+    }
+    else{
+        subcadenaAjustada += texto;
+    }
+
+    subcadenaActual = slicing(subcadenaAjustada,0,seed);
+    cout << subcadenaActual << endl;
+    decodedBinary += bitInverter(subcadenaActual);
+
+    for(int i = 0;  i <= (texto.length() - 2*seed); i+=seed){
+        subcadenaAnterior = slicing(texto,i,i+seed);
+        subcadenaActual = slicing(texto,i+seed,i+2*seed);
+        //decodedBinary += subcadenaActual;
+
+    }
+
+    cout << decodedBinary << endl;
 
 }
