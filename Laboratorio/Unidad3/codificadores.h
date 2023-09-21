@@ -18,6 +18,6 @@ string invertedNBits(int, string);
 string genCodi(string, string);
 string displaceBit(string);
 string decodificador1(int, string);
-
+string antiGen(string, string);
 
 #endif // CODIFICADORES_H
