@@ -187,33 +187,7 @@ string metodo2(int seed, string filePath){
 
 }
 
-string antiGen(string anterior, string actual){
 
-    int unos = 0;
-    int ceros = 0;
-    string nueva = "";
-
-    unos = contUnosCeros('1',anterior);
-    ceros = contUnosCeros('0',anterior);
-
-
-    if(unos == ceros){
-        nueva = bitInverter(actual);
-        return nueva;
-    }
-
-    else if(ceros > unos){
-        nueva = invertedNBits(2,actual);
-        return nueva;
-
-    }
-
-    else if(unos > ceros){
-        nueva = invertedNBits(3,actual);
-        return nueva;
-    }
-
-}
 
 
 string decodificador1(int seed, string filePath){
@@ -240,21 +214,17 @@ string decodificador1(int seed, string filePath){
 
 
     for(int i = 0;  i <= (codedBinary.length() - 2*seed); i+=seed){
-        subcadenaAnterior = slicing(codedBinary,i,i+seed);
+        subcadenaAnterior = slicing(decodedBinary,i,i+seed);
         subcadenaActual = slicing(codedBinary,i+seed,i+2*seed);
-        decodedBinary += antiGen(subcadenaAnterior,subcadenaActual);
+        decodedBinary += genCodi(subcadenaAnterior,subcadenaActual);
 
     }
 
-    cout << decodedBinary << endl;
-
 
     if(residuo != 0){
-        //subcadenaActual = slicing(codedBinary,codedBinary.length()-residuo,codedBinary.length());
-        //subcadenaAnterior = slicing(codedBinary,codedBinary.length()-residuo*2,codedBinary.length()-residuo);
-        //decodedBinary += genCodi(subcadenaAnterior,subcadenaActual);
-        //cout << genCodi(subcadenaAnterior,subcadenaActual) << endl;
-
+        subcadenaActual = slicing(codedBinary,codedBinary.length()-residuo,codedBinary.length());
+        subcadenaAnterior = slicing(codedBinary,codedBinary.length()-residuo*2,codedBinary.length()-residuo);
+        decodedBinary += genCodi(subcadenaAnterior,subcadenaActual);
     }
 
     return decodedBinary;
