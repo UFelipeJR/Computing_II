@@ -92,7 +92,7 @@ string genCodi(string anterior, string actual){
 
 
 
-string displaceBit(string bit) {
+string displaceBit(string bit){
     string cadenaCodificada = "";
 
     if (bit.length() < 2) {
@@ -107,7 +107,6 @@ string displaceBit(string bit) {
 
     return cadenaCodificada;
 }
-
 
 
 string metodo1(int seed, string filePath){
@@ -184,6 +183,7 @@ string metodo2(int seed, string filePath){
 
     }
     cout << codedBinary << endl;
+    return codedBinary;
 
 }
 
@@ -231,3 +231,78 @@ string decodificador1(int seed, string filePath){
 
 }
 
+string DisplaceBitGOD(string bit) {
+    string aux = "";
+    int extInf = 0;
+    int extSup = bit.length() - 1;
+
+    while (extSup > 2) {
+        aux += bit[extSup];
+        aux += bit[extInf];
+        extInf++;
+        extSup--;
+    }
+    aux += bit[extInf];
+    aux += bit[extSup];
+
+
+
+
+    return aux;
+}
+
+
+
+string antiDisplaceBit(string bit) {
+    string aux = bit;
+    for(int i = 0; i < 3; i++){
+        aux = DisplaceBitGOD(aux);
+    }
+    return aux;
+}
+
+string decodificador2(int seed, string filePath){
+    string codedBinary = "";
+    string decodedBinary = "";
+    string subcadenaAjustada = "";
+    int residuo = 0;
+
+    fileToString(codedBinary, filePath);
+
+    if(codedBinary.length() % seed != 0){
+        residuo = codedBinary.length() % seed;
+        subcadenaAjustada = slicing(codedBinary,0,codedBinary.length()-residuo);
+    }
+    else{
+        subcadenaAjustada += codedBinary;
+    }
+
+    for(int i = 0; i < subcadenaAjustada.length(); i+=seed){
+         decodedBinary += antiDisplaceBit(slicing(codedBinary,i,i+seed));
+    }
+
+
+    if(residuo != 0){
+        decodedBinary += displaceBit(slicing(codedBinary,codedBinary.length()-residuo,codedBinary.length()));
+    }
+
+    return decodedBinary;
+
+}
+
+char* translateSemiCoded(string cadenaOri){
+    unsigned int size = cadenaOri.length()/8;
+    int indice = 0;
+    int pos = 0;
+    char cadena[size];
+
+
+    for(int i = 0; i<size*8;i+=8){
+        cadena[pos] = binaryToInt(slicing(cadenaOri,i,i+8));
+        pos ++;
+    }
+
+    cout << cadena << endl;
+
+    return cadena;
+}
