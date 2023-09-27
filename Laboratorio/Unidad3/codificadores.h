@@ -20,9 +20,8 @@ string displaceBit(string);
 string decodificador1(int, string);
 string antiGen(string, string);
 string decodificador2(int, string);
-string antiDisplaceBit(string);
+string antiDisplaceBit(string,int);
 string DisplaceBitGOD(string);
-string antiDisplaceBit(string);
-char* translateSemiCoded(string);
+string translateSemiCoded(string);
 
 #endif // CODIFICADORES_H

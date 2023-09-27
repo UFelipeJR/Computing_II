@@ -118,9 +118,9 @@ string metodo1(int seed, string filePath){
     string subcadenaActual = "";
     string subcadenaAjustada = "";
 
-
     FileToArray(arreglo,filePath);
     arrayToBinary(decodedBinary,arreglo);
+
 
     if(decodedBinary.length() % seed != 0){
         residuo = decodedBinary.length() % seed;
@@ -175,14 +175,14 @@ string metodo2(int seed, string filePath){
 
 
     for(int i = 0; i < subcadenaAjustada.length(); i+=seed){
-        codedBinary += displaceBit(slicing(decodedBinary,i,i+seed));
+        codedBinary += DisplaceBitGOD(slicing(decodedBinary,i,i+seed));
     }
 
     if(residuo != 0){
-        codedBinary += displaceBit(slicing(decodedBinary,decodedBinary.length()-residuo,decodedBinary.length()));
+        codedBinary += DisplaceBitGOD(slicing(decodedBinary,decodedBinary.length()-residuo,decodedBinary.length()));
 
     }
-    cout << codedBinary << endl;
+    delete[] arreglo;
     return codedBinary;
 
 }
@@ -231,31 +231,26 @@ string decodificador1(int seed, string filePath){
 
 }
 
+
+
 string DisplaceBitGOD(string bit) {
     string aux = "";
-    int extInf = 0;
-    int extSup = bit.length() - 1;
+    int indice = 0;
+    int n = bit.length();
 
-    while (extSup > 2) {
-        aux += bit[extSup];
-        aux += bit[extInf];
-        extInf++;
-        extSup--;
+    for (int i = 0; i < n; i++) {
+        int indice = (i - 1 + n) % n;
+        aux += bit[indice];
     }
-    aux += bit[extInf];
-    aux += bit[extSup];
-
-
-
 
     return aux;
 }
 
 
 
-string antiDisplaceBit(string bit) {
+string antiDisplaceBit(string bit, int seed) {
     string aux = bit;
-    for(int i = 0; i < 3; i++){
+    for(int i = 0; i < seed-1; i++){
         aux = DisplaceBitGOD(aux);
     }
     return aux;
@@ -278,7 +273,7 @@ string decodificador2(int seed, string filePath){
     }
 
     for(int i = 0; i < subcadenaAjustada.length(); i+=seed){
-         decodedBinary += antiDisplaceBit(slicing(codedBinary,i,i+seed));
+         decodedBinary += antiDisplaceBit(slicing(codedBinary,i,i+seed),seed);
     }
 
 
@@ -290,19 +285,18 @@ string decodificador2(int seed, string filePath){
 
 }
 
-char* translateSemiCoded(string cadenaOri){
-    unsigned int size = cadenaOri.length()/8;
-    int indice = 0;
-    int pos = 0;
-    char cadena[size];
+string translateSemiCoded(string cadenaOri){
+    long long size = cadenaOri.length();
+    string cadena = "";
+    //unsigned int size = cadenaOri.length()/8;
+    //int indice = 0;
+    //int pos = 0;
+    //string cadena;
 
+    for(int i = 0; i<size;i+=8){
+         cadena += char(binaryToInt(slicing(cadenaOri,i,i+8)));
 
-    for(int i = 0; i<size*8;i+=8){
-        cadena[pos] = binaryToInt(slicing(cadenaOri,i,i+8));
-        pos ++;
     }
-
-    cout << cadena << endl;
 
     return cadena;
 }

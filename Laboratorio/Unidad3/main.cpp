@@ -3,11 +3,26 @@
 
 int main()
 {
-    int n = 4;
-    string ruta = "../Unidad3/coded.dat";
-    string  str = decodificador2(n,ruta);
-    translateSemiCoded(str);
-    //cout << str << endl;
+
+    string origen = "../Unidad3/origin.txt";
+    string destino = "../Unidad3/coded.dat";
+    int n = 1000;
+
+    /*
+    string a = metodo2(n, origen);
+    write_file(destino,a);
+    string b = decodificador2(n,destino);
+    cout << "La cadena decodificada es: "<< translateSemiCoded(b) << endl;
+    */
+
+
+    /*
+    string a = metodo2(n, origen);
+    write_file(destino,a);
+    string b = decodificador2(n,destino);
+    cout << "La cadena decodificada es: "<< translateSemiCoded(b) << endl;
+    */
+
 
     return 0;
 
