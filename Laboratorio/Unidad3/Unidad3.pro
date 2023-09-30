@@ -4,10 +4,10 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        codificadores.cpp \
+        codecs.cpp \
         funcionalidades.cpp \
         main.cpp
 
 HEADERS += \
-    codificadores.h \
+    codecs.h \
     funcionalidades.h

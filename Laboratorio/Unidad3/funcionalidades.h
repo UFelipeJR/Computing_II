@@ -8,18 +8,19 @@
 
 using namespace std;
 
-int charToInt(char*);
-string charToBinary(char caracter);
-char* binaryToArray(string);
-int binaryToInt(string);
-void FileToArray(char*, const string);
-void makeFile(const string);
-int contChars(const string);
-char* genDinamicCharArray(int);
-int lenChar(char*);
-string slicing(string, int, int);
-void write_file(string, string);
-void fileToString(string&, const string);
+//string read_file(string,int);
+char* read_file(string,int);
 
+string charToBinary(char);
+string genChainBinary(string,int);
+string slicing(string, int, int);
+string bitInverter(string cadena);
+int contUnosCeros(char, string);
+string genCodi(string, string);
+char* stringBinaryToArray(string);
+char* genDinamicCharArray(int);
+int binaryToInt(string);
+double pow(int,int);
+void write_file(string,string,int);
 
 #endif // FUNCIONALIDADES_H

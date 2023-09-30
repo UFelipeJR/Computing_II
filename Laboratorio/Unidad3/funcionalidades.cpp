@@ -1,40 +1,66 @@
 #include <funcionalidades.h>
 
-int charToInt(char* cadena){
 
-    /*
-     * Conversor de caracter a entero
-     * Cabe decir que esta funcion hace lo mismo que uno de los problemas sin embargo se separó para mayor orden
-     *
-     * Variables, constantes y arreglos.
-     * cadena: cadena de caracteres númericos.
-     *
-     * Retorno:
-     * resultado*signo: cadena de caracteres casteada a entero con su respectivo signo.
-    */
+/*
+string read_file(string name, int mode){
+    unsigned long long tam;
+    fstream file;
+    string data;
 
-    int resultado = 0;
-    char* punteroIterador = cadena;
-    int signo = 1;
-
-    if(*punteroIterador == '-'){
-        signo = -1;
+    if(mode == 1){
+        file.open(name,ios::in | ios::ate);
+    }
+    else{
+        file.open(name,ios::in | ios::ate | ios::binary);
     }
 
-    while(*punteroIterador != '\0'){
-        if(*punteroIterador >= '0' && *punteroIterador <= '9'){
-            resultado = resultado * 10 + (*punteroIterador - '0');
+
+    if(file.is_open()){
+        tam = file.tellg();
+        file.seekg(0);
+        for(unsigned long long i=0;i<tam;i++){
+            data.push_back(file.get());
         }
-        punteroIterador ++;
     }
 
-    return resultado * signo;
+    file.close();
+    return data;
+}
+*/
+
+char* read_file(string name, int mode){
+
+
+    unsigned long long tam;
+    fstream file;
+    streampos length = 0;
+
+    if(mode == 1){
+        file.open(name,ios::in | ios::ate);
+    }
+    else{
+        file.open(name,ios::in | ios::ate | ios::binary);
+    }
+
+    char* array = genDinamicCharArray(file.tellg());
+
+    if(file.is_open()){
+        tam = file.tellg();
+        file.seekg(0);
+        for(unsigned long long i=0;i<tam;i++){
+            array[i] = file.get();
+        }
+        array[tam] = '\0';
+    }
+
+    cout << array << endl;
+    file.close();
+
+    return array;
 
 }
 
-
-
-string charToBinary(char caracter) {
+string charToBinary(char caracter){
 
     string chainBinaryInverse = "";
     string Binary = "";
@@ -48,6 +74,7 @@ string charToBinary(char caracter) {
         valAscii /= 2;
     }
 
+
     bitMissing = 8 - chainBinaryInverse.length();
 
     if (chainBinaryInverse.length() != 8) {
@@ -60,145 +87,19 @@ string charToBinary(char caracter) {
         Binary += chainBinaryInverse[i];
     }
 
+
     return Binary;
 }
 
-int binaryToInt(string binary){
-    int valorDecimal = 0;
-    int lsb = 7;
-    char posCaracter[] = "\0";
+string genChainBinary(string ruta, int modo){
+    char* chainOrigin = read_file(ruta,modo);
+    string chainBinary = "";
 
-    for(int i = 0; i<8; i++){
-        posCaracter[0] = binary[i];
-        valorDecimal += charToInt(posCaracter)*pow(2,lsb);
-        lsb --;
+    for(int i = 0; i < chainOrigin.length(); i++){
+        chainBinary += charToBinary(chainOrigin[i]);
     }
-
-    return valorDecimal;
-
-
+    return chainBinary;
 }
-
-
-char* binaryToArray(string binario){
-    int size = binario.length() / 8;
-    char* array = genDinamicCharArray(size);
-    string subcadena = "";
-    int pos = 0;
-
-    for(int i = 8; i <= binario.length(); i+=8){
-        subcadena = slicing(binario,i-8,i);
-        array[pos] = char(binaryToInt(subcadena));
-        pos ++;
-    }
-
-    array[size] = '\0';
-    return array;
-
-}
-
-
-
-void makeFile(const string ruta = ""){
-    fstream file(ruta, ios::out);
-
-    if(!file){
-        cout << "No se pudo crear el archivo" << endl;
-    }
-    else {
-        cout << "Se ha creado exitosamente el archivo" << endl;
-    }
-
-
-}
-
-void FileToArray(char* array, const string ruta = "") {
-    fstream file;
-    int i = 0;
-    char letra;
-    file.open(ruta.c_str());
-
-    if (file.fail()) {
-        cout << "No se pudo abrir el archivo" << endl;
-    }
-    else {
-        while (file.get(letra)) {
-            if (letra != '\n' && letra != ' ') {
-                array[i] = letra;
-                i++;
-            }
-        }
-        array[i] = '\0';
-    }
-
-    file.close();
-}
-
-
-
-void fileToString(string& str, const string ruta = ""){
-    fstream file;
-    char letra;
-    int i = 0;
-
-    file.open(ruta.c_str());
-    if (file.fail()) {
-        cout << "No se pudo abrir el archivo" << endl;
-    }
-    else{
-        while (file.get(letra)){
-            if (letra != '\n' && letra != ' ') {
-                str += letra;
-                i++;
-            }
-
-        }
-    }
-    file.close();
-}
-
-
-int contChars(const string ruta = ""){
-    fstream file;
-    char letra;
-    int cont = 0;
-
-    file.open(ruta.c_str());
-    while (file.get(letra)){
-       cont ++;
-    }
-    return cont;
-}
-
-
-int lenChar(char* cadena){
-
-    /*
-     * Contador de longitud de un arreglo caracteres
-     *
-     * Variables, constantes y arreglos.
-     * cadena: arreglo de caracteres.
-     *
-     * Retorno:
-     * len: longitud de la cadena.
-    */
-
-    int len = 0;
-    while(cadena[len] != '\0'){
-       len ++;
-    }
-
-    return len;
-
-}
-
-char* genDinamicCharArray(int size){
-    char* arrayC = new char[size];
-    return arrayC;
-}
-
-
-
 
 string slicing(string cadenaOriginal, int indiceInicio, int indiceFin){
 
@@ -227,12 +128,148 @@ string slicing(string cadenaOriginal, int indiceInicio, int indiceFin){
 
 }
 
+string bitInverter(string cadena){
+    string inverted = "";
+    for(int i = 0; i < cadena.length();i++){
+        if(cadena[i] == '0'){
+            inverted += '1';
+        }
+        else{
+            inverted += '0';
+        }
+    }
+
+    return inverted;
+
+}
+
+string invertedNBits(int nBits, string subcadena) {
+    int indicador = 1;
+    string nuevaCadena = "";
+
+    for(int i = 0; i != subcadena.length();i++){
+        if(indicador == nBits){
+            if(subcadena[i] == '0'){
+                nuevaCadena += '1';
+            }
+            else{
+                nuevaCadena += '0';
+            }
+            indicador = 0;
+        }
+        else{
+            nuevaCadena += subcadena[i];
+        }
+
+        indicador++;
+
+    }
+    return nuevaCadena;
+}
+
+int contUnosCeros(char parametro, string subcadena){
+    int cont = 0;
+    for(int i = 0; i<subcadena.length();i++){
+        if(subcadena[i] == parametro){
+            cont += 1;
+        }
+    }
+
+    return cont;
+}
 
 
+string genCodi(string anterior, string actual){
 
-void write_file(string name, string info){
+    int unos = 0;
+    int ceros = 0;
+    string nueva = "";
+
+    unos = contUnosCeros('1',anterior);
+    ceros = contUnosCeros('0',anterior);
+
+
+    if(unos == ceros){
+        nueva = bitInverter(actual);
+        return nueva;
+    }
+
+    else if(ceros > unos){
+        nueva = invertedNBits(2,actual);
+        return nueva;
+
+    }
+
+    else if(unos > ceros){
+        nueva = invertedNBits(3,actual);
+        return nueva;
+    }
+
+}
+
+double pow(int base, int exponente) {
+
+    if (exponente == 0) {
+        return 1;
+    }
+
+    else {
+        return base * pow(base, exponente - 1);
+    }
+}
+
+
+int binaryToInt(string binary){
+    int valorDecimal = 0;
+    int lsb = 7;
+
+    for(int i = 0; i<8; i++){
+        if(binary[i] == '1'){
+            valorDecimal += pow(2,lsb);
+        }
+        lsb --;
+    }
+
+
+    return valorDecimal;
+}
+
+char* genDinamicCharArray(int size){
+    char* arrayC = new char[size];
+    return arrayC;
+}
+
+char* stringBinaryToArray(string cadena){
+    long long int size = cadena.length()/8;
+    char* arregloC = genDinamicCharArray(size);
+    long long int extremoInf = 0;
+    long long int extremoSup = 8;
+
+
+    for(int i = 0; extremoSup <= size*8; i++){
+        arregloC[i] = char(binaryToInt(slicing(cadena,extremoInf,extremoSup)));
+        extremoInf += 8;
+        extremoSup += 8;
+    }
+
+    arregloC[size] = '\0';
+
+    return arregloC;
+
+}
+
+void write_file(string name, string info ,int mode){
     fstream file;
-    file.open(name,ios::out);
+    if(mode == 1){
+        file.open(name,ios::out);
+    }
+    else{
+        file.open(name, std::ios::out | std::ios::binary);
+    }
+
     file << info;
     file.close();
 }
+
+
+

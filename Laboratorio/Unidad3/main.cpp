@@ -1,29 +1,30 @@
 #include <funcionalidades.h>
-#include <codificadores.h>
+#include <codecs.h>
 
-int main()
-{
+int main(){
 
-    string origen = "../Unidad3/origin.txt";
-    string destino = "../Unidad3/coded.dat";
-    int n = 1000;
 
-    /*
-    string a = metodo2(n, origen);
-    write_file(destino,a);
-    string b = decodificador2(n,destino);
-    cout << "La cadena decodificada es: "<< translateSemiCoded(b) << endl;
-    */
+    //string origen = "../Unidad3/M1S15.txt";
+    //string a  = metodo1(15, origen);
 
+
+    string origen = "../Unidad3/prueba.txt";
+    string destino = "../Unidad3/codi.dat";
 
     /*
-    string a = metodo2(n, origen);
-    write_file(destino,a);
-    string b = decodificador2(n,destino);
-    cout << "La cadena decodificada es: "<< translateSemiCoded(b) << endl;
+    string pru = metodo1(64,origen);
+    cout << pru << endl;
+    char* conver = stringBinaryToArray(pru);
+
+    write_file(destino,conver,2);
+
+    string pru2 = decodificador1(4,destino);
+    cout << pru2 << endl;
+    //cout << stringBinaryToArray(pru2) << endl;
     */
 
-
-    return 0;
-
+    read_file(origen,1);
 }
+
+
+
