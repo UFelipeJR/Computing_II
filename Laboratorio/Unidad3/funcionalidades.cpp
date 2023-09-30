@@ -28,18 +28,20 @@ string read_file(string name, int mode){
 }
 */
 
-char* read_file(string name, int mode){
 
+
+char* read_file(string name, int mode){
 
     unsigned long long tam;
     fstream file;
-    streampos length = 0;
 
-    if(mode == 1){
-        file.open(name,ios::in | ios::ate);
-    }
-    else{
-        file.open(name,ios::in | ios::ate | ios::binary);
+    switch(mode){
+        case 1:
+            file.open(name,ios::in | ios::ate);
+            break;
+        case 2:
+            file.open(name,ios::in | ios::ate | ios::binary);
+            break;
     }
 
     char* array = genDinamicCharArray(file.tellg());
@@ -53,12 +55,12 @@ char* read_file(string name, int mode){
         array[tam] = '\0';
     }
 
-    cout << array << endl;
     file.close();
 
     return array;
 
 }
+
 
 string charToBinary(char caracter){
 
@@ -95,7 +97,7 @@ string genChainBinary(string ruta, int modo){
     char* chainOrigin = read_file(ruta,modo);
     string chainBinary = "";
 
-    for(int i = 0; i < chainOrigin.length(); i++){
+    for(int i = 0; i < strlen(chainOrigin); i++){
         chainBinary += charToBinary(chainOrigin[i]);
     }
     return chainBinary;
@@ -247,7 +249,8 @@ char* stringBinaryToArray(string cadena){
 
 
     for(int i = 0; extremoSup <= size*8; i++){
-        arregloC[i] = char(binaryToInt(slicing(cadena,extremoInf,extremoSup)));
+        //arregloC[i] = char();
+        arregloC[i] = static_cast<char>(binaryToInt(slicing(cadena, extremoInf, extremoSup)));
         extremoInf += 8;
         extremoSup += 8;
     }
@@ -270,6 +273,8 @@ void write_file(string name, string info ,int mode){
     file << info;
     file.close();
 }
+
+
 
 
 

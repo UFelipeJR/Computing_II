@@ -23,4 +23,5 @@ int binaryToInt(string);
 double pow(int,int);
 void write_file(string,string,int);
 
+
 #endif // FUNCIONALIDADES_H

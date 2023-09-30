@@ -50,13 +50,11 @@ string metodo1(int seed, string filePath){
 }
 
 
-/*
 string decodificador1(int seed, string filePath){
 
     int residuo = 0;
 
     string codedBinary = genChainBinary(filePath,2);
-    codedBinary = "10110100001111010001011010011011";
 
     string subcadenaAnterior = "";
     string subcadenaActual = "";
@@ -95,30 +93,8 @@ string decodificador1(int seed, string filePath){
         decodedBinary += genCodi(subcadenaAnterior,subcadenaActual);
     }
 
-
-
     return decodedBinary;
 
 }
-*/
 
-string decodificador1(int seed, string filePath){
-    int residuo = 0;
-
-    string codedBinary = genChainBinary(filePath,2);
-    string decodedBinary = "";
-
-    string subcadenaAnterior = "";
-    string subcadenaActual = "";
-    string subcadenaAjustada = "";
-
-
-    if(decodedBinary.length()<= seed){
-        cout << codedBinary << endl;
-        decodedBinary += bitInverter(codedBinary);
-        return decodedBinary;
-
-    }
-
-}
 
