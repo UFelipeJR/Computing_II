@@ -8,9 +8,7 @@
 
 using namespace std;
 
-//string read_file(string,int);
 char* read_file(string,int);
-
 string charToBinary(char);
 string genChainBinary(string,int);
 string slicing(string, int, int);
@@ -25,5 +23,9 @@ void write_file(string,string,int);
 string displaceBitGOD(string);
 string translateSemiCoded(string);
 string antiDisplaceBit(string,int);
+int* posLine(char*, char, int&);
+int contApar(char*, char);
+string* splitCriollo(string);
+string** strucT(string);
 
 #endif // FUNCIONALIDADES_H

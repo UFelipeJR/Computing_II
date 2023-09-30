@@ -311,3 +311,110 @@ string translateSemiCoded(string cadenaOri){
 
     return cadena;
 }
+
+
+int contApar(char* array, char caracter) {
+    int size = 0;
+    for (int i = 0; i < strlen(array); i++) {
+        if (array[i] == caracter) {
+            size++;
+        }
+    }
+    return size;
+}
+
+int* posLine(char* array, char caracter, int& len) {
+    int size = contApar(array, caracter);
+    int posAux = 0;
+    int* pos = new int[size];
+    len = size;
+
+    for (int i = 0; i < strlen(array); i++) {
+        if (array[i] == caracter) {
+            pos[posAux] = i;
+            posAux++;
+        }
+    }
+
+    return pos;
+}
+
+
+string translateToString(char* array, int longitud){
+    string cadena = "";
+    for(int i = 0; i<longitud; i++){
+        cadena += array[i];
+    }
+    return cadena;
+}
+
+
+string* splitCriollo(string filePath){
+    int longitud = 0;
+    char* prueba = read_file(filePath,1);
+    int* a = posLine(prueba,':', longitud);
+    string cadena = translateToString(prueba,strlen(prueba));
+
+    int posArray = 0;
+    int indice0 = 0;
+    int indice1 = 1;
+
+    string* arregloDeStrings = new string[(longitud-1)*(longitud-1)];
+
+    while(indice1 != longitud){
+    arregloDeStrings[posArray] = slicing(cadena,a[indice0]+1,a[indice1]);
+    indice0 ++;
+    indice1 ++;
+    posArray++;
+    }
+
+
+
+    return arregloDeStrings;
+
+}
+
+string** strucT(string ruta){
+    int cont = 0;
+    int pos = 0;
+
+    string* a = splitCriollo(ruta);
+
+    while(a[cont] != "\n"){
+        cont ++;
+    }
+
+;
+    string* arregloProvi = new string[cont*5];
+
+
+    for(int i = 0; !a[i].empty() ; i++){
+        if(a[i] != "\n"){
+            arregloProvi[pos] = a[i];
+            pos ++;
+        }
+    }
+
+    //Matriz Dinamica
+
+    string** matriz = new string*[5];
+
+    for(int i = 0; i<5;i++){
+        matriz[i] = new string[cont];
+
+    }
+
+    pos = 0;
+    for(int i = 0; i<5;i++){
+        for(int j = 0; j<cont;j++){
+            matriz[i][j] = arregloProvi[pos];
+            pos ++;
+        }
+    }
+
+
+    delete[] a;
+    delete[] arregloProvi;
+    return matriz;
+
+}
