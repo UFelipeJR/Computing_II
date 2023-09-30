@@ -9,6 +9,7 @@
 using namespace std;
 
 char* read_file(string,int);
+string read_fileAlterno(string,int);
 string charToBinary(char);
 string genChainBinary(string,int);
 string slicing(string, int, int);

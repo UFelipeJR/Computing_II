@@ -48,23 +48,23 @@ string metodo1(int seed, string filePath){
 
 }
 
-
 string decodificador1(int seed, string filePath){
 
     int residuo = 0;
 
-    string codedBinary = genChainBinary(filePath,2);
-
+    //string codedBinary = genChainBinary(filePath,2);
+    string codedBinary = read_file(filePath,2);
     string subcadenaAnterior = "";
     string subcadenaActual = "";
     string subcadenaAjustada = "";
     string decodedBinary = "";
 
-    if(decodedBinary.length()<= seed){
+    if(codedBinary.length()<= seed){
         decodedBinary += bitInverter(codedBinary);
         return decodedBinary;
-
     }
+
+
 
     if(codedBinary.length() % seed != 0){
         residuo = codedBinary.length() % seed;
@@ -91,9 +91,11 @@ string decodificador1(int seed, string filePath){
         decodedBinary += genCodi(subcadenaAnterior,subcadenaActual);
     }
 
+
     return decodedBinary;
 
 }
+
 
 string metodo2(int seed, string filePath){
 
@@ -101,6 +103,12 @@ string metodo2(int seed, string filePath){
     string decodedBinary = genChainBinary(filePath,1);
     string subcadenaAjustada = "";
     string codedBinary = "";
+
+    if(decodedBinary.length()<= seed){
+        codedBinary += displaceBitGOD(decodedBinary);
+        return codedBinary;
+
+    }
 
 
     if(decodedBinary.length() % seed != 0){
@@ -126,32 +134,37 @@ string metodo2(int seed, string filePath){
 
 }
 
-
 string decodificador2(int seed, string filePath){
 
     int residuo = 0;
-
-    string codedBinary = genChainBinary(filePath,2);;
-
     string decodedBinary = "";
     string subcadenaAjustada = "";
+    string codedBinary = read_file(filePath,2);
+
+    if(codedBinary.length()<= seed){
+        decodedBinary += antiDisplaceBit(codedBinary,seed);
+        return decodedBinary;
+
+    }
 
 
     if(codedBinary.length() % seed != 0){
         residuo = codedBinary.length() % seed;
         subcadenaAjustada = slicing(codedBinary,0,codedBinary.length()-residuo);
     }
+
     else{
         subcadenaAjustada += codedBinary;
     }
 
+
     for(int i = 0; i < subcadenaAjustada.length(); i+=seed){
-         decodedBinary += antiDisplaceBit(slicing(codedBinary,i,i+seed),seed);
+        decodedBinary += antiDisplaceBit(slicing(codedBinary,i,i+seed),seed);
     }
 
-
     if(residuo != 0){
-        decodedBinary += displaceBitGOD(slicing(codedBinary,codedBinary.length()-residuo,codedBinary.length()));
+        decodedBinary += antiDisplaceBit(slicing(codedBinary,codedBinary.length()-residuo,codedBinary.length()),residuo);
+
     }
 
     return decodedBinary;

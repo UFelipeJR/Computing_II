@@ -1,8 +1,8 @@
 #include <funcionalidades.h>
 
 
-/*
-string read_file(string name, int mode){
+
+string read_fileAlterno(string name, int mode){
     unsigned long long tam;
     fstream file;
     string data;
@@ -26,7 +26,7 @@ string read_file(string name, int mode){
     file.close();
     return data;
 }
-*/
+
 
 
 
@@ -272,6 +272,7 @@ void write_file(string name, string info ,int mode){
 
     file << info;
     file.close();
+    cout << "Se ha escrito correctamente " << endl;
 }
 
 
