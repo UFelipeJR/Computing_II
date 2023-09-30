@@ -3,20 +3,20 @@
 
 int main(){
 
-    string origen = "../Unidad3/prueba.txt";
-    string destino = "../Unidad3/prueba.dat";
-
-    /*
-    string a  = metodo1(80, origen);
-    char* conver = stringBinaryToArray(a);
-    cout << conver << endl;
-    write_file(destino,conver,2);
-    */
-
-    string b = decodificador1(80,destino);
-    cout << b << endl;
+    string origen = "../Unidad3/Archivos/struct.txt";
+    char* prueba = read_file(origen,1);
 
 
+    int i = 0;
+    const int filas = 5;
+    const int columnas_maximas = 10; // Define un número máximo de columnas
+
+    string** array = new string*[filas];
+
+    while(prueba[i] != '\n'){
+        cout << prueba[i];
+        i ++;
+    }
 
 
 

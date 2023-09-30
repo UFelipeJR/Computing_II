@@ -22,6 +22,8 @@ char* genDinamicCharArray(int);
 int binaryToInt(string);
 double pow(int,int);
 void write_file(string,string,int);
-
+string displaceBitGOD(string);
+string translateSemiCoded(string);
+string antiDisplaceBit(string,int);
 
 #endif // FUNCIONALIDADES_H

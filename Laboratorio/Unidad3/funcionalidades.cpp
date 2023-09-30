@@ -275,6 +275,39 @@ void write_file(string name, string info ,int mode){
 }
 
 
+string displaceBitGOD(string bit){
+    string aux = "";
+    int indice = 0;
+    int n = bit.length();
+
+    for (int i = 0; i < n; i++) {
+        int indice = (i - 1 + n) % n;
+        aux += bit[indice];
+    }
+
+    return aux;
+}
+
+
+string antiDisplaceBit(string bit, int seed){
+    string aux = bit;
+    for(int i = 0; i < seed-1; i++){
+        aux = displaceBitGOD(aux);
+    }
+    return aux;
+}
 
 
 
+string translateSemiCoded(string cadenaOri){
+    long long size = cadenaOri.length();
+    string cadena = "";
+
+
+    for(int i = 0; i<size;i+=8){
+         cadena += char(binaryToInt(slicing(cadenaOri,i,i+8)));
+
+    }
+
+    return cadena;
+}

@@ -11,4 +11,7 @@ using namespace std;
 
 string metodo1(int, string);
 string decodificador1(int, string);
+string metodo2(int, string);
+string decodificador2(int,string);
+
 #endif // CODECS_H
