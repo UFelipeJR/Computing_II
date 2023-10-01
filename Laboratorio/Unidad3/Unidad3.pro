@@ -6,8 +6,10 @@ CONFIG -= qt
 SOURCES += \
         codecs.cpp \
         funcionalidades.cpp \
-        main.cpp
+        main.cpp \
+        bank.cpp
 
 HEADERS += \
     codecs.h \
-    funcionalidades.h
+    funcionalidades.h \
+    bank.h

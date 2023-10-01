@@ -1,11 +1,12 @@
 #include <funcionalidades.h>
 #include <codecs.h>
+#include <bank.h>
 
 
 
 int main(){
 
-    string origen = "../Unidad3/Archivos/prueba.txt";
+    /*string origen = "../Unidad3/Archivos/prueba.txt";
     string destino = "../Unidad3/Archivos/prueba.dat";
     int seed = 6;
 
@@ -18,6 +19,7 @@ int main(){
     cout << "Al decodificar:" << endl;
     cout << translateSemiCoded(b) << endl;
 
+    */
 
     /*
     cout << "Al codificar: " << endl;
@@ -29,6 +31,8 @@ int main(){
     cout << translateSemiCoded(b) << endl;
     */
 
+    string origen = "../Unidad3/Archivos/struct.txt";
+    bankSession(origen);
 
     return 0;
 }

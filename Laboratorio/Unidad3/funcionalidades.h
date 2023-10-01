@@ -28,5 +28,6 @@ int* posLine(char*, char, int&);
 int contApar(char*, char);
 string* splitCriollo(string);
 string** strucT(string);
+int countCols(string);
 
 #endif // FUNCIONALIDADES_H

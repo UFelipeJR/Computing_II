@@ -419,3 +419,17 @@ string** strucT(string ruta){
     return matriz;
 
 }
+
+int countCols(string ruta){
+
+    string** strucT(string ruta);
+    int cont = 0;
+
+    string* a = splitCriollo(ruta);
+
+    while(a[cont] != "\n"){
+        cont ++;
+    }
+
+    return cont;
+}
