@@ -28,8 +28,6 @@ string read_fileAlterno(string name, int mode){
 }
 
 
-
-
 char* read_file(string name, int mode){
 
     unsigned long long tam;
