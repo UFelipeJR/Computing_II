@@ -31,8 +31,9 @@ int main(){
     cout << translateSemiCoded(b) << endl;
     */
 
-    string origen = "../Unidad3/Archivos/struct.txt";
-    bankSession(origen);
+    string origenA = "../Unidad3/Archivos/structA.txt";
+    string origenU = "../Unidad3/Archivos/structU.txt";
+    bankSession(origenA, origenU);
 
     return 0;
 }

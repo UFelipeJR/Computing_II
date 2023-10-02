@@ -1,103 +1,127 @@
-#include <codecs.h>
+﻿#include <codecs.h>
 #include <funcionalidades.h>
 
 using namespace std;
 
-void confirmedASession(string origen, int col){
-    string** estructura = strucT(origen);
-    int adminOpt;
-    cout << "Usted ha iniciado como administrador " << endl;
-    cout << "1. Para agregar un usuario nuevo" << endl;
-    cout << "2. Salir" << endl;
-    cin >> adminOpt;
-    switch(adminOpt){
-        case 1:
-            cout << "Aqui es donde se supone que uno agrega/eliminar usuarios como admin" << endl;
-            break;
-        case 2:
-            cout << "Aqui es donde se supone que uno se sale pq ajajaja no falta más" << endl; //No se si un admin tambien es usuario eso ni idea
+int posColumna(string ruta,string** estructura, string user){
+    int col = countCols(ruta);
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < col; j++){
+            if(estructura[i][j] == user){
+                return j;
+            }
+        }
     }
 }
 
-
-void confirmedUSession(string origen, int col){
-    string** estructura = strucT(origen);
-    int userOpt;
-    unsigned long long nwsaldo;
-    unsigned long long retiro;
-    bool validR = true;
-    nwsaldo = stoi(estructura[4][col]);
-    cout << "1. Para consultar su saldo" << endl;
-    cout << "2. Para hacer retiro de su dinero." << endl;
-    cout << "3. Para salir" << endl;
-    cin >> userOpt;
-    switch(userOpt){
-        case 1:
-            cout << "Su saldo es: " << estructura[4][col] << endl;
-            nwsaldo -= 1000;
-            cout << nwsaldo << endl;
-            cout << "Aqui es donde se supone que consulte saldo (-1000) xd" << endl;
-            break;
-        case 2:
-            while(validR){
-                cout << "Ingrese el monto a retirar: " << endl;
-                cin >> nwsaldo;
-                nwsaldo -= retiro;
-                cout << nwsaldo << endl;
-                }
-            cout << "Aqui es donde se supone que pueda retirar (resta plata y los 1000 de ahorita)" << endl;
-            break;
-        case 3:
-            cout << "Gracias por usar nuestro servicio de banco, vuelva pronto." << endl;
-            break;
-    }
-
-    //Write_file----
-
-}
-
-int bankSession(string origen){
-    string user;
-    string password;
-    string** estructura = strucT(origen);
-    int b = countCols(origen);
+bool uaccess(string user, string password,string origen, string** estructura){
     int col = 0;
-    int state = 0;
-
-    cout <<"Ingrese su cedula: ";
-    cin >> user;
-
-    for(int i = 1; i < 5; i++){
-        for(int j = 0; j < b; j++){
+    int colsU = countCols(origen);
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < colsU; j++){
             if(estructura[i][j] == user){
                 col = j;
-                cout << "Ingrese la contrasena: ";
-                cin >> password;
                 break;
             }
         }
         if(estructura[i][col] == password){
-            state = 1;
+            return true;
+        }
+    }
+    return false;
+}
+
+void userAccess(string** estructura, int j){
+    int userOpt;
+    long long nwSalary = stoi(estructura[4][j]);
+    long long retiro;
+    cout << "**** USUARIO ****" << endl << endl;
+    cout << "1. Para revisar el saldo actual (Se le debitara 1000 por realizar esta operacion)\n2. Para retirar dinero\n3. Para salir" << endl;
+    cout << "Ingrese la opcion que desea realizar: ";
+    cin >> userOpt;
+    switch(userOpt){
+
+        case 1:
+            cout << "Su saldo era: " << estructura[4][j] << endl;
+            nwSalary -= 1000;
+            cout << "Actualizado: " << nwSalary << endl;
             break;
-        }
+        case 2:
+            cout << "Usted posee: " << estructura[4][j] << endl;
+            cout << "Indique la cantidad que quiere retirar: " << endl;
+            cin >> retiro;
+            nwSalary -= 1000+retiro;
+            cout << "Actualizado: " << nwSalary << endl;
+            break;
+
     }
 
-    if(state == 1){
-        cout << endl;
-        if(estructura[3][col] == "1"){
-            cout << endl << "****** ADMINISTRADOR ******" << endl << endl;
-            confirmedASession(origen, col);
-        }
-        else if(estructura[3][col] == "0"){
-            cout << endl << "****** USUARIO ******" << endl << endl;
-            cout << "Usted ha ingresado como: " << estructura[0][col] << endl << endl;
-            confirmedUSession(origen, col);
-        }
-    }
+    estructura[4][j] = to_string(nwSalary);
 
-    if(state == 0){
-       cout << "Credenciales Incorrectas" << endl;
-    }
+}
 
-    return state;
+
+void adminAccess(string** estructura, int j){
+    int admOpt;
+    cout << "**** ADMINISTRADOR ****" << endl;
+    cout << "1. Para registrar un nuevo usuario\n2. Para salir" << endl;
+    cout << "Ingrese la opción que desea realizar: ";
+    cin >> admOpt;
+    switch(admOpt){
+        case 1:
+            cout << "Aqui va a meter usuarios lol" << endl;
+            break;
+        case 2:
+            cout << "Aqui va a salirse" << endl;
+            break;
+    }
+}
+
+void bankSession(string origenA, string origenU){
+
+    string** estructuraA = strucT(origenA);
+    string** estructuraU = strucT(origenU);
+    string user;
+    string password;
+    int init = 0;
+    int col;
+    bool granted;
+
+    cout << "1. Para iniciar sesion como usuario \n2. Para iniciar sesion como administrador " << endl;
+    cout << "Ingrese una opcion: ";
+    cin >> init;
+
+    switch(init){
+        case 1:
+            cout << "Ingrese su cedula: ";
+            cin >> user;
+            cout << "Ingrese su contrasena: ";
+            cin >> password;
+            granted = uaccess(user,password,origenU,estructuraU);
+            col = posColumna(origenU,estructuraU,user);
+            if(granted == true){
+                userAccess(estructuraU,col);
+            }
+            else{
+                cout << "Accesso invalido.";
+            }
+            break;
+
+        case 2:
+            cout << "Ingrese su cedula: ";
+            cin >> user;
+            cout << "Ingrese su contrasena: ";
+            cin >> password;
+            granted = uaccess(user,password,origenA,estructuraA);
+            col = posColumna(origenA,estructuraA,user);
+            if(granted == true){
+                adminAccess(estructuraA,col);
+            }
+
+            else{
+                cout << "Acceso Invalido.";
+            }
+            break;
+    }
+    cout << "Gracias por usar nuestro servicio bancario. xd" << endl;
 }

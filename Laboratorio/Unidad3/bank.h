@@ -7,6 +7,8 @@
 
 using namespace std;
 
-int bankSession(string);
-void confirmedUSession(string, int);
-void confirmedASession(string, int);
+void bankSession(string,string);
+bool uaccess(string, string, string, string**);
+int posColumna(string**, string);
+void adminAccess(string** estructura, int j);
+void userAcces(string**, int);

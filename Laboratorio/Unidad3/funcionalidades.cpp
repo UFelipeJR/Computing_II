@@ -431,10 +431,3 @@ int countCols(string ruta){
     return cont;
 }
 
-string usersBase(string ruta){
-    int cols = 0;
-    string* a = splitCriollo(ruta);
-
-
-
-}
