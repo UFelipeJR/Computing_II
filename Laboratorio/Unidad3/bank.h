@@ -8,3 +8,5 @@
 using namespace std;
 
 int bankSession(string);
+void confirmedUSession(string, int);
+void confirmedASession(string, int);
