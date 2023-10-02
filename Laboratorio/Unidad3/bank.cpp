@@ -1,4 +1,7 @@
-﻿#include <codecs.h>
+#include <codecs.h>
+#include <funcionalidades.h>
+
+#include <codecs.h>
 #include <funcionalidades.h>
 
 using namespace std;

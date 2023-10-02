@@ -1,5 +1,5 @@
 #include <funcionalidades.h>
-
+#include <codecs.h>
 
 
 string read_fileAlterno(string name, int mode){
@@ -280,7 +280,7 @@ string displaceBitGOD(string bit){
     int n = bit.length();
 
     for (int i = 0; i < n; i++) {
-        int indice = (i - 1 + n) % n;
+        indice = (i - 1 + n) % n;
         aux += bit[indice];
     }
 
@@ -383,6 +383,7 @@ string** strucT(string ruta){
         cont ++;
     }
 
+;
     string* arregloProvi = new string[cont*5];
 
 
@@ -417,6 +418,34 @@ string** strucT(string ruta){
 
 }
 
+
+string convertArray(string** array, string ruta){
+    int columnas = countCols(ruta);
+    string strucTOf = "";
+
+    for (int fila = 0; fila < 5; ++fila) {
+        strucTOf += ":";
+        for (int columna = 0; columna < columnas; ++columna) {
+            strucTOf += array[fila][columna];
+            strucTOf += ":";
+        }
+            strucTOf += "\n";
+    }
+    strucTOf.pop_back();
+
+    return strucTOf;
+
+}
+
+string correcion(string origen, string destino, int seed){
+    int len = (read_fileAlterno(origen,1).length())*8;
+    string a = metodo1(seed,origen);
+
+    return a.substr(0,len);
+
+}
+
+
 int countCols(string ruta){
 
     string** strucT(string ruta);
@@ -431,3 +460,75 @@ int countCols(string ruta){
     return cont;
 }
 
+
+string** deleteCol(string ruta, string user){
+    int contColumnas = countCols(ruta);
+    int colAssign = 0;
+    string** array = strucT(ruta);
+
+    string** newArray = new string *[5];
+
+    for(int i = 0; i<5;i++){
+        newArray[i] = new string[contColumnas-1];
+    }
+
+    for(int i = 0; i < contColumnas; i++){
+        if(array[0][i] == user){
+            colAssign = i;
+            break;
+        }
+    }
+
+
+    for(int i = 0; i<5;i++){
+        for(int j = 0; j < contColumnas; j++){
+            if( j != colAssign){
+                if(j <= colAssign){
+                    newArray[i][j] = array[i][j];
+                }
+                else{
+                    newArray[i][j-1] = array[i][j];
+                }
+
+            }
+        }
+    }
+
+    return newArray;
+
+}
+
+string** addCol(string ruta){
+    int contColumnas = countCols(ruta);
+    int colAssign = 0;
+    string** structA = strucT(ruta);
+
+    string** newArray = new string *[5];
+
+    for(int i = 0; i<5;i++){
+        newArray[i] = new string[contColumnas+1];
+    }
+
+    for(int i = 0; i<5;i++){
+        for(int j = 0; j < contColumnas; j++){
+            newArray[i][j] = structA[i][j];
+        }
+    }
+
+    cout << "Ingrese el nombre de usuario: " << endl;
+    cin >> newArray[0][contColumnas];
+
+    cout << "Ingrese el documento de identidad: " << endl;
+    cin >> newArray[1][contColumnas];
+
+    cout << "Ingrese la clave de usuario: " << endl;
+    cin >> newArray[2][contColumnas];
+
+    newArray[3][contColumnas] = "0";
+
+    cout << "Ingrese el saldo del usuario:: " << endl;
+    cin >> newArray[4][contColumnas];
+
+
+    return newArray;
+}

@@ -167,3 +167,65 @@ string decodificador2(int seed, string filePath){
 
     return decodedBinary;
 }
+
+
+void submenu(string origen, string destino){
+
+    int opcion = 0;
+    int seed = 0;
+    string decodi = "";
+    string codi = "";
+    string correci = "";
+
+    cout << "1. Metodo 1 \n2. Decodificador 1" << endl;
+    cout << "3. Metodo 2 \n4. Decodificador 2" << endl;
+    cout << "5. Salir" << endl;
+
+    while(true){
+    while(true){
+        cout << "Ingrese una opcion: "; cin >> opcion;
+        if(opcion >= 0 && opcion <= 5){
+            break;
+        }
+        else{
+            cout << "Opcion no valida" << endl;
+        }
+    }
+
+    while(true){
+        cout << "Ingrese una semilla: "; cin >> seed;
+        if(opcion > 0){
+            break;
+        }
+        else{
+            cout << "Semilla no valida" << endl;
+        }
+    }
+
+    switch(opcion){
+        case 1:
+            codi = metodo1(seed,origen);
+            write_file(destino,codi,2);
+            break;
+        case 2:
+            decodi = decodificador1(seed,destino);
+            //correci = correcion(origen,destino,seed);
+            write_file(origen,translateSemiCoded(decodi),1);
+            break;
+        case 3:
+            codi = metodo2(seed,origen);
+            write_file(destino,codi,2);
+            break;
+        case 4:
+            decodi = decodificador2(seed,destino);
+            write_file(origen,translateSemiCoded(decodi),1);
+            break;
+        case 5:
+            exit(1);
+
+    }
+    }
+
+
+
+}

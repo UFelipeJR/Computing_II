@@ -1,4 +1,4 @@
-#ifndef FUNCIONALIDADES_H
+    #ifndef FUNCIONALIDADES_H
 #define FUNCIONALIDADES_H
 
 #include <iostream>
@@ -29,5 +29,9 @@ int contApar(char*, char);
 string* splitCriollo(string);
 string** strucT(string);
 int countCols(string);
+string convertArray(string**, string);
+string correcion(string,string,int);
+string** deleteCol(string,string);
+string** addCol(string);
 
 #endif // FUNCIONALIDADES_H

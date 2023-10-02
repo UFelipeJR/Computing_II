@@ -2,38 +2,20 @@
 #include <codecs.h>
 #include <bank.h>
 
-
-
 int main(){
+    string ruta = "../Unidad3/Archivos/structU.txt";
+    string** h = addCol(ruta);
 
-    /*string origen = "../Unidad3/Archivos/prueba.txt";
-    string destino = "../Unidad3/Archivos/prueba.dat";
-    int seed = 6;
+    for(int i = 0; i< 5; i++){
+        for(int j = 0; j < 6; j++){
+            cout << h[i][j] << " ";
+        }
+        cout << endl;
+    }
 
 
-    cout << "Al codificar: " << endl;
-    string a = metodo1(seed,origen);
-    cout << translateSemiCoded(a) << endl;
-    write_file(destino,a,2);
-    string b = decodificador1(seed,destino);
-    cout << "Al decodificar:" << endl;
-    cout << translateSemiCoded(b) << endl;
 
-    */
 
-    /*
-    cout << "Al codificar: " << endl;
-    string a = metodo2(seed,origen);
-    cout << translateSemiCoded(a) << endl;
-    write_file(destino,a,2);
-    string b = decodificador2(seed,destino);
-    cout << "Al decodificar:" << endl;
-    cout << translateSemiCoded(b) << endl;
-    */
-
-    string origenA = "../Unidad3/Archivos/structA.txt";
-    string origenU = "../Unidad3/Archivos/structU.txt";
-    bankSession(origenA, origenU);
 
     return 0;
 }
