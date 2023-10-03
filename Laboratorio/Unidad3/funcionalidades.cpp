@@ -366,12 +366,12 @@ string* splitCriollo(string filePath){
     indice1 ++;
     posArray++;
     }
-
-
-
     return arregloDeStrings;
 
 }
+
+
+
 
 string** strucT(string ruta){
     int cont = 0;
@@ -417,6 +417,9 @@ string** strucT(string ruta){
     return matriz;
 
 }
+
+
+
 
 
 string convertArray(string** array, string ruta){
@@ -531,4 +534,21 @@ string** addCol(string ruta){
 
 
     return newArray;
+}
+
+
+int posColumna(string ruta,string** estructura, string user){
+    int col = countCols(ruta);
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < col; j++){
+            if(estructura[i][j] == user){
+                return j;
+            }
+        }
+    }
+}
+
+void decodiWrite(string origen, string destino){
+    string decodi = decodificador2(4,origen);
+    write_file(destino,translateSemiCoded(decodi),2);
 }

@@ -28,10 +28,14 @@ int* posLine(char*, char, int&);
 int contApar(char*, char);
 string* splitCriollo(string);
 string** strucT(string);
+string** strucTDecode(string);
 int countCols(string);
 string convertArray(string**, string);
 string correcion(string,string,int);
 string** deleteCol(string,string);
 string** addCol(string);
+int posColumna(string,string**,string);
+void decodiWrite(string, string);
+
 
 #endif // FUNCIONALIDADES_H

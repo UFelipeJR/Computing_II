@@ -2,18 +2,23 @@
 #include <codecs.h>
 #include <bank.h>
 
+
+
+
+
+
+
+
 int main(){
-    string ruta = "../Unidad3/Archivos/structU.txt";
-    string** h = addCol(ruta);
 
-    for(int i = 0; i< 5; i++){
-        for(int j = 0; j < 6; j++){
-            cout << h[i][j] << " ";
-        }
-        cout << endl;
-    }
+    //menu_principal();
+
+    string originU = "../Unidad3/Archivos/structU.txt";
+    string destinoU = "../Unidad3/Archivos/structU.dat";
 
 
+    remove("../Unidad3/Archivos/M1S15.txt");
+    decodiWrite(destinoU,originU);
 
 
 

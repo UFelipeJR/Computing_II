@@ -14,5 +14,6 @@ string decodificador1(int, string);
 string metodo2(int, string);
 string decodificador2(int,string);
 void submenu(string, string);
+void menu_principal();
 
 #endif // CODECS_H

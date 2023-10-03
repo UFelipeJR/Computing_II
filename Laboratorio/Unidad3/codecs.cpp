@@ -1,5 +1,6 @@
 #include <codecs.h>
 #include <funcionalidades.h>
+#include <bank.h>
 
 
 string metodo1(int seed, string filePath){
@@ -179,28 +180,32 @@ void submenu(string origen, string destino){
 
     cout << "1. Metodo 1 \n2. Decodificador 1" << endl;
     cout << "3. Metodo 2 \n4. Decodificador 2" << endl;
-    cout << "5. Salir" << endl;
+    cout << "5. Menu Principal" << endl;
 
     while(true){
-    while(true){
-        cout << "Ingrese una opcion: "; cin >> opcion;
-        if(opcion >= 0 && opcion <= 5){
-            break;
+        while(true){
+            cout << "Ingrese una opcion: "; cin >> opcion;
+            if(opcion >= 0 && opcion <= 5){
+                break;
+            }
+            else{
+                cout << "Opcion no valida" << endl;
+            }
         }
-        else{
-            cout << "Opcion no valida" << endl;
-        }
-    }
 
-    while(true){
-        cout << "Ingrese una semilla: "; cin >> seed;
-        if(opcion > 0){
-            break;
+        if(opcion != 5){
+            while(true){
+                cout << "Ingrese una semilla: "; cin >> seed;
+                if(opcion > 0){
+                    break;
+                }
+                else{
+                    cout << "Semilla no valida" << endl;
+                }
+
+            }
+
         }
-        else{
-            cout << "Semilla no valida" << endl;
-        }
-    }
 
     switch(opcion){
         case 1:
@@ -221,7 +226,7 @@ void submenu(string origen, string destino){
             write_file(origen,translateSemiCoded(decodi),1);
             break;
         case 5:
-            exit(1);
+            menu_principal();
 
     }
     }

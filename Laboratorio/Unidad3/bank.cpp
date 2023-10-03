@@ -1,21 +1,8 @@
 #include <codecs.h>
 #include <funcionalidades.h>
-
 #include <codecs.h>
-#include <funcionalidades.h>
-
 using namespace std;
 
-int posColumna(string ruta,string** estructura, string user){
-    int col = countCols(ruta);
-    for(int i = 0; i < 5; i++){
-        for(int j = 0; j < col; j++){
-            if(estructura[i][j] == user){
-                return j;
-            }
-        }
-    }
-}
 
 bool uaccess(string user, string password,string origen, string** estructura){
     int col = 0;
@@ -67,7 +54,7 @@ void userAccess(string** estructura, int j){
 void adminAccess(string** estructura, int j){
     int admOpt;
     cout << "**** ADMINISTRADOR ****" << endl;
-    cout << "1. Para registrar un nuevo usuario\n2. Para salir" << endl;
+    cout << "1. Para registrar un nuevo usuario\n2. Eliminar usuario \n3. Menu principal" << endl;
     cout << "Ingrese la opción que desea realizar: ";
     cin >> admOpt;
     switch(admOpt){
@@ -75,7 +62,7 @@ void adminAccess(string** estructura, int j){
             cout << "Aqui va a meter usuarios lol" << endl;
             break;
         case 2:
-            cout << "Aqui va a salirse" << endl;
+            cout << "Aqui va a salirse lol" << endl;
             break;
     }
 }
@@ -84,13 +71,13 @@ void bankSession(string origenA, string origenU){
 
     string** estructuraA = strucT(origenA);
     string** estructuraU = strucT(origenU);
-    string user;
-    string password;
+    string user = "";
+    string password = "";
     int init = 0;
-    int col;
+    int col = 0;
     bool granted;
 
-    cout << "1. Para iniciar sesion como usuario \n2. Para iniciar sesion como administrador " << endl;
+    cout << "1. Para iniciar sesion como usuario \n2. Para iniciar sesion como administrador \n3. Menu principal " << endl;
     cout << "Ingrese una opcion: ";
     cin >> init;
 
@@ -125,6 +112,55 @@ void bankSession(string origenA, string origenU){
                 cout << "Acceso Invalido.";
             }
             break;
+
+        case 3:
+            menu_principal();
+            break;
+
     }
     cout << "Gracias por usar nuestro servicio bancario. xd" << endl;
 }
+
+
+void menu_principal(){
+
+    string rutaU = "../Unidad3/Archivos/structU.txt";
+    string rutaA = "../Unidad3/Archivos/structA.txt";
+
+    string origen = "../Unidad3/Archivos/natural.txt";
+    string destino = "../Unidad3/Archivos/natural.dat";
+
+    int opcion = 0;
+    cout << "|------ Menu principal ------|" << endl;
+    cout << "1. Codecs \n2. Banco \n3. Salir" << endl;
+
+    while(true){
+    cout << "Selecciona una opcion: ";
+    cin >> opcion;
+    if(opcion == 1 || opcion == 2 || opcion == 3){
+        break;
+    }
+    else{
+        cout << "Ingrese una opcion valida." << endl;
+    }
+
+    }
+
+    switch(opcion){
+        case 1:
+        cout << "Codificadores y decodificadores:" << endl;
+        submenu(origen,destino);
+        break;
+
+        case 2:
+        cout << "Aplicacion de banco: " << endl;
+        bankSession(rutaA,rutaU);
+        break;
+
+        case 3:
+        exit(1);
+
+    }
+
+}
+
