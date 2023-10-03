@@ -270,7 +270,7 @@ void write_file(string name, string info ,int mode){
 
     file << info;
     file.close();
-    cout << "Se ha escrito correctamente " << endl;
+    //cout << "Se ha escrito correctamente " << endl;
 }
 
 
@@ -550,5 +550,5 @@ int posColumna(string ruta,string** estructura, string user){
 
 void decodiWrite(string origen, string destino){
     string decodi = decodificador2(4,origen);
-    write_file(destino,translateSemiCoded(decodi),2);
+    write_file(destino,translateSemiCoded(decodi),1);
 }

@@ -69,17 +69,37 @@ void adminAccess(string** estructura, int j){
 
 void bankSession(string origenA, string origenU){
 
-    string** estructuraA = strucT(origenA);
-    string** estructuraU = strucT(origenU);
+    string destinoU = "../Unidad3/Archivos/structU.txt";
+    string destinoA = "../Unidad3/Archivos/structA.txt";
+
+    decodiWrite(origenA,destinoA);
+    decodiWrite(origenU,destinoU);
+    string** estructuraU = strucT(destinoU);
+    string** estructuraA = strucT(destinoA);
     string user = "";
     string password = "";
     int init = 0;
     int col = 0;
     bool granted;
+    remove("../Unidad3/Archivos/structU.txt");
+    remove("../Unidad3/Archivos/structA.txt");
 
-    cout << "1. Para iniciar sesion como usuario \n2. Para iniciar sesion como administrador \n3. Menu principal " << endl;
-    cout << "Ingrese una opcion: ";
-    cin >> init;
+
+    cout << estructuraA[0][0] << endl;
+
+    //cout << "1. Para iniciar sesion como usuario \n2. Para iniciar sesion como administrador \n3. Menu principal " << endl;
+    //cout << "Ingrese una opcion: ";
+    //cin >> init;
+
+
+    /*
+    string** estructuraA = strucT(origenA);
+    string** estructuraU = strucT(origenU);
+
+
+
+
+
 
     switch(init){
         case 1:
@@ -119,6 +139,7 @@ void bankSession(string origenA, string origenU){
 
     }
     cout << "Gracias por usar nuestro servicio bancario. xd" << endl;
+    */
 }
 
 

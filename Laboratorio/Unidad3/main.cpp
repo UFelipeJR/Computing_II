@@ -13,14 +13,10 @@ int main(){
 
     //menu_principal();
 
-    string originU = "../Unidad3/Archivos/structU.txt";
-    string destinoU = "../Unidad3/Archivos/structU.dat";
+    string destinoA = "../Unidad3/Archivos/structU.dat";
+    string originA = "../Unidad3/Archivos/structA.dat";
 
-
-    remove("../Unidad3/Archivos/M1S15.txt");
-    decodiWrite(destinoU,originU);
-
-
+    bankSession(originA, destinoA);
 
     return 0;
 }
