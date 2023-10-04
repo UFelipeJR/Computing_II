@@ -51,15 +51,19 @@ void userAccess(string** estructura, int j){
 }
 
 
-void adminAccess(string** estructura, int j){
+void adminAccess(string** estructura, int j, string rutaIn, string rutaOut){
     int admOpt;
+    string** newArray;
+    string newString = "";
     cout << "**** ADMINISTRADOR ****" << endl;
     cout << "1. Para registrar un nuevo usuario\n2. Eliminar usuario \n3. Menu principal" << endl;
-    cout << "Ingrese la opción que desea realizar: ";
+    cout << "Ingrese la opcion que desea realizar: ";
     cin >> admOpt;
     switch(admOpt){
         case 1:
-            cout << "Aqui va a meter usuarios lol" << endl;
+            newArray = addCol(ruta);
+            //convertArray(string** array, string ruta);
+
             break;
         case 2:
             cout << "Aqui va a salirse lol" << endl;
@@ -81,25 +85,11 @@ void bankSession(string origenA, string origenU){
     int init = 0;
     int col = 0;
     bool granted;
-    remove("../Unidad3/Archivos/structU.txt");
-    remove("../Unidad3/Archivos/structA.txt");
 
 
-    cout << estructuraA[0][0] << endl;
-
-    //cout << "1. Para iniciar sesion como usuario \n2. Para iniciar sesion como administrador \n3. Menu principal " << endl;
-    //cout << "Ingrese una opcion: ";
-    //cin >> init;
-
-
-    /*
-    string** estructuraA = strucT(origenA);
-    string** estructuraU = strucT(origenU);
-
-
-
-
-
+    cout << "1. Para iniciar sesion como usuario \n2. Para iniciar sesion como administrador \n3. Menu principal " << endl;
+    cout << "Ingrese una opcion: ";
+    cin >> init;
 
     switch(init){
         case 1:
@@ -107,46 +97,48 @@ void bankSession(string origenA, string origenU){
             cin >> user;
             cout << "Ingrese su contrasena: ";
             cin >> password;
-            granted = uaccess(user,password,origenU,estructuraU);
-            col = posColumna(origenU,estructuraU,user);
+            granted = uaccess(user,password,destinoU,estructuraU);
+            col = posColumna(destinoU,estructuraU,user);
+            //remove("../Unidad3/Archivos/structU.txt");
+            //remove("../Unidad3/Archivos/structA.txt");
             if(granted == true){
                 userAccess(estructuraU,col);
             }
             else{
-                cout << "Accesso invalido.";
+                cout << "Accesso invalido." << endl;
+                menu_principal();
             }
             break;
-
         case 2:
             cout << "Ingrese su cedula: ";
             cin >> user;
             cout << "Ingrese su contrasena: ";
             cin >> password;
-            granted = uaccess(user,password,origenA,estructuraA);
-            col = posColumna(origenA,estructuraA,user);
+            granted = uaccess(user,password,destinoA,estructuraA);
+            col = posColumna(destinoA,estructuraU,user);
+            //remove("../Unidad3/Archivos/structU.txt");
+            //remove("../Unidad3/Archivos/structA.txt");
             if(granted == true){
-                adminAccess(estructuraA,col);
+                adminAccess(estructuraU,col,destinoU);
             }
 
             else{
-                cout << "Acceso Invalido.";
+                cout << "Acceso Invalido." << endl;
+                menu_principal();
             }
             break;
-
         case 3:
             menu_principal();
-            break;
 
     }
-    cout << "Gracias por usar nuestro servicio bancario. xd" << endl;
-    */
+
 }
 
 
 void menu_principal(){
 
-    string rutaU = "../Unidad3/Archivos/structU.txt";
-    string rutaA = "../Unidad3/Archivos/structA.txt";
+    string rutaU = "../Unidad3/Archivos/structU.dat";
+    string rutaA = "../Unidad3/Archivos/structA.dat";
 
     string origen = "../Unidad3/Archivos/natural.txt";
     string destino = "../Unidad3/Archivos/natural.dat";
@@ -169,13 +161,13 @@ void menu_principal(){
 
     switch(opcion){
         case 1:
-        cout << "Codificadores y decodificadores:" << endl;
-        submenu(origen,destino);
+            cout << "Codificadores y decodificadores:" << endl;
+            submenu(origen,destino);
         break;
 
         case 2:
-        cout << "Aplicacion de banco: " << endl;
-        bankSession(rutaA,rutaU);
+            cout << "Aplicacion de banco: " << endl;
+            bankSession(rutaA,rutaU);
         break;
 
         case 3:

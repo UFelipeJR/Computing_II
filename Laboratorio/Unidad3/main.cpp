@@ -11,12 +11,12 @@
 
 int main(){
 
-    //menu_principal();
+    menu_principal();
 
     string destinoA = "../Unidad3/Archivos/structU.dat";
     string originA = "../Unidad3/Archivos/structA.dat";
 
-    bankSession(originA, destinoA);
+    //bankSession(originA, destinoA);
 
     return 0;
 }
