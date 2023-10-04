@@ -9,6 +9,6 @@ using namespace std;
 
 void bankSession(string,string);
 bool uaccess(string, string, string, string**);
-void adminAccess(string**,int,string);
-void userAcces(string**,int);
+void adminAccess(string**,int,string,string);
+void userAcces(string**,int,string,string);
 void menu_principal();

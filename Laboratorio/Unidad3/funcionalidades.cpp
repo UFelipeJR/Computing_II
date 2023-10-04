@@ -420,10 +420,19 @@ string** strucT(string ruta){
 
 
 
+string convertArray(string** array, string ruta, int mode){
+    int columnas = 0;
 
+    if(mode == 1){
+        columnas = countCols(ruta)+1;
+    }
+    else if(mode == 2){
+        columnas = countCols(ruta)-1;
+    }
+    else{
+        columnas = countCols(ruta);
+    }
 
-string convertArray(string** array, string ruta){
-    int columnas = countCols(ruta);
     string strucTOf = "";
 
     for (int fila = 0; fila < 5; ++fila) {
@@ -551,4 +560,30 @@ int posColumna(string ruta,string** estructura, string user){
 void decodiWrite(string origen, string destino){
     string decodi = decodificador2(4,origen);
     write_file(destino,translateSemiCoded(decodi),1);
+}
+
+
+string printUsers(string ruta){
+    string** a = strucT(ruta);
+    int opcion = 1;
+    int contColumnas = countCols(ruta);
+
+    cout << "Usuarios Disponibles: " << endl;
+    for(long long int j = 0; j < contColumnas; j++){
+        cout << opcion << "." << a[0][j] << " " << a[1][j] << endl;
+        opcion ++;
+    }
+
+    while(true){
+        cout << "Ingrese una opcion: " << endl;
+        cin >> opcion;
+        if(opcion > 0 && opcion <= contColumnas){
+            break;
+        }
+        else{
+            cout << "Opcion invalida: " << endl;
+        }
+    }
+    return a[0][opcion-1];
+
 }

@@ -21,16 +21,17 @@ bool uaccess(string user, string password,string origen, string** estructura){
     return false;
 }
 
-void userAccess(string** estructura, int j){
+void userAccess(string** estructura, int j, string rutaIn, string rutaOut){
     int userOpt;
     long long nwSalary = stoi(estructura[4][j]);
     long long retiro;
-    cout << "**** USUARIO ****" << endl << endl;
+    string newString = "";
+
+    cout << "**** USUARIO ****" << endl;
     cout << "1. Para revisar el saldo actual (Se le debitara 1000 por realizar esta operacion)\n2. Para retirar dinero\n3. Para salir" << endl;
     cout << "Ingrese la opcion que desea realizar: ";
     cin >> userOpt;
     switch(userOpt){
-
         case 1:
             cout << "Su saldo era: " << estructura[4][j] << endl;
             nwSalary -= 1000;
@@ -43,16 +44,27 @@ void userAccess(string** estructura, int j){
             nwSalary -= 1000+retiro;
             cout << "Actualizado: " << nwSalary << endl;
             break;
-
     }
 
-    estructura[4][j] = to_string(nwSalary);
+    if(nwSalary == 0){
+        estructura[4][j] = to_string(nwSalary)+"0";
+    }
+    else{
+        estructura[4][j] = to_string(nwSalary);
+    }
 
+
+    newString = convertArray(estructura,rutaIn,0);
+    write_file(rutaIn,newString,1);
+    write_file(rutaOut,metodo2(4,rutaIn),2);
+    remove("../Unidad3/Archivos/structU.txt");
+    menu_principal();
 }
 
 
 void adminAccess(string** estructura, int j, string rutaIn, string rutaOut){
     int admOpt;
+    string opcion = "";
     string** newArray;
     string newString = "";
     cout << "**** ADMINISTRADOR ****" << endl;
@@ -61,13 +73,24 @@ void adminAccess(string** estructura, int j, string rutaIn, string rutaOut){
     cin >> admOpt;
     switch(admOpt){
         case 1:
-            newArray = addCol(ruta);
-            //convertArray(string** array, string ruta);
-
+            newArray = addCol(rutaIn);
+            newString = convertArray(newArray,rutaIn,1);
+            write_file(rutaIn,newString,1);
+            write_file(rutaOut,metodo2(4,rutaIn),2);
+            remove("../Unidad3/Archivos/structU.txt");
+            menu_principal();
             break;
         case 2:
-            cout << "Aqui va a salirse lol" << endl;
+            opcion = printUsers(rutaIn);
+            newArray = deleteCol(rutaIn, opcion);
+            newString = convertArray(newArray,rutaIn,2);
+            write_file(rutaIn,newString,1);
+            write_file(rutaOut,metodo2(4,rutaIn),2);
+            remove("../Unidad3/Archivos/structU.txt");
+            menu_principal();
             break;
+        case 3:
+            menu_principal();
     }
 }
 
@@ -99,10 +122,8 @@ void bankSession(string origenA, string origenU){
             cin >> password;
             granted = uaccess(user,password,destinoU,estructuraU);
             col = posColumna(destinoU,estructuraU,user);
-            //remove("../Unidad3/Archivos/structU.txt");
-            //remove("../Unidad3/Archivos/structA.txt");
             if(granted == true){
-                userAccess(estructuraU,col);
+                userAccess(estructuraU,col,destinoU,origenU);
             }
             else{
                 cout << "Accesso invalido." << endl;
@@ -116,10 +137,8 @@ void bankSession(string origenA, string origenU){
             cin >> password;
             granted = uaccess(user,password,destinoA,estructuraA);
             col = posColumna(destinoA,estructuraU,user);
-            //remove("../Unidad3/Archivos/structU.txt");
-            //remove("../Unidad3/Archivos/structA.txt");
             if(granted == true){
-                adminAccess(estructuraU,col,destinoU);
+                adminAccess(estructuraU,col,destinoU,origenU);
             }
 
             else{
