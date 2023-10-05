@@ -174,7 +174,7 @@ void submenu(string origen, string destino){
     string destinoA = "../Unidad3/Archivos/naturalDecodi.txt";
 
     int opcion = 0;
-    int seed = 0;
+    int seed = -1;
     string decodi = "";
     string codi = "";
     string correci = "";
@@ -183,30 +183,30 @@ void submenu(string origen, string destino){
     cout << "3. Metodo 2 \n4. Decodificador 2" << endl;
     cout << "5. Menu Principal" << endl;
 
-    while(true){
-        while(true){
-            cout << "Ingrese una opcion: "; cin >> opcion;
-            if(opcion >= 0 && opcion <= 5){
-                break;
+
+    while (true) {
+        cout << "Ingrese una opcion: ";
+        cin >> opcion;
+
+        if (opcion >= 0 && opcion <= 5) {
+            if (opcion != 5) {
+                while (true) {
+                    cout << "Ingrese una semilla: ";
+                    cin >> seed;
+                    if (seed > 0) {
+                        break;
+                    }
+                    else {
+                        cout << "Semilla no valida" << endl;
+                    }
+                }
             }
-            else{
-                cout << "Opcion no valida" << endl;
-            }
+            break;
+        }
+        else {
+            cout << "Opcion no valida" << endl;
         }
 
-        if(opcion != 5){
-            while(true){
-                cout << "Ingrese una semilla: "; cin >> seed;
-                if(opcion > 0){
-                    break;
-                }
-                else{
-                    cout << "Semilla no valida" << endl;
-                }
-
-            }
-
-        }
 
     switch(opcion){
         case 1:

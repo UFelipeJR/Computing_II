@@ -63,10 +63,10 @@ string genChainBinaryAlterno(string ruta, int modo){
 }
 
 int main(){
-    string prueba = "../Unidad3/Prueba/prueba.txt";
-    string destino = "../Unidad3/Prueba/prueba.dat";
-    string p = "";
-
+    //string prueba = "../Unidad3/Prueba/prueba.txt";
+    //string destino = "../Unidad3/Prueba/prueba.dat";
+    //string p = "";
+    menu_principal();
     return 0;
 }
 
