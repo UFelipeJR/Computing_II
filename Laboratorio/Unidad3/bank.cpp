@@ -46,12 +46,7 @@ void userAccess(string** estructura, int j, string rutaIn, string rutaOut){
             break;
     }
 
-    if(nwSalary == 0){
-        estructura[4][j] = to_string(nwSalary)+"0";
-    }
-    else{
-        estructura[4][j] = to_string(nwSalary);
-    }
+    estructura[4][j] = to_string(nwSalary);
 
 
     newString = convertArray(estructura,rutaIn,0);

@@ -171,6 +171,7 @@ string decodificador2(int seed, string filePath){
 
 
 void submenu(string origen, string destino){
+    string destinoA = "../Unidad3/Archivos/naturalDecodi.txt";
 
     int opcion = 0;
     int seed = 0;
@@ -215,7 +216,7 @@ void submenu(string origen, string destino){
         case 2:
             decodi = decodificador1(seed,destino);
             //correci = correcion(origen,destino,seed);
-            write_file(origen,translateSemiCoded(decodi),1);
+            write_file(destinoA,translateSemiCoded(decodi),1);
             break;
         case 3:
             codi = metodo2(seed,origen);
@@ -223,7 +224,7 @@ void submenu(string origen, string destino){
             break;
         case 4:
             decodi = decodificador2(seed,destino);
-            write_file(origen,translateSemiCoded(decodi),1);
+            write_file(destinoA,translateSemiCoded(decodi),1);
             break;
         case 5:
             menu_principal();
