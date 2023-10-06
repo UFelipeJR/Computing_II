@@ -201,12 +201,12 @@ void submenu(string origen, string destino){
                     }
                 }
             }
-            break;
         }
         else {
             cout << "Opcion no valida" << endl;
         }
-
+    break;
+    }
 
     switch(opcion){
         case 1:
@@ -215,7 +215,6 @@ void submenu(string origen, string destino){
             break;
         case 2:
             decodi = decodificador1(seed,destino);
-            //correci = correcion(origen,destino,seed);
             write_file(destinoA,translateSemiCoded(decodi),1);
             break;
         case 3:
@@ -229,9 +228,6 @@ void submenu(string origen, string destino){
         case 5:
             menu_principal();
 
-    }
-    }
-
-
+        }
 
 }

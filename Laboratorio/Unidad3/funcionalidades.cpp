@@ -103,18 +103,6 @@ string genChainBinary(string ruta, int modo){
 
 string slicing(string cadenaOriginal, int indiceInicio, int indiceFin){
 
-    /*
-     * Slicing de arreglos de caracteres
-     *
-     * Variables, constantes y arreglos.
-     * cadenaOriginal: cadena de la cuál se extraerá la subcadena.
-     * indiceInicio: extremo inferior para la subcadena.
-     * indiceFin: extremo superior para la subcadena.
-     *
-     * Retorno:
-     * nuevaCadena: subcadena generada en base a los indices.
-    */
-
     string nuevaCadena = "";
     int iGen = 0;
 
@@ -247,7 +235,6 @@ char* stringBinaryToArray(string cadena){
 
 
     for(int i = 0; extremoSup <= size*8; i++){
-        //arregloC[i] = char();
         arregloC[i] = static_cast<char>(binaryToInt(slicing(cadena, extremoInf, extremoSup)));
         extremoInf += 8;
         extremoSup += 8;
@@ -270,7 +257,6 @@ void write_file(string name, string info ,int mode){
 
     file << info;
     file.close();
-    //cout << "Se ha escrito correctamente " << endl;
 }
 
 
@@ -366,6 +352,7 @@ string* splitCriollo(string filePath){
     indice1 ++;
     posArray++;
     }
+    delete[] a;
     return arregloDeStrings;
 
 }
@@ -469,6 +456,7 @@ int countCols(string ruta){
         cont ++;
     }
 
+    delete[] a;
     return cont;
 }
 

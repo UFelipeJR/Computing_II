@@ -54,6 +54,7 @@ void userAccess(string** estructura, int j, string rutaIn, string rutaOut){
     write_file(rutaOut,metodo2(4,rutaIn),2);
     remove("../Unidad3/Archivos/structU.txt");
     menu_principal();
+    delete[] estructura;
 }
 
 
@@ -73,6 +74,7 @@ void adminAccess(string** estructura, int j, string rutaIn, string rutaOut){
             write_file(rutaIn,newString,1);
             write_file(rutaOut,metodo2(4,rutaIn),2);
             remove("../Unidad3/Archivos/structU.txt");
+            remove("../Unidad3/Archivos/structA.txt");
             menu_principal();
             break;
         case 2:
@@ -82,11 +84,13 @@ void adminAccess(string** estructura, int j, string rutaIn, string rutaOut){
             write_file(rutaIn,newString,1);
             write_file(rutaOut,metodo2(4,rutaIn),2);
             remove("../Unidad3/Archivos/structU.txt");
+            remove("../Unidad3/Archivos/structA.txt");
             menu_principal();
             break;
         case 3:
             menu_principal();
     }
+    delete[] estructura;
 }
 
 void bankSession(string origenA, string origenU){
