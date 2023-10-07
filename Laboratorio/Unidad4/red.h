@@ -4,6 +4,7 @@
 #include <iostream>|
 #include <string.h>
 #include <vector>
+#include <fstream>
 using namespace std;
 
 class red

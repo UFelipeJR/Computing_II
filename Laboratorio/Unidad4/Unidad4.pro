@@ -5,9 +5,11 @@ CONFIG -= qt
 
 SOURCES += \
         enrutadores.cpp \
+        gestorTxt.cpp \
         main.cpp \
         red.cpp
 
 HEADERS += \
     enrutadores.h \
+    gestorTxt.h \
     red.h

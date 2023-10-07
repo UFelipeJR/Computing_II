@@ -18,3 +18,8 @@ void red::setCantEnrutador(int newCantEnrutador)
 {
     cantEnrutador = newCantEnrutador;
 }
+
+
+
+
+

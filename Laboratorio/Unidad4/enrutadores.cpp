@@ -11,10 +11,6 @@ enrutadores::enrutadores(char _nombre)
 }
 
 
-
-
-
-
 //Metodos getter y setter
 
 char enrutadores::getNombre() const
