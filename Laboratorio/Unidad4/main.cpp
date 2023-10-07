@@ -2,16 +2,6 @@
 #include <red.h>
 #include <gestorTxt.h>
 
-ostream& operator<<(ostream& os, const vector<unsigned char>& vec)
-{
-    for (int i = 0; i < vec.size(); ++i) {
-        os << vec[i];
-    }
-    return os;
-}
-
-
-
 int main()
 {
     string ruta = "../Unidad4/Archivos/rutas.txt";

@@ -2,3 +2,7 @@ A B 2
 A C 3
 A D 6
 D A 1
+A B 2
+A C 3
+A D 6
+D A 1

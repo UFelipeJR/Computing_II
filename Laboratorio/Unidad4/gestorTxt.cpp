@@ -50,6 +50,13 @@ vector<unsigned char>gestorTxt::leerArchivo(string rutaArchivo){
     return datos;
 }
 
+ostream& operator<<(ostream& os, const vector<unsigned char>& vec)
+{
+    for (int i = 0; i < vec.size(); ++i) {
+        os << vec[i];
+    }
+    return os;
+}
 
 
 

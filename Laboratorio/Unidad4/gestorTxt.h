@@ -8,6 +8,9 @@
 #include <fstream>
 using namespace std;
 
+
+ostream& operator<<(ostream& os, const vector<unsigned char>& vec);
+
 class gestorTxt
 {
 
@@ -17,10 +20,11 @@ public:
     gestorArchivos();
     unsigned long long int obtenerLongitud(string ruta);
     vector<unsigned char> leerArchivo(string rutaArchivo);
-    void imprimirVector(const vector<unsigned char>& vec);
+
+    friend std::ostream& operator<<(std::ostream& os, const gestorTxt& gestor);
 };
 
 
-
+ostream& operator<<(ostream& os, const gestorTxt& gestor);
 
 #endif // GESTORTXT_H
