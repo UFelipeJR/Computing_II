@@ -1,5 +1,7 @@
 #include "gestorTxt.h"
 
+//Constructores
+
 gestorTxt::gestorArchivos()
 {
 
@@ -23,8 +25,21 @@ unsigned long long int gestorTxt::obtenerLongitud(string ruta)
 
 }
 
-vector<unsigned char>gestorTxt::leerArchivo(string rutaArchivo){
+//Metodos
 
+unsigned long long gestorTxt::obtenerLongitud(const vector<unsigned char> &miVector)
+{
+    unsigned long long int size = 0;
+
+    while(miVector[size]!='\0'){
+        size += 1;
+    }
+    return size;
+
+}
+
+vector<unsigned char>gestorTxt::leerArchivo(string rutaArchivo)
+{
     fstream archivo;
     unsigned long long int size = 0;
     vector<unsigned char> datos;
@@ -39,6 +54,7 @@ vector<unsigned char>gestorTxt::leerArchivo(string rutaArchivo){
         for(unsigned long long i = 0; i < size; i++){
             datos.push_back(static_cast<unsigned char>(archivo.get()));
         }
+        datos.push_back('\0');
     }
     else{
         cout << "Error al leer el archivo";
@@ -50,6 +66,31 @@ vector<unsigned char>gestorTxt::leerArchivo(string rutaArchivo){
     return datos;
 }
 
+vector<string> gestorTxt::split(const string &entrada, char delimitador)
+{
+    vector<string> subcadenas;
+    string subcadena;
+    int inicio = 0;
+    int fin = entrada.find(delimitador);
+
+    while(fin != string::npos){
+        subcadena = entrada.substr(inicio,fin-inicio);
+        subcadenas.push_back(subcadena);
+        inicio = fin + 1;
+        fin = entrada.find(delimitador,inicio);
+
+    }
+
+    subcadena = entrada.substr(inicio);
+    subcadenas.push_back(subcadena);
+
+
+    return subcadenas;
+}
+
+
+// Sobrecarga de operadores
+
 ostream& operator<<(ostream& os, const vector<unsigned char>& vec)
 {
     for (int i = 0; i < vec.size(); ++i) {
@@ -59,8 +100,7 @@ ostream& operator<<(ostream& os, const vector<unsigned char>& vec)
 }
 
 
-
-
+//Metodos getter y setter
 
 
 

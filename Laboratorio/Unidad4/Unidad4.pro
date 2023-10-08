@@ -4,12 +4,12 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        enrutadores.cpp \
+        enrutador.cpp \
         gestorTxt.cpp \
         main.cpp \
         red.cpp
 
 HEADERS += \
-    enrutadores.h \
+    enrutador.h \
     gestorTxt.h \
     red.h

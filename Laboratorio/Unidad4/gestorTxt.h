@@ -19,9 +19,10 @@ private:
 public:
     gestorArchivos();
     unsigned long long int obtenerLongitud(string ruta);
+    unsigned long long int obtenerLongitud(const vector<unsigned char> &miVector);
     vector<unsigned char> leerArchivo(string rutaArchivo);
-
-    friend std::ostream& operator<<(std::ostream& os, const gestorTxt& gestor);
+    vector<string>split(const string& entrada, char delimitador);
+    friend ostream& operator<<(ostream& os, const gestorTxt& gestor);
 };
 
 

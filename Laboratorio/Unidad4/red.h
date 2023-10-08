@@ -11,13 +11,10 @@ class red
 {
 
 private:
-    int cantEnrutador = 0;
 
 public:
     red();
-    red(int _cantEnrutadores);
-    int getCantEnrutador() const;
-    void setCantEnrutador(int newCantEnrutador);
+
 };
 
 #endif // RED_H
