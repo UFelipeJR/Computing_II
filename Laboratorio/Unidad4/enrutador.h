@@ -24,6 +24,7 @@ public:
 
     //Metodos
     void extraer_Enrutamiento(string ruta);
+    void mostrar_Costo(char nodo1, char nodo2);
 
     //Getter y setter
     char getNombre() const;

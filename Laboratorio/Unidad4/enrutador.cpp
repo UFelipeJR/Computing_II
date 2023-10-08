@@ -55,12 +55,17 @@ void enrutador::extraer_Enrutamiento(string ruta){
     informacion_Split = archivo.split(cadena_Aux, ' ');
 
     for(int i = 0; i < informacion_Split.size();i++){
-        if(informacion_Split[i][0] == nombre || informacion_Split[i][1] == nombre){
+        if(informacion_Split[i][0] == nombre){
             tablaEnrutamiento[informacion_Split[i][0]][informacion_Split[i][1]] = stoi(informacion_Split[i].substr(2,informacion_Split[i].length()-2));
         }
 
     }
 
+}
+
+void enrutador::mostrar_Costo(char nodo1, char nodo2)
+{
+    cout << tablaEnrutamiento[nodo1][nodo2] << endl;
 }
 
 //Metodos getter y setter
