@@ -1,14 +1,5 @@
 A A 0
 A B 4
 B C 10
-A A 0
-A B 4
-B C 10
-A A 0
-A B 4
-B C 10
-A A 0
-A B 4
-B C 10
-D E 1
-Z X 3
+D A 9
+A D 10

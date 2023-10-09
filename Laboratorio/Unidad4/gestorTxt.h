@@ -8,6 +8,7 @@
 #include <fstream>
 using namespace std;
 
+
 class gestorTxt
 {
 
@@ -23,7 +24,8 @@ public:
     friend ostream& operator<<(ostream& os, const gestorTxt& gestor);
 };
 
+ostream& operator<<(ostream& os, const vector<unsigned char>& vec);
 
-ostream& operator<<(ostream& os, const gestorTxt& gestor);
+
 
 #endif // GESTORTXT_H

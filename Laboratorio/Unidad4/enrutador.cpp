@@ -19,9 +19,35 @@ enrutador::enrutador(char _nombre, map<unsigned char, map<unsigned char, int >> 
     tablaEnrutamiento = _tablaEnrutamiento;
 }
 
+enrutador::enrutador(char _nombre, map<unsigned char, map<unsigned char, int> > _tablaEnrutamiento, map<unsigned char, map<unsigned char, int> > _enrutadoresVecinos)
+{
+    nombre = _nombre;
+    tablaEnrutamiento = _tablaEnrutamiento;
+    enrutadoresVecinos = _enrutadoresVecinos;
+}
 
 //Metodos
+void enrutador::cargar_Vecinos(string ruta)
+{
+    gestorTxt archivo;
 
+    vector<unsigned char> informacion_Archivo = archivo.leerArchivo(ruta);
+    vector<string> informacion_Split;
+    string cadenaAuxiliar = "";
+    char nombre = getNombre();
+
+    cadenaAuxiliar = archivo.vector_String(informacion_Archivo);
+    informacion_Split = archivo.split(cadenaAuxiliar,' ');
+
+
+
+    for(unsigned long long int i = 0; i <informacion_Split.size(); i++){
+        if(informacion_Split[i][0] == nombre){
+            enrutadoresVecinos[informacion_Split[i][0]][informacion_Split[i][1]] = stoll(informacion_Split[i].substr(2,informacion_Split[i].length()-2));
+        }
+
+    }
+}
 
 
 //Metodos getter y setter
@@ -54,4 +80,23 @@ void enrutador::getTablaEnrutamiento()
 void enrutador::setTablaEnrutamiento(const map<unsigned char, map<unsigned char, int> > &newTablaEnrutamiento)
 {
     tablaEnrutamiento = newTablaEnrutamiento;
+}
+
+void enrutador::getEnrutadoresVecinos()
+{
+    int valor = 0;
+
+    for (auto& parExterno : enrutadoresVecinos) {
+        for (auto& parInterno : parExterno.second) {
+            valor = parInterno.second;
+            cout << valor << " ";
+        }
+        cout << endl;
+    }
+
+}
+
+void enrutador::setEnrutadoresVecinos(const map<unsigned char, map<unsigned char, int> > &newEnrutadoresVecinos)
+{
+    enrutadoresVecinos = newEnrutadoresVecinos;
 }

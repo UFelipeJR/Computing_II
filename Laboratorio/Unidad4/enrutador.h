@@ -15,6 +15,7 @@ class enrutador
 private:
     char nombre = ' ';
     map<unsigned char, map<unsigned char, int >> tablaEnrutamiento;
+    map<unsigned char, map<unsigned char, int >> enrutadoresVecinos;
 
 public:
 
@@ -22,8 +23,10 @@ public:
     enrutador();
     enrutador(char _nombre);
     enrutador(char _nombre, map<unsigned char, map<unsigned char, int >> _tablaEnrutamiento);
+    enrutador(char _nombre, map<unsigned char, map<unsigned char, int >> _tablaEnrutamiento,map<unsigned char, map<unsigned char, int >> _enrutadoresVecinos );
 
     //Metodos
+    void cargar_Vecinos(string ruta);
 
 
     //Getter y setter
@@ -31,6 +34,8 @@ public:
     void setNombre(char newNombre);
     void getTablaEnrutamiento();
     void setTablaEnrutamiento(const map<unsigned char, map<unsigned char, int> > &newTablaEnrutamiento);
+    void getEnrutadoresVecinos();
+    void setEnrutadoresVecinos(const map<unsigned char, map<unsigned char, int> > &newEnrutadoresVecinos);
 };
 
 #endif
