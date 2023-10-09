@@ -88,6 +88,28 @@ vector<string> gestorTxt::split(const string &entrada, char delimitador)
     return subcadenas;
 }
 
+string gestorTxt::vector_String(vector<unsigned char>&miVector)
+{
+    gestorTxt archivo;
+    string cadena = "";
+    unsigned long long int cont_Saltos = 1;
+
+    for(unsigned long long int i = 0; i < miVector.size(); i++){
+        if(miVector[i] != ' ' && miVector[i] != '\n'){
+            cadena.push_back(miVector[i]);
+        }
+        else if(miVector[i] == '\n'){
+            cont_Saltos ++;
+            cadena += " ";
+        }
+    }
+
+    cadena = cadena.substr(0,cadena.length()-cont_Saltos);
+
+    return cadena;
+
+}
+
 
 // Sobrecarga de operadores
 
@@ -98,7 +120,6 @@ ostream& operator<<(ostream& os, const vector<unsigned char>& vec)
     }
     return os;
 }
-
 
 //Metodos getter y setter
 

@@ -6,6 +6,7 @@
 #include <vector>
 #include <fstream>
 #include <map>
+
 using namespace std;
 
 
@@ -23,8 +24,7 @@ public:
     enrutador(char _nombre, map<unsigned char, map<unsigned char, int >> _tablaEnrutamiento);
 
     //Metodos
-    void extraer_Enrutamiento(string ruta);
-    void mostrar_Costo(char nodo1, char nodo2);
+
 
     //Getter y setter
     char getNombre() const;
