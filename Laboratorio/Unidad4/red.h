@@ -8,6 +8,7 @@
 #include <fstream>
 #include <enrutador.h>
 #include <gestorTxt.h>
+#include <queue>
 
 using namespace std;
 
@@ -18,6 +19,9 @@ private:
 
     vector<enrutador> vector_Instancias;
     list<char>enrutadores;
+    map<unsigned char, map<unsigned char, int >> enrutadores_Vecinos;
+    map<unsigned char, map<unsigned char, int >> enrutamiento_Aux;
+    map<unsigned char, int> distancias;
 
 public:
 
@@ -27,8 +31,15 @@ public:
     //Metodos
     void pruebas();
     void listar_Enrutadores();
-    void lista_Enrutadores(string ruta);
+    void cargar_Enrutadores(string ruta);
     bool buscarRed(char elemento_Buscado);
+    void inicializar_Enrutamiento(string ruta);
+    void mostrar_EnrutamientoAuxiliar();
+    void mostrar_Vecinos();
+    void inicializarDistancias();
+    int dijkstra(char nodoInicio, char nodoFinal);
+    void gen_Enrutamiento();
+
 
 };
 

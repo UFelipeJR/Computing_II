@@ -27,15 +27,17 @@ public:
 
     //Metodos
     void cargar_Vecinos(string ruta);
-
+    void mostrar_Enrutamiento();
+    void mostrar_EnrutadoresVecinos();
 
     //Getter y setter
     char getNombre() const;
     void setNombre(char newNombre);
-    void getTablaEnrutamiento();
+    map<unsigned char, map<unsigned char, int> > getTablaEnrutamiento() const;
     void setTablaEnrutamiento(const map<unsigned char, map<unsigned char, int> > &newTablaEnrutamiento);
-    void getEnrutadoresVecinos();
+    map<unsigned char, map<unsigned char, int> > getEnrutadoresVecinos() const;
     void setEnrutadoresVecinos(const map<unsigned char, map<unsigned char, int> > &newEnrutadoresVecinos);
+
 };
 
 #endif

@@ -1,5 +1,4 @@
-A A 0
 A B 4
-B C 10
-D A 9
-A D 10
+B D 1
+C D 2
+A C 10

@@ -2,19 +2,13 @@
 #include <red.h>
 #include <gestorTxt.h>
 
-
-
-int main() {
-
+int main(){
     string ruta = "../Unidad4/Archivos/rutas.txt";
-    //red red_Principal;
-    //red_Principal.lista_Enrutadores(ruta);
-    //red_Principal.listar_Enrutadores();
-    enrutador router1('A');
-    router1.cargar_Vecinos(ruta);
-    router1.getEnrutadoresVecinos();
+    red red_Principal;
+    red_Principal.cargar_Enrutadores(ruta);
+    red_Principal.inicializar_Enrutamiento(ruta);
+    red_Principal.gen_Enrutamiento();
+    red_Principal.mostrar_EnrutamientoAuxiliar();
 
 
-
-    return 0;
 }

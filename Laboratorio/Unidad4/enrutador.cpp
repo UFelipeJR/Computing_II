@@ -27,6 +27,7 @@ enrutador::enrutador(char _nombre, map<unsigned char, map<unsigned char, int> > 
 }
 
 //Metodos
+
 void enrutador::cargar_Vecinos(string ruta)
 {
     gestorTxt archivo;
@@ -49,21 +50,7 @@ void enrutador::cargar_Vecinos(string ruta)
     }
 }
 
-
-//Metodos getter y setter
-
-char enrutador::getNombre() const
-{
-    return nombre;
-}
-
-void enrutador::setNombre(char newNombre)
-{
-    nombre = newNombre;
-}
-
-
-void enrutador::getTablaEnrutamiento()
+void enrutador::mostrar_EnrutadoresVecinos()
 {
     int valor = 0;
 
@@ -77,12 +64,7 @@ void enrutador::getTablaEnrutamiento()
 
 }
 
-void enrutador::setTablaEnrutamiento(const map<unsigned char, map<unsigned char, int> > &newTablaEnrutamiento)
-{
-    tablaEnrutamiento = newTablaEnrutamiento;
-}
-
-void enrutador::getEnrutadoresVecinos()
+void enrutador::mostrar_Enrutamiento()
 {
     int valor = 0;
 
@@ -96,7 +78,35 @@ void enrutador::getEnrutadoresVecinos()
 
 }
 
+//Metodos getter y setter
+
+char enrutador::getNombre() const
+{
+    return nombre;
+}
+
+void enrutador::setNombre(char newNombre)
+{
+    nombre = newNombre;
+}
+
+map<unsigned char, map<unsigned char, int> > enrutador::getTablaEnrutamiento() const
+{
+    return tablaEnrutamiento;
+}
+
+map<unsigned char, map<unsigned char, int> > enrutador::getEnrutadoresVecinos() const
+{
+    return enrutadoresVecinos;
+}
+
+void enrutador::setTablaEnrutamiento(const map<unsigned char, map<unsigned char, int> > &newTablaEnrutamiento)
+{
+    tablaEnrutamiento = newTablaEnrutamiento;
+}
+
 void enrutador::setEnrutadoresVecinos(const map<unsigned char, map<unsigned char, int> > &newEnrutadoresVecinos)
 {
     enrutadoresVecinos = newEnrutadoresVecinos;
 }
+
