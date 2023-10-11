@@ -37,7 +37,7 @@ public:
     void mostrar_EnrutamientoAuxiliar();
     void mostrar_Vecinos();
     void inicializarDistancias();
-    int dijkstra(char nodoInicio, char nodoFinal);
+    unsigned long long int dijkstra(char nodoInicio, char nodoFinal);
     void gen_Enrutamiento();
 
 

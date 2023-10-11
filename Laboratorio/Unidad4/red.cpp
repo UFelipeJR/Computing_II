@@ -89,7 +89,7 @@ void red::inicializar_Enrutamiento(string ruta)
 
     enrutadores_Vecinos.clear();
 
-    for (int i = 0; i < vector_Instancias.size(); i++) {
+    for (unsigned long long int i = 0; i < vector_Instancias.size(); i++) {
         instancia_Auxiliar = vector_Instancias[i];
         instancia_Auxiliar.cargar_Vecinos(ruta);
         vecinos = instancia_Auxiliar.getEnrutadoresVecinos();
@@ -112,14 +112,21 @@ void red::inicializar_Enrutamiento(string ruta)
 
 void red::mostrar_EnrutamientoAuxiliar()
 {
-    int valor = 0;
+    unsigned long long int valor = 0;
 
     cout << "Tabla de enrutamiento auxiliar: " << endl;
 
     for (auto& parExterno : enrutamiento_Aux) {
         for (auto& parInterno : parExterno.second) {
             valor = parInterno.second;
-            cout << valor << " ";
+            if(valor == ULLONG_MAX){
+                cout << -1 << " ";
+            }
+            else{
+                cout << valor << " ";
+            }
+
+
         }
         cout << endl;
     }
@@ -128,7 +135,7 @@ void red::mostrar_EnrutamientoAuxiliar()
 
 void red::mostrar_Vecinos()
 {
-    int valor = 0;
+    unsigned long long int valor = 0;
 
     cout << "Tabla de vecinos: " << endl;
 
@@ -143,20 +150,21 @@ void red::mostrar_Vecinos()
 
 
 void red::inicializarDistancias() {
-    for (char nodo : enrutadores) {
-        distancias[nodo] = INT_MAX;
+    for (unsigned char nodo : enrutadores) {
+        distancias[nodo] = ULLONG_MAX;
     }
 }
 
 
-int red::dijkstra(char nodoInicio, char nodoFinal)
+unsigned long long int red::dijkstra(char nodoInicio, char nodoFinal)
 {
-    char nodo;
-    int distancia;
-    char vecino;
-    int peso;
+    unsigned char nodo;
+    unsigned long long int distancia;
+    unsigned char vecino;
+    unsigned long long int peso;
     distancias[nodoInicio] = 0;
-    priority_queue<pair<int, char>, vector<pair<int, char>>, greater<pair<int, char>>> siguiente;
+    //priority_queue<pair<int, char>, vector<pair<int, char>>, greater<pair<int, char>>> siguiente;
+    priority_queue<pair<unsigned long long int, char>, vector<pair<unsigned long long int, char>>, greater<pair<unsigned long long int, char>>> siguiente;
     siguiente.push(make_pair(0, nodoInicio));
 
 
@@ -178,18 +186,20 @@ int red::dijkstra(char nodoInicio, char nodoFinal)
         }
     }
 
-    if (distancias[nodoFinal] == INT_MAX) {
+    if(distancias[nodoFinal] == ULLONG_MAX){
         return -1;
     }
 
     return distancias[nodoFinal];
+
+
+
 }
 
 void red::gen_Enrutamiento()
 {
-
     for(unsigned char elemento1 : enrutadores){
-        for(unsigned  char elemento2 : enrutadores){
+        for(unsigned char elemento2 : enrutadores){
             inicializarDistancias();
             enrutamiento_Aux[elemento1][elemento2] = dijkstra(elemento1,elemento2);
         }
