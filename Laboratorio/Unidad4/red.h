@@ -7,7 +7,6 @@
 #include <list>
 #include <fstream>
 #include <enrutador.h>
-#include <gestorTxt.h>
 #include <queue>
 #include <cstdlib>
 #include <ctime>
@@ -47,6 +46,7 @@ public:
     void cargar_Enrutadores(string ruta);
     bool buscarRed(char elemento_Buscado);
     void inicializar_Enrutamiento(string ruta);
+    void inicializar_Enrutamiento();
     void mostrar_EnrutamientoAuxiliar();
     void mostrar_Vecinos();
     void inicializarDistancias();
@@ -56,10 +56,13 @@ public:
     void generar_GrafoAleatorio(int n, float k);
     void generar_ListaAleatoria(int n);
     void generar_VectorInstancias();
-    int determinar_Existencia(int n, float k);
+    int determinar_Existencia(float k);
+    int buscar_Instancia(char& nombre);
+
     //Faltan getter y setter
 
-
 };
+
+ostream& operator<<(ostream& os, const vector<unsigned char>& vec);
 
 #endif // RED_H

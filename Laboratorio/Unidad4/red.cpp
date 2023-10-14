@@ -27,7 +27,7 @@ void red::listar_Enrutadores()
 
 void red::cargar_Enrutadores(string ruta)
 {
-    gestorTxt archivo;
+    enrutador archivo;
     vector<unsigned char> informacion = archivo.leerArchivo(ruta);
     vector<string> informacion_split;
     string cadenaAux = archivo.vector_String(informacion);
@@ -79,12 +79,44 @@ void red::inicializar_Enrutamiento(string ruta)
     const map<unsigned char, int>* vecinosDelEnrutador;
 
     generar_VectorInstancias();
-
     enrutadores_Vecinos.clear();
 
     for (unsigned long long int i = 0; i < vector_Instancias.size(); i++) {
         instancia_Auxiliar = vector_Instancias[i];
         instancia_Auxiliar.cargar_Vecinos(ruta);
+        vecinos = instancia_Auxiliar.getEnrutadoresVecinos();
+
+        for (auto& entrada : vecinos) {
+            enrutadorActual = entrada.first;
+            vecinosDelEnrutador = &entrada.second;
+
+            for (auto& vecino : *vecinosDelEnrutador) {
+                vecinoActual = vecino.first;
+                costo = vecino.second;
+
+                enrutadores_Vecinos[enrutadorActual][vecinoActual] = costo;
+                enrutadores_Vecinos[vecinoActual][enrutadorActual] = costo;
+            }
+        }
+    }
+}
+
+void red::inicializar_Enrutamiento()
+{
+    char elemento;
+    enrutador instancia_Auxiliar;
+    map<unsigned char, map<unsigned char, int>> vecinos;
+    unsigned char enrutadorActual;
+    unsigned char vecinoActual;
+    int costo;
+
+    const map<unsigned char, int>* vecinosDelEnrutador;
+
+    generar_VectorInstancias();
+    enrutadores_Vecinos.clear();
+
+    for (unsigned long long int i = 0; i < vector_Instancias.size(); i++) {
+        instancia_Auxiliar = vector_Instancias[i];
         vecinos = instancia_Auxiliar.getEnrutadoresVecinos();
 
         for (auto& entrada : vecinos) {
@@ -214,7 +246,7 @@ void red::actualizar_Enrutadores()
 void red::generar_ListaAleatoria(int n)
 {
     enrutadores.clear();
-    gestorTxt val;
+    enrutador val;
     int i = 0;
     int caracter = 0;
     while(i != n){
@@ -226,9 +258,9 @@ void red::generar_ListaAleatoria(int n)
     }
 }
 
-int red::determinar_Existencia(int n, float k)
+int red::determinar_Existencia(float k)
 {
-    gestorTxt val;
+    enrutador val;
     int numeroRandom = 0;
     int costeAleatorio = rand() % 101;
 
@@ -245,6 +277,20 @@ int red::determinar_Existencia(int n, float k)
 
 }
 
+int red::buscar_Instancia(char &nombre)
+{
+    enrutador aux;
+    for (int i = 0; i < vector_Instancias.size(); i++) {
+        aux = vector_Instancias.at(i);
+        if (aux.getNombre() == nombre) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+
 void red::generar_GrafoAleatorio(int n, float k)
 {
 
@@ -253,14 +299,18 @@ void red::generar_GrafoAleatorio(int n, float k)
     generar_ListaAleatoria(n);
     generar_VectorInstancias();
     int existencia = 0;
+    int pos = 0;
 
     for (list<char>::iterator it0 = enrutadores.begin(); it0 != enrutadores.end(); ++it0) {
         for (list<char>::iterator it1 = enrutadores.begin(); it1 != enrutadores.end(); ++it1) {
-            //cout << *it0 << *it1 << endl;
-            cout << determinar_Existencia(n,k) << endl;
+            existencia = determinar_Existencia(k);
+            pos = buscar_Instancia(*it0);
+            if(existencia != -1){
+                enrutadores_Adyacentes[*it0][*it1] = existencia;
+            }
         }
+        vector_Instancias.at(pos).setEnrutadoresVecinos(enrutadores_Adyacentes);
         enrutadores_Adyacentes.clear();
-        existencia = determinar_Existencia(n,k);
     }
 
 
@@ -306,3 +356,5 @@ void red::generar_GrafoAleatorio(int n, float k)
         }
     }
     */
+
+

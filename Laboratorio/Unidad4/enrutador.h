@@ -39,6 +39,15 @@ public:
     map<unsigned char, map<unsigned char, int> > getEnrutadoresVecinos() const;
     void setEnrutadoresVecinos(const map<unsigned char, map<unsigned char, int> > &newEnrutadoresVecinos);
 
+    //Metodos complementarios de la clase que no se relacionan con los atributos
+    unsigned long long int obtenerLongitud(string ruta);
+    unsigned long long int obtenerLongitud(const vector<unsigned char> &miVector);
+    vector<unsigned char> leerArchivo(string rutaArchivo);
+    vector<string>split(const string& entrada, char delimitador);
+    string vector_String(vector<unsigned char>&miVector);
+    int caracter_Aleatorio();
+    int moneda();
+    friend ostream& operator<<(ostream& os, const enrutador& gestor);
 };
 
 #endif

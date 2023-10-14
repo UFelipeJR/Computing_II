@@ -5,13 +5,14 @@
 int main(){
     srand(time(NULL));
 
-    string ruta = "../Unidad4/Archivos/rutas.txt";
+    //string ruta = "../Unidad4/Archivos/rutas.txt";
     red red_Principal;
-    red_Principal.cargar_Enrutadores(ruta);
-    red_Principal.inicializar_Enrutamiento(ruta);
+    //red_Principal.cargar_Enrutadores(ruta);
+    red_Principal.generar_GrafoAleatorio(20,0.5);
+    red_Principal.inicializar_Enrutamiento();
     red_Principal.gen_Enrutamiento();
     red_Principal.actualizar_Enrutadores();
-    red_Principal.generar_GrafoAleatorio(3,1);
+    red_Principal.mostrar_EnrutamientoAuxiliar();
 
     //int n = 6;
     //int k = 8;
