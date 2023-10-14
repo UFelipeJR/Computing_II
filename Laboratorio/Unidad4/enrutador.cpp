@@ -54,7 +54,7 @@ void enrutador::mostrar_EnrutadoresVecinos()
 {
     int valor = 0;
 
-    for (auto& parExterno : tablaEnrutamiento) {
+    for (auto& parExterno : enrutadoresVecinos) {
         for (auto& parInterno : parExterno.second) {
             valor = parInterno.second;
             cout << valor << " ";
@@ -64,11 +64,17 @@ void enrutador::mostrar_EnrutadoresVecinos()
 
 }
 
+void enrutador::mostrar_Coste(char destino)
+{
+    cout << tablaEnrutamiento[getNombre()][destino] << endl;
+
+}
+
 void enrutador::mostrar_Enrutamiento()
 {
     int valor = 0;
 
-    for (auto& parExterno : enrutadoresVecinos) {
+    for (auto& parExterno : tablaEnrutamiento) {
         for (auto& parInterno : parExterno.second) {
             valor = parInterno.second;
             cout << valor << " ";

@@ -7,6 +7,8 @@ gestorTxt::gestorArchivos()
 
 }
 
+//Metodos
+
 unsigned long long int gestorTxt::obtenerLongitud(string ruta)
 {
     unsigned long long int size = 0;
@@ -24,8 +26,6 @@ unsigned long long int gestorTxt::obtenerLongitud(string ruta)
     }
 
 }
-
-//Metodos
 
 unsigned long long gestorTxt::obtenerLongitud(const vector<unsigned char> &miVector)
 {
@@ -108,6 +108,23 @@ string gestorTxt::vector_String(vector<unsigned char>&miVector)
 
     return cadena;
 
+}
+
+int gestorTxt::caracter_Aleatorio()
+{
+    int numeroAleatorio = 0;
+    do {
+        numeroAleatorio = rand() % 58 + 65;
+    } while (numeroAleatorio > 90 && numeroAleatorio < 97);
+
+    return numeroAleatorio;
+}
+
+int gestorTxt::moneda()
+{
+    int numeroAleatorio = rand() % 2;
+
+    return numeroAleatorio;
 }
 
 

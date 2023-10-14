@@ -21,6 +21,8 @@ public:
     vector<unsigned char> leerArchivo(string rutaArchivo);
     vector<string>split(const string& entrada, char delimitador);
     string vector_String(vector<unsigned char>&miVector);
+    int caracter_Aleatorio();
+    int moneda();
     friend ostream& operator<<(ostream& os, const gestorTxt& gestor);
 };
 

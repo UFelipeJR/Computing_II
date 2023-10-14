@@ -1,7 +1,7 @@
 #ifndef RED_H
 #define RED_H
 
-#include <iostream>|
+#include <iostream>
 #include <string.h>
 #include <vector>
 #include <list>
@@ -9,11 +9,24 @@
 #include <enrutador.h>
 #include <gestorTxt.h>
 #include <queue>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
 class red
 {
+
+/*
+ * Clase red
+ *
+ * Atributos:
+ * vector_Instancias: Vector que almacena los enrutadores pertenecientes a la clase con el mismo nombre.
+ * enrutadores: Lista con los nombres de los enrutadores activos en la red.
+ * enrutadores_vecinos: Mapa con todos los enrutadores que tienen conexión directa con sus respectivos costos.
+ * enrutamiento_Aux: Tabla de enrutamiento con todos los costes cálculados.
+ * distancias: Mapa en el que se guardan las distancias correspondientes a los enlaces.
+ */
 
 private:
 
@@ -39,6 +52,12 @@ public:
     void inicializarDistancias();
     unsigned long long int dijkstra(char nodoInicio, char nodoFinal);
     void gen_Enrutamiento();
+    void actualizar_Enrutadores();
+    void generar_GrafoAleatorio(int n, float k);
+    void generar_ListaAleatoria(int n);
+    void generar_VectorInstancias();
+    int determinar_Existencia(int n, float k);
+    //Faltan getter y setter
 
 
 };

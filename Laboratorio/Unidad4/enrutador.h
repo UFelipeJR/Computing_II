@@ -29,6 +29,7 @@ public:
     void cargar_Vecinos(string ruta);
     void mostrar_Enrutamiento();
     void mostrar_EnrutadoresVecinos();
+    void mostrar_Coste(char destino);
 
     //Getter y setter
     char getNombre() const;

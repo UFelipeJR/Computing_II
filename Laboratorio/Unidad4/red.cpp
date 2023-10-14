@@ -10,21 +10,10 @@ red::red()
 
 //Metodos
 
-void red::pruebas()
-{
+void red::pruebas() {
 
-
-    /*
-    char letra = 65;
-    for(unsigned long long i = 0; i < n; i++){
-        enrutador instanciaAux(letra);
-        vector_Instancias.push_back(instanciaAux);
-        letra ++;
-    }
-
-    listar_Enrutadores();
-    */
 }
+
 
 
 void red::listar_Enrutadores()
@@ -55,7 +44,6 @@ void red::cargar_Enrutadores(string ruta)
         }
     }
 
-    // En base a la longitud de la lista sabremos cuantas instancias de la clase enrutador se deben crear
 
 }
 
@@ -70,6 +58,14 @@ bool red::buscarRed(char elemento_Buscado)
 
 }
 
+void red::generar_VectorInstancias()
+{
+    for (char& elemento : enrutadores) {
+        enrutador instancia(elemento);
+        vector_Instancias.push_back(instancia);
+    }
+
+}
 
 void red::inicializar_Enrutamiento(string ruta)
 {
@@ -82,10 +78,7 @@ void red::inicializar_Enrutamiento(string ruta)
 
     const map<unsigned char, int>* vecinosDelEnrutador;
 
-    for (char& elemento : enrutadores) {
-        enrutador instancia(elemento);
-        vector_Instancias.push_back(instancia);
-    }
+    generar_VectorInstancias();
 
     enrutadores_Vecinos.clear();
 
@@ -163,7 +156,6 @@ unsigned long long int red::dijkstra(char nodoInicio, char nodoFinal)
     unsigned char vecino;
     unsigned long long int peso;
     distancias[nodoInicio] = 0;
-    //priority_queue<pair<int, char>, vector<pair<int, char>>, greater<pair<int, char>>> siguiente;
     priority_queue<pair<unsigned long long int, char>, vector<pair<unsigned long long int, char>>, greater<pair<unsigned long long int, char>>> siguiente;
     siguiente.push(make_pair(0, nodoInicio));
 
@@ -174,7 +166,7 @@ unsigned long long int red::dijkstra(char nodoInicio, char nodoFinal)
         siguiente.pop();
 
         if (nodo != nodoFinal && distancia <= distancias[nodo]) {
-            for (const auto& kvp : enrutadores_Vecinos[nodo]) {
+            for (auto& kvp : enrutadores_Vecinos[nodo]) {
                 vecino = kvp.first;
                 peso = kvp.second;
 
@@ -206,15 +198,111 @@ void red::gen_Enrutamiento()
     }
 }
 
+void red::actualizar_Enrutadores()
+{
+
+    if (vector_Instancias.empty()) {
+        cout << "El vector está vacío" << endl;
+    }
+    else {
+        for (int i = 0; i < vector_Instancias.size(); i++) {
+            vector_Instancias.at(i).setTablaEnrutamiento(enrutamiento_Aux);
+        }
+    }
+}
+
+void red::generar_ListaAleatoria(int n)
+{
+    enrutadores.clear();
+    gestorTxt val;
+    int i = 0;
+    int caracter = 0;
+    while(i != n){
+        caracter = val.caracter_Aleatorio();
+        if(buscarRed(char(caracter)) == 0){
+            enrutadores.push_back(char(caracter));
+            i ++;
+        }
+    }
+}
+
+int red::determinar_Existencia(int n, float k)
+{
+    gestorTxt val;
+    int numeroRandom = 0;
+    int costeAleatorio = rand() % 101;
+
+
+    for (list<char>::iterator it = enrutadores.begin(); it != enrutadores.end(); ++it) {
+        numeroRandom = val.moneda();
+        if (numeroRandom < k) {
+            return costeAleatorio;
+        } else {
+            return -1;
+        }
+    }
+    return 0;
+
+}
+
+void red::generar_GrafoAleatorio(int n, float k)
+{
+
+    vector_Instancias.clear();
+    map<unsigned char, map<unsigned char, int >> enrutadores_Adyacentes;
+    generar_ListaAleatoria(n);
+    generar_VectorInstancias();
+    int existencia = 0;
+
+    for (list<char>::iterator it0 = enrutadores.begin(); it0 != enrutadores.end(); ++it0) {
+        for (list<char>::iterator it1 = enrutadores.begin(); it1 != enrutadores.end(); ++it1) {
+            //cout << *it0 << *it1 << endl;
+            cout << determinar_Existencia(n,k) << endl;
+        }
+        enrutadores_Adyacentes.clear();
+        existencia = determinar_Existencia(n,k);
+    }
+
+
+}
 
 //Metodos getter y setter
 
+    /*
+    for (list<char>::iterator it = enrutadores.begin(); it != enrutadores.end(); ++it) {
+        cout << *it << endl;
+    }
+    */
 
 
+    /*
+    for (list<char>::iterator it = enrutadores.begin(); it != enrutadores.end(); ++it) {
+        numeroRandom = static_cast<double>(val.moneda());
 
+            if (numeroRandom < k) {
+                cout << "El enlace existe." << endl;
+            } else {
+                cout << "El enlace no existe." << endl;
+            }
+        //cout << *it << endl;
 
+        //validar que no hayan enlaces aleatorios ya que existe margen de que salgan caracteres repetidos
+        //Cambiar los tipos de datos de las variables unsigned long long int a unsigned int
+        //comentar todo antes de que nos dé pereza
+    }
+    */
 
+    /*
+    for (vector<enrutador>::iterator it = vector_Instancias.begin(); it != vector_Instancias.end(); ++it) {
+        cout << (*it).getNombre() << " ";
+    }
+    cout << endl;
+    */
 
-
-
-
+    /*
+    for(unsigned char elemento1 : enrutadores){
+        for(unsigned char elemento2 : enrutadores){
+            cout << elemento1 << " " << elemento2 << endl;
+        }
+    }
+    */
