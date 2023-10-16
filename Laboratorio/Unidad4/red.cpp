@@ -180,7 +180,7 @@ void red::inicializarDistancias() {
     }
 }
 
-
+/*
 unsigned long long int red::dijkstra(char nodoInicio, char nodoFinal)
 {
     unsigned char nodo;
@@ -213,11 +213,57 @@ unsigned long long int red::dijkstra(char nodoInicio, char nodoFinal)
     if(distancias[nodoFinal] == ULLONG_MAX){
         return -1;
     }
+    return distancias[nodoFinal];
+}
+*/
+
+
+unsigned long long int red::dijkstra(char nodoInicio, char nodoFinal) {
+
+    unsigned char nodo;
+    unsigned long long int distancia;
+    unsigned char vecino;
+    string camino = "";
+    char nodoActual;
+    unsigned long long int peso;
+
+    priority_queue<pair<unsigned long long int, char>, vector<pair<unsigned long long int, char>>, greater<pair<unsigned long long int, char>>> siguiente;
+    map<char, char> padres;
+
+    siguiente.push(make_pair(0, nodoInicio));
+    distancias[nodoInicio] = 0;
+    while (!siguiente.empty()) {
+        nodo = siguiente.top().second;
+        distancia = siguiente.top().first;
+        siguiente.pop();
+
+        if (nodo != nodoFinal && distancia <= distancias[nodo]) {
+            for (auto& kvp : enrutadores_Vecinos[nodo]) {
+                vecino = kvp.first;
+                peso = kvp.second;
+
+                if (distancias[vecino] > distancias[nodo] + peso) {
+                    distancias[vecino] = distancias[nodo] + peso;
+                    siguiente.push(make_pair(distancias[vecino], vecino));
+                    padres[vecino] = nodo;
+                }
+            }
+        }
+    }
+
+
+    nodoActual = nodoFinal;
+    while (nodoActual != nodoInicio) {
+        camino = nodoActual + camino;
+        nodoActual = padres[nodoActual];
+    }
+    camino = nodoInicio + camino;
+    mapa_Caminos[nodoInicio][nodoFinal] = camino;
 
     return distancias[nodoFinal];
-
-
 }
+
+
 
 void red::gen_Enrutamiento()
 {
@@ -376,3 +422,14 @@ void red::setDistancias(const map<unsigned char, int> &newDistancias)
 {
     distancias = newDistancias;
 }
+
+map<unsigned char, map<unsigned char, string> > red::getMapa_Caminos() const
+{
+    return mapa_Caminos;
+}
+
+void red::setMapa_Caminos(const map<unsigned char, map<unsigned char, string> > &newMapa_Caminos)
+{
+    mapa_Caminos = newMapa_Caminos;
+}
+

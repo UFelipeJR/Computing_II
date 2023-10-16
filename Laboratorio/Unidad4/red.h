@@ -32,6 +32,7 @@ private:
     vector<enrutador> vector_Instancias;
     list<char>enrutadores;
     map<unsigned char, map<unsigned char, int >> enrutadores_Vecinos;
+    map<unsigned char, map<unsigned char, string >> mapa_Caminos;
     map<unsigned char, map<unsigned char, int >> enrutamiento_Aux;
     map<unsigned char, int> distancias;
 
@@ -71,6 +72,8 @@ public:
     void setEnrutamiento_Aux(const map<unsigned char, map<unsigned char, int> > &newEnrutamiento_Aux);
     map<unsigned char, int> getDistancias() const;
     void setDistancias(const map<unsigned char, int> &newDistancias);
+    map<unsigned char, map<unsigned char, string> > getMapa_Caminos() const;
+    void setMapa_Caminos(const map<unsigned char, map<unsigned char, string> > &newMapa_Caminos);
 };
 
 ostream& operator<<(ostream& os, const vector<unsigned char>& vec);
