@@ -217,7 +217,6 @@ unsigned long long int red::dijkstra(char nodoInicio, char nodoFinal)
     return distancias[nodoFinal];
 
 
-
 }
 
 void red::gen_Enrutamiento()
@@ -290,7 +289,6 @@ int red::buscar_Instancia(char &nombre)
     return -1;
 }
 
-
 void red::generar_GrafoAleatorio(int n, float k)
 {
 
@@ -316,45 +314,65 @@ void red::generar_GrafoAleatorio(int n, float k)
 
 }
 
+void red::eliminar_Instancia(char &nombre)
+{
+    int pos = buscar_Instancia(nombre);
+    vector_Instancias.erase(vector_Instancias.begin()+pos);
+    list<char>::iterator it = enrutadores.begin();
+    advance(it,pos);
+    enrutadores.erase(it);
+    cout << "Se ha eliminado el enrutador " << nombre << endl;
+}
+
+
 //Metodos getter y setter
 
-    /*
-    for (list<char>::iterator it = enrutadores.begin(); it != enrutadores.end(); ++it) {
-        cout << *it << endl;
-    }
-    */
+vector<enrutador> red::getVector_Instancias() const
+{
+    return vector_Instancias;
+}
 
+void red::setVector_Instancias(const vector<enrutador> &newVector_Instancias)
+{
+    vector_Instancias = newVector_Instancias;
+}
 
-    /*
-    for (list<char>::iterator it = enrutadores.begin(); it != enrutadores.end(); ++it) {
-        numeroRandom = static_cast<double>(val.moneda());
+list<char> red::getEnrutadores() const
+{
+    return enrutadores;
+}
 
-            if (numeroRandom < k) {
-                cout << "El enlace existe." << endl;
-            } else {
-                cout << "El enlace no existe." << endl;
-            }
-        //cout << *it << endl;
+void red::setEnrutadores(const list<char> &newEnrutadores)
+{
+    enrutadores = newEnrutadores;
+}
 
-        //validar que no hayan enlaces aleatorios ya que existe margen de que salgan caracteres repetidos
-        //Cambiar los tipos de datos de las variables unsigned long long int a unsigned int
-        //comentar todo antes de que nos dé pereza
-    }
-    */
+map<unsigned char, map<unsigned char, int> > red::getEnrutadores_Vecinos() const
+{
+    return enrutadores_Vecinos;
+}
 
-    /*
-    for (vector<enrutador>::iterator it = vector_Instancias.begin(); it != vector_Instancias.end(); ++it) {
-        cout << (*it).getNombre() << " ";
-    }
-    cout << endl;
-    */
+void red::setEnrutadores_Vecinos(const map<unsigned char, map<unsigned char, int> > &newEnrutadores_Vecinos)
+{
+    enrutadores_Vecinos = newEnrutadores_Vecinos;
+}
 
-    /*
-    for(unsigned char elemento1 : enrutadores){
-        for(unsigned char elemento2 : enrutadores){
-            cout << elemento1 << " " << elemento2 << endl;
-        }
-    }
-    */
+map<unsigned char, map<unsigned char, int> > red::getEnrutamiento_Aux() const
+{
+    return enrutamiento_Aux;
+}
 
+void red::setEnrutamiento_Aux(const map<unsigned char, map<unsigned char, int> > &newEnrutamiento_Aux)
+{
+    enrutamiento_Aux = newEnrutamiento_Aux;
+}
 
+map<unsigned char, int> red::getDistancias() const
+{
+    return distancias;
+}
+
+void red::setDistancias(const map<unsigned char, int> &newDistancias)
+{
+    distancias = newDistancias;
+}

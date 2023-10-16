@@ -58,9 +58,19 @@ public:
     void generar_VectorInstancias();
     int determinar_Existencia(float k);
     int buscar_Instancia(char& nombre);
+    void eliminar_Instancia(char& nombre);
 
-    //Faltan getter y setter
-
+    //Métodos getter y setter
+    vector<enrutador> getVector_Instancias() const;
+    void setVector_Instancias(const vector<enrutador> &newVector_Instancias);
+    list<char> getEnrutadores() const;
+    void setEnrutadores(const list<char> &newEnrutadores);
+    map<unsigned char, map<unsigned char, int> > getEnrutadores_Vecinos() const;
+    void setEnrutadores_Vecinos(const map<unsigned char, map<unsigned char, int> > &newEnrutadores_Vecinos);
+    map<unsigned char, map<unsigned char, int> > getEnrutamiento_Aux() const;
+    void setEnrutamiento_Aux(const map<unsigned char, map<unsigned char, int> > &newEnrutamiento_Aux);
+    map<unsigned char, int> getDistancias() const;
+    void setDistancias(const map<unsigned char, int> &newDistancias);
 };
 
 ostream& operator<<(ostream& os, const vector<unsigned char>& vec);
