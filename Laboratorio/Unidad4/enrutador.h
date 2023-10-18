@@ -30,6 +30,8 @@ public:
     void mostrar_Enrutamiento();
     void mostrar_EnrutadoresVecinos();
     void mostrar_Coste(char destino);
+    void eliminar_Enlace(char nombre);
+    void agregar_Editar_Enlace(char destino,int costo);
 
     //Getter y setter
     char getNombre() const;

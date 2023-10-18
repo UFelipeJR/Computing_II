@@ -10,12 +10,6 @@ red::red()
 
 //Metodos
 
-void red::pruebas() {
-
-}
-
-
-
 void red::listar_Enrutadores()
 {
     unsigned long long int i = 0;
@@ -331,6 +325,99 @@ void red::eliminar_Instancia(char &nombre)
     advance(it,pos);
     enrutadores.erase(it);
     cout << "Se ha eliminado el enrutador " << nombre << endl;
+}
+
+int red::obtener_Entrada(string mensaje, int inf, int max)
+{
+    int opcion = 0;
+
+    while (true) {
+        cout << mensaje;
+        cin >> opcion;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Esto se supone que limpia el búfer
+            cout << "La entrada no es valida. Debe ser un numero." << endl;
+        }
+        else if (opcion >= inf && opcion <= max) {
+            break;
+        }
+        else {
+            cout << "Opcion Invalida" << endl;
+        }
+    }
+
+    return opcion;
+}
+
+void red::menu(string ruta)
+{
+    int opcion = 0;
+
+    do {
+        cout << "Menu Principal" << endl;
+        cout << "1. Cargar Red Desde Un Archivo" << endl;
+        cout << "2. Generar y Visualizar Tabla de Enrutamiento" << endl;
+        cout << "3. Agregar Enrutadores" << endl;
+        cout << "4. Eliminar Enrutador" << endl;
+        cout << "4. Cambiar Costo Entre Nodos" << endl;
+        cout << "5. Eliminar Conexion Entre Nodos" << endl;
+        cout << "6. Consultar Costo de Envio" << endl;
+        cout << "7. Consultar Camino a Seguir" << endl;
+        cout << "8. Generar Red Aleatoria" << endl;
+        cout << "9. Listar Enrutadores Activos" << endl;
+        cout << "10. Limpiar Contenido de Pantalla " << endl;
+        cout << "11. Salir" << endl;
+
+        opcion = obtener_Entrada("Ingrese una opcion:", 0, 11);
+
+        switch (opcion) {
+        case 1:
+            cargar_Enrutadores(ruta);
+            cout << "Se han cargado estos enrutadores del archivo ubicado en: " << ruta << endl;
+            inicializar_Enrutamiento(ruta);
+            listar_Enrutadores();
+            cout << endl;
+            break;
+
+        case 2:
+            gen_Enrutamiento();
+            actualizar_Enrutadores();
+            mostrar_EnrutamientoAuxiliar();
+            cout << endl;
+            break;
+
+        case 3:
+            break;
+
+        case 4:
+            break;
+
+        case 5:
+            break;
+
+        case 6:
+            break;
+
+        case 7:
+            break;
+
+        case 8:
+            break;
+
+        case 9:
+            cout << "Los Enrutadores Activos Son:" << endl;
+            listar_Enrutadores();
+            cout << endl;
+            break;
+
+        case 10:
+            system("cls");
+            break;
+
+        }
+    } while (opcion != 11);
 }
 
 

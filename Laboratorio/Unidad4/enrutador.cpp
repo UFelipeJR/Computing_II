@@ -83,37 +83,17 @@ void enrutador::mostrar_Enrutamiento()
 
 }
 
-//Metodos getter y setter
-
-char enrutador::getNombre() const
+void enrutador::eliminar_Enlace(char nombre)
 {
-    return nombre;
+    enrutadoresVecinos[this->nombre].erase(nombre);
+    //Falta validar la existencia
 }
 
-void enrutador::setNombre(char newNombre)
+void enrutador::agregar_Editar_Enlace(char destino, int costo)
 {
-    nombre = newNombre;
+    enrutadoresVecinos[nombre][destino] = costo;
 }
 
-map<unsigned char, map<unsigned char, int> > enrutador::getTablaEnrutamiento() const
-{
-    return tablaEnrutamiento;
-}
-
-map<unsigned char, map<unsigned char, int> > enrutador::getEnrutadoresVecinos() const
-{
-    return enrutadoresVecinos;
-}
-
-void enrutador::setTablaEnrutamiento(const map<unsigned char, map<unsigned char, int> > &newTablaEnrutamiento)
-{
-    tablaEnrutamiento = newTablaEnrutamiento;
-}
-
-void enrutador::setEnrutadoresVecinos(const map<unsigned char, map<unsigned char, int> > &newEnrutadoresVecinos)
-{
-    enrutadoresVecinos = newEnrutadoresVecinos;
-}
 
 //Metodos complementarios de la clase que no se relacionan con los atributos
 
@@ -247,6 +227,36 @@ ostream& operator<<(ostream& os, const vector<unsigned char>& vec)
 }
 
 //Metodos getter y setter
+
+char enrutador::getNombre() const
+{
+    return nombre;
+}
+
+void enrutador::setNombre(char newNombre)
+{
+    nombre = newNombre;
+}
+
+map<unsigned char, map<unsigned char, int> > enrutador::getTablaEnrutamiento() const
+{
+    return tablaEnrutamiento;
+}
+
+map<unsigned char, map<unsigned char, int> > enrutador::getEnrutadoresVecinos() const
+{
+    return enrutadoresVecinos;
+}
+
+void enrutador::setTablaEnrutamiento(const map<unsigned char, map<unsigned char, int> > &newTablaEnrutamiento)
+{
+    tablaEnrutamiento = newTablaEnrutamiento;
+}
+
+void enrutador::setEnrutadoresVecinos(const map<unsigned char, map<unsigned char, int> > &newEnrutadoresVecinos)
+{
+    enrutadoresVecinos = newEnrutadoresVecinos;
+}
 
 
 

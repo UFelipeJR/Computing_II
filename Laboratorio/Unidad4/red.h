@@ -10,6 +10,8 @@
 #include <queue>
 #include <cstdlib>
 #include <ctime>
+#include <limits>
+#include <cstdlib>
 using namespace std;
 
 class red
@@ -41,7 +43,6 @@ public:
     red();
 
     //Metodos
-    void pruebas();
     void listar_Enrutadores();
     void cargar_Enrutadores(string ruta);
     bool buscarRed(char elemento_Buscado);
@@ -59,6 +60,8 @@ public:
     int determinar_Existencia(float k);
     int buscar_Instancia(char& nombre);
     void eliminar_Instancia(char& nombre);
+    void menu(string ruta);
+    int obtener_Entrada(string mensaje, int inf, int max);
 
     //Métodos getter y setter
     vector<enrutador> getVector_Instancias() const;
