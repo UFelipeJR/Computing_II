@@ -10,7 +10,6 @@
 #include <queue>
 #include <cstdlib>
 #include <ctime>
-
 using namespace std;
 
 class red

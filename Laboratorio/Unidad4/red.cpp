@@ -180,43 +180,6 @@ void red::inicializarDistancias() {
     }
 }
 
-/*
-unsigned long long int red::dijkstra(char nodoInicio, char nodoFinal)
-{
-    unsigned char nodo;
-    unsigned long long int distancia;
-    unsigned char vecino;
-    unsigned long long int peso;
-    distancias[nodoInicio] = 0;
-    priority_queue<pair<unsigned long long int, char>, vector<pair<unsigned long long int, char>>, greater<pair<unsigned long long int, char>>> siguiente;
-    siguiente.push(make_pair(0, nodoInicio));
-
-
-    while (!siguiente.empty()) {
-        nodo = siguiente.top().second;
-        distancia = siguiente.top().first;
-        siguiente.pop();
-
-        if (nodo != nodoFinal && distancia <= distancias[nodo]) {
-            for (auto& kvp : enrutadores_Vecinos[nodo]) {
-                vecino = kvp.first;
-                peso = kvp.second;
-
-                if (distancias[vecino] > distancias[nodo] + peso) {
-                    distancias[vecino] = distancias[nodo] + peso;
-                    siguiente.push(make_pair(distancias[vecino], vecino));
-                }
-            }
-        }
-    }
-
-    if(distancias[nodoFinal] == ULLONG_MAX){
-        return -1;
-    }
-    return distancias[nodoFinal];
-}
-*/
-
 
 unsigned long long int red::dijkstra(char nodoInicio, char nodoFinal) {
 

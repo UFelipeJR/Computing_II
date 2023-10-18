@@ -1,6 +1,8 @@
+/*
 #include <enrutador.h>
 #include <red.h>
 #include <gestorTxt.h>
+
 
 int main(){
     srand(time(NULL));
@@ -25,3 +27,6 @@ int main(){
 
 
 }
+*/
+
+
