@@ -73,7 +73,7 @@ void red::inicializar_Enrutamiento(string ruta)
     const map<unsigned char, int>* vecinosDelEnrutador;
 
     generar_VectorInstancias();
-    enrutadores_Vecinos.clear();
+    //enrutadores_Vecinos.clear();
 
     for (unsigned long long int i = 0; i < vector_Instancias.size(); i++) {
         instancia_Auxiliar = vector_Instancias[i];
@@ -107,7 +107,7 @@ void red::inicializar_Enrutamiento()
     const map<unsigned char, int>* vecinosDelEnrutador;
 
     generar_VectorInstancias();
-    enrutadores_Vecinos.clear();
+    //enrutadores_Vecinos.clear();
 
     for (unsigned long long int i = 0; i < vector_Instancias.size(); i++) {
         instancia_Auxiliar = vector_Instancias[i];
@@ -208,7 +208,7 @@ unsigned long long int red::dijkstra(char nodoInicio, char nodoFinal) {
         }
     }
 
-
+    /*
     nodoActual = nodoFinal;
     while (nodoActual != nodoInicio) {
         camino = nodoActual + camino;
@@ -216,6 +216,10 @@ unsigned long long int red::dijkstra(char nodoInicio, char nodoFinal) {
     }
     camino = nodoInicio + camino;
     mapa_Caminos[nodoInicio][nodoFinal] = camino;
+    */
+
+    //PULIR CALCULO DE RUTAS
+
 
     return distancias[nodoFinal];
 }
@@ -236,7 +240,7 @@ void red::actualizar_Enrutadores()
 {
 
     if (vector_Instancias.empty()) {
-        cout << "El vector está vacío" << endl;
+        cout << "El vector esta vacio" << endl;
     }
     else {
         for (int i = 0; i < vector_Instancias.size(); i++) {
@@ -354,6 +358,10 @@ int red::obtener_Entrada(string mensaje, int inf, int max)
 void red::menu(string ruta)
 {
     int opcion = 0;
+    int costoAux = 0;
+    int enrutadorDestino = 0;
+    char aux;
+    map<unsigned char, map<unsigned char, int >> adyacentes_Aux;
 
     do {
         cout << "Menu Principal" << endl;
@@ -361,14 +369,14 @@ void red::menu(string ruta)
         cout << "2. Generar y Visualizar Tabla de Enrutamiento" << endl;
         cout << "3. Agregar Enrutadores" << endl;
         cout << "4. Eliminar Enrutador" << endl;
-        cout << "4. Cambiar Costo Entre Nodos" << endl;
-        cout << "5. Eliminar Conexion Entre Nodos" << endl;
-        cout << "6. Consultar Costo de Envio" << endl;
-        cout << "7. Consultar Camino a Seguir" << endl;
-        cout << "8. Generar Red Aleatoria" << endl;
-        cout << "9. Listar Enrutadores Activos" << endl;
-        cout << "10. Limpiar Contenido de Pantalla " << endl;
-        cout << "11. Salir" << endl;
+        cout << "5. Cambiar Costo Entre Nodos" << endl;
+        cout << "6. Eliminar Conexion Entre Nodos" << endl;
+        cout << "7. Consultar Costo de Envio" << endl;
+        cout << "8. Consultar Camino a Seguir" << endl;
+        cout << "9. Generar Red Aleatoria" << endl;
+        cout << "10. Listar Enrutadores Activos" << endl;
+        cout << "11. Limpiar Contenido de Pantalla " << endl;
+        cout << "12. Salir" << endl;
 
         opcion = obtener_Entrada("Ingrese una opcion:", 0, 11);
 
@@ -378,23 +386,51 @@ void red::menu(string ruta)
             cout << "Se han cargado estos enrutadores del archivo ubicado en: " << ruta << endl;
             inicializar_Enrutamiento(ruta);
             listar_Enrutadores();
-            cout << endl;
             break;
 
         case 2:
             gen_Enrutamiento();
             actualizar_Enrutadores();
             mostrar_EnrutamientoAuxiliar();
-            cout << endl;
             break;
 
         case 3:
+            cout << "Ingrese el nombre del enrutador:" << endl;
+            cin >> aux;
+            if(buscar_Instancia(aux) == 0){
+                cout << "No se puede agregar algo que ya existe mijo" << endl;
+                break;
+            }
+            else{
+                enrutadores.push_back(aux);
+                vector_Instancias.push_back(enrutador(aux));
+                adyacentes_Aux[aux][aux] = 0;
+                vector_Instancias.at(vector_Instancias.size()-1).setEnrutadoresVecinos(adyacentes_Aux);
+                adyacentes_Aux.clear();
+            }
+
             break;
 
         case 4:
+            listar_Enrutadores();
+            opcion = obtener_Entrada("Ingrese el numero del enrutador:",0,vector_Instancias.size());
+            aux = vector_Instancias.at(opcion-1).getNombre();
+            eliminar_Instancia(aux);
+            inicializar_Enrutamiento();
             break;
 
         case 5:
+            listar_Enrutadores();
+            if(enrutadores.empty()){
+                cout << "No hay enrutadores disponibles" << endl;
+            }
+            else{
+            opcion = obtener_Entrada("Ingrese el numero del enrutador:",0,vector_Instancias.size());
+            enrutadorDestino = obtener_Entrada("Ingrese el numero del enrutador destino:",0,vector_Instancias.size());
+            costoAux = obtener_Entrada("Ingrese el nuevo costo:",0,INT_MAX);
+            vector_Instancias.at(opcion-1).agregar_Editar_Enlace(vector_Instancias.at(enrutadorDestino-1).getNombre(),costoAux);
+            inicializar_Enrutamiento();
+            }
             break;
 
         case 6:
@@ -407,17 +443,23 @@ void red::menu(string ruta)
             break;
 
         case 9:
-            cout << "Los Enrutadores Activos Son:" << endl;
-            listar_Enrutadores();
-            cout << endl;
+            opcion = obtener_Entrada("Ingrese la cantidad de enrutadores:",0,INT_MAX);
+            costoAux = obtener_Entrada("Ingrese la probalidad:",0,1);
+            generar_GrafoAleatorio(opcion,costoAux);
+            inicializar_Enrutamiento();
             break;
 
         case 10:
+            cout << "Los Enrutadores Activos Son:" << endl;
+            listar_Enrutadores();
+            break;
+
+        case 11:
             system("cls");
             break;
 
         }
-    } while (opcion != 11);
+    } while (opcion != 12);
 }
 
 
