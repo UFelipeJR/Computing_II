@@ -7,18 +7,18 @@ enrutador::enrutador()
 
 }
 
-enrutador::enrutador(char _nombre)
+enrutador::enrutador(char& _nombre)
 {
     nombre = _nombre;
 }
 
-enrutador::enrutador(char _nombre, map<unsigned char, map<unsigned char, int >> _tablaEnrutamiento)
+enrutador::enrutador(char& _nombre, map<unsigned char, map<unsigned char, int >> _tablaEnrutamiento)
 {
     nombre = _nombre;
     tablaEnrutamiento = _tablaEnrutamiento;
 }
 
-enrutador::enrutador(char _nombre, map<unsigned char, map<unsigned char, int> > _tablaEnrutamiento, map<unsigned char, map<unsigned char, int> > _enrutadoresVecinos)
+enrutador::enrutador(char& _nombre, map<unsigned char, map<unsigned char, int> > _tablaEnrutamiento, map<unsigned char, map<unsigned char, int> > _enrutadoresVecinos)
 {
     nombre = _nombre;
     tablaEnrutamiento = _tablaEnrutamiento;
@@ -27,17 +27,17 @@ enrutador::enrutador(char _nombre, map<unsigned char, map<unsigned char, int> > 
 
 //Metodos
 
-void enrutador::cargar_Vecinos(string ruta)
+void enrutador::cargar_Vecinos(string& ruta)
 {
+    char aux = ' ';
     enrutador archivo;
-
     vector<unsigned char> informacion_Archivo = archivo.leerArchivo(ruta);
     vector<string> informacion_Split;
     string cadenaAuxiliar = "";
     char nombre = getNombre();
 
     cadenaAuxiliar = archivo.vector_String(informacion_Archivo);
-    informacion_Split = archivo.split(cadenaAuxiliar,' ');
+    informacion_Split = archivo.split(cadenaAuxiliar,aux);
 
 
 
@@ -63,9 +63,9 @@ void enrutador::mostrar_EnrutadoresVecinos()
 
 }
 
-void enrutador::mostrar_Coste(char destino)
+void enrutador::mostrar_Coste(char& destino)
 {
-    cout << tablaEnrutamiento[getNombre()][destino] << endl;
+    cout << tablaEnrutamiento[this->nombre][destino] << endl;
 
 }
 
@@ -83,13 +83,13 @@ void enrutador::mostrar_Enrutamiento()
 
 }
 
-void enrutador::eliminar_Enlace(char nombre)
+void enrutador::eliminar_Enlace(char& nombre)
 {
     enrutadoresVecinos[this->nombre].erase(nombre);
     //Falta validar la existencia
 }
 
-void enrutador::agregar_Editar_Enlace(char destino, int costo)
+void enrutador::agregar_Editar_Enlace(char destino, int& costo)
 {
     enrutadoresVecinos[nombre][destino] = costo;
 }
@@ -97,7 +97,7 @@ void enrutador::agregar_Editar_Enlace(char destino, int costo)
 
 //Metodos complementarios de la clase que no se relacionan con los atributos
 
-unsigned long long int enrutador::obtenerLongitud(string ruta)
+unsigned long long int enrutador::obtenerLongitud(string& ruta)
 {
     unsigned long long int size = 0;
     fstream archivo;
@@ -126,7 +126,7 @@ unsigned long long enrutador::obtenerLongitud(const vector<unsigned char> &miVec
 
 }
 
-vector<unsigned char>enrutador::leerArchivo(string rutaArchivo)
+vector<unsigned char>enrutador::leerArchivo(string& rutaArchivo)
 {
     fstream archivo;
     unsigned long long int size = 0;
@@ -154,7 +154,7 @@ vector<unsigned char>enrutador::leerArchivo(string rutaArchivo)
     return datos;
 }
 
-vector<string> enrutador::split(const string &entrada, char delimitador)
+vector<string> enrutador::split(const string &entrada, char& delimitador)
 {
     vector<string> subcadenas;
     string subcadena;
@@ -233,7 +233,7 @@ char enrutador::getNombre() const
     return nombre;
 }
 
-void enrutador::setNombre(char newNombre)
+void enrutador::setNombre(char& newNombre)
 {
     nombre = newNombre;
 }

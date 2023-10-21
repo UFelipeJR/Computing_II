@@ -21,12 +21,13 @@ void red::listar_Enrutadores()
 
 void red::cargar_Enrutadores(string ruta)
 {
+    char aux = ' ';
     enrutador archivo;
     vector<unsigned char> informacion = archivo.leerArchivo(ruta);
     vector<string> informacion_split;
     string cadenaAux = archivo.vector_String(informacion);
 
-    informacion_split = archivo.split(cadenaAux,' ');
+    informacion_split = archivo.split(cadenaAux,aux);
 
     for(unsigned long long int i = 0; i < informacion_split.size(); i++){
 
@@ -75,7 +76,7 @@ void red::inicializar_Enrutamiento(string ruta)
     generar_VectorInstancias();
     //enrutadores_Vecinos.clear();
 
-    for (unsigned long long int i = 0; i < vector_Instancias.size(); i++) {
+    for (int i = 0; i < vector_Instancias.size(); i++) {
         instancia_Auxiliar = vector_Instancias[i];
         instancia_Auxiliar.cargar_Vecinos(ruta);
         vecinos = instancia_Auxiliar.getEnrutadoresVecinos();
@@ -109,7 +110,7 @@ void red::inicializar_Enrutamiento()
     generar_VectorInstancias();
     //enrutadores_Vecinos.clear();
 
-    for (unsigned long long int i = 0; i < vector_Instancias.size(); i++) {
+    for (int i = 0; i < vector_Instancias.size(); i++) {
         instancia_Auxiliar = vector_Instancias[i];
         vecinos = instancia_Auxiliar.getEnrutadoresVecinos();
 
@@ -138,7 +139,7 @@ void red::mostrar_EnrutamientoAuxiliar()
     for (auto& parExterno : enrutamiento_Aux) {
         for (auto& parInterno : parExterno.second) {
             valor = parInterno.second;
-            if(valor == ULLONG_MAX){
+            if(valor == INT_MAX){
                 cout << -1 << " ";
             }
             else{
@@ -170,12 +171,12 @@ void red::mostrar_Vecinos()
 
 void red::inicializarDistancias() {
     for (unsigned char nodo : enrutadores) {
-        distancias[nodo] = ULLONG_MAX;
+        distancias[nodo] = INT_MAX;
     }
 }
 
 
-unsigned long long int red::dijkstra(char nodoInicio, char nodoFinal) {
+int red::dijkstra(char nodoInicio, char nodoFinal) {
 
     unsigned char nodo;
     unsigned long long int distancia;
@@ -271,7 +272,7 @@ int red::determinar_Existencia(float k)
     int costeAleatorio = rand() % 101;
 
 
-    for (list<char>::iterator it = enrutadores.begin(); it != enrutadores.end(); ++it) {
+    for(list<char>::iterator it = enrutadores.begin(); it != enrutadores.end(); ++it){
         numeroRandom = val.moneda();
         if (numeroRandom < k) {
             return costeAleatorio;
@@ -321,19 +322,32 @@ void red::generar_GrafoAleatorio(int n, float k)
 
 }
 
-void red::eliminar_Instancia(char &nombre)
+void red::eliminar_Instancia(char& nombre)
 {
     int pos = buscar_Instancia(nombre);
-    vector_Instancias.erase(vector_Instancias.begin()+pos);
     list<char>::iterator it = enrutadores.begin();
+
+    for (list<char>::iterator it0 = enrutadores.begin(); it0 != enrutadores.end(); ++it0) {
+        for (list<char>::iterator it1 = enrutadores.begin(); it1 != enrutadores.end(); ++it1) {
+            if (char(*it0) == nombre || char(*it1) == nombre) {
+                enrutadores_Vecinos[*it0].erase(*it1);
+            }
+        }
+    }
+
+    vector_Instancias.erase(vector_Instancias.begin()+pos);
     advance(it,pos);
     enrutadores.erase(it);
+
     cout << "Se ha eliminado el enrutador " << nombre << endl;
+
 }
 
-int red::obtener_Entrada(string mensaje, int inf, int max)
+
+template<typename T>
+T red::obtener_Entrada(string mensaje, T inf, T max)
 {
-    int opcion = 0;
+    T opcion;
 
     while (true) {
         cout << mensaje;
@@ -341,25 +355,27 @@ int red::obtener_Entrada(string mensaje, int inf, int max)
 
         if (cin.fail()) {
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Esto se supone que limpia el búfer
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "La entrada no es valida. Debe ser un numero." << endl;
         }
         else if (opcion >= inf && opcion <= max) {
             break;
         }
         else {
-            cout << "Opcion Invalida" << endl;
+            cout << "Opción invalida" << endl;
         }
     }
 
     return opcion;
 }
 
+
 void red::menu(string ruta)
 {
     int opcion = 0;
     int costoAux = 0;
     int enrutadorDestino = 0;
+    float probabilidad = 0;
     char aux;
     map<unsigned char, map<unsigned char, int >> adyacentes_Aux;
 
@@ -378,7 +394,7 @@ void red::menu(string ruta)
         cout << "11. Limpiar Contenido de Pantalla " << endl;
         cout << "12. Salir" << endl;
 
-        opcion = obtener_Entrada("Ingrese una opcion:", 0, 11);
+        opcion = obtener_Entrada<int>("Ingrese una opcion:", 0, 11);
 
         switch (opcion) {
         case 1:
@@ -389,15 +405,16 @@ void red::menu(string ruta)
             break;
 
         case 2:
+            enrutamiento_Aux.clear();
             gen_Enrutamiento();
-            actualizar_Enrutadores();
             mostrar_EnrutamientoAuxiliar();
+            actualizar_Enrutadores();
             break;
 
         case 3:
             cout << "Ingrese el nombre del enrutador:" << endl;
             cin >> aux;
-            if(buscar_Instancia(aux) == 0){
+            if(buscar_Instancia(aux) != -1){
                 cout << "No se puede agregar algo que ya existe mijo" << endl;
                 break;
             }
@@ -413,10 +430,10 @@ void red::menu(string ruta)
 
         case 4:
             listar_Enrutadores();
-            opcion = obtener_Entrada("Ingrese el numero del enrutador:",0,vector_Instancias.size());
+            opcion = obtener_Entrada<int>("Ingrese el numero del enrutador:",0,vector_Instancias.size());
             aux = vector_Instancias.at(opcion-1).getNombre();
             eliminar_Instancia(aux);
-            inicializar_Enrutamiento();
+            actualizar_Enrutadores();
             break;
 
         case 5:
@@ -425,9 +442,9 @@ void red::menu(string ruta)
                 cout << "No hay enrutadores disponibles" << endl;
             }
             else{
-            opcion = obtener_Entrada("Ingrese el numero del enrutador:",0,vector_Instancias.size());
-            enrutadorDestino = obtener_Entrada("Ingrese el numero del enrutador destino:",0,vector_Instancias.size());
-            costoAux = obtener_Entrada("Ingrese el nuevo costo:",0,INT_MAX);
+            opcion = obtener_Entrada<int>("Ingrese el numero del enrutador:",0,vector_Instancias.size());
+            enrutadorDestino = obtener_Entrada<int>("Ingrese el numero del enrutador destino:",0,vector_Instancias.size());
+            costoAux = obtener_Entrada<int>("Ingrese el nuevo costo:",0,INT_MAX);
             vector_Instancias.at(opcion-1).agregar_Editar_Enlace(vector_Instancias.at(enrutadorDestino-1).getNombre(),costoAux);
             inicializar_Enrutamiento();
             }
@@ -437,15 +454,25 @@ void red::menu(string ruta)
             break;
 
         case 7:
+            if(vector_Instancias.empty()){
+                cout << "El vector esta vacio" << endl;
+                break;
+            }
+            listar_Enrutadores();
+            opcion = obtener_Entrada<int>("Ingrese el enrutador de origen:",0,vector_Instancias.size());
+            enrutadorDestino = obtener_Entrada<int>("Ingrese el enrutador de destino:",0,vector_Instancias.size());
+            aux = vector_Instancias.at(enrutadorDestino-1).getNombre();
+            cout << "El coste de envio del enrutador " << vector_Instancias.at(opcion-1).getNombre() << " a " << vector_Instancias.at(enrutadorDestino-1).getNombre() << " es: ";
+            vector_Instancias.at(opcion-1).mostrar_Coste(aux);
             break;
 
         case 8:
             break;
 
         case 9:
-            opcion = obtener_Entrada("Ingrese la cantidad de enrutadores:",0,INT_MAX);
-            costoAux = obtener_Entrada("Ingrese la probalidad:",0,1);
-            generar_GrafoAleatorio(opcion,costoAux);
+            opcion = obtener_Entrada<int>("Ingrese la cantidad de enrutadores:",0,INT_MAX);
+            probabilidad = obtener_Entrada<float>("Ingrese la probalidad:",0,1);
+            generar_GrafoAleatorio(opcion,probabilidad);
             inicializar_Enrutamiento();
             break;
 

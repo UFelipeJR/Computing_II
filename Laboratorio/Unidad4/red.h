@@ -51,7 +51,7 @@ public:
     void mostrar_EnrutamientoAuxiliar();
     void mostrar_Vecinos();
     void inicializarDistancias();
-    unsigned long long int dijkstra(char nodoInicio, char nodoFinal);
+    int dijkstra(char nodoInicio, char nodoFinal);
     void gen_Enrutamiento();
     void actualizar_Enrutadores();
     void generar_GrafoAleatorio(int n, float k);
@@ -61,7 +61,9 @@ public:
     int buscar_Instancia(char& nombre);
     void eliminar_Instancia(char& nombre);
     void menu(string ruta);
-    int obtener_Entrada(string mensaje, int inf, int max);
+    template <typename T>
+    T obtener_Entrada(string mensaje, T inf, T max);
+
 
     //Métodos getter y setter
     vector<enrutador> getVector_Instancias() const;
