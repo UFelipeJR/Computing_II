@@ -63,6 +63,7 @@ public:
     void menu(string ruta);
     template <typename T>
     T obtener_Entrada(string mensaje, T inf, T max);
+    void mostrar_Camino(char origen, char destino);
 
 
     //Métodos getter y setter

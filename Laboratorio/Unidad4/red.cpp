@@ -209,18 +209,18 @@ int red::dijkstra(char nodoInicio, char nodoFinal) {
         }
     }
 
-    /*
-    nodoActual = nodoFinal;
-    while (nodoActual != nodoInicio) {
-        camino = nodoActual + camino;
-        nodoActual = padres[nodoActual];
+    if(distancias[nodoFinal] == INT_MAX){
+        mapa_Caminos[nodoInicio][nodoFinal] = "-1";
     }
-    camino = nodoInicio + camino;
-    mapa_Caminos[nodoInicio][nodoFinal] = camino;
-    */
-
-    //PULIR CALCULO DE RUTAS
-
+    else{
+        nodoActual = nodoFinal;
+        while (nodoActual != nodoInicio) {
+            camino = nodoActual + camino;
+            nodoActual = padres[nodoActual];
+        }
+        camino = nodoInicio + camino;
+        mapa_Caminos[nodoInicio][nodoFinal] = camino;
+    }
 
     return distancias[nodoFinal];
 }
@@ -369,6 +369,17 @@ T red::obtener_Entrada(string mensaje, T inf, T max)
     return opcion;
 }
 
+void red::mostrar_Camino(char origen, char destino)
+{
+    if(mapa_Caminos[origen][destino] == "-1"){
+        cout << "No hay ruta disponible" << endl;
+    }
+    else{
+        cout << "La ruta es: " << mapa_Caminos[origen][destino] << endl;
+    }
+
+}
+
 
 void red::menu(string ruta)
 {
@@ -455,8 +466,8 @@ void red::menu(string ruta)
 
         case 7:
             if(vector_Instancias.empty()){
-                cout << "El vector esta vacio" << endl;
-                break;
+            cout << "El vector esta vacio" << endl;
+            break;
             }
             listar_Enrutadores();
             opcion = obtener_Entrada<int>("Ingrese el enrutador de origen:",0,vector_Instancias.size());
@@ -467,6 +478,15 @@ void red::menu(string ruta)
             break;
 
         case 8:
+            if(vector_Instancias.empty()){
+            cout << "El vector esta vacio" << endl;
+            break;
+            }
+            listar_Enrutadores();
+            opcion = obtener_Entrada<int>("Ingrese el enrutador de origen:",0,vector_Instancias.size());
+            enrutadorDestino = obtener_Entrada<int>("Ingrese el enrutador de destino:",0,vector_Instancias.size());
+            aux = vector_Instancias.at(enrutadorDestino-1).getNombre();
+            mostrar_Camino(vector_Instancias.at(opcion-1).getNombre(),aux);
             break;
 
         case 9:
@@ -488,6 +508,8 @@ void red::menu(string ruta)
         }
     } while (opcion != 12);
 }
+
+
 
 
 //Metodos getter y setter
