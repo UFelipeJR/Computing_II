@@ -64,7 +64,6 @@ void red::generar_VectorInstancias()
 
 void red::inicializar_Enrutamiento(string ruta)
 {
-    char elemento;
     enrutador instancia_Auxiliar;
     map<unsigned char, map<unsigned char, int>> vecinos;
     unsigned char enrutadorActual;
@@ -74,7 +73,6 @@ void red::inicializar_Enrutamiento(string ruta)
     const map<unsigned char, int>* vecinosDelEnrutador;
 
     generar_VectorInstancias();
-    //enrutadores_Vecinos.clear();
 
     for (int i = 0; i < vector_Instancias.size(); i++) {
         instancia_Auxiliar = vector_Instancias[i];
@@ -98,7 +96,6 @@ void red::inicializar_Enrutamiento(string ruta)
 
 void red::inicializar_Enrutamiento()
 {
-    char elemento;
     enrutador instancia_Auxiliar;
     map<unsigned char, map<unsigned char, int>> vecinos;
     unsigned char enrutadorActual;
@@ -108,7 +105,6 @@ void red::inicializar_Enrutamiento()
     const map<unsigned char, int>* vecinosDelEnrutador;
 
     generar_VectorInstancias();
-    //enrutadores_Vecinos.clear();
 
     for (int i = 0; i < vector_Instancias.size(); i++) {
         instancia_Auxiliar = vector_Instancias[i];
@@ -246,6 +242,7 @@ void red::actualizar_Enrutadores()
     else {
         for (int i = 0; i < vector_Instancias.size(); i++) {
             vector_Instancias.at(i).setTablaEnrutamiento(enrutamiento_Aux);
+
         }
     }
 }
@@ -362,7 +359,7 @@ T red::obtener_Entrada(string mensaje, T inf, T max)
             break;
         }
         else {
-            cout << "Opción invalida" << endl;
+            cout << "Opcion invalida" << endl;
         }
     }
 
@@ -380,34 +377,117 @@ void red::mostrar_Camino(char origen, char destino)
 
 }
 
+void red::cambiar_Costo(int origen, int destino, int& costo)
+{
+    char origenAux = vector_Instancias.at(origen-1).getNombre();
+    char destinoAux = vector_Instancias.at(destino-1).getNombre();
+
+
+    if (enrutadores_Vecinos.find(origenAux) != enrutadores_Vecinos.end()) {
+        if (enrutadores_Vecinos[origenAux].find(destinoAux) != enrutadores_Vecinos[origenAux].end()) {
+            enrutadores_Vecinos[origenAux][destinoAux] = costo;
+            enrutadores_Vecinos[destinoAux][origenAux] = costo;
+        } else {
+            cout << "Este enlace no existe" << endl;
+        }
+    } else {
+
+        cout << "Este enlace no existe" << endl;
+    }
+
+
+}
+
+void red::agregar_Enlace(int origen, int destino, int &costo)
+{
+    char origenAux = vector_Instancias.at(origen-1).getNombre();
+    char destinoAux = vector_Instancias.at(destino-1).getNombre();
+
+
+    if (enrutadores_Vecinos.find(origenAux) != enrutadores_Vecinos.end()) {
+        if (enrutadores_Vecinos[origenAux].find(destinoAux) != enrutadores_Vecinos[origenAux].end()) {
+            cout << "Este enlace ya existe, puedes editarlo en otra opcion" << endl;
+        } else {
+            enrutadores_Vecinos[origenAux][destinoAux] = costo;
+            enrutadores_Vecinos[destinoAux][origenAux] = costo;
+        }
+    } else {
+        enrutadores_Vecinos[origenAux][destinoAux] = costo;
+        enrutadores_Vecinos[destinoAux][origenAux] = costo;
+    }
+}
+
+void red::eliminar_Enlace(int origen, int destino) {
+    char origenAux = vector_Instancias.at(origen-1).getNombre();
+    char destinoAux = vector_Instancias.at(destino-1).getNombre();
+
+
+    if (enrutadores_Vecinos.find(origenAux) != enrutadores_Vecinos.end() && enrutadores_Vecinos[origenAux].find(destinoAux) != enrutadores_Vecinos[origenAux].end()) {
+
+        enrutadores_Vecinos[origenAux].erase(destinoAux);
+        enrutadores_Vecinos[destinoAux].erase(origenAux);
+
+        cout << "Enlace eliminado entre " << origenAux << " y " << destinoAux << endl;
+    } else {
+        cout << "Este enlace no existe" << endl;
+    }
+}
+
+
+
+void red::listar_EnlacesCambiantes()
+{
+    unsigned char claveExterna;
+    unsigned char claveInterna;
+    int valor = 0;
+    map<unsigned char, map<unsigned char, int>>::iterator itEx;
+    map<unsigned char, int>::iterator itIn;
+    map<unsigned char, int> mapaInterno;
+
+    for (itEx = enrutadores_Vecinos.begin(); itEx != enrutadores_Vecinos.end(); ++itEx) {
+        claveExterna = itEx->first;
+        cout << "En enrutador: " << claveExterna << endl;
+        mapaInterno = itEx->second;
+
+        for (itIn = mapaInterno.begin(); itIn != mapaInterno.end(); ++itIn) {
+            claveInterna = itIn->first;
+            valor = itIn->second;
+            cout << "Enlace: " << claveInterna << ", Valor: " << valor << endl;
+        }
+    }
+}
+
 
 void red::menu(string ruta)
 {
     int opcion = 0;
+    int opcion2 = 0;
     int costoAux = 0;
     int enrutadorDestino = 0;
     float probabilidad = 0;
     char aux;
     map<unsigned char, map<unsigned char, int >> adyacentes_Aux;
 
-    do {
+    do{
+
         cout << "Menu Principal" << endl;
         cout << "1. Cargar Red Desde Un Archivo" << endl;
         cout << "2. Generar y Visualizar Tabla de Enrutamiento" << endl;
-        cout << "3. Agregar Enrutadores" << endl;
+        cout << "3. Agregar Enrutador" << endl;
         cout << "4. Eliminar Enrutador" << endl;
         cout << "5. Cambiar Costo Entre Nodos" << endl;
         cout << "6. Eliminar Conexion Entre Nodos" << endl;
-        cout << "7. Consultar Costo de Envio" << endl;
-        cout << "8. Consultar Camino a Seguir" << endl;
-        cout << "9. Generar Red Aleatoria" << endl;
-        cout << "10. Listar Enrutadores Activos" << endl;
-        cout << "11. Limpiar Contenido de Pantalla " << endl;
-        cout << "12. Salir" << endl;
+        cout << "7. Agregar Enlace Entre Nodos" << endl;
+        cout << "8. Consultar Costo de Envio" << endl;
+        cout << "9. Consultar Camino a Seguir" << endl;
+        cout << "10. Generar Red Aleatoria" << endl;
+        cout << "11. Listar Enrutadores Activos" << endl;
+        cout << "11. Listar Enrutadores Conectados" << endl;
+        cout << "13. Limpiar Contenido de Pantalla " << endl;
+        cout << "14. Salir" << endl;
+        opcion = obtener_Entrada<int>("Ingrese una opcion:", 0, 12);
 
-        opcion = obtener_Entrada<int>("Ingrese una opcion:", 0, 11);
-
-        switch (opcion) {
+        switch(opcion){
         case 1:
             cargar_Enrutadores(ruta);
             cout << "Se han cargado estos enrutadores del archivo ubicado en: " << ruta << endl;
@@ -426,7 +506,7 @@ void red::menu(string ruta)
             cout << "Ingrese el nombre del enrutador:" << endl;
             cin >> aux;
             if(buscar_Instancia(aux) != -1){
-                cout << "No se puede agregar algo que ya existe mijo" << endl;
+                cout << "No se puede agregar algo que ya existe" << endl;
                 break;
             }
             else{
@@ -441,75 +521,94 @@ void red::menu(string ruta)
 
         case 4:
             listar_Enrutadores();
-            opcion = obtener_Entrada<int>("Ingrese el numero del enrutador:",0,vector_Instancias.size());
-            aux = vector_Instancias.at(opcion-1).getNombre();
+            opcion2 = obtener_Entrada<int>("Ingrese el numero del enrutador:",0,vector_Instancias.size());
+            aux = vector_Instancias.at(opcion2-1).getNombre();
             eliminar_Instancia(aux);
             actualizar_Enrutadores();
             break;
 
         case 5:
-            listar_Enrutadores();
             if(enrutadores.empty()){
                 cout << "No hay enrutadores disponibles" << endl;
             }
             else{
-            opcion = obtener_Entrada<int>("Ingrese el numero del enrutador:",0,vector_Instancias.size());
-            enrutadorDestino = obtener_Entrada<int>("Ingrese el numero del enrutador destino:",0,vector_Instancias.size());
-            costoAux = obtener_Entrada<int>("Ingrese el nuevo costo:",0,INT_MAX);
-            vector_Instancias.at(opcion-1).agregar_Editar_Enlace(vector_Instancias.at(enrutadorDestino-1).getNombre(),costoAux);
-            inicializar_Enrutamiento();
+                cout << "Estos son los enlaces que pueden ser cambiados:" << endl;
+                listar_EnlacesCambiantes();
+                listar_Enrutadores();
+                opcion2 = obtener_Entrada<int>("Ingrese el numero del enrutador de origen:",0,vector_Instancias.size());
+                enrutadorDestino = obtener_Entrada<int>("Ingrese el numero del enrutador destino:",0,vector_Instancias.size());
+                costoAux = obtener_Entrada<int>("Ingrese el nuevo costo:",0,INT_MAX);
+                cambiar_Costo(opcion2,enrutadorDestino,costoAux);
             }
             break;
 
         case 6:
+            cout << "Estos son los enlaces que pueden ser eliminados:" << endl;
+            listar_EnlacesCambiantes();
+            listar_Enrutadores();
+            opcion2 = obtener_Entrada<int>("Ingrese el numero del enrutador de origen:",0,vector_Instancias.size());
+            enrutadorDestino = obtener_Entrada<int>("Ingrese el numero del enrutador destino:",0,vector_Instancias.size());
+            eliminar_Enlace(opcion2,enrutadorDestino);
             break;
 
         case 7:
-            if(vector_Instancias.empty()){
-            cout << "El vector esta vacio" << endl;
-            break;
-            }
+            cout << "Estos son los enlaces que ya existen:" << endl;
+            listar_EnlacesCambiantes();
             listar_Enrutadores();
-            opcion = obtener_Entrada<int>("Ingrese el enrutador de origen:",0,vector_Instancias.size());
-            enrutadorDestino = obtener_Entrada<int>("Ingrese el enrutador de destino:",0,vector_Instancias.size());
-            aux = vector_Instancias.at(enrutadorDestino-1).getNombre();
-            cout << "El coste de envio del enrutador " << vector_Instancias.at(opcion-1).getNombre() << " a " << vector_Instancias.at(enrutadorDestino-1).getNombre() << " es: ";
-            vector_Instancias.at(opcion-1).mostrar_Coste(aux);
+            opcion2 = obtener_Entrada<int>("Ingrese el numero del enrutador de origen:",0,vector_Instancias.size());
+            enrutadorDestino = obtener_Entrada<int>("Ingrese el numero del enrutador destino:",0,vector_Instancias.size());
+            costoAux = obtener_Entrada<int>("Ingrese el nuevo costo:",0,INT_MAX);
+            agregar_Enlace(opcion2,enrutadorDestino,costoAux);
             break;
 
         case 8:
             if(vector_Instancias.empty()){
-            cout << "El vector esta vacio" << endl;
-            break;
+                cout << "El vector esta vacio" << endl;
+                break;
             }
             listar_Enrutadores();
-            opcion = obtener_Entrada<int>("Ingrese el enrutador de origen:",0,vector_Instancias.size());
+            opcion2 = obtener_Entrada<int>("Ingrese el enrutador de origen:",0,vector_Instancias.size());
             enrutadorDestino = obtener_Entrada<int>("Ingrese el enrutador de destino:",0,vector_Instancias.size());
             aux = vector_Instancias.at(enrutadorDestino-1).getNombre();
-            mostrar_Camino(vector_Instancias.at(opcion-1).getNombre(),aux);
+            cout << "El coste de envio del enrutador " << vector_Instancias.at(opcion2-1).getNombre() << " a " << vector_Instancias.at(enrutadorDestino-1).getNombre() << " es: ";
+            vector_Instancias.at(opcion2-1).mostrar_Coste(aux);
             break;
 
         case 9:
-            opcion = obtener_Entrada<int>("Ingrese la cantidad de enrutadores:",0,INT_MAX);
-            probabilidad = obtener_Entrada<float>("Ingrese la probalidad:",0,1);
-            generar_GrafoAleatorio(opcion,probabilidad);
-            inicializar_Enrutamiento();
+            if(vector_Instancias.empty()){
+                cout << "El vector esta vacio" << endl;
+                break;
+            }
+            listar_Enrutadores();
+            opcion2 = obtener_Entrada<int>("Ingrese el enrutador de origen:",0,vector_Instancias.size());
+            enrutadorDestino = obtener_Entrada<int>("Ingrese el enrutador de destino:",0,vector_Instancias.size());
+            aux = vector_Instancias.at(enrutadorDestino-1).getNombre();
+            mostrar_Camino(vector_Instancias.at(opcion2-1).getNombre(),aux);
             break;
 
         case 10:
+            opcion2 = obtener_Entrada<int>("Ingrese la cantidad de enrutadores:",0,INT_MAX);
+            probabilidad = obtener_Entrada<float>("Ingrese la probalidad:",0,1);
+            generar_GrafoAleatorio(opcion2,probabilidad);
+            inicializar_Enrutamiento();
+            break;
+
+        case 11:
+            listar_EnlacesCambiantes();
+            break;
+
+        case 12:
             cout << "Los Enrutadores Activos Son:" << endl;
             listar_Enrutadores();
             break;
 
-        case 11:
+        case 13:
             system("cls");
             break;
-
         }
-    } while (opcion != 12);
+
+    } while(opcion != 14);
 }
-
-
 
 
 //Metodos getter y setter

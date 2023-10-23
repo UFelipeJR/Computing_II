@@ -89,10 +89,6 @@ void enrutador::eliminar_Enlace(char& nombre)
     //Falta validar la existencia
 }
 
-void enrutador::agregar_Editar_Enlace(char destino, int& costo)
-{
-    enrutadoresVecinos[nombre][destino] = costo;
-}
 
 
 //Metodos complementarios de la clase que no se relacionan con los atributos

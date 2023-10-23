@@ -37,6 +37,7 @@ private:
     map<unsigned char, map<unsigned char, int >> enrutamiento_Aux;
     map<unsigned char, int> distancias;
 
+
 public:
 
     //Constructores
@@ -61,9 +62,11 @@ public:
     int buscar_Instancia(char& nombre);
     void eliminar_Instancia(char& nombre);
     void menu(string ruta);
-    template <typename T>
-    T obtener_Entrada(string mensaje, T inf, T max);
+    void listar_EnlacesCambiantes();
     void mostrar_Camino(char origen, char destino);
+    void cambiar_Costo(int origen, int destino, int& costo);
+    void agregar_Enlace(int origen, int destino, int& costo);
+    void eliminar_Enlace(int origen, int destino);
 
 
     //Métodos getter y setter
@@ -79,6 +82,8 @@ public:
     void setDistancias(const map<unsigned char, int> &newDistancias);
     map<unsigned char, map<unsigned char, string> > getMapa_Caminos() const;
     void setMapa_Caminos(const map<unsigned char, map<unsigned char, string> > &newMapa_Caminos);
+    template <typename T>
+    T obtener_Entrada(string mensaje, T inf, T max);
 };
 
 ostream& operator<<(ostream& os, const vector<unsigned char>& vec);
