@@ -634,7 +634,7 @@ void red::menu(string ruta)
         cout << "9. Consultar Camino a Seguir" << endl;
         cout << "10. Generar Red Aleatoria" << endl;
         cout << "11. Listar Enrutadores Activos" << endl;
-        cout << "11. Listar Enrutadores Conectados" << endl;
+        cout << "12. Listar Enrutadores Conectados" << endl;
         cout << "13. Limpiar Contenido de Pantalla " << endl;
         cout << "14. Salir" << endl;
         opcion = obtener_Entrada<int>("Ingrese una opcion:", 0, 12);
@@ -746,12 +746,13 @@ void red::menu(string ruta)
             break;
 
         case 11:
-            listar_EnlacesCambiantes();
+            cout << "Los Enrutadores Activos Son:" << endl;
+            listar_Enrutadores();
             break;
 
         case 12:
-            cout << "Los Enrutadores Activos Son:" << endl;
-            listar_Enrutadores();
+            cout << "Los Enrutadores Cambiantes Son:" << endl;
+            listar_EnlacesCambiantes();
             break;
 
         case 13:
