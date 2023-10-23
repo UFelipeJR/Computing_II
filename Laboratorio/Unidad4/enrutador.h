@@ -12,6 +12,16 @@ using namespace std;
 
 class enrutador
 {
+
+/*
+ * Clase enrutador
+ *
+ * Atributos:
+ * nombre: Nombre del enrutador o nodo.
+ * tablaEnrutamiento: Tabla de enrutamiento cargada desde red, ya que el enrutador debe conocer todas las conexiones de la red.
+ * enrutadoresVecinos: Enrutadores que está conectados directamente al enrutador, utilizado inicialmente para la carga del archivo.
+ */
+
 private:
     char nombre = ' ';
     map<unsigned char, map<unsigned char, int >> tablaEnrutamiento;
@@ -30,15 +40,6 @@ public:
     void mostrar_Enrutamiento();
     void mostrar_EnrutadoresVecinos();
     void mostrar_Coste(char& destino);
-    void eliminar_Enlace(char& nombre);
-
-    //Getter y setter
-    char getNombre() const;
-    void setNombre(char& newNombre);
-    map<unsigned char, map<unsigned char, int> > getTablaEnrutamiento() const;
-    void setTablaEnrutamiento(const map<unsigned char, map<unsigned char, int> > &newTablaEnrutamiento);
-    map<unsigned char, map<unsigned char, int> > getEnrutadoresVecinos() const;
-    void setEnrutadoresVecinos(const map<unsigned char, map<unsigned char, int> > &newEnrutadoresVecinos);
 
     //Metodos complementarios de la clase que no se relacionan con los atributos
     unsigned long long int obtenerLongitud(string& ruta);
@@ -49,6 +50,15 @@ public:
     int caracter_Aleatorio();
     int moneda();
     friend ostream& operator<<(ostream& os, const enrutador& gestor);
+
+
+    //Getter y setter
+    char getNombre() const;
+    void setNombre(char& newNombre);
+    map<unsigned char, map<unsigned char, int> > getTablaEnrutamiento() const;
+    void setTablaEnrutamiento(const map<unsigned char, map<unsigned char, int> > &newTablaEnrutamiento);
+    map<unsigned char, map<unsigned char, int> > getEnrutadoresVecinos() const;
+    void setEnrutadoresVecinos(const map<unsigned char, map<unsigned char, int> > &newEnrutadoresVecinos);
 };
 
 #endif

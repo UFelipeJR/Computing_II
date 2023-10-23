@@ -29,6 +29,18 @@ enrutador::enrutador(char& _nombre, map<unsigned char, map<unsigned char, int> >
 
 void enrutador::cargar_Vecinos(string& ruta)
 {
+
+    /*
+     * Metodo encargado de cargar todos los enrutadores adyacentes con sus respectivos costos a su respectivo enrutador.
+     *
+     * Inputs de Argumento:
+     *  - ruta
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
+
     char aux = ' ';
     enrutador archivo;
     vector<unsigned char> informacion_Archivo = archivo.leerArchivo(ruta);
@@ -39,18 +51,28 @@ void enrutador::cargar_Vecinos(string& ruta)
     cadenaAuxiliar = archivo.vector_String(informacion_Archivo);
     informacion_Split = archivo.split(cadenaAuxiliar,aux);
 
-
-
     for(unsigned long long int i = 0; i <informacion_Split.size(); i++){
         if(informacion_Split[i][0] == nombre){
-            enrutadoresVecinos[informacion_Split[i][0]][informacion_Split[i][1]] = stoll(informacion_Split[i].substr(2,informacion_Split[i].length()-2));
+            enrutadoresVecinos[informacion_Split[i][0]][informacion_Split[i][1]] = stoi(informacion_Split[i].substr(2,informacion_Split[i].length()-2));
         }
-
     }
+
 }
 
 void enrutador::mostrar_EnrutadoresVecinos()
 {
+
+    /*
+     * Metodo encargado de mostrar todos los enrutadores adyacentes almacenados en el mapa anidado.
+     *
+     * Inputs de Argumento:
+     * ninguno
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
+
     int valor = 0;
 
     for (auto& parExterno : enrutadoresVecinos) {
@@ -65,12 +87,34 @@ void enrutador::mostrar_EnrutadoresVecinos()
 
 void enrutador::mostrar_Coste(char& destino)
 {
+    /*
+     * Metodo encargado de imprimir en pantalla una posición de un mapa adyacente dado únicamente el destino.
+     *
+     * Inputs de Argumento:
+     *  - ruta
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
+
     cout << tablaEnrutamiento[this->nombre][destino] << endl;
 
 }
 
 void enrutador::mostrar_Enrutamiento()
 {
+    /*
+     * Metodo encargado de imprimir en pantalla la tabla de enrutamiento completa.
+     *
+     * Inputs de Argumento:
+     *  - ruta
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
+
     int valor = 0;
 
     for (auto& parExterno : tablaEnrutamiento) {
@@ -82,14 +126,6 @@ void enrutador::mostrar_Enrutamiento()
     }
 
 }
-
-void enrutador::eliminar_Enlace(char& nombre)
-{
-    enrutadoresVecinos[this->nombre].erase(nombre);
-    //Falta validar la existencia
-}
-
-
 
 //Metodos complementarios de la clase que no se relacionan con los atributos
 
@@ -113,6 +149,17 @@ unsigned long long int enrutador::obtenerLongitud(string& ruta)
 
 unsigned long long enrutador::obtenerLongitud(const vector<unsigned char> &miVector)
 {
+    /*
+    * Método para obtener la longitud de un archivo.
+    *
+    * Argumentos de Entrada:
+     *  - ruta: Ruta al archivo del que se desea conocer la longitud.
+     *
+    * Retorno:
+    *  - Longitud del archivo(unsigned long long int).
+    *  - 1 si se produce un error al abrir el archivo.
+    */
+
     unsigned long long int size = 0;
 
     while(miVector[size]!='\0'){
@@ -124,6 +171,17 @@ unsigned long long enrutador::obtenerLongitud(const vector<unsigned char> &miVec
 
 vector<unsigned char>enrutador::leerArchivo(string& rutaArchivo)
 {
+    /*
+     * Método para leer un archivo y almacenar su contenido en un vector de caracteres.
+     *
+     * Argumentos de Entrada:
+     *  - rutaArchivo: Ruta al archivo que se desea leer.
+     *
+     * Retorno:
+     *  - Vector de caracteres que contiene el contenido del archivo.
+     *  - Vector vacío si se produce un error al abrir el archivo.
+     */
+
     fstream archivo;
     unsigned long long int size = 0;
     vector<unsigned char> datos;
@@ -152,6 +210,18 @@ vector<unsigned char>enrutador::leerArchivo(string& rutaArchivo)
 
 vector<string> enrutador::split(const string &entrada, char& delimitador)
 {
+
+    /*
+     * Método para dividir una cadena en subcadenas utilizando un delimitador.
+     *
+     * Argumentos de Entrada:
+     *  - entrada: Cadena que se desea dividir.
+     *  - delimitador: Carácter utilizado como delimitador.
+     *
+     * Retorno:
+     *  - Vector de subcadenas resultantes.
+     */
+
     vector<string> subcadenas;
     string subcadena;
     int inicio = 0;
@@ -174,6 +244,17 @@ vector<string> enrutador::split(const string &entrada, char& delimitador)
 
 string enrutador::vector_String(vector<unsigned char>&miVector)
 {
+
+    /*
+     * Método para convertir un vector de caracteres en una cadena de texto.
+     *
+     * Argumentos de Entrada:
+     *  - miVector: Vector de caracteres que se desea convertir.
+     *
+     * Retorno:
+     *  - Cadena de texto resultante.
+     */
+
     enrutador archivo;
     string cadena = "";
     unsigned long long int cont_Saltos = 1;
@@ -196,6 +277,13 @@ string enrutador::vector_String(vector<unsigned char>&miVector)
 
 int enrutador::caracter_Aleatorio()
 {
+    /*
+     * Método para generar un número aleatorio entre 65 y 90 (correspondiente a caracteres ASCII mayúsculos).
+     *
+     * Retorno:
+     *  - Número aleatorio entre 65 y 90.
+     */
+
     int numeroAleatorio = 0;
     do {
         numeroAleatorio = rand() % 58 + 65;
@@ -206,6 +294,14 @@ int enrutador::caracter_Aleatorio()
 
 int enrutador::moneda()
 {
+    /*
+     * Método para simular una moneda.
+     *
+     * Retorno:
+     *  - 0.
+     *  - 1.
+     */
+
     int numeroAleatorio = rand() % 2;
 
     return numeroAleatorio;
@@ -216,6 +312,18 @@ int enrutador::moneda()
 
 ostream& operator<<(ostream& os, const vector<unsigned char>& vec)
 {
+
+    /*
+     * Sobrecarga del operador << para imprimir un vector de caracteres en un flujo de salida.
+     *
+     * Argumentos de Entrada:
+     *  - os: Flujo de salida.
+     *  - vec: Vector de caracteres a imprimir.
+     *
+     * Retorno:
+     *  - Flujo de salida actualizado.
+     */
+
     for (int i = 0; i < vec.size(); ++i) {
         os << vec[i];
     }
