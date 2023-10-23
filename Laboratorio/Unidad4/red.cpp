@@ -12,6 +12,16 @@ red::red()
 
 void red::listar_Enrutadores()
 {
+    /*
+     * Metodo encargado de recorrer por todo el vector de enrutadores y los muestra en pantalla
+     *
+     * Inputs de Argumento:
+     *  - Ninguno
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+    */
     unsigned long long int i = 0;
     for(unsigned char elemento : enrutadores){
         cout << "Enrutador " << i+1 << ": "<< elemento << endl;
@@ -21,6 +31,16 @@ void red::listar_Enrutadores()
 
 void red::cargar_Enrutadores(string ruta)
 {
+    /*
+     * Metodo encargado de leer los enrutadores desde un archivo dado en la ruta
+     *
+     * Inputs de Argumento:
+     *  - Dirección de la Ruta donde esta el archivo que contenga la topología de la red
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
     char aux = ' ';
     enrutador archivo;
     vector<unsigned char> informacion = archivo.leerArchivo(ruta);
@@ -43,6 +63,15 @@ void red::cargar_Enrutadores(string ruta)
 }
 
 bool red::buscarRed(char elemento_Buscado)
+    /*
+     * Metodo encargado de buscar una Red en especifico
+     *
+     * Inputs de Argumento:
+     *  - Carácter que va a ser el elemento que vamos a buscar
+     *
+     * Retornos:
+     *  - Booliano
+     */
 {
     for(unsigned char elemento : enrutadores){
         if(elemento == elemento_Buscado){
@@ -55,6 +84,16 @@ bool red::buscarRed(char elemento_Buscado)
 
 void red::generar_VectorInstancias()
 {
+    /*
+     * Metodo encargado de generar un vector con cada elemento de la lista de enrutadores
+     *
+     * Inputs de Argumento:
+     *  - Ninguno
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
     for (char& elemento : enrutadores) {
         enrutador instancia(elemento);
         vector_Instancias.push_back(instancia);
@@ -64,6 +103,16 @@ void red::generar_VectorInstancias()
 
 void red::inicializar_Enrutamiento(string ruta)
 {
+    /*
+     * Metodo encargado de generar la topologia en general de los enrutadores con sus respectivos vecinos y costos
+     *
+     * Inputs de Argumento:
+     *  - Dirección de la Ruta donde esta el archivo que contenga la topología de la red
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
     enrutador instancia_Auxiliar;
     map<unsigned char, map<unsigned char, int>> vecinos;
     unsigned char enrutadorActual;
@@ -96,6 +145,17 @@ void red::inicializar_Enrutamiento(string ruta)
 
 void red::inicializar_Enrutamiento()
 {
+    /*
+     * Metodo sobrecargado encargado de generar la topologia de la red, esta tiene un uso enfocado para la red aleatoria y la
+     * edición posterior a la carga del archivo
+     *
+     * Inputs de Argumento:
+     *  - Ninguno
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+    */
     enrutador instancia_Auxiliar;
     map<unsigned char, map<unsigned char, int>> vecinos;
     unsigned char enrutadorActual;
@@ -128,6 +188,16 @@ void red::inicializar_Enrutamiento()
 
 void red::mostrar_EnrutamientoAuxiliar()
 {
+    /*
+     * Metodo encargado de mostrar la tabla de enrutamiento auxiliar
+     *
+     * Inputs de Argumento:
+     *  - Ninguno
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
     unsigned long long int valor = 0;
 
     cout << "Tabla de enrutamiento auxiliar: " << endl;
@@ -151,6 +221,16 @@ void red::mostrar_EnrutamientoAuxiliar()
 
 void red::mostrar_Vecinos()
 {
+    /*
+     * Metodo encargado de mostrar los vecinos de cada enrutador
+     *
+     * Inputs de Argumento:
+     *  - Ninguno
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
     unsigned long long int valor = 0;
 
     cout << "Tabla de vecinos: " << endl;
@@ -165,15 +245,38 @@ void red::mostrar_Vecinos()
 }
 
 
-void red::inicializarDistancias() {
+void red::inicializarDistancias()
+{
+    /*
+     * Metodo encargado de inicializar las distancias entre los nodos en su valor más grande del int
+     * (Simulando un infinito)
+     *
+     * Inputs de Argumento:
+     *  - Ninguno
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
     for (unsigned char nodo : enrutadores) {
         distancias[nodo] = INT_MAX;
     }
 }
 
 
-int red::dijkstra(char nodoInicio, char nodoFinal) {
-
+int red::dijkstra(char nodoInicio, char nodoFinal)
+{
+    /*
+     * Algoritmo encargado de calcular el camino más corto entre dos nodos en una red de enrutadores.
+     *
+     * Inputs de argumento:
+     *  - nodoInicio (El nodo de inicio)
+     *  - nodoFinal (El nodo de destino)
+     *
+     * Retornos:
+     *  - La distancia del camino más corto entre los nodos de inicio y destino. Si no hay un camino válido, se devuelve INT_MAX.
+     *
+     */
     unsigned char nodo;
     unsigned long long int distancia;
     unsigned char vecino;
@@ -225,6 +328,16 @@ int red::dijkstra(char nodoInicio, char nodoFinal) {
 
 void red::gen_Enrutamiento()
 {
+    /*
+     * Metodo encargado de tomar todas las combinaciones de nodos disponibles y encontrar la ruta más corta en base a un grafo de red
+     *
+     * Inputs de Argumento:
+     *  - Ninguno
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
     for(unsigned char elemento1 : enrutadores){
         for(unsigned char elemento2 : enrutadores){
             inicializarDistancias();
@@ -235,6 +348,16 @@ void red::gen_Enrutamiento()
 
 void red::actualizar_Enrutadores()
 {
+    /*
+     * Metodo encargado de actualizar el vector que lleva los enrutadores
+     *
+     * Inputs de Argumento:
+     *  - Ninguno
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
 
     if (vector_Instancias.empty()) {
         cout << "El vector esta vacio" << endl;
@@ -249,6 +372,16 @@ void red::actualizar_Enrutadores()
 
 void red::generar_ListaAleatoria(int n)
 {
+    /*
+     * Metodo encargado de generar una lista aleatoria para poder ser utilizada como nuestros nodos
+     *
+     * Inputs de Argumento:
+     *  - Número
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
     enrutadores.clear();
     enrutador val;
     int i = 0;
@@ -264,6 +397,16 @@ void red::generar_ListaAleatoria(int n)
 
 int red::determinar_Existencia(float k)
 {
+    /*
+     * Metodo encargado para generar las conexiones acorde a una probabilidad dada
+     *
+     * Inputs de Argumento:
+     *  - float k
+     *
+     * Retornos:
+     *  - costeAleatorio para un enlace existente , -1 para un enlace no existente
+     *
+     */
     enrutador val;
     int numeroRandom = 0;
     int costeAleatorio = rand() % 101;
@@ -278,11 +421,20 @@ int red::determinar_Existencia(float k)
         }
     }
     return 0;
-
 }
 
 int red::buscar_Instancia(char &nombre)
 {
+    /*
+     * Metodo encargado de buscar la instancia de un nodo.
+     *
+     * Inputs de Argumento:
+     *  - Nombre del nodo
+     *
+     * Retornos:
+     *  - i (posición) en caso de que exista, -1 si no existe
+     *
+     */
     enrutador aux;
     for (int i = 0; i < vector_Instancias.size(); i++) {
         aux = vector_Instancias.at(i);

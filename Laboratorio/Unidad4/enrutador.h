@@ -1,7 +1,7 @@
 #ifndef ENRUTADOR_H
 #define ENRUTADOR_H
 
-#include <iostream>|
+#include <iostream>
 #include <string.h>
 #include <vector>
 #include <fstream>
