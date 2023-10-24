@@ -448,6 +448,16 @@ int red::buscar_Instancia(char &nombre)
 
 void red::generar_GrafoAleatorio(int n, float k)
 {
+    /*
+     * Metodo encargado de generar un grafo aleatorio
+     *
+     * Inputs de Argumento:
+     *  - Entero N para el número de enrutadores, Flotante K para el número de la probabilidad de entablar enlace
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
 
     vector_Instancias.clear();
     map<unsigned char, map<unsigned char, int >> enrutadores_Adyacentes;
@@ -473,6 +483,17 @@ void red::generar_GrafoAleatorio(int n, float k)
 
 void red::eliminar_Instancia(char& nombre)
 {
+    /*
+     * Metodo encargado de buscar un enrutador y de eliminarlo de nuestro vector
+     *
+     * Inputs de Argumento:
+     *  - Carácter asociado con el nombre del enrutador
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
+
     int pos = buscar_Instancia(nombre);
     list<char>::iterator it = enrutadores.begin();
 
@@ -519,6 +540,16 @@ T red::obtener_Entrada(string mensaje, T inf, T max)
 }
 
 void red::mostrar_Camino(char origen, char destino)
+    /*
+     * Metodo encargado de tomar la lista en donde se va la ruta y mostrar como es.
+     *
+     * Inputs de Argumento:
+     *  - Caracter de origen para el nodo de origen, y caracter destino para el nodo del destino.
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
 {
     if(mapa_Caminos[origen][destino] == "-1"){
         cout << "No hay ruta disponible" << endl;
@@ -531,6 +562,16 @@ void red::mostrar_Camino(char origen, char destino)
 
 void red::cambiar_Costo(int origen, int destino, int& costo)
 {
+   /*
+     * Metodo encargado de cambiar el costo entre enlaces
+     *
+     * Inputs de Argumento:
+     *  - Entero para el enlace de origen y el destino, por referencia el costo entre ellos.
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
     char origenAux = vector_Instancias.at(origen-1).getNombre();
     char destinoAux = vector_Instancias.at(destino-1).getNombre();
 
@@ -552,6 +593,20 @@ void red::cambiar_Costo(int origen, int destino, int& costo)
 
 void red::agregar_Enlace(int origen, int destino, int &costo)
 {
+    /*
+     * Método para agregar un enlace entre dos enrutadores en una red.
+     *
+     * Inputs de Argumento:
+     *  - origen Índice del enrutador de origen en el vector de instancias.
+     *  - destino: Índice del enrutador de destino en el vector de instancias.
+     *  - costo: Costo del enlace a agregar.
+     *
+     * Descripción:
+     *  Este método permite agregar un enlace entre dos enrutadores en una red. Verifica si el enlace
+     *  ya existe y, en caso afirmativo, muestra un mensaje de error. Si el enlace no existe, lo agrega
+     *  a la estructura de datos que representa los enrutadores vecinos.
+     *
+     */
     char origenAux = vector_Instancias.at(origen-1).getNombre();
     char destinoAux = vector_Instancias.at(destino-1).getNombre();
 
@@ -570,6 +625,17 @@ void red::agregar_Enlace(int origen, int destino, int &costo)
 }
 
 void red::eliminar_Enlace(int origen, int destino) {
+    /*
+     * Método para eliminar un enlace entre dos enrutadores en una red.
+     *
+     * Inputs de Argumento:
+     *  - origen: Índice del enrutador de origen en el vector de instancias.
+     *  - destino: Índice del enrutador de destino en el vector de instancias.
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
     char origenAux = vector_Instancias.at(origen-1).getNombre();
     char destinoAux = vector_Instancias.at(destino-1).getNombre();
 
@@ -589,6 +655,16 @@ void red::eliminar_Enlace(int origen, int destino) {
 
 void red::listar_EnlacesCambiantes()
 {
+    /*
+     * Método para listar los enlaces cambiantes en la red.
+     *
+     * Inputs de Argumento:
+     *  - Ninguno
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
     unsigned char claveExterna;
     unsigned char claveInterna;
     int valor = 0;
@@ -612,6 +688,16 @@ void red::listar_EnlacesCambiantes()
 
 void red::menu(string ruta)
 {
+    /*
+     * La principal funcion encargada de llamar al menu y a todos nuestros metodos para comenzar con la simulación
+     *
+     * Inputs de Arugmento:
+     *  - Ruta del archivo de la topologia
+     *
+     * Retornos:
+     *  - Ninguno
+     *
+     */
     int opcion = 0;
     int opcion2 = 0;
     int costoAux = 0;

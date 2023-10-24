@@ -26,6 +26,7 @@ class red
  * enrutadores_vecinos: Mapa con todos los enrutadores que tienen conexión directa con sus respectivos costos.
  * enrutamiento_Aux: Tabla de enrutamiento con todos los costes cálculados.
  * distancias: Mapa en el que se guardan las distancias correspondientes a los enlaces.
+ *
  */
 
 private:
