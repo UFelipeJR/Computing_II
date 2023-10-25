@@ -8,3 +8,10 @@ C D 30
 B D 5
 D E 15
 E C 20
+D G 10
+D H 12
+D E 3
+E I 1
+H I 8
+G I 9
+G H 0

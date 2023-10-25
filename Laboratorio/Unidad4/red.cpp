@@ -723,7 +723,7 @@ void red::menu(string ruta)
         cout << "12. Listar Enrutadores Conectados" << endl;
         cout << "13. Limpiar Contenido de Pantalla " << endl;
         cout << "14. Salir" << endl;
-        opcion = obtener_Entrada<int>("Ingrese una opcion:", 0, 12);
+        opcion = obtener_Entrada<int>("Ingrese una opcion:", 0, 14);
 
         switch(opcion){
         case 1:
