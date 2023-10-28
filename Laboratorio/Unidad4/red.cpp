@@ -736,6 +736,8 @@ void red::menu(string ruta)
         case 2:
             enrutamiento_Aux.clear();
             gen_Enrutamiento();
+            mostrar_Vecinos();
+            cout << "\n" << endl;
             mostrar_EnrutamientoAuxiliar();
             actualizar_Enrutadores();
             break;
