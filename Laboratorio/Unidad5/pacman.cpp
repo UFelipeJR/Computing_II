@@ -17,7 +17,8 @@ pacman::pacman(unsigned short vidas, unsigned short velocidad, unsigned int eje_
     connect(timerPacmanVivo, SIGNAL(timeout()), this, SLOT(animacionVivo()));
     timerPacmanVivo->start(1000/5);
     setPos(eje_X, eje_Y);
-
+    spritesPacman = ":/Recursos/PacMan.png";
+    cambioSpriteVivo = 1;
     separarSprites(spritesPacman, 1);
 }
 

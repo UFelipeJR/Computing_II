@@ -4,5 +4,7 @@
 
 #define basePacmanVivo 32
 #define largoPacmanVivo 32
+#define baseLaberinto 232
+#define alturaLaberinto 256
 
 #endif // MACROS_VIDEOJUEGO_H

@@ -32,10 +32,8 @@ private:
     QTimer *timerPacmanVivo;
 
     //Cambio de sprites
-    unsigned short int cambioSpriteVivo = 1;
-    QString spritesPacman = ":/Recursos/PacMan.png";
-
-
+    unsigned short int cambioSpriteVivo;
+    QString spritesPacman;
 
 
 public:
@@ -43,7 +41,6 @@ public:
     pacman(unsigned short int vidas,unsigned short int velocidad,unsigned int eje_X,unsigned int eje_Y);
     void separarSprites(QString sprite,short int cantSprites);
     ~pacman();
-
 
     //Getter and setter
     bool getVivo() const;
