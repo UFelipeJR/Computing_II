@@ -6,6 +6,9 @@
 #include <QGraphicsPixmapItem>
 #include <QTimer>
 #include <string.h>
+#include <QApplication>
+#include <QSoundEffect>
+
 
 using namespace std;
 
@@ -25,15 +28,21 @@ private:
     // Estados
     bool vivo = true;
     bool powerUp = false;
-    bool estadoMovimiento = false;
+    bool estadoMovimiento = true;
 
     //Uso de sprites
     QPixmap *pacmanVivo;
-    QTimer *timerPacmanVivo;
+    QPixmap *pacmanMuerto;
+    QTimer *timerPacman;
 
     //Cambio de sprites
     unsigned short int cambioSpriteVivo;
+    unsigned short int cambioSpriteMuerto;
     QString spritesPacman;
+    QString spritesPacmanM;
+
+    //Sonidos
+    QSoundEffect *audioVivo;
 
 
 public:
@@ -49,9 +58,13 @@ public:
     void setPowerUp(bool newPowerUp);
     bool getEstadoMovimiento() const;
     void setEstadoMovimiento(bool newEstadoMovimiento);
+    void sfx(QString ruta);
+    void animacionVivo();
+    void animacionM();
 
 private slots:
-    void animacionVivo();
+    void animacion();
+
 
 
 };

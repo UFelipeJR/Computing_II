@@ -1,6 +1,5 @@
 #include <enrutador.h>
 #include <red.h>
-
 int main(){
 
     red red_Principal;

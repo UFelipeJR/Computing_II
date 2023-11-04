@@ -13,26 +13,42 @@ pacman::pacman(unsigned short vidas, unsigned short velocidad, unsigned int eje_
     this->eje_Y = eje_Y;
 
     pacmanVivo = new QPixmap;
-    timerPacmanVivo = new QTimer;
-    connect(timerPacmanVivo, SIGNAL(timeout()), this, SLOT(animacionVivo()));
-    timerPacmanVivo->start(1000/5);
+    pacmanMuerto = new QPixmap;
+    timerPacman = new QTimer;
+    audioVivo = new QSoundEffect;
+
+
+    timerPacman->start(1000/6);
+    connect(timerPacman, SIGNAL(timeout()), this, SLOT(animacion()));
     setPos(eje_X, eje_Y);
-    spritesPacman = ":/Recursos/PacMan.png";
+    spritesPacman = ":/Recursos/Sprites/vivo.png";
+    spritesPacmanM = ":/Recursos/Sprites/muerte.png";
     cambioSpriteVivo = 1;
+    cambioSpriteMuerto = 1;
     separarSprites(spritesPacman, 1);
 }
 
 pacman::~pacman()
 {
     delete pacmanVivo;
-    delete timerPacmanVivo;
+    delete timerPacman;
+    delete audioVivo;
+    delete pacmanMuerto;
 }
 
 void pacman::separarSprites(QString sprite, short int cantSprites)
 {
-    QPixmap vivo;
-    vivo.load(sprite);
-    *pacmanVivo = vivo.copy((cantSprites * basePacmanVivo) - basePacmanVivo, 0, basePacmanVivo, basePacmanVivo);
+    QPixmap auxiliar;
+    if(vivo){
+        auxiliar.load(sprite);
+        *pacmanVivo = auxiliar.copy((cantSprites * basePacmanVivo) - basePacmanVivo, 0, basePacmanVivo, basePacmanVivo);
+    }
+    else{
+        auxiliar.load(sprite);
+        *pacmanMuerto = auxiliar.copy((cantSprites * basePacmanMuerto) - basePacmanMuerto, 0, basePacmanMuerto, basePacmanMuerto);
+    }
+
+
 }
 
 void pacman::animacionVivo()
@@ -46,7 +62,43 @@ void pacman::animacionVivo()
     separarSprites(spritesPacman, cambioSpriteVivo);
 
     setPixmap(*pacmanVivo);
+    sfx(":/Recursos/Sonidos/vivo.wav");
 }
+
+void pacman::animacionM()
+{
+    if (cambioSpriteMuerto == 10) {
+        cambioSpriteMuerto = 1;
+        vivo = true;
+    } else {
+        cambioSpriteMuerto++;
+    }
+    separarSprites(spritesPacmanM,cambioSpriteMuerto);
+    setPixmap(*pacmanMuerto);
+    sfx(":/Recursos/Sonidos/muerto.wav");
+    estadoMovimiento = false;
+
+}
+
+void pacman::animacion()
+{
+    if(vivo){
+        animacionVivo();
+    }
+    else{
+        animacionM();
+    }
+}
+
+
+void pacman::sfx(QString ruta)
+{
+    audioVivo->setSource(QUrl::fromLocalFile(ruta));
+    audioVivo->setVolume(0.1);
+    audioVivo->play();
+
+}
+
 
 
 // Métodos getter and setter
@@ -80,5 +132,7 @@ void pacman::setEstadoMovimiento(bool newEstadoMovimiento)
 {
     estadoMovimiento = newEstadoMovimiento;
 }
+
+
 
 
