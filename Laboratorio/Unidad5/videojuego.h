@@ -5,6 +5,8 @@
 #include <QKeyEvent>
 #include "pacman.h"
 #include "laberinto.h"
+#include "ghost.h"
+#include <QColor>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class videojuego; }
@@ -22,10 +24,15 @@ private:
     QGraphicsView *view;
     QGraphicsScene *scene;
     QGraphicsRectItem *rect;
-    pacman *pacMancito;
-    laberinto *maze;
     qreal scaleFactor;
     QTimer *timer;
+
+    pacman *pacMancito;
+    laberinto *maze;
+    ghost *blinky;
+    ghost *clyde;
+    ghost *inky;
+    ghost *pinky;
 
 public:
     videojuego(QWidget *parent = nullptr);

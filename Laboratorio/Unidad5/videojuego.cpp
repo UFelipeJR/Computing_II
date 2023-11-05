@@ -7,8 +7,24 @@ videojuego::videojuego(QWidget *parent) :
     ui(new Ui::videojuego)
 {
     ui->setupUi(this);
-    pacMancito = new pacman(5, 4, 0, 0);
+
+    // Colores fantasmas
+    QColor defecto = QColor(255,255,255);
+    QColor blinkyColor = QColor(255,0,0);
+    QColor clydeColor = QColor(250,169,30);
+    QColor inkyColor = QColor(147,215,247);
+    QColor pinkyColor = QColor(239,176,198);
+
+    // Personajes
+    pacMancito = new pacman(5, 7);
+    blinky = new ghost(defecto,blinkyColor,7);
+    clyde = new ghost(defecto,clydeColor,7);
+    inky = new ghost(defecto,inkyColor,7);
+    pinky = new ghost(defecto,pinkyColor,7);
     maze = new laberinto;
+
+
+    // Escena
     view = new QGraphicsView(this);
     scene = new QGraphicsScene(this);
     view->setScene(scene);
@@ -17,13 +33,25 @@ videojuego::videojuego(QWidget *parent) :
     sceneWidth = scene->width();
     sceneHeight = scene->height();
 
+    // Escala de laberinto
     scaleFactor = 2.4;
     maze->setScale(scaleFactor);
     maze->setPos(-275, -410);
 
+    // Posiciones
     pacMancito->setPos(-10,-23);
+    blinky->setPos(-10,-195);
+    pinky->setPos(-10,-126);
+    clyde->setPos(26,-126);
+    inky->setPos(-46,-126);
+
+    // Agregado de items
     scene->addItem(maze);
     scene->addItem(pacMancito);
+    scene->addItem(blinky);
+    scene->addItem(pinky);
+    scene->addItem(clyde);
+    scene->addItem(inky);
 
     ui->main_scene->setScene(scene);
     setCustomBackgroundColor("black");
@@ -49,6 +77,10 @@ videojuego::~videojuego()
     delete rect;
     delete maze;
     delete timer;
+    delete blinky;
+    delete clyde;
+    delete inky;
+    delete pinky;
 }
 
 videojuego::setCustomBackgroundColor(string color)

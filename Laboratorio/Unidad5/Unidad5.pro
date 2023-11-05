@@ -5,12 +5,14 @@ CONFIG += c++17
 
 
 SOURCES += \
+    ghost.cpp \
     laberinto.cpp \
     main.cpp \
     pacman.cpp \
     videojuego.cpp
 
 HEADERS += \
+    ghost.h \
     laberinto.h \
     macros_videojuego.h \
     pacman.h \

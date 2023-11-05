@@ -1,0 +1,10 @@
+release/ghost.o
+release/laberinto.o
+release/main.o
+release/pacman.o
+release/videojuego.o
+release/qrc_recursos.o
+release/moc_ghost.o
+release/moc_laberinto.o
+release/moc_pacman.o
+release/moc_videojuego.o

@@ -5,12 +5,10 @@ pacman::pacman()
 
 }
 
-pacman::pacman(unsigned short vidas, unsigned short velocidad, unsigned int eje_X, unsigned int eje_Y)
+pacman::pacman(unsigned short vidas, unsigned short velocidad)
 {
     this->vidas = vidas;
     this->velocidad = velocidad;
-    this->eje_X = eje_X;
-    this->eje_Y = eje_Y;
 
     pacmanVivo = new QPixmap;
     pacmanMuerto = new QPixmap;
@@ -18,14 +16,14 @@ pacman::pacman(unsigned short vidas, unsigned short velocidad, unsigned int eje_
     audioVivo = new QSoundEffect;
 
 
-    timerPacman->start(1000/6);
+    timerPacman->start(1000/velocidad);
     connect(timerPacman, SIGNAL(timeout()), this, SLOT(animacion()));
-    setPos(eje_X, eje_Y);
     spritesPacman = ":/Recursos/Sprites/vivo.png";
     spritesPacmanM = ":/Recursos/Sprites/muerte.png";
     cambioSpriteVivo = 1;
     cambioSpriteMuerto = 1;
     separarSprites(spritesPacman, 1);
+    separarSprites(spritesPacmanM, 1);
 }
 
 pacman::~pacman()
@@ -48,7 +46,6 @@ void pacman::separarSprites(QString sprite, short int cantSprites)
         *pacmanMuerto = auxiliar.copy((cantSprites * basePacmanMuerto) - basePacmanMuerto, 0, basePacmanMuerto, basePacmanMuerto);
     }
 
-
 }
 
 void pacman::animacionVivo()
@@ -60,6 +57,7 @@ void pacman::animacionVivo()
     }
 
     separarSprites(spritesPacman, cambioSpriteVivo);
+
 
     setPixmap(*pacmanVivo);
     sfx(":/Recursos/Sonidos/vivo.wav");
@@ -95,7 +93,7 @@ void pacman::sfx(QString ruta)
 {
     audioVivo->setSource(QUrl::fromLocalFile(ruta));
     audioVivo->setVolume(0.1);
-    audioVivo->play();
+    //audioVivo->play();
 
 }
 

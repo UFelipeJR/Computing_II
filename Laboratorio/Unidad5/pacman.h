@@ -22,8 +22,6 @@ private:
 
     unsigned short int vidas;
     unsigned short int velocidad;
-    unsigned int eje_X;
-    unsigned int eje_Y;
 
     // Estados
     bool vivo = true;
@@ -47,9 +45,14 @@ private:
 
 public:
     pacman();
-    pacman(unsigned short int vidas,unsigned short int velocidad,unsigned int eje_X,unsigned int eje_Y);
+    pacman(unsigned short int vidas,unsigned short int velocidad);
     void separarSprites(QString sprite,short int cantSprites);
     ~pacman();
+
+    void sfx(QString ruta);
+    void animacionVivo();
+    void animacionM();
+
 
     //Getter and setter
     bool getVivo() const;
@@ -58,9 +61,7 @@ public:
     void setPowerUp(bool newPowerUp);
     bool getEstadoMovimiento() const;
     void setEstadoMovimiento(bool newEstadoMovimiento);
-    void sfx(QString ruta);
-    void animacionVivo();
-    void animacionM();
+
 
 private slots:
     void animacion();

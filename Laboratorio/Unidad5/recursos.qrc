@@ -6,5 +6,7 @@
         <file>Recursos/Sprites/muerte.png</file>
         <file>Recursos/Sonidos/muerto.wav</file>
         <file>Recursos/Sonidos/vivo.wav</file>
+        <file>Recursos/Sprites/cuerpoFantasma.png</file>
+        <file>Recursos/Sprites/ojosFantasma.png</file>
     </qresource>
 </RCC>
