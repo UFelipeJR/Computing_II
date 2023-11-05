@@ -67,6 +67,7 @@ void pacman::animacionM()
     if (cambioSpriteMuerto == 10) {
         cambioSpriteMuerto = 1;
         vivo = true;
+        setPos(-10, -23);
     } else {
         cambioSpriteMuerto++;
     }
@@ -76,6 +77,7 @@ void pacman::animacionM()
     estadoMovimiento = false;
 
 }
+
 
 void pacman::animacion()
 {

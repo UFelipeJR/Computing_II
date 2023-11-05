@@ -16,7 +16,7 @@ videojuego::videojuego(QWidget *parent) :
     QColor pinkyColor = QColor(239,176,198);
 
     // Personajes
-    pacMancito = new pacman(5, 7);
+    pacMancito = new pacman(5, 6);
     blinky = new ghost(defecto,blinkyColor,20);
     clyde = new ghost(defecto,clydeColor,20);
     inky = new ghost(defecto,inkyColor,20);
@@ -66,6 +66,8 @@ videojuego::videojuego(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(movimiento_Automatico()));
     timer->start(100);
 
+    //gen();
+
 
 }
 
@@ -88,8 +90,38 @@ videojuego::setCustomBackgroundColor(string color)
     QString comando = QString::fromStdString("background-color: "+color+";");
     setStyleSheet(comando);
 }
+/*
+void videojuego::gen()
+{
+    fstream archivo;
+    string ruta = "../Unidad5/Recursos/Archivos/archivo.txt";
+    archivo.open(ruta, ios::out);
 
+    QColor azul = QColor(0.866667, 0, 0.501961, 0.972549);
+    QColor defecto = QColor(0,0,0,0);
+    QImage original(":/Recursos/Archivos/laberinto.png");
+    QColor colorPixel;
 
+    string fila;
+
+    for(int i = 0; i<original.height(); i++){
+        fila = "";
+        for(int j = 0; j<original.width(); j++){
+            colorPixel = original.pixelColor(j,i);
+            if(colorPixel == azul){
+                 fila += "1";
+            }
+            else{
+                fila += "0";
+            }
+        }
+        fila += "\n";
+        archivo << fila;
+    }
+
+    archivo.close();
+}
+*/
 
 void videojuego::keyPressEvent(QKeyEvent *event)
 {
@@ -121,6 +153,10 @@ void videojuego::movimiento_Automatico()
 
     if(pacMancito->getVivo()){
         pacMancito->setEstadoMovimiento(true);
+        scene->addItem(blinky);
+        scene->addItem(pinky);
+        scene->addItem(clyde);
+        scene->addItem(inky);
     }
 
     if(direcciones == 0 && pacMancito->getEstadoMovimiento()){
@@ -156,7 +192,11 @@ void videojuego::movimiento_Automatico()
 
     if(!pacMancito->getVivo()){
         direcciones = -1;
-        pacMancito->setPos(-10,-23);
+        scene->removeItem(blinky);
+        scene->removeItem(pinky);
+        scene->removeItem(clyde);
+        scene->removeItem(inky);
+
     }
 
     qDebug() << "Coordenadas del sprite - x: " << pacMancito->x() << ", y: " << pacMancito->y();

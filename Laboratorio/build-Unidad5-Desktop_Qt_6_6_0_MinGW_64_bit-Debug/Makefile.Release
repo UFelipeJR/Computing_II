@@ -123,6 +123,7 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release/qrc_recursos.cpp
 release/qrc_recursos.cpp: ../Unidad5/recursos.qrc \
 		C:/Qt/6.6.0/mingw_64/bin/rcc.exe \
+		../Unidad5/Recursos/Archivos/laberinto.png \
 		../Unidad5/Recursos/Sprites/laberinto.png \
 		../Unidad5/Recursos/Sprites/vivo.png \
 		../Unidad5/Recursos/Sprites/cuerpoFantasma.png \
@@ -648,6 +649,17 @@ release/moc_pacman.cpp: ../Unidad5/pacman.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qaudio.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qurl.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QList \
+		../Unidad5/ghost.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QPainter \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qpainter.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qbrush.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontinfo.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qfont.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontmetrics.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QColor \
 		release/moc_predefs.h \
 		C:/Qt/6.6.0/mingw_64/bin/moc.exe
 	'C:\Qt\6.6.0\mingw_64\bin\moc.exe' $(DEFINES) --include 'C:/Users/jimen/Documents/UdeA/Informática II/Computing II/Laboratorio/build-Unidad5-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/release/moc_predefs.h' -IC:/Qt/6.6.0/mingw_64/mkspecs/win32-g++ -I'C:/Users/jimen/Documents/UdeA/Informática II/Computing II/Laboratorio/Unidad5' -IC:/Qt/6.6.0/mingw_64/include -IC:/Qt/6.6.0/mingw_64/include/QtMultimedia -IC:/Qt/6.6.0/mingw_64/include/QtWidgets -IC:/Qt/6.6.0/mingw_64/include/QtGui -IC:/Qt/6.6.0/mingw_64/include/QtNetwork -IC:/Qt/6.6.0/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ../Unidad5/pacman.h -o release/moc_pacman.cpp
@@ -865,10 +877,10 @@ release/moc_videojuego.cpp: ../Unidad5/videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qaudio.h \
-		../Unidad5/laberinto.h \
 		../Unidad5/ghost.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/QPainter \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/QColor \
+		../Unidad5/laberinto.h \
 		release/moc_predefs.h \
 		C:/Qt/6.6.0/mingw_64/bin/moc.exe
 	'C:\Qt\6.6.0\mingw_64\bin\moc.exe' $(DEFINES) --include 'C:/Users/jimen/Documents/UdeA/Informática II/Computing II/Laboratorio/build-Unidad5-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/release/moc_predefs.h' -IC:/Qt/6.6.0/mingw_64/mkspecs/win32-g++ -I'C:/Users/jimen/Documents/UdeA/Informática II/Computing II/Laboratorio/Unidad5' -IC:/Qt/6.6.0/mingw_64/include -IC:/Qt/6.6.0/mingw_64/include/QtMultimedia -IC:/Qt/6.6.0/mingw_64/include/QtWidgets -IC:/Qt/6.6.0/mingw_64/include/QtGui -IC:/Qt/6.6.0/mingw_64/include/QtNetwork -IC:/Qt/6.6.0/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ../Unidad5/videojuego.h -o release/moc_videojuego.cpp
@@ -1437,10 +1449,10 @@ release/main.o: ../Unidad5/main.cpp ../Unidad5/videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qaudio.h \
-		../Unidad5/laberinto.h \
 		../Unidad5/ghost.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/QPainter \
-		C:/Qt/6.6.0/mingw_64/include/QtGui/QColor
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QColor \
+		../Unidad5/laberinto.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/main.o ../Unidad5/main.cpp
 
 release/pacman.o: ../Unidad5/pacman.cpp ../Unidad5/pacman.h \
@@ -1616,7 +1628,18 @@ release/pacman.o: ../Unidad5/pacman.cpp ../Unidad5/pacman.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qaudio.h \
-		C:/Qt/6.6.0/mingw_64/include/QtCore/qurl.h
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qurl.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QList \
+		../Unidad5/ghost.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QPainter \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qpainter.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qtextoption.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qpen.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qbrush.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontinfo.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qfont.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontmetrics.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QColor
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/pacman.o ../Unidad5/pacman.cpp
 
 release/videojuego.o: ../Unidad5/videojuego.cpp ../Unidad5/videojuego.h \
@@ -1832,11 +1855,13 @@ release/videojuego.o: ../Unidad5/videojuego.cpp ../Unidad5/videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qaudio.h \
-		../Unidad5/laberinto.h \
 		../Unidad5/ghost.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/QPainter \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/QColor \
-		ui_videojuego.h
+		../Unidad5/laberinto.h \
+		ui_videojuego.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QVariant \
+		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/videojuego.o ../Unidad5/videojuego.cpp
 
 release/qrc_recursos.o: release/qrc_recursos.cpp 

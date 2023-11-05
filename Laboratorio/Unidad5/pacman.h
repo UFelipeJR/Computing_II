@@ -54,9 +54,6 @@ public:
     ~pacman();
 
     void sfx(QString ruta);
-    void animacionVivo();
-    void animacionM();
-
 
     //Getter and setter
     bool getVivo() const;
@@ -65,10 +62,12 @@ public:
     void setPowerUp(bool newPowerUp);
     bool getEstadoMovimiento() const;
     void setEstadoMovimiento(bool newEstadoMovimiento);
-
+    void animacionVivo();
+    void animacionM();
 
 private slots:
     void animacion();
+
 
 
 

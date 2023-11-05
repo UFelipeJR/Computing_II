@@ -18,6 +18,7 @@ private:
     QPixmap *Laberinto;
     QString archivoLaberinto;
     QTimer *timerLaberinto;
+    short int arregloColisiones[615][557];
 
 public:
     laberinto();
