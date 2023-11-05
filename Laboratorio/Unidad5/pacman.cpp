@@ -15,7 +15,6 @@ pacman::pacman(unsigned short vidas, unsigned short velocidad)
     timerPacman = new QTimer;
     audioVivo = new QSoundEffect;
 
-
     timerPacman->start(1000/velocidad);
     connect(timerPacman, SIGNAL(timeout()), this, SLOT(animacion()));
     spritesPacman = ":/Recursos/Sprites/vivo.png";
@@ -80,12 +79,21 @@ void pacman::animacionM()
 
 void pacman::animacion()
 {
+    colisionadores = collidingItems();
     if(vivo){
         animacionVivo();
+        for(int i = 0; i< colisionadores.size(); i++){
+            if(typeid(*colisionadores[i]) == typeid(ghost)){
+                vivo = false;
+                qDebug() << "Se ha colisionado un pacman con un fantasma";
+                return;
+            }
+        }
     }
     else{
         animacionM();
     }
+
 }
 
 
@@ -93,13 +101,13 @@ void pacman::sfx(QString ruta)
 {
     audioVivo->setSource(QUrl::fromLocalFile(ruta));
     audioVivo->setVolume(0.1);
-    //audioVivo->play();
+    audioVivo->play();
 
 }
 
 
 
-// Métodos getter and setter
+// Métodos getter y setter
 
 bool pacman::getVivo() const
 {

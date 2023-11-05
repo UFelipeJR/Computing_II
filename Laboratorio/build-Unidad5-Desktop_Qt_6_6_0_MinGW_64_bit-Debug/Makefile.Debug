@@ -324,6 +324,7 @@ debug/moc_ghost.cpp: ../Unidad5/ghost.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontinfo.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qfont.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontmetrics.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QColor \
 		debug/moc_predefs.h \
 		C:/Qt/6.6.0/mingw_64/bin/moc.exe
 	'C:\Qt\6.6.0\mingw_64\bin\moc.exe' $(DEFINES) --include 'C:/Users/jimen/Documents/UdeA/Informática II/Computing II/Laboratorio/build-Unidad5-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/debug/moc_predefs.h' -IC:/Qt/6.6.0/mingw_64/mkspecs/win32-g++ -I'C:/Users/jimen/Documents/UdeA/Informática II/Computing II/Laboratorio/Unidad5' -IC:/Qt/6.6.0/mingw_64/include -IC:/Qt/6.6.0/mingw_64/include/QtMultimedia -IC:/Qt/6.6.0/mingw_64/include/QtWidgets -IC:/Qt/6.6.0/mingw_64/include/QtGui -IC:/Qt/6.6.0/mingw_64/include/QtNetwork -IC:/Qt/6.6.0/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ../Unidad5/ghost.h -o debug/moc_ghost.cpp
@@ -1076,7 +1077,8 @@ debug/ghost.o: ../Unidad5/ghost.cpp ../Unidad5/ghost.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qbrush.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontinfo.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qfont.h \
-		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontmetrics.h
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontmetrics.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QColor
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/ghost.o ../Unidad5/ghost.cpp
 
 debug/laberinto.o: ../Unidad5/laberinto.cpp ../Unidad5/laberinto.h \

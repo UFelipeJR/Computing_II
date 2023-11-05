@@ -17,10 +17,10 @@ videojuego::videojuego(QWidget *parent) :
 
     // Personajes
     pacMancito = new pacman(5, 7);
-    blinky = new ghost(defecto,blinkyColor,7);
-    clyde = new ghost(defecto,clydeColor,7);
-    inky = new ghost(defecto,inkyColor,7);
-    pinky = new ghost(defecto,pinkyColor,7);
+    blinky = new ghost(defecto,blinkyColor,20);
+    clyde = new ghost(defecto,clydeColor,20);
+    inky = new ghost(defecto,inkyColor,20);
+    pinky = new ghost(defecto,pinkyColor,20);
     maze = new laberinto;
 
 
@@ -106,10 +106,6 @@ void videojuego::keyPressEvent(QKeyEvent *event)
 
     } else if (event->key() == Qt::Key_S) {
         direcciones = 3;
-    }
-    else if(event->key() == Qt::Key_Space){
-        qDebug() << "Se presiono espacio";
-        pacMancito->setVivo(false);
     }
 
 }

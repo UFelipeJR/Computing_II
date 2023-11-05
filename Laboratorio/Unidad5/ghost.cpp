@@ -44,7 +44,7 @@ void ghost::separarSprites(QString sprite1,QString sprite2,short int cantSprites
         *fantasmaVivo = auxiliar.copy((cantSprites*baseFantasma)-baseFantasma,0,baseFantasma,largoFantasma);
         *fantasmaOjos = auxiliar2.copy((cantSpritesOjos*baseFantasma)-baseFantasma,0,baseFantasma,largoFantasma);
     }
-    pintarFantasma();
+    //pintarFantasma();
 }
 
 void ghost::pintarFantasma()
@@ -67,14 +67,23 @@ void ghost::pintarFantasma()
 
 void ghost::animacionVivo()
 {
+    QPixmap fusion(*fantasmaVivo);
+    QPainter fusionador(&fusion);
+
+
     if (cambioSpriteVivo == 6) {
         cambioSpriteVivo = 1;
     } else {
         cambioSpriteVivo++;
     }
     separarSprites(spritesFantasma,spritesOjos,cambioSpriteVivo,cambioSpriteOjos);
+    pintarFantasma();
 
-    setPixmap(*fantasmaVivo);
+    fusionador.drawPixmap(0,0,*fantasmaOjos);
+    fusionador.end();
+
+    setPixmap(fusion);
+    //setPixmap(*fantasmaOjos);
 
 }
 

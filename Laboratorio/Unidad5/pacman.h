@@ -8,7 +8,8 @@
 #include <string.h>
 #include <QApplication>
 #include <QSoundEffect>
-
+#include <QList>
+#include "ghost.h"
 
 using namespace std;
 
@@ -41,6 +42,9 @@ private:
 
     //Sonidos
     QSoundEffect *audioVivo;
+
+    //Colisiones
+    QList <QGraphicsItem*> colisionadores;
 
 
 public:
