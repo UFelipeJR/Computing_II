@@ -128,6 +128,7 @@ debug/qrc_recursos.cpp: ../Unidad5/recursos.qrc \
 		../Unidad5/Recursos/Sprites/vivo.png \
 		../Unidad5/Recursos/Sprites/cuerpoFantasma.png \
 		../Unidad5/Recursos/Sprites/muerte.png \
+		../Unidad5/Recursos/Sprites/laberinto2.png \
 		../Unidad5/Recursos/Sprites/ojosFantasma.png \
 		../Unidad5/Recursos/Sonidos/vivo.wav \
 		../Unidad5/Recursos/Sonidos/muerto.wav \

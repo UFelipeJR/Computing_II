@@ -103,7 +103,7 @@ void pacman::sfx(QString ruta)
 {
     audioVivo->setSource(QUrl::fromLocalFile(ruta));
     audioVivo->setVolume(0.1);
-    audioVivo->play();
+    //audioVivo->play();
 
 }
 

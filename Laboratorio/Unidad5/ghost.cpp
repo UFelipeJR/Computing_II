@@ -22,6 +22,8 @@ ghost::ghost(const QColor &nativo, const QColor &modificado, unsigned short velo
     cambioSpriteVivo = 1;
     separarSprites(spritesFantasma,spritesOjos,1,1);
     pintarFantasma();
+
+    //gen();
 }
 
 ghost::~ghost()
@@ -83,7 +85,6 @@ void ghost::animacionVivo()
     fusionador.end();
 
     setPixmap(fusion);
-    //setPixmap(*fantasmaOjos);
 
 }
 

@@ -66,9 +66,6 @@ videojuego::videojuego(QWidget *parent) :
     connect(timer, SIGNAL(timeout()), this, SLOT(movimiento_Automatico()));
     timer->start(100);
 
-    //gen();
-
-
 }
 
 videojuego::~videojuego()
@@ -90,38 +87,6 @@ videojuego::setCustomBackgroundColor(string color)
     QString comando = QString::fromStdString("background-color: "+color+";");
     setStyleSheet(comando);
 }
-/*
-void videojuego::gen()
-{
-    fstream archivo;
-    string ruta = "../Unidad5/Recursos/Archivos/archivo.txt";
-    archivo.open(ruta, ios::out);
-
-    QColor azul = QColor(0.866667, 0, 0.501961, 0.972549);
-    QColor defecto = QColor(0,0,0,0);
-    QImage original(":/Recursos/Archivos/laberinto.png");
-    QColor colorPixel;
-
-    string fila;
-
-    for(int i = 0; i<original.height(); i++){
-        fila = "";
-        for(int j = 0; j<original.width(); j++){
-            colorPixel = original.pixelColor(j,i);
-            if(colorPixel == azul){
-                 fila += "1";
-            }
-            else{
-                fila += "0";
-            }
-        }
-        fila += "\n";
-        archivo << fila;
-    }
-
-    archivo.close();
-}
-*/
 
 void videojuego::keyPressEvent(QKeyEvent *event)
 {
@@ -139,17 +104,25 @@ void videojuego::keyPressEvent(QKeyEvent *event)
     } else if (event->key() == Qt::Key_S) {
         direcciones = 3;
     }
+    else if(event->key() == Qt::Key_Space){
+        direcciones = 40;
+    }
 
 }
 
 
 void videojuego::movimiento_Automatico()
 {
-    int cantPix = 10;
-    int minX = -258;
-    int maxX = 232;
-    int minY = -393;
-    int maxY = 155;
+    int cantPix = 12;
+    int cantPixAux = 0;
+    int minX = -255;
+    int maxX = 230;
+    int minY = -390;
+    int maxY = 152;
+
+    int x = 0;
+    int y = 0;
+
 
     if(pacMancito->getVivo()){
         pacMancito->setEstadoMovimiento(true);
@@ -159,34 +132,56 @@ void videojuego::movimiento_Automatico()
         scene->addItem(inky);
     }
 
-    if(direcciones == 0 && pacMancito->getEstadoMovimiento()){
+    if (direcciones == 0 && pacMancito->getEstadoMovimiento()) {
         if (pacMancito->x() - cantPix >= minX) {
             pacMancito->setRotation(180);
             pacMancito->setTransformOriginPoint(16, 16);
             pacMancito->moveBy(-cantPix, 0);
         }
-
+        else {
+            cantPixAux = pacMancito->x() - minX;
+            pacMancito->setRotation(180);
+            pacMancito->setTransformOriginPoint(16, 16);
+            pacMancito->moveBy(-cantPixAux, 0);
+        }
     }
-    else if(direcciones == 1 && pacMancito->getEstadoMovimiento()){
+    else if (direcciones == 1 && pacMancito->getEstadoMovimiento()) {
         if (pacMancito->y() - cantPix >= minY) {
             pacMancito->setRotation(-90);
             pacMancito->setTransformOriginPoint(16, 16);
             pacMancito->moveBy(0, -cantPix);
         }
-
+        else {
+            cantPixAux = pacMancito->y() - minY;
+            pacMancito->setRotation(-90);
+            pacMancito->setTransformOriginPoint(16, 16);
+            pacMancito->moveBy(0, -cantPixAux);
+        }
     }
-    else if(direcciones == 2 && pacMancito->getEstadoMovimiento()){
+    else if (direcciones == 2 && pacMancito->getEstadoMovimiento()) {
         if (pacMancito->x() + cantPix <= maxX) {
             pacMancito->setRotation(0);
             pacMancito->setTransformOriginPoint(16, 16);
             pacMancito->moveBy(cantPix, 0);
         }
+        else {
+            cantPixAux = maxX - pacMancito->x();
+            pacMancito->setRotation(0);
+            pacMancito->setTransformOriginPoint(16, 16);
+            pacMancito->moveBy(cantPixAux, 0);
+        }
     }
-    else if(direcciones == 3 && pacMancito->getEstadoMovimiento()){
+    else if (direcciones == 3 && pacMancito->getEstadoMovimiento()) {
         if (pacMancito->y() + cantPix <= maxY) {
             pacMancito->setRotation(90);
             pacMancito->setTransformOriginPoint(16, 16);
             pacMancito->moveBy(0, cantPix);
+        }
+        else {
+            cantPixAux = maxY - pacMancito->y();
+            pacMancito->setRotation(90);
+            pacMancito->setTransformOriginPoint(16, 16);
+            pacMancito->moveBy(0, cantPixAux);
         }
     }
 
@@ -199,9 +194,17 @@ void videojuego::movimiento_Automatico()
 
     }
 
-    qDebug() << "Coordenadas del sprite - x: " << pacMancito->x() << ", y: " << pacMancito->y();
+    //485
+    //542
 
+    qDebug() << "Coordenadas del sprite - x: " << pacMancito->x() << ", y: " << pacMancito->y();
+    x = (pacMancito->x()+255)/29;
+    y = (pacMancito->y()+390)/32;
+    qDebug() << "Coordenadas del spriteM - x: " << x << ", y: " << y ;
 }
+
+
+
 
 
 

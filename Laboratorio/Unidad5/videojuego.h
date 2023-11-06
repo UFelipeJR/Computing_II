@@ -7,7 +7,6 @@
 #include "laberinto.h"
 #include "ghost.h"
 #include <QColor>
-#include <fstream>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class videojuego; }
@@ -35,11 +34,11 @@ private:
     ghost *inky;
     ghost *pinky;
 
+
 public:
     videojuego(QWidget *parent = nullptr);
     ~videojuego();
     setCustomBackgroundColor(string color);
-    //void gen();
 
 public slots:
     void movimiento_Automatico();

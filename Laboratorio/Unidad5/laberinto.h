@@ -6,6 +6,9 @@
 #include <QGraphicsPixmapItem>
 #include <QTimer>
 #include <string.h>
+#include <fstream>
+#include <cmath>
+#include <iostream>
 
 using namespace std;
 
@@ -18,13 +21,18 @@ private:
     QPixmap *Laberinto;
     QString archivoLaberinto;
     QTimer *timerLaberinto;
-    short int arregloColisiones[615][557];
+    short int** arregloColisiones;
 
 public:
     laberinto();
     ~laberinto();
-
     void cargar_Sprite(QString sprite);
+
+    /*
+    void gen();
+    bool comprobarPos(short int x, short int y);
+    */
+
 
 private slots:
     void mostrar_Laberinto();
