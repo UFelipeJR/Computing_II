@@ -10,5 +10,6 @@
         <file>Recursos/Sprites/ojosFantasma.png</file>
         <file>Recursos/Archivos/laberinto.png</file>
         <file>Recursos/Sprites/laberinto2.png</file>
+        <file>Recursos/Archivos/laberintoRecortado.png</file>
     </qresource>
 </RCC>

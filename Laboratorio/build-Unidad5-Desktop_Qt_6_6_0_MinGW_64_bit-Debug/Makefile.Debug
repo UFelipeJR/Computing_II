@@ -124,6 +124,7 @@ compiler_rcc_clean:
 debug/qrc_recursos.cpp: ../Unidad5/recursos.qrc \
 		C:/Qt/6.6.0/mingw_64/bin/rcc.exe \
 		../Unidad5/Recursos/Archivos/laberinto.png \
+		../Unidad5/Recursos/Archivos/laberintoRecortado.png \
 		../Unidad5/Recursos/Sprites/laberinto.png \
 		../Unidad5/Recursos/Sprites/vivo.png \
 		../Unidad5/Recursos/Sprites/cuerpoFantasma.png \

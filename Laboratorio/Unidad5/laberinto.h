@@ -21,18 +21,16 @@ private:
     QPixmap *Laberinto;
     QString archivoLaberinto;
     QTimer *timerLaberinto;
-    short int** arregloColisiones;
+    QImage *LaberintoI;
+    //int colisiones[616][558];
+
 
 public:
     laberinto();
     ~laberinto();
     void cargar_Sprite(QString sprite);
-
-    /*
+    bool comprobarPosicion(int x, int y);
     void gen();
-    bool comprobarPos(short int x, short int y);
-    */
-
 
 private slots:
     void mostrar_Laberinto();

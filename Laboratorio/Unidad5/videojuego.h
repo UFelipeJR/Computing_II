@@ -24,7 +24,6 @@ private:
     QGraphicsView *view;
     QGraphicsScene *scene;
     QGraphicsRectItem *rect;
-    qreal scaleFactor;
     QTimer *timer;
 
     pacman *pacMancito;

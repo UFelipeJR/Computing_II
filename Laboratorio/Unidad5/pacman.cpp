@@ -98,7 +98,6 @@ void pacman::animacion()
 
 }
 
-
 void pacman::sfx(QString ruta)
 {
     audioVivo->setSource(QUrl::fromLocalFile(ruta));

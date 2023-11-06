@@ -3,67 +3,73 @@
 laberinto::laberinto()
 {
     Laberinto = new QPixmap;
+    LaberintoI = new QImage(":/Recursos/Archivos/laberinto.png");
     archivoLaberinto = ":/Recursos/Sprites/laberinto.png";
     timerLaberinto = new QTimer;
     connect(timerLaberinto, SIGNAL(timeout()), this, SLOT(mostrar_Laberinto()));
     timerLaberinto->start(1000/5);
-    //gen();
+    gen();
 }
 
 laberinto::~laberinto()
 {
     delete Laberinto;
     delete timerLaberinto;
-    //delete arregloColisiones;
+    delete LaberintoI;
 }
 
 void laberinto::cargar_Sprite(QString sprite)
 {
     QPixmap mapaAuxiliar;
+    qreal escala = 2.4;
     mapaAuxiliar.load(sprite);
-    *Laberinto = mapaAuxiliar;
+    QSize nuevaTaman(mapaAuxiliar.width() * escala, mapaAuxiliar.height() * escala);
+    QPixmap laberintoEscalado = mapaAuxiliar.scaled(nuevaTaman, Qt::KeepAspectRatio);
+    *Laberinto = laberintoEscalado;
+}
+
+
+bool laberinto::comprobarPosicion(int x, int y)
+{
+    if(colisiones[y][x] == 1){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+void laberinto::gen()
+{
+
+    QColor colorPixel;
+    QColor transparente(0,0,0,0);
+
+    for(int i = 0; i < LaberintoI->width();i++){
+        for(int j = 0; j < LaberintoI->height();j++){
+            colorPixel = LaberintoI->pixelColor(i, j);
+
+            if(colorPixel == transparente){
+                colisiones[i][j] = 1;
+            }
+            else{
+                colisiones[i][j] = 0;;
+            }
+        }
+    }
+
 }
 
 void laberinto::mostrar_Laberinto()
 {
     cargar_Sprite(archivoLaberinto);
     setPixmap(*Laberinto);
+    //listarColores();
 
 }
 
-/*
-void laberinto::gen()
-{
-
-    QColor azul = QColor(0.866667, 0, 0.501961, 0.972549);
-    QColor rosado = QColor(0.301961, 1, 0.631373, 0.803922);
-    QColor defecto = QColor(0,0,0,0);
-    QImage original(":/Recursos/Archivos/laberinto.png");
-    QColor colorPixel;
-
-    arregloColisiones = new short int*[original.height()];
-    for (int i = 0; i < original.height(); i++) {
-        arregloColisiones[i] = new short int[original.width()];
-    }
 
 
 
-    for(int i = 0; i<original.height(); i++){
-        for(int j = 0; j<original.width(); j++){
-            colorPixel = original.pixelColor(j,i);
-            if(colorPixel == azul){
-                 arregloColisiones[i][j] = 1;
-            }
-            else if(colorPixel == rosado){
-                arregloColisiones[i][j] = 1;
-            }
-            else{
-                arregloColisiones[i][j] = 0;
-            }
-        }
-    }
-
-}
-*/
 
 

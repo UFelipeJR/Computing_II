@@ -34,8 +34,11 @@ videojuego::videojuego(QWidget *parent) :
     sceneHeight = scene->height();
 
     // Escala de laberinto
+    /*
     scaleFactor = 2.4;
     maze->setScale(scaleFactor);
+    */
+
     maze->setPos(-275, -410);
 
     // Posiciones
@@ -55,6 +58,7 @@ videojuego::videojuego(QWidget *parent) :
 
     ui->main_scene->setScene(scene);
     setCustomBackgroundColor("black");
+
 
     this->setFixedSize(850,650);
     this->setWindowTitle("Pacman");
@@ -120,9 +124,9 @@ void videojuego::movimiento_Automatico()
     int minY = -390;
     int maxY = 152;
 
-    int x = 0;
-    int y = 0;
-
+    QPointF pacmanPosition = pacMancito->pos();
+    QPointF laberintoPosition = maze->pos();
+    QPointF posicionRelativa = pacmanPosition - laberintoPosition;
 
     if(pacMancito->getVivo()){
         pacMancito->setEstadoMovimiento(true);
@@ -138,12 +142,14 @@ void videojuego::movimiento_Automatico()
             pacMancito->setTransformOriginPoint(16, 16);
             pacMancito->moveBy(-cantPix, 0);
         }
+
         else {
             cantPixAux = pacMancito->x() - minX;
             pacMancito->setRotation(180);
             pacMancito->setTransformOriginPoint(16, 16);
             pacMancito->moveBy(-cantPixAux, 0);
         }
+
     }
     else if (direcciones == 1 && pacMancito->getEstadoMovimiento()) {
         if (pacMancito->y() - cantPix >= minY) {
@@ -151,12 +157,14 @@ void videojuego::movimiento_Automatico()
             pacMancito->setTransformOriginPoint(16, 16);
             pacMancito->moveBy(0, -cantPix);
         }
+
         else {
             cantPixAux = pacMancito->y() - minY;
             pacMancito->setRotation(-90);
             pacMancito->setTransformOriginPoint(16, 16);
             pacMancito->moveBy(0, -cantPixAux);
         }
+
     }
     else if (direcciones == 2 && pacMancito->getEstadoMovimiento()) {
         if (pacMancito->x() + cantPix <= maxX) {
@@ -164,12 +172,14 @@ void videojuego::movimiento_Automatico()
             pacMancito->setTransformOriginPoint(16, 16);
             pacMancito->moveBy(cantPix, 0);
         }
+
         else {
             cantPixAux = maxX - pacMancito->x();
             pacMancito->setRotation(0);
             pacMancito->setTransformOriginPoint(16, 16);
             pacMancito->moveBy(cantPixAux, 0);
         }
+
     }
     else if (direcciones == 3 && pacMancito->getEstadoMovimiento()) {
         if (pacMancito->y() + cantPix <= maxY) {
@@ -177,12 +187,14 @@ void videojuego::movimiento_Automatico()
             pacMancito->setTransformOriginPoint(16, 16);
             pacMancito->moveBy(0, cantPix);
         }
+
         else {
             cantPixAux = maxY - pacMancito->y();
             pacMancito->setRotation(90);
             pacMancito->setTransformOriginPoint(16, 16);
             pacMancito->moveBy(0, cantPixAux);
         }
+
     }
 
     if(!pacMancito->getVivo()){
@@ -194,14 +206,16 @@ void videojuego::movimiento_Automatico()
 
     }
 
-    //485
-    //542
-
     qDebug() << "Coordenadas del sprite - x: " << pacMancito->x() << ", y: " << pacMancito->y();
-    x = (pacMancito->x()+255)/29;
-    y = (pacMancito->y()+390)/32;
-    qDebug() << "Coordenadas del spriteM - x: " << x << ", y: " << y ;
+    qDebug() << "Posición relativa del personaje con respecto al fondo: " << posicionRelativa;
+    //qDebug() << "Coordenadas del spriteM - x: " << pacMancito->x()+255 << ", y: " << pacMancito->y()+390;
+    //qDebug() << maze->comprobarPosicion(pacMancito->x()+255,pacMancito->y()+390);
+    qDebug() << posicionRelativa.x();
+    qDebug() << posicionRelativa.y();
+    qDebug() << maze->comprobarPosicion(posicionRelativa.x(),posicionRelativa.y());
 }
+
+
 
 
 
