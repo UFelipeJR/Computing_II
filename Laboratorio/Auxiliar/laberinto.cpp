@@ -41,6 +41,11 @@ laberinto::laberinto()
             colisiones[i][j] = colisiones_temp[i][j];
         }
     }
+
+    nada = 30;
+    punto = 26;
+    puntoGrande = 27;
+
 }
 
 uint laberinto::getAncho()
@@ -56,6 +61,11 @@ uint laberinto::getLargo()
 unsigned int laberinto::bloque(int x, int y)
 {
     return colisiones[x][y];
+}
+
+bool laberinto::bloqueoEntidad(int x, int y)
+{
+    return colisiones[x][y] != nada && colisiones[x][y] != punto && colisiones[x][y] != puntoGrande;
 }
 
 

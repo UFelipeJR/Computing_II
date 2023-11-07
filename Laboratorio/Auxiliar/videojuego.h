@@ -27,6 +27,11 @@ private:
     QPixmap imagenLaberinto;
     QGraphicsPixmapItem* LaberintoPixmaItems[28][36];
 
+    ghost *blinky;
+    ghost *clyde;
+    ghost *inky;
+    ghost *pinky;
+
     int direcciones;
 public:
     videojuego(QWidget *parent = nullptr);
@@ -34,6 +39,7 @@ public:
     setCustomBackgroundColor(string color);
     void construirTablero();
     void renderizarTablero();
+    void dibujarCuadricula();
 
 public slots:
     void movimiento_Automatico();

@@ -21,11 +21,15 @@ private:
     static const uint ancho = 28;
     static const uint largo = 36;
     unsigned int colisiones[ancho][largo];
+    uint nada;
+    uint punto;
+    uint puntoGrande;
 
 public:
     laberinto();
 
     unsigned int bloque(int x, int y);
+    bool bloqueoEntidad(int x, int y);
 
 
     static uint getAncho();

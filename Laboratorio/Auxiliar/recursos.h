@@ -9,9 +9,7 @@
 #define baseFantasma 32
 #define largoFantasma 32
 
-
-
-#define alturaLaberinto 256
 #define constanteLaberinto 16
+#define tam_bloque 30
 
 #endif // RECURSOS_H

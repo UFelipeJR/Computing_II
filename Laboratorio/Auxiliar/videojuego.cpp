@@ -9,10 +9,23 @@ videojuego::videojuego(QWidget *parent) :
     ui->setupUi(this);
 
 
+    // Colores fantasmas
+    QColor defecto = QColor(255,255,255);
+    QColor blinkyColor = QColor(255,0,0);
+    QColor clydeColor = QColor(250,169,30);
+    QColor inkyColor = QColor(147,215,247);
+    QColor pinkyColor = QColor(239,176,198);
+
+
     maze = new laberinto;
     pacMancito = new pacman(5,6);
     view = new QGraphicsView(this);
     scene = new QGraphicsScene(this);
+    blinky = new ghost(defecto,blinkyColor,6);
+    clyde = new ghost(defecto,clydeColor,6);
+    inky = new ghost(defecto,inkyColor,6);
+    pinky = new ghost(defecto,pinkyColor,6);
+
     view->setScene(scene);
     setCentralWidget(view);
 
@@ -22,9 +35,19 @@ videojuego::videojuego(QWidget *parent) :
     construirTablero();
     renderizarTablero();
 
-    pacMancito->setPos(212,411);
-    pacMancito->setScale(0.8);
+    pacMancito->setPos(211,410.45);
+    blinky->setPos(211,218);
+    pinky->setPos(211,275);
+    clyde->setPos(242,275);
+    inky->setPos(180,275);
+
+    // Agregado de items
+
     scene->addItem(pacMancito);
+    scene->addItem(blinky);
+    scene->addItem(pinky);
+    scene->addItem(clyde);
+    scene->addItem(inky);
 
 
     ui->main_scene->setScene(scene);
@@ -37,6 +60,7 @@ videojuego::videojuego(QWidget *parent) :
     this->setFixedSize(850,650);
     this->setWindowTitle("Pacman");
 
+    //dibujarCuadricula();
 
 }
 
@@ -45,6 +69,10 @@ videojuego::~videojuego()
     delete maze;
     delete pacMancito;
     delete timer;
+    delete blinky;
+    delete clyde;
+    delete inky;
+    delete pinky;
 }
 
 
@@ -67,7 +95,10 @@ void videojuego::construirTablero()
             scene->addItem(LaberintoPixmaItems[i][j]);
         }
     }
+
 }
+
+
 
 void videojuego::renderizarTablero()
 {
@@ -77,6 +108,26 @@ void videojuego::renderizarTablero()
         }
     }
 }
+
+void videojuego::dibujarCuadricula() {
+    QPen redPen(Qt::red);
+
+    for (int i = 0; i < maze->getAncho(); i++) {
+        for (int j = 0; j < maze->getLargo(); j++) {
+
+            QGraphicsLineItem *lineHorizontal = new QGraphicsLineItem(i * constanteLaberinto, j * constanteLaberinto, (i + 1) * constanteLaberinto, j * constanteLaberinto);
+            lineHorizontal->setPen(redPen);
+            scene->addItem(lineHorizontal);
+
+            QGraphicsLineItem *lineVertical = new QGraphicsLineItem(i * constanteLaberinto, j * constanteLaberinto, i * constanteLaberinto, (j + 1) * constanteLaberinto);
+            lineVertical->setPen(redPen);
+            scene->addItem(lineVertical);
+        }
+    }
+}
+
+
+
 
 videojuego::setCustomBackgroundColor(string color)
 {
@@ -106,153 +157,90 @@ void videojuego::keyPressEvent(QKeyEvent *event)
 
 }
 
-/*
+
+
 void videojuego::movimiento_Automatico()
 {
-    int cantPix = 12;
+    int cantPix = 10;
     int cantPixAux = 0;
     int minX = -255;
     int maxX = 230;
     int minY = -390;
     int maxY = 152;
 
+    float laberintoX;
+    float laberintoY;
+
+    laberintoX = ((pacMancito->x()-1)/16)+1;
+    laberintoY = (pacMancito->y()+7)/16;
+
     if(pacMancito->getVivo()){
         pacMancito->setEstadoMovimiento(true);
-        //scene->addItem(blinky);
-        //scene->addItem(pinky);
-        //scene->addItem(clyde);
-        //scene->addItem(inky);
+        scene->addItem(blinky);
+        scene->addItem(pinky);
+        scene->addItem(clyde);
+        scene->addItem(inky);
     }
 
-    if (direcciones == 0 && pacMancito->getEstadoMovimiento()) {
-        if (pacMancito->x() - cantPix >= minX) {
-            pacMancito->setRotation(180);
-            pacMancito->setTransformOriginPoint(16, 16);
-            pacMancito->moveBy(-cantPix, 0);
-        }
+    // Izquierda
+    if (direcciones == 0 && pacMancito->getEstadoMovimiento() &&!maze->bloqueoEntidad(laberintoX-0.75,laberintoY)) {
 
-        else {
-            cantPixAux = pacMancito->x() - minX;
-            pacMancito->setRotation(180);
-            pacMancito->setTransformOriginPoint(16, 16);
-            pacMancito->moveBy(-cantPixAux, 0);
-        }
+        pacMancito->setRotation(180);
+        pacMancito->setTransformOriginPoint(13.5, 13.5);
+        pacMancito->moveBy(-cantPix, 0);
 
     }
-    else if (direcciones == 1 && pacMancito->getEstadoMovimiento()) {
-        if (pacMancito->y() - cantPix >= minY) {
-            pacMancito->setRotation(-90);
-            pacMancito->setTransformOriginPoint(16, 16);
-            pacMancito->moveBy(0, -cantPix);
-        }
 
-        else {
-            cantPixAux = pacMancito->y() - minY;
-            pacMancito->setRotation(-90);
-            pacMancito->setTransformOriginPoint(16, 16);
-            pacMancito->moveBy(0, -cantPixAux);
-        }
+    // Arriba
+    else if (direcciones == 1 && pacMancito->getEstadoMovimiento() && !maze->bloqueoEntidad(laberintoX,laberintoY-0.31249)) {
+
+        pacMancito->setRotation(-90);
+        pacMancito->setTransformOriginPoint(13.5, 13.5);
+        pacMancito->moveBy(0, -cantPix);
 
     }
-    else if (direcciones == 2 && pacMancito->getEstadoMovimiento()) {
-        if (pacMancito->x() + cantPix <= maxX) {
-            pacMancito->setRotation(0);
-            pacMancito->setTransformOriginPoint(16, 16);
-            pacMancito->moveBy(cantPix, 0);
-        }
 
-        else {
-            cantPixAux = maxX - pacMancito->x();
-            pacMancito->setRotation(0);
-            pacMancito->setTransformOriginPoint(16, 16);
-            pacMancito->moveBy(cantPixAux, 0);
-        }
+    // Derecha
+    else if (direcciones == 2 && pacMancito->getEstadoMovimiento() && !maze->bloqueoEntidad(laberintoX+0.375,laberintoY)) {
+        pacMancito->setRotation(0);
+        pacMancito->setTransformOriginPoint(13.5, 13.5);
+        pacMancito->moveBy(cantPix, 0);
+
 
     }
-    else if (direcciones == 3 && pacMancito->getEstadoMovimiento()) {
-        if (pacMancito->y() + cantPix <= maxY) {
-            pacMancito->setRotation(90);
-            pacMancito->setTransformOriginPoint(16, 16);
-            pacMancito->moveBy(0, cantPix);
-        }
 
-        else {
-            cantPixAux = maxY - pacMancito->y();
-            pacMancito->setRotation(90);
-            pacMancito->setTransformOriginPoint(16, 16);
-            pacMancito->moveBy(0, cantPixAux);
-        }
-
+    //Abajo
+    else if (direcciones == 3 && pacMancito->getEstadoMovimiento() && !maze->bloqueoEntidad(laberintoX,laberintoY+1.25)) {
+        pacMancito->setRotation(90);
+        pacMancito->setTransformOriginPoint(13.5, 13.5);
+        pacMancito->moveBy(0, cantPix);
     }
 
     if(!pacMancito->getVivo()){
         direcciones = -1;
-        //scene->removeItem(blinky);
-        //scene->removeItem(pinky);
-        //scene->removeItem(clyde);
-        //scene->removeItem(inky);
-
-    }
-}
-*/
-
-void videojuego::movimiento_Automatico()
-{
-    int cantPix = 8;
-    int cantPixAux = 0;
-    int minX = -255;
-    int maxX = 230;
-    int minY = -390;
-    int maxY = 152;
-
-    if(pacMancito->getVivo()){
-        pacMancito->setEstadoMovimiento(true);
-        //scene->addItem(blinky);
-        //scene->addItem(pinky);
-        //scene->addItem(clyde);
-        //scene->addItem(inky);
-    }
-
-    if (direcciones == 0 && pacMancito->getEstadoMovimiento()) {
-
-            pacMancito->setRotation(180);
-            pacMancito->setTransformOriginPoint(16, 16);
-            pacMancito->moveBy(-cantPix, 0);
-
-    }
-    else if (direcciones == 1 && pacMancito->getEstadoMovimiento()) {
-
-            pacMancito->setRotation(-90);
-            pacMancito->setTransformOriginPoint(16, 16);
-            pacMancito->moveBy(0, -cantPix);
-
-    }
-    else if (direcciones == 2 && pacMancito->getEstadoMovimiento()) {
-
-            pacMancito->setRotation(0);
-            pacMancito->setTransformOriginPoint(16, 16);
-            pacMancito->moveBy(cantPix, 0);
-
-
-    }
-    else if (direcciones == 3 && pacMancito->getEstadoMovimiento()) {
-            pacMancito->setRotation(90);
-            pacMancito->setTransformOriginPoint(16, 16);
-            pacMancito->moveBy(0, cantPix);
-    }
-
-    if(!pacMancito->getVivo()){
-        direcciones = -1;
-        //scene->removeItem(blinky);
-        //scene->removeItem(pinky);
-        //scene->removeItem(clyde);
-        //scene->removeItem(inky);
+        scene->removeItem(blinky);
+        scene->removeItem(pinky);
+        scene->removeItem(clyde);
+        scene->removeItem(inky);
 
     }
 
-    qDebug() << "Coordenadas del sprite - x: " << int(pacMancito->x()*0.8) << ", y: " << int(pacMancito->y()*0.8);
+
+    qDebug() << "Aproximacion:" << laberintoX << " " << laberintoY;
+
+    qDebug() << "DEBUG";
+    qDebug() << "Obstaculo izquierda" << maze->bloqueoEntidad(laberintoX-0.75,laberintoY);
+    qDebug() << "Obstaculo derecha" << maze->bloqueoEntidad(laberintoX+0.375,laberintoY);
+    qDebug() << "Obstaculo arriba" << maze->bloqueoEntidad(laberintoX,laberintoY-0.31249);
+    qDebug() << "Obstaculo abajo" << maze->bloqueoEntidad(laberintoX,laberintoY+1.25);
 
 }
+
+
+
+
+
+
 
 
 

@@ -41,7 +41,7 @@ private:
     QString spritesPacmanM;
 
     //Sonidos
-    QSoundEffect *audioVivo;
+    QSoundEffect *audio;
 
     //Colisiones
     QList <QGraphicsItem*> colisionadores;
