@@ -124,16 +124,12 @@ void videojuego::movimiento_Automatico()
     int minY = -390;
     int maxY = 152;
 
-    QPointF pacmanPosition = pacMancito->pos();
-    QPointF laberintoPosition = maze->pos();
-    QPointF posicionRelativa = pacmanPosition - laberintoPosition;
-
     if(pacMancito->getVivo()){
         pacMancito->setEstadoMovimiento(true);
-        scene->addItem(blinky);
-        scene->addItem(pinky);
-        scene->addItem(clyde);
-        scene->addItem(inky);
+        //scene->addItem(blinky);
+        //scene->addItem(pinky);
+        //scene->addItem(clyde);
+        //scene->addItem(inky);
     }
 
     if (direcciones == 0 && pacMancito->getEstadoMovimiento()) {
@@ -199,20 +195,12 @@ void videojuego::movimiento_Automatico()
 
     if(!pacMancito->getVivo()){
         direcciones = -1;
-        scene->removeItem(blinky);
-        scene->removeItem(pinky);
-        scene->removeItem(clyde);
-        scene->removeItem(inky);
+        //scene->removeItem(blinky);
+        //scene->removeItem(pinky);
+        //scene->removeItem(clyde);
+        //scene->removeItem(inky);
 
     }
-
-    qDebug() << "Coordenadas del sprite - x: " << pacMancito->x() << ", y: " << pacMancito->y();
-    qDebug() << "Posición relativa del personaje con respecto al fondo: " << posicionRelativa;
-    //qDebug() << "Coordenadas del spriteM - x: " << pacMancito->x()+255 << ", y: " << pacMancito->y()+390;
-    //qDebug() << maze->comprobarPosicion(pacMancito->x()+255,pacMancito->y()+390);
-    qDebug() << posicionRelativa.x();
-    qDebug() << posicionRelativa.y();
-    qDebug() << maze->comprobarPosicion(posicionRelativa.x(),posicionRelativa.y());
 }
 
 

@@ -8,7 +8,6 @@ laberinto::laberinto()
     timerLaberinto = new QTimer;
     connect(timerLaberinto, SIGNAL(timeout()), this, SLOT(mostrar_Laberinto()));
     timerLaberinto->start(1000/5);
-    gen();
 }
 
 laberinto::~laberinto()
@@ -29,36 +28,7 @@ void laberinto::cargar_Sprite(QString sprite)
 }
 
 
-bool laberinto::comprobarPosicion(int x, int y)
-{
-    if(colisiones[y][x] == 1){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
 
-void laberinto::gen()
-{
-
-    QColor colorPixel;
-    QColor transparente(0,0,0,0);
-
-    for(int i = 0; i < LaberintoI->width();i++){
-        for(int j = 0; j < LaberintoI->height();j++){
-            colorPixel = LaberintoI->pixelColor(i, j);
-
-            if(colorPixel == transparente){
-                colisiones[i][j] = 1;
-            }
-            else{
-                colisiones[i][j] = 0;;
-            }
-        }
-    }
-
-}
 
 void laberinto::mostrar_Laberinto()
 {
