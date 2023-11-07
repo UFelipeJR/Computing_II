@@ -1,7 +1,7 @@
 #ifndef GHOST_H
 #define GHOST_H
 
-#include <macros_videojuego.h>
+#include <recursos.h>
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QTimer>

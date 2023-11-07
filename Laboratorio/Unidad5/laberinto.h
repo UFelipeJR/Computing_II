@@ -1,7 +1,7 @@
 #ifndef LABERINTO_H
 #define LABERINTO_H
 
-#include <macros_videojuego.h>
+#include <recursos.h>
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
@@ -9,6 +9,7 @@
 #include <fstream>
 #include <cmath>
 #include <iostream>
+#include <Qpainter>
 
 using namespace std;
 
@@ -17,25 +18,22 @@ class laberinto : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 
 private:
-
-    QPixmap *Laberinto;
-    QString archivoLaberinto;
-    QTimer *timerLaberinto;
-    QImage *LaberintoI;
-    //int colisiones[616][558];
-
+    static const uint ancho = 28;
+    static const uint largo = 36;
+    unsigned int colisiones[ancho][largo];
+    uint nada;
+    uint punto;
+    uint puntoGrande;
 
 public:
     laberinto();
-    ~laberinto();
-    void cargar_Sprite(QString sprite);
-    bool comprobarPosicion(int x, int y);
-    void gen();
 
-private slots:
-    void mostrar_Laberinto();
+    unsigned int bloque(int x, int y);
+    bool bloqueoEntidad(int x, int y);
 
 
+    static uint getAncho();
+    static uint getLargo();
 };
 
 #endif

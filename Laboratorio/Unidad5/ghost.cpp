@@ -69,6 +69,7 @@ void ghost::pintarFantasma()
 
 void ghost::animacionVivo()
 {
+    const float escala = 0.84375;
     QPixmap fusion(*fantasmaVivo);
     QPainter fusionador(&fusion);
 
@@ -83,6 +84,8 @@ void ghost::animacionVivo()
 
     fusionador.drawPixmap(0,0,*fantasmaOjos);
     fusionador.end();
+
+    fusion = fusion.scaled(fusion.width() * escala,fusion.height() * escala);
 
     setPixmap(fusion);
 

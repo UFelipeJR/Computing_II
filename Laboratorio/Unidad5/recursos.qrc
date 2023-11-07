@@ -11,5 +11,6 @@
         <file>Recursos/Archivos/laberinto.png</file>
         <file>Recursos/Sprites/laberinto2.png</file>
         <file>Recursos/Archivos/laberintoRecortado.png</file>
+        <file>Recursos/Sprites/labyrinth.png</file>
     </qresource>
 </RCC>

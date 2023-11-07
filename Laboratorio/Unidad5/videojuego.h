@@ -3,10 +3,9 @@
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
 #include <QKeyEvent>
-#include "pacman.h"
 #include "laberinto.h"
-#include "ghost.h"
 #include <QColor>
+#include <pacman.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class videojuego; }
@@ -17,33 +16,38 @@ class videojuego : public QMainWindow
     Q_OBJECT
 
 private:
-    int sceneWidth;
-    int sceneHeight;
-    int direcciones;
     Ui::videojuego *ui;
     QGraphicsView *view;
     QGraphicsScene *scene;
-    QGraphicsRectItem *rect;
-    QTimer *timer;
 
     pacman *pacMancito;
-    laberinto *maze;
+    laberinto* maze;
+    QTimer *timer;
+    QPixmap arregloLaberinto[32];
+    QPixmap imagenLaberinto;
+    QGraphicsPixmapItem* LaberintoPixmaItems[28][36];
+
     ghost *blinky;
     ghost *clyde;
     ghost *inky;
     ghost *pinky;
 
+    int direcciones;
+    float laberintoX;
+    float laberintoY;
 
 public:
     videojuego(QWidget *parent = nullptr);
     ~videojuego();
     setCustomBackgroundColor(string color);
+    void construirTablero();
+    void renderizarTablero();
+    void dibujarCuadricula();
 
 public slots:
     void movimiento_Automatico();
 
 protected:
     void keyPressEvent(QKeyEvent *event);
-
 
 };

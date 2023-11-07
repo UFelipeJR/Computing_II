@@ -14,8 +14,8 @@ SOURCES += \
 HEADERS += \
     ghost.h \
     laberinto.h \
-    macros_videojuego.h \
     pacman.h \
+    recursos.h \
     videojuego.h
 
 FORMS += \

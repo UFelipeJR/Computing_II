@@ -1,7 +1,7 @@
 #ifndef PACMAN_H
 #define PACMAN_H
 
-#include <macros_videojuego.h>
+#include <recursos.h>
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
@@ -41,7 +41,7 @@ private:
     QString spritesPacmanM;
 
     //Sonidos
-    QSoundEffect *audioVivo;
+    QSoundEffect *audio;
 
     //Colisiones
     QList <QGraphicsItem*> colisionadores;
