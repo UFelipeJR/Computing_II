@@ -45,6 +45,7 @@ laberinto::laberinto()
     nada = 30;
     punto = 26;
     puntoGrande = 27;
+    puntaje = 0;
 
 }
 
@@ -68,6 +69,18 @@ bool laberinto::bloqueoEntidad(int x, int y)
     return colisiones[x][y] != nada && colisiones[x][y] != punto && colisiones[x][y] != puntoGrande;
 }
 
+void laberinto::comerPunto(int x, int y)
+{
+    if(colisiones[x][y] == 26){
+        colisiones[x][y] = 30;
+        puntaje += 5;
+    }
+}
+
+uint laberinto::getPuntaje() const
+{
+    return puntaje;
+}
 
 
 

@@ -2,6 +2,22 @@
 
 pacman::pacman()
 {
+    this->vidas = 5;
+    this->velocidad = 6;
+
+    pacmanVivo = new QPixmap;
+    pacmanMuerto = new QPixmap;
+    timerPacman = new QTimer;
+    audio = new QSoundEffect;
+
+    timerPacman->start(1000/velocidad);
+    connect(timerPacman, SIGNAL(timeout()), this, SLOT(animacion()));
+    spritesPacman = ":/Recursos/Sprites/vivo.png";
+    spritesPacmanM = ":/Recursos/Sprites/muerte.png";
+    cambioSpriteVivo = 1;
+    cambioSpriteMuerto = 1;
+    separarSprites(spritesPacman, 1);
+    separarSprites(spritesPacmanM, 1);
 
 }
 
@@ -110,7 +126,6 @@ void pacman::sfx(QString ruta)
     audio->setSource(QUrl::fromLocalFile(ruta));
     audio->setVolume(0.1);
     //audio->play();
-
 }
 
 

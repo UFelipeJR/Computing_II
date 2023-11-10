@@ -18,7 +18,7 @@ videojuego::videojuego(QWidget *parent) :
 
 
     maze = new laberinto;
-    pacMancito = new pacman(5,15);
+    pacMancito = new pacman(5,6);
     view = new QGraphicsView(this);
     scene = new QGraphicsScene(this);
     blinky = new ghost(defecto,blinkyColor,6);
@@ -54,6 +54,7 @@ videojuego::videojuego(QWidget *parent) :
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(movimiento_Automatico()));
+    connect(timer, SIGNAL(timeout()), this, SLOT(movimiento_blinky()));
     timer->start(100);
 
     direcciones = -1;
@@ -61,8 +62,8 @@ videojuego::videojuego(QWidget *parent) :
     this->setWindowTitle("Pacman");
     scene->setSceneRect(0, 0, maze->getAncho() * constanteLaberinto, maze->getLargo() * constanteLaberinto);
 
-    laberintoX = 0.0;
-    laberintoY = 0.0;
+    pacmanLaberintoX = 0.0;
+    pacmanLaberintoY = 0.0;
 
     //dibujarCuadricula();
 
@@ -131,126 +132,41 @@ void videojuego::dibujarCuadricula() {
 }
 
 
-
-
 videojuego::setCustomBackgroundColor(string color)
 {
     QString comando = QString::fromStdString("background-color: "+color+";");
     setStyleSheet(comando);
 }
 
-
-/*
-void videojuego::keyPressEvent(QKeyEvent *event)
+void videojuego::posRelativa()
 {
-    if (event->key() == Qt::Key_A) {
-        direcciones = 0;
-
-    } else if (event->key() == Qt::Key_W) {
-        direcciones = 1;
-
-    } else if (event->key() == Qt::Key_D) {
-        direcciones = 2;
-
-    } else if (event->key() == Qt::Key_S) {
-        direcciones = 3;
-    }
-    else if(event->key() == Qt::Key_Space){
-        direcciones = 40;
-    }
-
+    pacmanLaberintoX = ((pacMancito->x()-1)/constanteLaberinto)+1;
+    pacmanLaberintoY = (pacMancito->y()+7)/constanteLaberinto;
+    blinkyLaberintoX = ((blinky->x()-1)/constanteLaberinto)+1;
+    blinkyLaberintoY = (blinky->y()+7)/constanteLaberinto;
 }
-*/
-
-/*
-void videojuego::movimiento_Automatico()
-{
-    int cantPix = 8;
-    int cantPixAux = 0;
-
-
-    laberintoX = ((pacMancito->x()-1)/16)+1;
-    laberintoY = (pacMancito->y()+7)/16;
-
-    if(pacMancito->getVivo()){
-        pacMancito->setEstadoMovimiento(true);
-        scene->addItem(blinky);
-        scene->addItem(pinky);
-        scene->addItem(clyde);
-        scene->addItem(inky);
-    }
-
-    // Izquierda
-    if (direcciones == 0 && pacMancito->getEstadoMovimiento() &&!maze->bloqueoEntidad(laberintoX-0.75,laberintoY)) {
-        pacMancito->setRotation(180);
-        pacMancito->setTransformOriginPoint(13.5, 13.5);
-        pacMancito->moveBy(-cantPix, 0);
-
-    }
-
-    // Arriba
-    else if (direcciones == 1 && pacMancito->getEstadoMovimiento() && !maze->bloqueoEntidad(laberintoX,laberintoY-0.31249)) {
-
-        pacMancito->setRotation(-90);
-        pacMancito->setTransformOriginPoint(13.5, 13.5);
-        pacMancito->moveBy(0, -cantPix);
-
-    }
-
-    // Derecha
-    else if (direcciones == 2 && pacMancito->getEstadoMovimiento() && !maze->bloqueoEntidad(laberintoX+0.375,laberintoY)) {
-        pacMancito->setRotation(0);
-        pacMancito->setTransformOriginPoint(13.5, 13.5);
-        pacMancito->moveBy(cantPix, 0);
-
-
-    }
-
-    //Abajo
-    else if (direcciones == 3 && pacMancito->getEstadoMovimiento() && !maze->bloqueoEntidad(laberintoX,laberintoY+1.25)) {
-        pacMancito->setRotation(90);
-        pacMancito->setTransformOriginPoint(13.5, 13.5);
-        pacMancito->moveBy(0, cantPix);
-    }
-
-
-    if(!pacMancito->getVivo()){
-        direcciones = -1;
-        scene->removeItem(blinky);
-        scene->removeItem(pinky);
-        scene->removeItem(clyde);
-        scene->removeItem(inky);
-
-    }
-
-
-    qDebug() << "Aproximacion:" << laberintoX << " " << laberintoY;
-
-    qDebug() << "DEBUG";
-    qDebug() << "Obstaculo izquierda" << maze->bloqueoEntidad(laberintoX-0.75,laberintoY);
-    qDebug() << "Obstaculo derecha" << maze->bloqueoEntidad(laberintoX+0.375,laberintoY);
-    qDebug() << "Obstaculo arriba" << maze->bloqueoEntidad(laberintoX,laberintoY-0.31249);
-    qDebug() << "Obstaculo abajo" << maze->bloqueoEntidad(laberintoX,laberintoY+1.25);
-
-}
-*/
 
 void videojuego::keyPressEvent(QKeyEvent *event)
 {
+    const float izquierda = -0.75;
+    const float arriba = -0.12499;
+    const float derecha = 0.375;
+    const float abajo = 1.125;
+
     if (event->key() == Qt::Key_A) {
-        if (!maze->bloqueoEntidad(laberintoX-0.75, laberintoY)) {
+        if (!maze->bloqueoEntidad(pacmanLaberintoX+izquierda, pacmanLaberintoY)) {
             direcciones = 0;
         }
     } else if (event->key() == Qt::Key_W) {
-        if (!maze->bloqueoEntidad(laberintoX, laberintoY-0.31249)) {
+        if (!maze->bloqueoEntidad(pacmanLaberintoX, pacmanLaberintoY+arriba)) {
             direcciones = 1;
         }
     } else if (event->key() == Qt::Key_D) {
-        if (!maze->bloqueoEntidad(laberintoX+0.375, laberintoY)) {
+        if (!maze->bloqueoEntidad(pacmanLaberintoX+derecha, pacmanLaberintoY)) {
             direcciones = 2;
         }
     } else if (event->key() == Qt::Key_S) {
-        if (!maze->bloqueoEntidad(laberintoX, laberintoY+1.25)) {
+        if (!maze->bloqueoEntidad(pacmanLaberintoX, pacmanLaberintoY+abajo)) {
             direcciones = 3;
         }
     } else if (event->key() == Qt::Key_Space) {
@@ -261,11 +177,13 @@ void videojuego::keyPressEvent(QKeyEvent *event)
 void videojuego::movimiento_Automatico()
 {
     int cantPix = 8;
-    int cantPixAux = 0;
+    float izquierda = -0.75;
+    float arriba = -0.12499;
+    float derecha = 0.375;
+    float abajo = 1.125;
+    posRelativa();
 
 
-    laberintoX = ((pacMancito->x()-1)/16)+1;
-    laberintoY = (pacMancito->y()+7)/16;
 
     if(pacMancito->getVivo()){
         pacMancito->setEstadoMovimiento(true);
@@ -276,7 +194,7 @@ void videojuego::movimiento_Automatico()
     }
 
     // Izquierda
-    if (direcciones == 0 && pacMancito->getEstadoMovimiento() &&!maze->bloqueoEntidad(laberintoX-0.75,laberintoY)) {
+    if (direcciones == 0 && pacMancito->getEstadoMovimiento() &&!maze->bloqueoEntidad(pacmanLaberintoX+izquierda,pacmanLaberintoY)) {
         pacMancito->setRotation(180);
         pacMancito->setTransformOriginPoint(13.5, 13.5);
         pacMancito->moveBy(-cantPix, 0);
@@ -284,7 +202,7 @@ void videojuego::movimiento_Automatico()
     }
 
     // Arriba
-    else if (direcciones == 1 && pacMancito->getEstadoMovimiento() && !maze->bloqueoEntidad(laberintoX,laberintoY-0.31249)) {
+    else if (direcciones == 1 && pacMancito->getEstadoMovimiento()&& !maze->bloqueoEntidad(pacmanLaberintoX,pacmanLaberintoY+arriba)) {
 
         pacMancito->setRotation(-90);
         pacMancito->setTransformOriginPoint(13.5, 13.5);
@@ -293,7 +211,7 @@ void videojuego::movimiento_Automatico()
     }
 
     // Derecha
-    else if (direcciones == 2 && pacMancito->getEstadoMovimiento() && !maze->bloqueoEntidad(laberintoX+0.375,laberintoY)) {
+    else if (direcciones == 2 && pacMancito->getEstadoMovimiento()&& !maze->bloqueoEntidad(pacmanLaberintoX+derecha,pacmanLaberintoY)) {
         pacMancito->setRotation(0);
         pacMancito->setTransformOriginPoint(13.5, 13.5);
         pacMancito->moveBy(cantPix, 0);
@@ -302,7 +220,7 @@ void videojuego::movimiento_Automatico()
     }
 
     //Abajo
-    else if (direcciones == 3 && pacMancito->getEstadoMovimiento() && !maze->bloqueoEntidad(laberintoX,laberintoY+1.25)) {
+    else if (direcciones == 3 && pacMancito->getEstadoMovimiento()&& !maze->bloqueoEntidad(pacmanLaberintoX,pacmanLaberintoY+abajo)) {
         pacMancito->setRotation(90);
         pacMancito->setTransformOriginPoint(13.5, 13.5);
         pacMancito->moveBy(0, cantPix);
@@ -318,17 +236,21 @@ void videojuego::movimiento_Automatico()
 
     }
 
-
-    qDebug() << "Aproximacion:" << laberintoX << " " << laberintoY;
+    maze->comerPunto(pacmanLaberintoX,pacmanLaberintoY);
+    renderizarTablero();
 
     qDebug() << "DEBUG";
-    qDebug() << "Obstaculo izquierda" << maze->bloqueoEntidad(laberintoX-0.75,laberintoY);
-    qDebug() << "Obstaculo derecha" << maze->bloqueoEntidad(laberintoX+0.375,laberintoY);
-    qDebug() << "Obstaculo arriba" << maze->bloqueoEntidad(laberintoX,laberintoY-0.31249);
-    qDebug() << "Obstaculo abajo" << maze->bloqueoEntidad(laberintoX,laberintoY+1.25);
+    qDebug() << "EL puntaje actual es: " << maze->getPuntaje();
+
 
 }
 
+
+void videojuego::movimiento_blinky()
+{
+    qDebug() << "Aproximacion pacman:" << pacmanLaberintoX << " " << pacmanLaberintoY;
+    qDebug() << "Aproximacion fantasma:" << blinkyLaberintoX << " " << blinkyLaberintoY;
+}
 
 
 

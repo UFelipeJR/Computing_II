@@ -24,16 +24,18 @@ private:
     uint nada;
     uint punto;
     uint puntoGrande;
+    uint puntaje;
 
 public:
     laberinto();
 
     unsigned int bloque(int x, int y);
     bool bloqueoEntidad(int x, int y);
-
-
+    void comerPunto(int x, int y);
     static uint getAncho();
     static uint getLargo();
+
+    uint getPuntaje() const;
 };
 
 #endif

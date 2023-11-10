@@ -10,6 +10,7 @@
 #include <QSoundEffect>
 #include <QList>
 #include "ghost.h"
+#include <QtMultimedia/QMediaPlayer>
 
 using namespace std;
 
@@ -45,6 +46,7 @@ private:
 
     //Colisiones
     QList <QGraphicsItem*> colisionadores;
+
 
 
 public:

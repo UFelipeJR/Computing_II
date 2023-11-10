@@ -33,8 +33,11 @@ private:
     ghost *pinky;
 
     int direcciones;
-    float laberintoX;
-    float laberintoY;
+    float pacmanLaberintoX;
+    float pacmanLaberintoY;
+    float blinkyLaberintoX;
+    float blinkyLaberintoY;
+
 
 public:
     videojuego(QWidget *parent = nullptr);
@@ -43,9 +46,11 @@ public:
     void construirTablero();
     void renderizarTablero();
     void dibujarCuadricula();
+    void posRelativa();
 
 public slots:
     void movimiento_Automatico();
+    void movimiento_blinky();
 
 protected:
     void keyPressEvent(QKeyEvent *event);
