@@ -31,7 +31,7 @@ public:
 
     unsigned int bloque(int x, int y);
     bool bloqueoEntidad(int x, int y);
-    void comerPunto(int x, int y);
+    bool comerPunto(int x, int y);
     static uint getAncho();
     static uint getLargo();
 

@@ -78,7 +78,6 @@ void pacman::animacionVivo()
     *pacmanVivo = pacmanVivo->scaled(pacmanVivo->width() * escala, pacmanVivo->height() * escala);
 
     setPixmap(*pacmanVivo);
-    sfx(":/Recursos/Sonidos/vivo.wav");
 }
 
 
@@ -96,7 +95,6 @@ void pacman::animacionM()
     separarSprites(spritesPacmanM,cambioSpriteMuerto);
     *pacmanMuerto = pacmanMuerto->scaled(pacmanMuerto->width() * escala, pacmanMuerto->height()*escala);
     setPixmap(*pacmanMuerto);
-    sfx(":/Recursos/Sonidos/muerto.wav");
     estadoMovimiento = false;
 
 }
@@ -111,6 +109,7 @@ void pacman::animacion()
             if(typeid(*colisionadores[i]) == typeid(ghost)){
                 vivo = false;
                 qDebug() << "Se ha colisionado un pacman con un fantasma";
+                sfx(":/Recursos/Sonidos/muerto.wav");
                 return;
             }
         }
@@ -125,7 +124,7 @@ void pacman::sfx(QString ruta)
 {
     audio->setSource(QUrl::fromLocalFile(ruta));
     audio->setVolume(0.1);
-    //audio->play();
+    audio->play();
 }
 
 

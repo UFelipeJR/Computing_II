@@ -198,7 +198,6 @@ void videojuego::movimiento_Automatico()
         pacMancito->setRotation(180);
         pacMancito->setTransformOriginPoint(13.5, 13.5);
         pacMancito->moveBy(-cantPix, 0);
-
     }
 
     // Arriba
@@ -236,7 +235,12 @@ void videojuego::movimiento_Automatico()
 
     }
 
-    maze->comerPunto(pacmanLaberintoX,pacmanLaberintoY);
+
+    if(maze->comerPunto(pacmanLaberintoX,pacmanLaberintoY) && pacMancito->getVivo()){
+        pacMancito->sfx(":/Recursos/Sonidos/vivo.wav");
+    }
+
+
     renderizarTablero();
 
     qDebug() << "DEBUG";
