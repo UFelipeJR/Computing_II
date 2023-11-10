@@ -12,5 +12,6 @@
         <file>Recursos/Sprites/labyrinth.png</file>
         <file>Recursos/Sonidos/vivo.wav</file>
         <file>Recursos/Sonidos/muerto.wav</file>
+        <file>Recursos/Fuentes/arcadepi.ttf</file>
     </qresource>
 </RCC>

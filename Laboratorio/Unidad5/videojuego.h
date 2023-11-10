@@ -6,6 +6,10 @@
 #include "laberinto.h"
 #include <QColor>
 #include <pacman.h>
+#include <QLabel>
+#include <QFontDatabase>
+#include <cstdlib>
+#include <ctime>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class videojuego; }
@@ -26,6 +30,7 @@ private:
     QPixmap arregloLaberinto[32];
     QPixmap imagenLaberinto;
     QGraphicsPixmapItem* LaberintoPixmaItems[28][36];
+    QGraphicsTextItem* texto;
 
     ghost *blinky;
     ghost *clyde;
@@ -38,6 +43,8 @@ private:
     float blinkyLaberintoX;
     float blinkyLaberintoY;
 
+    string textoPuntaje;
+
 
 public:
     videojuego(QWidget *parent = nullptr);
@@ -47,6 +54,8 @@ public:
     void renderizarTablero();
     void dibujarCuadricula();
     void posRelativa();
+    void actualizarTexto();
+    void tp();
 
 public slots:
     void movimiento_Automatico();

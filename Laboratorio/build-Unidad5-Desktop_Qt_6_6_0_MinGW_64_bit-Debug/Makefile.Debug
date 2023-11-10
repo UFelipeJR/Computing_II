@@ -123,6 +123,7 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug/qrc_recursos.cpp
 debug/qrc_recursos.cpp: ../Unidad5/recursos.qrc \
 		C:/Qt/6.6.0/mingw_64/bin/rcc.exe \
+		../Unidad5/Recursos/Fuentes/arcadepi.ttf \
 		../Unidad5/Recursos/Archivos/laberinto.png \
 		../Unidad5/Recursos/Archivos/laberintoRecortado.png \
 		../Unidad5/Recursos/Sprites/laberinto.png \
@@ -901,6 +902,10 @@ debug/moc_videojuego.cpp: ../Unidad5/videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qmediaplayer.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qmediaenumdebug.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qmetaobject.h \
+		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QLabel \
+		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qpicture.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qtextdocument.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.6.0/mingw_64/bin/moc.exe
 	'C:\Qt\6.6.0\mingw_64\bin\moc.exe' $(DEFINES) --include 'C:/Users/jimen/Documents/UdeA/Informática II/Computing II/Laboratorio/build-Unidad5-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/debug/moc_predefs.h' -IC:/Qt/6.6.0/mingw_64/mkspecs/win32-g++ -I'C:/Users/jimen/Documents/UdeA/Informática II/Computing II/Laboratorio/Unidad5' -IC:/Qt/6.6.0/mingw_64/include -IC:/Qt/6.6.0/mingw_64/include/QtMultimedia -IC:/Qt/6.6.0/mingw_64/include/QtWidgets -IC:/Qt/6.6.0/mingw_64/include/QtGui -IC:/Qt/6.6.0/mingw_64/include/QtNetwork -IC:/Qt/6.6.0/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ../Unidad5/videojuego.h -o debug/moc_videojuego.cpp
@@ -1485,7 +1490,11 @@ debug/main.o: ../Unidad5/main.cpp ../Unidad5/videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/QMediaPlayer \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qmediaplayer.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qmediaenumdebug.h \
-		C:/Qt/6.6.0/mingw_64/include/QtCore/qmetaobject.h
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qmetaobject.h \
+		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QLabel \
+		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qpicture.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qtextdocument.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug/main.o ../Unidad5/main.cpp
 
 debug/pacman.o: ../Unidad5/pacman.cpp ../Unidad5/pacman.h \
@@ -1901,6 +1910,10 @@ debug/videojuego.o: ../Unidad5/videojuego.cpp ../Unidad5/videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qmediaplayer.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qmediaenumdebug.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qmetaobject.h \
+		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QLabel \
+		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qlabel.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qpicture.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qtextdocument.h \
 		ui_videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/QVariant \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QWidget

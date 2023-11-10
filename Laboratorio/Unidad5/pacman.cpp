@@ -123,7 +123,7 @@ void pacman::animacion()
 void pacman::sfx(QString ruta)
 {
     audio->setSource(QUrl::fromLocalFile(ruta));
-    audio->setVolume(0.1);
+    audio->setVolume(1);
     audio->play();
 }
 

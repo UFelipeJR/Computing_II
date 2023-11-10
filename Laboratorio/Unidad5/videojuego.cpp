@@ -17,6 +17,11 @@ videojuego::videojuego(QWidget *parent) :
     QColor pinkyColor = QColor(239,176,198);
 
 
+    QFont customFont;
+    customFont.setPointSize(16);
+    customFont.setFamily("Arcadepix");
+
+
     maze = new laberinto;
     pacMancito = new pacman(5,6);
     view = new QGraphicsView(this);
@@ -64,8 +69,15 @@ videojuego::videojuego(QWidget *parent) :
 
     pacmanLaberintoX = 0.0;
     pacmanLaberintoY = 0.0;
+    textoPuntaje = "Puntaje: 0";
 
     //dibujarCuadricula();
+    texto = new QGraphicsTextItem(QString::fromStdString(textoPuntaje));
+    texto->setFont(customFont);
+    texto->setDefaultTextColor(Qt::white);
+    scene->addItem(texto);
+
+    srand(time(0));
 
 }
 
@@ -78,6 +90,7 @@ videojuego::~videojuego()
     delete clyde;
     delete inky;
     delete pinky;
+    delete texto;
 }
 
 
@@ -146,6 +159,26 @@ void videojuego::posRelativa()
     blinkyLaberintoY = (blinky->y()+7)/constanteLaberinto;
 }
 
+void videojuego::actualizarTexto()
+{
+    textoPuntaje = "Puntaje:" + to_string(maze->getPuntaje());
+    texto->setPlainText(QString::fromStdString(textoPuntaje));
+    view->update();
+}
+
+void videojuego::tp()
+{
+    qDebug() << pacMancito->x() << pacMancito->y();
+
+    if((pacMancito->x() == -5)&&(pacMancito->y() == 266.45)){
+        pacMancito->setPos(427,266.45);
+    }
+    else if((pacMancito->x() == 427)&&(pacMancito->y() == 266.45)){
+        pacMancito->setPos(-5,266.45);
+    }
+
+}
+
 void videojuego::keyPressEvent(QKeyEvent *event)
 {
     const float izquierda = -0.75;
@@ -182,9 +215,7 @@ void videojuego::movimiento_Automatico()
     float derecha = 0.375;
     float abajo = 1.125;
     posRelativa();
-
-
-
+    tp();
     if(pacMancito->getVivo()){
         pacMancito->setEstadoMovimiento(true);
         scene->addItem(blinky);
@@ -238,13 +269,14 @@ void videojuego::movimiento_Automatico()
 
     if(maze->comerPunto(pacmanLaberintoX,pacmanLaberintoY) && pacMancito->getVivo()){
         pacMancito->sfx(":/Recursos/Sonidos/vivo.wav");
+        actualizarTexto();
     }
 
 
     renderizarTablero();
-
-    qDebug() << "DEBUG";
-    qDebug() << "EL puntaje actual es: " << maze->getPuntaje();
+    //qDebug() << "DEBUG";
+    //qDebug() << "EL puntaje actual es: " << maze->getPuntaje();
+    movimiento_blinky();
 
 
 }
@@ -252,8 +284,15 @@ void videojuego::movimiento_Automatico()
 
 void videojuego::movimiento_blinky()
 {
-    qDebug() << "Aproximacion pacman:" << pacmanLaberintoX << " " << pacmanLaberintoY;
-    qDebug() << "Aproximacion fantasma:" << blinkyLaberintoX << " " << blinkyLaberintoY;
+    short int numeroAleatorio = (rand()%4)+1;
+    short int cantPix = 8;
+    short int dir = 0;
+
+    float izquierda = -0.75;
+    float arriba = -0.12499;
+    float derecha = 0.375;
+    float abajo = 1.125;
+
 }
 
 
