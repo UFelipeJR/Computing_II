@@ -116,8 +116,6 @@ void videojuego::construirTablero()
 
 }
 
-
-
 void videojuego::renderizarTablero()
 {
     for (int i = 0; i < maze->getAncho(); i++){
@@ -171,13 +169,14 @@ void videojuego::tp()
     qDebug() << pacMancito->x() << pacMancito->y();
 
     if((pacMancito->x() == -5)&&(pacMancito->y() == 266.45)){
-        pacMancito->setPos(427,266.45);
+        pacMancito->setPos(425,266.45);
     }
     else if((pacMancito->x() == 427)&&(pacMancito->y() == 266.45)){
-        pacMancito->setPos(-5,266.45);
+        pacMancito->setPos(-1,266.45);
     }
 
 }
+
 
 void videojuego::keyPressEvent(QKeyEvent *event)
 {
@@ -263,6 +262,7 @@ void videojuego::movimiento_Automatico()
         scene->removeItem(pinky);
         scene->removeItem(clyde);
         scene->removeItem(inky);
+        blinky->setPos(211,218);
 
     }
 
@@ -282,18 +282,35 @@ void videojuego::movimiento_Automatico()
 }
 
 
+
 void videojuego::movimiento_blinky()
 {
-    short int numeroAleatorio = (rand()%4)+1;
-    short int cantPix = 8;
-    short int dir = 0;
 
+    short int cantPix = 3;
     float izquierda = -0.75;
     float arriba = -0.12499;
     float derecha = 0.375;
     float abajo = 1.125;
 
+    if ((pacMancito->x() < blinky->x())&&!maze->bloqueoEntidad(blinkyLaberintoX+izquierda,blinkyLaberintoY)) {
+        blinky->moveBy(-cantPix, 0);
+    } else if ((pacMancito->x() > blinky->x())&& !maze->bloqueoEntidad(blinkyLaberintoX,blinkyLaberintoY+arriba)) {
+
+        blinky->moveBy(cantPix, 0);
+    } else if ((pacMancito->y() < blinky->y())&& !maze->bloqueoEntidad(blinkyLaberintoX+derecha,blinkyLaberintoY)) {
+
+        blinky->moveBy(0, -cantPix);
+    } else if ((pacMancito->y() > blinky->y())&& !maze->bloqueoEntidad(blinkyLaberintoX,blinkyLaberintoY+abajo)) {
+
+        blinky->moveBy(0, cantPix);
+    }
+
+
+    qDebug() << cantPix;
 }
+
+
+
 
 
 

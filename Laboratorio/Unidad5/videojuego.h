@@ -58,6 +58,7 @@ public:
     void tp();
 
 public slots:
+
     void movimiento_Automatico();
     void movimiento_blinky();
 
