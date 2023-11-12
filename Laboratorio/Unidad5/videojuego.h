@@ -11,6 +11,9 @@
 #include <cstdlib>
 #include <ctime>
 
+
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class videojuego; }
 QT_END_NAMESPACE
@@ -56,11 +59,11 @@ public:
     void posRelativa();
     void actualizarTexto();
     void tp();
-
-public slots:
-
     void movimiento_Automatico();
     void movimiento_blinky();
+
+public slots:
+    void juegoPrincipal();
 
 protected:
     void keyPressEvent(QKeyEvent *event);

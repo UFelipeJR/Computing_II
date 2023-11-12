@@ -58,8 +58,9 @@ videojuego::videojuego(QWidget *parent) :
     ui->main_scene->setScene(scene);
 
     timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(movimiento_Automatico()));
-    connect(timer, SIGNAL(timeout()), this, SLOT(movimiento_blinky()));
+    //connect(timer, SIGNAL(timeout()), this, SLOT(movimiento_Automatico()));
+    //connect(timer, SIGNAL(timeout()), this, SLOT(movimiento_blinky()));
+    connect(timer, SIGNAL(timeout()),this, SLOT(juegoPrincipal()));
     timer->start(100);
 
     direcciones = -1;
@@ -180,10 +181,20 @@ void videojuego::tp()
 
 void videojuego::keyPressEvent(QKeyEvent *event)
 {
+
+
     const float izquierda = -0.75;
     const float arriba = -0.12499;
     const float derecha = 0.375;
     const float abajo = 1.125;
+
+
+    /*
+    const float izquierda = -0.6875;
+    const float arriba = -0.0625;
+    const float derecha = 0.4375;
+    const float abajo = 0.9375;
+    */
 
     if (event->key() == Qt::Key_A) {
         if (!maze->bloqueoEntidad(pacmanLaberintoX+izquierda, pacmanLaberintoY)) {
@@ -209,19 +220,10 @@ void videojuego::keyPressEvent(QKeyEvent *event)
 void videojuego::movimiento_Automatico()
 {
     int cantPix = 8;
-    float izquierda = -0.75;
-    float arriba = -0.12499;
-    float derecha = 0.375;
-    float abajo = 1.125;
-    posRelativa();
-    tp();
-    if(pacMancito->getVivo()){
-        pacMancito->setEstadoMovimiento(true);
-        scene->addItem(blinky);
-        scene->addItem(pinky);
-        scene->addItem(clyde);
-        scene->addItem(inky);
-    }
+    const float izquierda = -0.75;
+    const float arriba = -0.12499;
+    const float derecha = 0.375;
+    const float abajo = 1.125;
 
     // Izquierda
     if (direcciones == 0 && pacMancito->getEstadoMovimiento() &&!maze->bloqueoEntidad(pacmanLaberintoX+izquierda,pacmanLaberintoY)) {
@@ -236,7 +238,6 @@ void videojuego::movimiento_Automatico()
         pacMancito->setRotation(-90);
         pacMancito->setTransformOriginPoint(13.5, 13.5);
         pacMancito->moveBy(0, -cantPix);
-
     }
 
     // Derecha
@@ -244,7 +245,6 @@ void videojuego::movimiento_Automatico()
         pacMancito->setRotation(0);
         pacMancito->setTransformOriginPoint(13.5, 13.5);
         pacMancito->moveBy(cantPix, 0);
-
 
     }
 
@@ -254,6 +254,45 @@ void videojuego::movimiento_Automatico()
         pacMancito->setTransformOriginPoint(13.5, 13.5);
         pacMancito->moveBy(0, cantPix);
     }
+
+}
+
+void videojuego::movimiento_blinky()
+{
+    short int cantPix = 3;
+    const float izquierda = -0.625;
+    const float arriba = -0.125;
+    const float derecha = 0.25;
+    const float abajo = 0.8125;
+
+    float diferencia_x = pacMancito->x() - blinky->x();
+    float diferencia_y = pacMancito->y() - blinky->y();
+
+    if (diferencia_x < 0 && !maze->bloqueoEntidad(blinkyLaberintoX + izquierda, blinkyLaberintoY)) {
+        blinky->moveBy(-cantPix, 0);
+    } else if (diferencia_x > 0 && !maze->bloqueoEntidad(blinkyLaberintoX + derecha, blinkyLaberintoY)) {
+        blinky->moveBy(cantPix, 0);
+    } else if (diferencia_y < 0 && !maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + arriba)) {
+        blinky->moveBy(0, -cantPix);
+    } else if (diferencia_y > 0 && !maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + abajo)) {
+        blinky->moveBy(0, cantPix);
+    }
+}
+
+void videojuego::juegoPrincipal()
+{
+    posRelativa();
+    tp();
+
+    if(pacMancito->getVivo()){
+        pacMancito->setEstadoMovimiento(true);
+        scene->addItem(blinky);
+        scene->addItem(pinky);
+        scene->addItem(clyde);
+        scene->addItem(inky);
+    }
+
+    movimiento_Automatico();
 
 
     if(!pacMancito->getVivo()){
@@ -266,48 +305,17 @@ void videojuego::movimiento_Automatico()
 
     }
 
-
     if(maze->comerPunto(pacmanLaberintoX,pacmanLaberintoY) && pacMancito->getVivo()){
         pacMancito->sfx(":/Recursos/Sonidos/vivo.wav");
         actualizarTexto();
     }
-
-
     renderizarTablero();
     //qDebug() << "DEBUG";
     //qDebug() << "EL puntaje actual es: " << maze->getPuntaje();
     movimiento_blinky();
-
-
 }
 
 
-
-void videojuego::movimiento_blinky()
-{
-
-    short int cantPix = 3;
-    float izquierda = -0.75;
-    float arriba = -0.12499;
-    float derecha = 0.375;
-    float abajo = 1.125;
-
-    if ((pacMancito->x() < blinky->x())&&!maze->bloqueoEntidad(blinkyLaberintoX+izquierda,blinkyLaberintoY)) {
-        blinky->moveBy(-cantPix, 0);
-    } else if ((pacMancito->x() > blinky->x())&& !maze->bloqueoEntidad(blinkyLaberintoX,blinkyLaberintoY+arriba)) {
-
-        blinky->moveBy(cantPix, 0);
-    } else if ((pacMancito->y() < blinky->y())&& !maze->bloqueoEntidad(blinkyLaberintoX+derecha,blinkyLaberintoY)) {
-
-        blinky->moveBy(0, -cantPix);
-    } else if ((pacMancito->y() > blinky->y())&& !maze->bloqueoEntidad(blinkyLaberintoX,blinkyLaberintoY+abajo)) {
-
-        blinky->moveBy(0, cantPix);
-    }
-
-
-    qDebug() << cantPix;
-}
 
 
 

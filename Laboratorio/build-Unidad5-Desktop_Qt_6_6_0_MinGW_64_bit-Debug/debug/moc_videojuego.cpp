@@ -40,31 +40,27 @@ namespace {
 struct qt_meta_stringdata_CLASSvideojuegoENDCLASS_t {};
 static constexpr auto qt_meta_stringdata_CLASSvideojuegoENDCLASS = QtMocHelpers::stringData(
     "videojuego",
-    "movimiento_Automatico",
-    "",
-    "movimiento_blinky"
+    "juegoPrincipal",
+    ""
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSvideojuegoENDCLASS_t {
-    uint offsetsAndSizes[8];
+    uint offsetsAndSizes[6];
     char stringdata0[11];
-    char stringdata1[22];
+    char stringdata1[15];
     char stringdata2[1];
-    char stringdata3[18];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSvideojuegoENDCLASS_t::offsetsAndSizes) + ofs), len 
 Q_CONSTINIT static const qt_meta_stringdata_CLASSvideojuegoENDCLASS_t qt_meta_stringdata_CLASSvideojuegoENDCLASS = {
     {
         QT_MOC_LITERAL(0, 10),  // "videojuego"
-        QT_MOC_LITERAL(11, 21),  // "movimiento_Automatico"
-        QT_MOC_LITERAL(33, 0),  // ""
-        QT_MOC_LITERAL(34, 17)   // "movimiento_blinky"
+        QT_MOC_LITERAL(11, 14),  // "juegoPrincipal"
+        QT_MOC_LITERAL(26, 0)   // ""
     },
     "videojuego",
-    "movimiento_Automatico",
-    "",
-    "movimiento_blinky"
+    "juegoPrincipal",
+    ""
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -76,7 +72,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSvideojuegoENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       1,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -84,11 +80,9 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSvideojuegoENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   26,    2, 0x0a,    1 /* Public */,
-       3,    0,   27,    2, 0x0a,    2 /* Public */,
+       1,    0,   20,    2, 0x0a,    1 /* Public */,
 
  // slots: parameters
-    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -103,9 +97,7 @@ Q_CONSTINIT const QMetaObject videojuego::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSvideojuegoENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<videojuego, std::true_type>,
-        // method 'movimiento_Automatico'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'movimiento_blinky'
+        // method 'juegoPrincipal'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -117,8 +109,7 @@ void videojuego::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<videojuego *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->movimiento_Automatico(); break;
-        case 1: _t->movimiento_blinky(); break;
+        case 0: _t->juegoPrincipal(); break;
         default: ;
         }
     }
@@ -144,13 +135,13 @@ int videojuego::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 1)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 1;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 1)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        _id -= 1;
     }
     return _id;
 }
