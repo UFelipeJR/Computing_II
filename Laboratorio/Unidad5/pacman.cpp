@@ -84,7 +84,8 @@ void pacman::animacionVivo()
 void pacman::animacionM()
 {
 
-    const float escala = 0.84375;
+    //const float escala = 0.84375;
+    const float escala = 0.8125;
     if (cambioSpriteMuerto == 10) {
         cambioSpriteMuerto = 1;
         vivo = true;
