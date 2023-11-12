@@ -71,7 +71,7 @@ videojuego::videojuego(QWidget *parent) :
     pacmanLaberintoY = 0.0;
     textoPuntaje = "Puntaje: 0";
 
-    dibujarCuadricula();
+    //dibujarCuadricula();
     texto = new QGraphicsTextItem(QString::fromStdString(textoPuntaje));
     texto->setFont(customFont);
     texto->setDefaultTextColor(Qt::white);
@@ -177,18 +177,12 @@ void videojuego::keyPressEvent(QKeyEvent *event)
 {
 
 
+
     const float izquierda = -0.75;
     const float arriba = -0.12499;
     const float derecha = 0.375;
     const float abajo = 1.125;
 
-
-    /*
-    const float izquierda = -0.6875;
-    const float arriba = -0.0625;
-    const float derecha = 0.4375;
-    const float abajo = 0.9375;
-    */
 
     if (event->key() == Qt::Key_A) {
         if (!maze->bloqueoEntidad(pacmanLaberintoX+izquierda, pacmanLaberintoY)) {
@@ -215,10 +209,12 @@ void videojuego::keyPressEvent(QKeyEvent *event)
 void videojuego::movimiento_Automatico()
 {
     int cantPix = 8;
+
     const float izquierda = -0.75;
     const float arriba = -0.12499;
     const float derecha = 0.375;
     const float abajo = 1.125;
+
 
     // Izquierda
     if (direcciones == 0 && pacMancito->getEstadoMovimiento() &&!maze->bloqueoEntidad(pacmanLaberintoX+izquierda,pacmanLaberintoY)) {
@@ -259,40 +255,52 @@ void videojuego::movimiento_blinky()
     short int cantPix = 5;
 
     /*
-    const float izquierda = -0.625;
-    const float arriba = -0.125;
-    const float derecha = 0.25;
-    const float abajo = 0.8125;
+    const float Tizquierda = -0.625;
+    const float Tarriba = -0.125;
+    const float Tderecha = 0.25;
+    const float Tabajo = 0.8125;
     */
 
-    /*
-    const float izquierda = -0.75;
-    const float arriba = -0.25;
-    const float derecha = 0.375;
-    const float abajo = 0.875;
-    */
+    const float Tizquierda = 0;
+    const float Tarriba = 0;
+    const float Tderecha = 0;
+    const float Tabajo = 0;
+
+    float derecha = cal_distanciaBlinky(1,0);
+    float izquierda = cal_distanciaBlinky(-1,0);
+    float arriba = cal_distanciaBlinky(0,-1);
+    float abajo = cal_distanciaBlinky(0,1);
 
 
-    const float izquierda = -0.75;
-    const float arriba = -0.125;
-    const float derecha = 0.375;
-    const float abajo = 0.875;
-
-
-    float diferencia_x = pacMancito->x() - blinky->x();
-    float diferencia_y = pacMancito->y() - blinky->y();
-
-    if (diferencia_x < 0 && !maze->bloqueoEntidad(blinkyLaberintoX + izquierda, blinkyLaberintoY)) {
-        blinky->moveBy(-cantPix, 0);
-    } else if (diferencia_x > 0 && !maze->bloqueoEntidad(blinkyLaberintoX + derecha, blinkyLaberintoY)) {
+    if ((derecha < izquierda && derecha < arriba && derecha < abajo)&& !maze->bloqueoEntidad(blinkyLaberintoX + Tderecha, blinkyLaberintoY)){
+        //Derecha
+        qDebug() << "Derecha";
         blinky->moveBy(cantPix, 0);
-    } else if (diferencia_y < 0 && !maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + arriba)) {
+    }
+    else if ((izquierda < derecha && izquierda < arriba && izquierda < abajo)&& !maze->bloqueoEntidad(blinkyLaberintoX + Tizquierda, blinkyLaberintoY)){
+        //Izquierda
+        qDebug() << "Izquierda";
+        blinky->moveBy(-cantPix, 0);
+    }
+    else if ((arriba < izquierda && arriba < derecha && arriba < abajo)&& !maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tarriba)){
+        //Arriba
+        qDebug() << "Arriba";
         blinky->moveBy(0, -cantPix);
-    } else if (diferencia_y > 0 && !maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + abajo)) {
+    }
+    else if ((abajo < izquierda && abajo < arriba && abajo < derecha)&& !maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tabajo)){
+        //Abajo
+        qDebug() << "Abajo";
         blinky->moveBy(0, cantPix);
     }
-}
 
+    /*
+    qDebug() << "Derecha" << derecha;
+    qDebug() << "Izquierda" << izquierda;
+    qDebug() << "Arriba" << arriba;
+    qDebug() << "Abajo" << abajo;
+    */
+
+}
 
 void videojuego::juegoPrincipal()
 {
@@ -323,30 +331,54 @@ void videojuego::juegoPrincipal()
     if(maze->comerPunto(pacmanLaberintoX,pacmanLaberintoY) && pacMancito->getVivo()){
         pacMancito->sfx(":/Recursos/Sonidos/vivo.wav");
     }
+
     renderizarTablero();
-    qDebug() << "DEBUG";
-    qDebug() << "EL puntaje actual es: " << maze->getPuntaje();
     movimiento_blinky();
     actualizarTexto();
-}
 
-/*
-void videojuego::manejarSen()
-{
-    qDebug() << "Se comio una bolita";
-    //pacMancito->sfx(":/Recursos/Sonidos/siren.mp3");
+    qDebug() << "DEBUG";
+
 
 }
-*/
+
 
 void videojuego::manejarSen()
 {
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
+    qDebug() << "Se comió una bolita";
     qDebug() << "Se comió una bolita";
     //pacMancito->setPowerUp(true);
 
 }
 
+float videojuego::cal_distanciaBlinky(int dirX, int dirY)
+{
+    float distancia = 1000000.0f;
+    if(!maze->bloqueoEntidad(blinkyLaberintoX+dirX,blinkyLaberintoY+dirY)){
+        distancia = (float) sqrt(pow((pacmanLaberintoX - (blinkyLaberintoX + dirX)), 2) + pow((pacmanLaberintoY - (blinkyLaberintoY + dirY)), 2));
 
+    }
+    return distancia;
+}
 
 
 

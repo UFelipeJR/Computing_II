@@ -8,6 +8,7 @@
 #include <pacman.h>
 #include <QLabel>
 #include <QFontDatabase>
+#include <cmath>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class videojuego; }
@@ -56,7 +57,7 @@ public:
     void tp();
     void movimiento_Automatico();
     void movimiento_blinky();
-
+    float cal_distanciaBlinky(int dirX, int dirY);
 public slots:
     void juegoPrincipal();
     void manejarSen();
