@@ -133,6 +133,7 @@ release/qrc_recursos.cpp: ../Unidad5/recursos.qrc \
 		../Unidad5/Recursos/Sprites/laberinto2.png \
 		../Unidad5/Recursos/Sprites/labyrinth.png \
 		../Unidad5/Recursos/Sprites/ojosFantasma.png \
+		../Unidad5/Recursos/Sonidos/siren.mp3 \
 		../Unidad5/Recursos/Sonidos/vivo.wav \
 		../Unidad5/Recursos/Sonidos/muerto.wav \
 		../Unidad5/Recursos/Icono/pacman.ico
@@ -483,6 +484,48 @@ release/moc_laberinto.cpp: ../Unidad5/laberinto.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontinfo.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qfont.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontmetrics.h \
+		../Unidad5/pacman.h \
+		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qnativeinterface.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qfuture.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qmutex.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qtsan_impl.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qresultstore.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qfuture_impl.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qthreadpool.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qthread.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qrunnable.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qexception.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qpointer.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qpromise.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qcursor.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qbitmap.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qguiapplication.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qinputmethod.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qlocale.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qguiapplication_platform.h \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/QSoundEffect \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qsoundeffect.h \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qtmultimediaglobal.h \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qaudio.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qurl.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QList \
+		../Unidad5/ghost.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QPainter \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QColor \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/QMediaPlayer \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qmediaplayer.h \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qmediaenumdebug.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qmetaobject.h \
 		release/moc_predefs.h \
 		C:/Qt/6.6.0/mingw_64/bin/moc.exe
 	'C:\Qt\6.6.0\mingw_64\bin\moc.exe' $(DEFINES) --include 'C:/Users/jimen/Documents/UdeA/Informática II/Computing II/Laboratorio/build-Unidad5-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/release/moc_predefs.h' -IC:/Qt/6.6.0/mingw_64/mkspecs/win32-g++ -I'C:/Users/jimen/Documents/UdeA/Informática II/Computing II/Laboratorio/Unidad5' -IC:/Qt/6.6.0/mingw_64/include -IC:/Qt/6.6.0/mingw_64/include/QtMultimedia -IC:/Qt/6.6.0/mingw_64/include/QtWidgets -IC:/Qt/6.6.0/mingw_64/include/QtGui -IC:/Qt/6.6.0/mingw_64/include/QtNetwork -IC:/Qt/6.6.0/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ../Unidad5/laberinto.h -o release/moc_laberinto.cpp
@@ -866,7 +909,6 @@ release/moc_videojuego.cpp: ../Unidad5/videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qtimer.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qbasictimer.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/Qpainter \
-		C:/Qt/6.6.0/mingw_64/include/QtGui/QColor \
 		../Unidad5/pacman.h \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QApplication \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qapplication.h \
@@ -898,6 +940,7 @@ release/moc_videojuego.cpp: ../Unidad5/videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qaudio.h \
 		../Unidad5/ghost.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/QPainter \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QColor \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/QMediaPlayer \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qmediaplayer.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qmediaenumdebug.h \
@@ -906,6 +949,8 @@ release/moc_videojuego.cpp: ../Unidad5/videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qlabel.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qpicture.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QFontDatabase \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontdatabase.h \
 		release/moc_predefs.h \
 		C:/Qt/6.6.0/mingw_64/bin/moc.exe
 	'C:\Qt\6.6.0\mingw_64\bin\moc.exe' $(DEFINES) --include 'C:/Users/jimen/Documents/UdeA/Informática II/Computing II/Laboratorio/build-Unidad5-Desktop_Qt_6_6_0_MinGW_64_bit-Debug/release/moc_predefs.h' -IC:/Qt/6.6.0/mingw_64/mkspecs/win32-g++ -I'C:/Users/jimen/Documents/UdeA/Informática II/Computing II/Laboratorio/Unidad5' -IC:/Qt/6.6.0/mingw_64/include -IC:/Qt/6.6.0/mingw_64/include/QtMultimedia -IC:/Qt/6.6.0/mingw_64/include/QtWidgets -IC:/Qt/6.6.0/mingw_64/include/QtGui -IC:/Qt/6.6.0/mingw_64/include/QtNetwork -IC:/Qt/6.6.0/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ../Unidad5/videojuego.h -o release/moc_videojuego.cpp
@@ -1266,7 +1311,49 @@ release/laberinto.o: ../Unidad5/laberinto.cpp ../Unidad5/laberinto.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qbrush.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontinfo.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qfont.h \
-		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontmetrics.h
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontmetrics.h \
+		../Unidad5/pacman.h \
+		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QApplication \
+		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qeventloop.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qnativeinterface.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qfuture.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qmutex.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qtsan_impl.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qresultstore.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qfuture_impl.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qthreadpool.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qthread.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qrunnable.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qexception.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qpointer.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qpromise.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qcursor.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qbitmap.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qguiapplication.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qinputmethod.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qlocale.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qguiapplication_platform.h \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/QSoundEffect \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qsoundeffect.h \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qtmultimediaglobal.h \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qtmultimedia-config.h \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qtmultimediaexports.h \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qaudio.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qurl.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/QList \
+		../Unidad5/ghost.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QPainter \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QColor \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/QMediaPlayer \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qmediaplayer.h \
+		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qmediaenumdebug.h \
+		C:/Qt/6.6.0/mingw_64/include/QtCore/qmetaobject.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/laberinto.o ../Unidad5/laberinto.cpp
 
 release/main.o: ../Unidad5/main.cpp ../Unidad5/videojuego.h \
@@ -1455,7 +1542,6 @@ release/main.o: ../Unidad5/main.cpp ../Unidad5/videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qtimer.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qbasictimer.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/Qpainter \
-		C:/Qt/6.6.0/mingw_64/include/QtGui/QColor \
 		../Unidad5/pacman.h \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QApplication \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qapplication.h \
@@ -1487,6 +1573,7 @@ release/main.o: ../Unidad5/main.cpp ../Unidad5/videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qaudio.h \
 		../Unidad5/ghost.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/QPainter \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QColor \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/QMediaPlayer \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qmediaplayer.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qmediaenumdebug.h \
@@ -1494,7 +1581,9 @@ release/main.o: ../Unidad5/main.cpp ../Unidad5/videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QLabel \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qlabel.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qpicture.h \
-		C:/Qt/6.6.0/mingw_64/include/QtGui/qtextdocument.h
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QFontDatabase \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontdatabase.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/main.o ../Unidad5/main.cpp
 
 release/pacman.o: ../Unidad5/pacman.cpp ../Unidad5/pacman.h \
@@ -1874,7 +1963,6 @@ release/videojuego.o: ../Unidad5/videojuego.cpp ../Unidad5/videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qtimer.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/qbasictimer.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/Qpainter \
-		C:/Qt/6.6.0/mingw_64/include/QtGui/QColor \
 		../Unidad5/pacman.h \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QApplication \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qapplication.h \
@@ -1906,6 +1994,7 @@ release/videojuego.o: ../Unidad5/videojuego.cpp ../Unidad5/videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qaudio.h \
 		../Unidad5/ghost.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/QPainter \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QColor \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/QMediaPlayer \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qmediaplayer.h \
 		C:/Qt/6.6.0/mingw_64/include/QtMultimedia/qmediaenumdebug.h \
@@ -1914,6 +2003,8 @@ release/videojuego.o: ../Unidad5/videojuego.cpp ../Unidad5/videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/qlabel.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qpicture.h \
 		C:/Qt/6.6.0/mingw_64/include/QtGui/qtextdocument.h \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/QFontDatabase \
+		C:/Qt/6.6.0/mingw_64/include/QtGui/qfontdatabase.h \
 		ui_videojuego.h \
 		C:/Qt/6.6.0/mingw_64/include/QtCore/QVariant \
 		C:/Qt/6.6.0/mingw_64/include/QtWidgets/QWidget

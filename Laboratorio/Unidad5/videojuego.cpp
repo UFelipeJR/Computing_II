@@ -58,9 +58,8 @@ videojuego::videojuego(QWidget *parent) :
     ui->main_scene->setScene(scene);
 
     timer = new QTimer(this);
-    //connect(timer, SIGNAL(timeout()), this, SLOT(movimiento_Automatico()));
-    //connect(timer, SIGNAL(timeout()), this, SLOT(movimiento_blinky()));
     connect(timer, SIGNAL(timeout()),this, SLOT(juegoPrincipal()));
+    connect(maze, SIGNAL(comPuntoGrande()),this, SLOT(manejarSen()));
     timer->start(100);
 
     direcciones = -1;
@@ -72,13 +71,11 @@ videojuego::videojuego(QWidget *parent) :
     pacmanLaberintoY = 0.0;
     textoPuntaje = "Puntaje: 0";
 
-    //dibujarCuadricula();
+    dibujarCuadricula();
     texto = new QGraphicsTextItem(QString::fromStdString(textoPuntaje));
     texto->setFont(customFont);
     texto->setDefaultTextColor(Qt::white);
     scene->addItem(texto);
-
-    srand(time(0));
 
 }
 
@@ -165,17 +162,14 @@ void videojuego::actualizarTexto()
     view->update();
 }
 
-void videojuego::tp()
-{
-    qDebug() << pacMancito->x() << pacMancito->y();
 
-    if((pacMancito->x() == -5)&&(pacMancito->y() == 266.45)){
-        pacMancito->setPos(425,266.45);
-    }
-    else if((pacMancito->x() == 427)&&(pacMancito->y() == 266.45)){
-        pacMancito->setPos(-1,266.45);
-    }
 
+void videojuego::tp() {
+    if (pacMancito->x() <= 0) {
+       pacMancito->setPos(420,266.45);
+    } else if (pacMancito->x() >= 426) {
+        pacMancito->setPos(2,266.45);
+    }
 }
 
 
@@ -217,6 +211,7 @@ void videojuego::keyPressEvent(QKeyEvent *event)
     }
 }
 
+
 void videojuego::movimiento_Automatico()
 {
     int cantPix = 8;
@@ -257,13 +252,32 @@ void videojuego::movimiento_Automatico()
 
 }
 
+
+
 void videojuego::movimiento_blinky()
 {
-    short int cantPix = 3;
+    short int cantPix = 5;
+
+    /*
     const float izquierda = -0.625;
     const float arriba = -0.125;
     const float derecha = 0.25;
     const float abajo = 0.8125;
+    */
+
+    /*
+    const float izquierda = -0.75;
+    const float arriba = -0.25;
+    const float derecha = 0.375;
+    const float abajo = 0.875;
+    */
+
+
+    const float izquierda = -0.75;
+    const float arriba = -0.125;
+    const float derecha = 0.375;
+    const float abajo = 0.875;
+
 
     float diferencia_x = pacMancito->x() - blinky->x();
     float diferencia_y = pacMancito->y() - blinky->y();
@@ -278,6 +292,7 @@ void videojuego::movimiento_blinky()
         blinky->moveBy(0, cantPix);
     }
 }
+
 
 void videojuego::juegoPrincipal()
 {
@@ -307,12 +322,28 @@ void videojuego::juegoPrincipal()
 
     if(maze->comerPunto(pacmanLaberintoX,pacmanLaberintoY) && pacMancito->getVivo()){
         pacMancito->sfx(":/Recursos/Sonidos/vivo.wav");
-        actualizarTexto();
     }
     renderizarTablero();
-    //qDebug() << "DEBUG";
-    //qDebug() << "EL puntaje actual es: " << maze->getPuntaje();
+    qDebug() << "DEBUG";
+    qDebug() << "EL puntaje actual es: " << maze->getPuntaje();
     movimiento_blinky();
+    actualizarTexto();
+}
+
+/*
+void videojuego::manejarSen()
+{
+    qDebug() << "Se comio una bolita";
+    //pacMancito->sfx(":/Recursos/Sonidos/siren.mp3");
+
+}
+*/
+
+void videojuego::manejarSen()
+{
+    qDebug() << "Se comió una bolita";
+    //pacMancito->setPowerUp(true);
+
 }
 
 

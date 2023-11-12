@@ -70,9 +70,6 @@ public:
 private slots:
     void animacion();
 
-
-
-
 };
 
 #endif // PACMAN_H

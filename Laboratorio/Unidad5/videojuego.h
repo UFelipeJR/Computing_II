@@ -8,11 +8,6 @@
 #include <pacman.h>
 #include <QLabel>
 #include <QFontDatabase>
-#include <cstdlib>
-#include <ctime>
-
-
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class videojuego; }
@@ -64,6 +59,7 @@ public:
 
 public slots:
     void juegoPrincipal();
+    void manejarSen();
 
 protected:
     void keyPressEvent(QKeyEvent *event);

@@ -10,7 +10,7 @@
 #include <cmath>
 #include <iostream>
 #include <Qpainter>
-
+#include <pacman.h>
 using namespace std;
 
 class laberinto : public QObject, public QGraphicsPixmapItem
@@ -28,15 +28,17 @@ private:
 
 public:
     laberinto();
-
     unsigned int bloque(int x, int y);
     bool bloqueoEntidad(int x, int y);
-    bool esInterseccion(int x, int y);
+    bool hayInter(int x, int y);
     bool comerPunto(int x, int y);
     static uint getAncho();
     static uint getLargo();
-
     uint getPuntaje() const;
+
+signals:
+    void comPuntoGrande();
+
 };
 
 #endif
