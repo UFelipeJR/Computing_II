@@ -2,28 +2,6 @@
 
 pacman::pacman()
 {
-    this->vidas = 5;
-    this->velocidad = 6;
-
-    pacmanVivo = new QPixmap;
-    pacmanMuerto = new QPixmap;
-    timerPacman = new QTimer;
-    audio = new QSoundEffect;
-    tiempoPoder = new QTimer(this);
-
-    timerPacman->start(1000/velocidad);
-    connect(timerPacman, SIGNAL(timeout()), this, SLOT(animacion()));
-    spritesPacman = ":/Recursos/Sprites/vivo.png";
-    spritesPacmanM = ":/Recursos/Sprites/muerte.png";
-    cambioSpriteVivo = 1;
-    cambioSpriteMuerto = 1;
-    separarSprites(spritesPacman, 1);
-    separarSprites(spritesPacmanM, 1);
-
-    tiempoPoder->setSingleShot(true);
-    tiempoPoder->setInterval(5000);
-    //connect(tiempoPoder, &QTimer::timeout, this, &pacman::terminarPowerUp);
-    connect(tiempoPoder, SIGNAL(timeout()), this, SLOT(terminarPowerUp()));
 
 }
 
@@ -35,17 +13,14 @@ pacman::pacman(unsigned short vidas, unsigned short velocidad)
     pacmanVivo = new QPixmap;
     pacmanMuerto = new QPixmap;
     timerPacman = new QTimer;
-    audio = new QSoundEffect;
     tiempoPoder = new QTimer;
 
     timerPacman->start(1000/velocidad);
     connect(timerPacman, SIGNAL(timeout()), this, SLOT(animacion()));
-    spritesPacman = ":/Recursos/Sprites/vivo.png";
-    spritesPacmanM = ":/Recursos/Sprites/muerte.png";
     cambioSpriteVivo = 1;
     cambioSpriteMuerto = 1;
-    separarSprites(spritesPacman, 1);
-    separarSprites(spritesPacmanM, 1);
+    separarSprites(":/Recursos/Sprites/vivo.png", 1);
+    separarSprites(":/Recursos/Sprites/muerte.png", 1);
 
     tiempoPoder->setSingleShot(true);
     tiempoPoder->setInterval(5000);
@@ -84,7 +59,7 @@ void pacman::animacionVivo()
         cambioSpriteVivo++;
     }
 
-    separarSprites(spritesPacman, cambioSpriteVivo);
+    separarSprites(":/Recursos/Sprites/vivo.png", cambioSpriteVivo);
 
     *pacmanVivo = pacmanVivo->scaled(pacmanVivo->width() * escala, pacmanVivo->height() * escala);
 
@@ -95,7 +70,6 @@ void pacman::animacionVivo()
 void pacman::animacionM()
 {
 
-    //const float escala = 0.84375;
     const float escala = 0.8125;
     if (cambioSpriteMuerto == 10) {
         cambioSpriteMuerto = 1;
@@ -104,7 +78,7 @@ void pacman::animacionM()
     } else {
         cambioSpriteMuerto++;
     }
-    separarSprites(spritesPacmanM,cambioSpriteMuerto);
+    separarSprites(":/Recursos/Sprites/muerte.png",cambioSpriteMuerto);
     *pacmanMuerto = pacmanMuerto->scaled(pacmanMuerto->width() * escala, pacmanMuerto->height()*escala);
     setPixmap(*pacmanMuerto);
     estadoMovimiento = false;
@@ -136,15 +110,19 @@ void pacman::animacion()
 
 void pacman::sfx(QString ruta,bool Switch)
 {
+    QSoundEffect* audio = new QSoundEffect(this);
     audio->setSource(QUrl::fromLocalFile(ruta));
     audio->setVolume(1);
 
     if(Switch){
-        audio->play();
+        //audio->play();
     }
     else{
         audio->stop();
     }
+
+
+
 }
 
 

@@ -38,8 +38,6 @@ private:
     //Cambio de sprites
     unsigned short int cambioSpriteVivo;
     unsigned short int cambioSpriteMuerto;
-    QString spritesPacman;
-    QString spritesPacmanM;
 
     //Sonidos
     QSoundEffect *audio;

@@ -13,17 +13,18 @@ ghost::ghost(const QColor &nativo, const QColor &modificado, unsigned short velo
 
     fantasmaVivo = new QPixmap;
     fantasmaOjos = new QPixmap;
+    fantasmaAsustado = new QPixmap;
     timerFantasma = new QTimer;
+
 
     timerFantasma->start(1000/velocidad);
     connect(timerFantasma, SIGNAL(timeout()), this, SLOT(animacion()));
-    spritesFantasma = ":/Recursos/Sprites/cuerpoFantasma.png";
-    spritesOjos = ":/Recursos/Sprites/ojosFantasma.png";
     cambioSpriteVivo = 1;
-    separarSprites(spritesFantasma,spritesOjos,1,1);
+    cambioSpriteOjos = 1;
+    cambioSpriteAsustado = 1;
+    separarSprites(":/Recursos/Sprites/cuerpoFantasmaAsus.png",":/Recursos/Sprites/ojosFantasma.png",":/Recursos/Sprites/cuerpoFantasma.png",1,1,1);
     pintarFantasma();
 
-    //gen();
 }
 
 ghost::~ghost()
@@ -31,20 +32,24 @@ ghost::~ghost()
     delete fantasmaVivo;
     delete fantasmaOjos;
     delete timerFantasma;
+    delete fantasmaAsustado;
 }
 
 
-void ghost::separarSprites(QString sprite1,QString sprite2,short int cantSprites, short int cantSpritesOjos)
+void ghost::separarSprites(QString sprite1,QString sprite2, QString sprite3 ,short int cantSprites, short int cantSpritesOjos,short int cantSpritesAsustado)
 {
     QPixmap auxiliar;
     QPixmap auxiliar2;
+    QPixmap auxiliar3;
 
     if(vivo && !asustado){
         auxiliar.load(sprite1);
         auxiliar2.load(sprite2);
+        auxiliar.load(sprite3);
 
         *fantasmaVivo = auxiliar.copy((cantSprites*baseFantasma)-baseFantasma,0,baseFantasma,largoFantasma);
         *fantasmaOjos = auxiliar2.copy((cantSpritesOjos*baseFantasma)-baseFantasma,0,baseFantasma,largoFantasma);
+        *fantasmaAsustado = auxiliar3.copy((cantSprites*baseFantasma)-baseFantasma,0,baseFantasma,largoFantasma);
     }
 
 }
@@ -79,22 +84,26 @@ void ghost::animacionVivo()
     } else {
         cambioSpriteVivo++;
     }
-    separarSprites(spritesFantasma,spritesOjos,cambioSpriteVivo,cambioSpriteOjos);
+    separarSprites(":/Recursos/Sprites/cuerpoFantasmaAsus.png",":/Recursos/Sprites/ojosFantasma.png",":/Recursos/Sprites/cuerpoFantasma.png",cambioSpriteVivo,cambioSpriteOjos,cambioSpriteAsustado);
     pintarFantasma();
-
     fusionador.drawPixmap(0,0,*fantasmaOjos);
     fusionador.end();
-
     fusion = fusion.scaled(fusion.width() * escala,fusion.height() * escala);
-
+    *fantasmaAsustado = fantasmaAsustado->scaled(fantasmaAsustado->width()*escala,fantasmaAsustado->height() * escala);
     setPixmap(fusion);
+    //setPixmap(*fantasmaAsustado);
+
 
 }
 
+void ghost::setAsustado(bool newAsustado)
+{
+    asustado = newAsustado;
+}
 
 void ghost::animacion()
 {
-    if(vivo){
+    if(vivo && !asustado){
         animacionVivo();
     }
 

@@ -12,4 +12,6 @@
 #define constanteLaberinto 16
 #define tam_bloque 30
 
+
+
 #endif // RECURSOS_H

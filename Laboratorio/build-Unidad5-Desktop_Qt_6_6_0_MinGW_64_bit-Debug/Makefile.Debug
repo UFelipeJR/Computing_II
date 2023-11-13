@@ -126,11 +126,10 @@ debug/qrc_recursos.cpp: ../Unidad5/recursos.qrc \
 		../Unidad5/Recursos/Fuentes/arcadepi.ttf \
 		../Unidad5/Recursos/Archivos/laberinto.png \
 		../Unidad5/Recursos/Archivos/laberintoRecortado.png \
-		../Unidad5/Recursos/Sprites/laberinto.png \
 		../Unidad5/Recursos/Sprites/vivo.png \
 		../Unidad5/Recursos/Sprites/cuerpoFantasma.png \
+		../Unidad5/Recursos/Sprites/cuerpoFantasmaAsus.png \
 		../Unidad5/Recursos/Sprites/muerte.png \
-		../Unidad5/Recursos/Sprites/laberinto2.png \
 		../Unidad5/Recursos/Sprites/labyrinth.png \
 		../Unidad5/Recursos/Sprites/ojosFantasma.png \
 		../Unidad5/Recursos/Sonidos/siren.wav \

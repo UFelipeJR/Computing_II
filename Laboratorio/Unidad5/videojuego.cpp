@@ -292,7 +292,6 @@ void videojuego::movimiento_blinky()
 }
 
 
-
 void videojuego::juegoPrincipal()
 {
     posRelativa();
@@ -336,6 +335,7 @@ void videojuego::manejarSen()
 {
     //qDebug() << "Se comió una bolita";
     pacMancito->setPowerUp(true);
+    blinky->setAsustado(true);
 }
 
 float videojuego::cal_distancia(float xF, float yF ,int dirX, int dirY)
