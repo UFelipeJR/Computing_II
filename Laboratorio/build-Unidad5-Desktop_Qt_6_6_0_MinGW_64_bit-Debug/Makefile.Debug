@@ -133,7 +133,7 @@ debug/qrc_recursos.cpp: ../Unidad5/recursos.qrc \
 		../Unidad5/Recursos/Sprites/laberinto2.png \
 		../Unidad5/Recursos/Sprites/labyrinth.png \
 		../Unidad5/Recursos/Sprites/ojosFantasma.png \
-		../Unidad5/Recursos/Sonidos/siren.mp3 \
+		../Unidad5/Recursos/Sonidos/siren.wav \
 		../Unidad5/Recursos/Sonidos/vivo.wav \
 		../Unidad5/Recursos/Sonidos/muerto.wav \
 		../Unidad5/Recursos/Icono/pacman.ico

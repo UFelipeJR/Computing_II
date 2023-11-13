@@ -9,6 +9,7 @@ pacman::pacman()
     pacmanMuerto = new QPixmap;
     timerPacman = new QTimer;
     audio = new QSoundEffect;
+    tiempoPoder = new QTimer(this);
 
     timerPacman->start(1000/velocidad);
     connect(timerPacman, SIGNAL(timeout()), this, SLOT(animacion()));
@@ -18,6 +19,11 @@ pacman::pacman()
     cambioSpriteMuerto = 1;
     separarSprites(spritesPacman, 1);
     separarSprites(spritesPacmanM, 1);
+
+    tiempoPoder->setSingleShot(true);
+    tiempoPoder->setInterval(5000);
+    //connect(tiempoPoder, &QTimer::timeout, this, &pacman::terminarPowerUp);
+    connect(tiempoPoder, SIGNAL(timeout()), this, SLOT(terminarPowerUp()));
 
 }
 
@@ -30,6 +36,7 @@ pacman::pacman(unsigned short vidas, unsigned short velocidad)
     pacmanMuerto = new QPixmap;
     timerPacman = new QTimer;
     audio = new QSoundEffect;
+    tiempoPoder = new QTimer;
 
     timerPacman->start(1000/velocidad);
     connect(timerPacman, SIGNAL(timeout()), this, SLOT(animacion()));
@@ -39,6 +46,10 @@ pacman::pacman(unsigned short vidas, unsigned short velocidad)
     cambioSpriteMuerto = 1;
     separarSprites(spritesPacman, 1);
     separarSprites(spritesPacmanM, 1);
+
+    tiempoPoder->setSingleShot(true);
+    tiempoPoder->setInterval(5000);
+    connect(tiempoPoder,SIGNAL(timeout()),this,SLOT(terminarPowerUp()));
 }
 
 pacman::~pacman()
@@ -100,7 +111,6 @@ void pacman::animacionM()
 
 }
 
-
 void pacman::animacion()
 {
     colisionadores = collidingItems();
@@ -110,7 +120,7 @@ void pacman::animacion()
             if(typeid(*colisionadores[i]) == typeid(ghost)){
                 vivo = false;
                 qDebug() << "Se ha colisionado un pacman con un fantasma";
-                sfx(":/Recursos/Sonidos/muerto.wav");
+                sfx(":/Recursos/Sonidos/muerto.wav",true);
                 return;
             }
         }
@@ -119,15 +129,41 @@ void pacman::animacion()
         animacionM();
     }
 
+    if(vivo && powerUp){
+        iniciarPowerUp();
+    }
 }
 
-void pacman::sfx(QString ruta)
+void pacman::sfx(QString ruta,bool Switch)
 {
     audio->setSource(QUrl::fromLocalFile(ruta));
     audio->setVolume(1);
-    audio->play();
+
+    if(Switch){
+        audio->play();
+    }
+    else{
+        audio->stop();
+    }
 }
 
+
+
+void pacman::iniciarPowerUp()
+{
+    qDebug() << "Se ha iniciado el PowerUp";
+    tiempoPoder->start(5000);  // Iniciar el temporizador de 5 segundos
+    powerUp = false;
+    sfx(":/Recursos/Sonidos/siren.wav",true);
+}
+
+
+
+void pacman::terminarPowerUp()
+{
+    qDebug() << "powerUp Finalizado";
+    sfx(":/Recursos/Sonidos/siren.wav",false);
+}
 
 
 // Métodos getter y setter

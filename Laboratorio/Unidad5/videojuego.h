@@ -57,7 +57,7 @@ public:
     void tp();
     void movimiento_Automatico();
     void movimiento_blinky();
-    float cal_distanciaBlinky(int dirX, int dirY);
+    float cal_distancia(float xF, float yF ,int dirX, int dirY);
 public slots:
     void juegoPrincipal();
     void manejarSen();

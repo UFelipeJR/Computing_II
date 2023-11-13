@@ -13,6 +13,6 @@
         <file>Recursos/Sonidos/vivo.wav</file>
         <file>Recursos/Sonidos/muerto.wav</file>
         <file>Recursos/Fuentes/arcadepi.ttf</file>
-        <file>Recursos/Sonidos/siren.mp3</file>
+        <file>Recursos/Sonidos/siren.wav</file>
     </qresource>
 </RCC>

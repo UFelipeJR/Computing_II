@@ -47,6 +47,9 @@ private:
     //Colisiones
     QList <QGraphicsItem*> colisionadores;
 
+    //Power Up
+    QTimer* tiempoPoder;
+
 
 
 public:
@@ -55,7 +58,7 @@ public:
     void separarSprites(QString sprite,short int cantSprites);
     ~pacman();
 
-    void sfx(QString ruta);
+    void sfx(QString ruta,bool Switch);
 
     //Getter and setter
     bool getVivo() const;
@@ -66,9 +69,11 @@ public:
     void setEstadoMovimiento(bool newEstadoMovimiento);
     void animacionVivo();
     void animacionM();
+    void iniciarPowerUp();
 
 private slots:
     void animacion();
+    void terminarPowerUp();
 
 };
 
