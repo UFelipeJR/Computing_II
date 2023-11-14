@@ -34,7 +34,6 @@ private:
     //Cambio de sprites
     unsigned short int cambioSpriteVivo;
     unsigned short int cambioSpriteOjos;
-    unsigned short int cambioSpriteAsustado;
 
     //Colores
     QColor nativo;
@@ -47,12 +46,13 @@ public:
     ~ghost();
 
     void animacionVivo();
-    void separarSprites(QString sprite1,QString sprite2, QString sprite3 ,short int cantSprites, short int cantSpritesOjos,short int cantSpritesAsustado);
+    void separarSprites(QString sprite1,QString sprite2, QString sprite3 ,short int cantSprites, short int cantSpritesOjos);
     void pintarFantasma();
     void setAsustado(bool newAsustado);
 
 private slots:
     void animacion();
+
 };
 
 #endif // GHOST_H

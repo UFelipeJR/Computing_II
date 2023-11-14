@@ -21,8 +21,7 @@ ghost::ghost(const QColor &nativo, const QColor &modificado, unsigned short velo
     connect(timerFantasma, SIGNAL(timeout()), this, SLOT(animacion()));
     cambioSpriteVivo = 1;
     cambioSpriteOjos = 1;
-    cambioSpriteAsustado = 1;
-    separarSprites(":/Recursos/Sprites/cuerpoFantasmaAsus.png",":/Recursos/Sprites/ojosFantasma.png",":/Recursos/Sprites/cuerpoFantasma.png",1,1,1);
+    //separarSprites(":/Recursos/Sprites/cuerpoFantasma.png",":/Recursos/Sprites/ojosFantasma.png",":/Recursos/Sprites/cuerpoFantasmaAsus.png",1,1);
     pintarFantasma();
 
 }
@@ -36,33 +35,46 @@ ghost::~ghost()
 }
 
 
-void ghost::separarSprites(QString sprite1,QString sprite2, QString sprite3 ,short int cantSprites, short int cantSpritesOjos,short int cantSpritesAsustado)
+void ghost::separarSprites(QString sprite1,QString sprite2, QString sprite3 ,short int cantSprites, short int cantSpritesOjos)
 {
     QPixmap auxiliar;
     QPixmap auxiliar2;
     QPixmap auxiliar3;
+    const float escala = 0.875;
 
     if(vivo && !asustado){
         auxiliar.load(sprite1);
         auxiliar2.load(sprite2);
-        auxiliar.load(sprite3);
+        auxiliar3.load(sprite3);
 
         *fantasmaVivo = auxiliar.copy((cantSprites*baseFantasma)-baseFantasma,0,baseFantasma,largoFantasma);
         *fantasmaOjos = auxiliar2.copy((cantSpritesOjos*baseFantasma)-baseFantasma,0,baseFantasma,largoFantasma);
         *fantasmaAsustado = auxiliar3.copy((cantSprites*baseFantasma)-baseFantasma,0,baseFantasma,largoFantasma);
+
+        *fantasmaVivo = fantasmaVivo->scaled(fantasmaVivo->width()*escala,fantasmaVivo->height() * escala);
+        *fantasmaOjos = fantasmaOjos->scaled(fantasmaOjos->width()*escala,fantasmaOjos->height() * escala);
+        *fantasmaAsustado = fantasmaAsustado->scaled(fantasmaAsustado->width()*escala,fantasmaAsustado->height() * escala);
     }
+
+    pintarFantasma();
 
 }
 
 void ghost::pintarFantasma()
 {
+
+
     QImage original = fantasmaVivo->toImage();
     QColor colorPixel;
-    for(int i = 0; i<baseFantasma; i++){
-        for(int j = 0; j<largoFantasma; j++){
-            colorPixel = original.pixelColor(i,j);
-            if(colorPixel == nativo){
-                original.setPixelColor(i,j,modificado);
+
+    int width = original.width();
+    int height = original.height();
+
+    for(int i = 0; i < width; i++) {
+        for(int j = 0; j < height; j++) {
+            colorPixel = original.pixelColor(i, j);
+            if(colorPixel == nativo) {
+                original.setPixelColor(i, j, modificado);
             }
         }
     }
@@ -74,24 +86,27 @@ void ghost::pintarFantasma()
 
 void ghost::animacionVivo()
 {
-    const float escala = 0.875;
+
     QPixmap fusion(*fantasmaVivo);
     QPainter fusionador(&fusion);
-
+    const float escala = 0.875;
 
     if (cambioSpriteVivo == 6) {
         cambioSpriteVivo = 1;
     } else {
         cambioSpriteVivo++;
     }
-    separarSprites(":/Recursos/Sprites/cuerpoFantasmaAsus.png",":/Recursos/Sprites/ojosFantasma.png",":/Recursos/Sprites/cuerpoFantasma.png",cambioSpriteVivo,cambioSpriteOjos,cambioSpriteAsustado);
-    pintarFantasma();
+    separarSprites(":/Recursos/Sprites/cuerpoFantasma.png",":/Recursos/Sprites/ojosFantasma.png",":/Recursos/Sprites/cuerpoFantasmaAsus.png",cambioSpriteVivo,cambioSpriteOjos);
     fusionador.drawPixmap(0,0,*fantasmaOjos);
     fusionador.end();
-    fusion = fusion.scaled(fusion.width() * escala,fusion.height() * escala);
-    *fantasmaAsustado = fantasmaAsustado->scaled(fantasmaAsustado->width()*escala,fantasmaAsustado->height() * escala);
-    setPixmap(fusion);
-    //setPixmap(*fantasmaAsustado);
+
+
+    if(vivo && !asustado){
+        setPixmap(fusion);
+    }
+    else if(vivo && asustado){
+        setPixmap(*fantasmaAsustado);
+    }
 
 
 }
@@ -103,8 +118,6 @@ void ghost::setAsustado(bool newAsustado)
 
 void ghost::animacion()
 {
-    if(vivo && !asustado){
-        animacionVivo();
-    }
+    animacionVivo();
 
 }

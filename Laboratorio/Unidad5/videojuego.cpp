@@ -60,6 +60,7 @@ videojuego::videojuego(QWidget *parent) :
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()),this, SLOT(juegoPrincipal()));
     connect(maze, SIGNAL(comPuntoGrande()),this, SLOT(manejarSen()));
+    connect(pacMancito,SIGNAL(tranquilizar()),this, SLOT(tranqui()));
     timer->start(100);
 
     direcciones = -1;
@@ -246,51 +247,92 @@ void videojuego::movimiento_Automatico()
 
 }
 
+
 void videojuego::movimiento_blinky()
 {
     short int cantPix = 5;
 
-    const float Tizquierda = -0.625;
-    const float Tarriba = -0.125;
-    const float Tderecha = 0.4375;
-    const float Tabajo = 1;
-
+    const float Tizquierda = -0.75;
+    const float Tarriba = -0.12499;
+    const float Tderecha = 0.375;
+    const float Tabajo = 1.125;
 
     float derecha = cal_distancia(blinkyLaberintoX,blinkyLaberintoY,1,0);
     float izquierda = cal_distancia(blinkyLaberintoX,blinkyLaberintoY,-1,0);
     float arriba = cal_distancia(blinkyLaberintoX,blinkyLaberintoY,0,-1);
     float abajo = cal_distancia(blinkyLaberintoX,blinkyLaberintoY,0,1);
 
-
+    qDebug() << derecha;
     if ((derecha < izquierda && derecha < arriba && derecha < abajo)&& !maze->bloqueoEntidad(blinkyLaberintoX + Tderecha, blinkyLaberintoY)){
         //Derecha
-        //qDebug() << "Derecha";
         blinky->moveBy(cantPix, 0);
     }
     else if ((izquierda < derecha && izquierda < arriba && izquierda < abajo)&& !maze->bloqueoEntidad(blinkyLaberintoX + Tizquierda, blinkyLaberintoY)){
         //Izquierda
-        //qDebug() << "Izquierda";
         blinky->moveBy(-cantPix, 0);
     }
     else if ((arriba < izquierda && arriba < derecha && arriba < abajo)&& !maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tarriba)){
         //Arriba
-        //qDebug() << "Arriba";
         blinky->moveBy(0, -cantPix);
     }
     else if ((abajo < izquierda && abajo < arriba && abajo < derecha)&& !maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tabajo)){
         //Abajo
-        //qDebug() << "Abajo";
         blinky->moveBy(0, cantPix);
     }
-
-    /*
-    qDebug() << "Derecha" << derecha;
-    qDebug() << "Izquierda" << izquierda;
-    qDebug() << "Arriba" << arriba;
-    qDebug() << "Abajo" << abajo;
-    */
 }
 
+
+/*
+void videojuego::movimiento_blinky()
+{
+    short int cantPix = 5;
+
+
+    const float Tizquierda = -0.75;
+    const float Tarriba = -0.12499;
+    const float Tderecha = 0.375;
+    const float Tabajo = 1.125;
+
+
+    qDebug() << "Derecha:" << maze->bloqueoEntidad(blinkyLaberintoX + Tderecha, blinkyLaberintoY);
+    qDebug() << "Izquierda:" << maze->bloqueoEntidad(blinkyLaberintoX + Tizquierda, blinkyLaberintoY);
+    qDebug() << "Arriba:" << maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tarriba);
+    qDebug() << "Abajo:" << maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tabajo);
+
+
+    // Calcular la distancia a los bordes
+    float distanciaIzquierda = blinkyLaberintoX;
+    float distanciaDerecha = maze->getAncho() - blinkyLaberintoX;
+    float distanciaArriba = blinkyLaberintoY;
+    float distanciaAbajo = maze->getLargo() - blinkyLaberintoY;
+
+    // Calcular las distancias a las paredes en cada dirección
+    float distanciaDerechaPared = cal_distancia(blinkyLaberintoX, blinkyLaberintoY, 1, 0);
+    float distanciaIzquierdaPared = cal_distancia(blinkyLaberintoX, blinkyLaberintoY, -1, 0);
+    float distanciaArribaPared = cal_distancia(blinkyLaberintoX, blinkyLaberintoY, 0, -1);
+    float distanciaAbajoPared = cal_distancia(blinkyLaberintoX, blinkyLaberintoY, 0, 1);
+
+    // Comprueba si "blinky" está bloqueado en todas las direcciones
+    bool bloqueoDerecha = maze->bloqueoEntidad(blinkyLaberintoX + Tderecha, blinkyLaberintoY);
+    bool bloqueoIzquierda = maze->bloqueoEntidad(blinkyLaberintoX + Tizquierda, blinkyLaberintoY);
+    bool bloqueoArriba = maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tarriba);
+    bool bloqueoAbajo = maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tabajo);
+
+    if (distanciaDerecha < distanciaIzquierda && !bloqueoDerecha) {
+        blinky->moveBy(cantPix, 0);
+    }
+    else if (distanciaIzquierda < distanciaArriba && !bloqueoIzquierda) {
+        blinky->moveBy(-cantPix, 0);
+    }
+    else if (distanciaArriba < distanciaAbajo && !bloqueoArriba) {
+        blinky->moveBy(0, -cantPix);
+    }
+    else if (!bloqueoAbajo) {
+        blinky->moveBy(0, cantPix);
+    }
+}
+
+*/
 
 void videojuego::juegoPrincipal()
 {
@@ -323,7 +365,7 @@ void videojuego::juegoPrincipal()
     }
 
     renderizarTablero();
-    //movimiento_blinky();
+    movimiento_blinky();
     actualizarTexto();
 
     qDebug() << "DEBUG";
@@ -333,9 +375,22 @@ void videojuego::juegoPrincipal()
 
 void videojuego::manejarSen()
 {
-    //qDebug() << "Se comió una bolita";
     pacMancito->setPowerUp(true);
     blinky->setAsustado(true);
+    blinky->setAsustado(true);
+    pinky->setAsustado(true);
+    clyde->setAsustado(true);
+    inky->setAsustado(true);
+}
+
+void videojuego::tranqui()
+{
+    blinky->setAsustado(false);
+    blinky->setAsustado(false);
+    blinky->setAsustado(false);
+    pinky->setAsustado(false);
+    clyde->setAsustado(false);
+    inky->setAsustado(false);
 }
 
 float videojuego::cal_distancia(float xF, float yF ,int dirX, int dirY)

@@ -29,6 +29,7 @@ private:
     bool vivo = true;
     bool powerUp = false;
     bool estadoMovimiento = true;
+    bool confirmacionPowerUp = false;
 
     //Uso de sprites
     QPixmap *pacmanVivo;
@@ -72,6 +73,8 @@ public:
 private slots:
     void animacion();
     void terminarPowerUp();
+signals:
+    void tranquilizar();
 
 };
 

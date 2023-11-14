@@ -42,15 +42,17 @@ static constexpr auto qt_meta_stringdata_CLASSvideojuegoENDCLASS = QtMocHelpers:
     "videojuego",
     "juegoPrincipal",
     "",
-    "manejarSen"
+    "manejarSen",
+    "tranqui"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSvideojuegoENDCLASS_t {
-    uint offsetsAndSizes[8];
+    uint offsetsAndSizes[10];
     char stringdata0[11];
     char stringdata1[15];
     char stringdata2[1];
     char stringdata3[11];
+    char stringdata4[8];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSvideojuegoENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -59,12 +61,14 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSvideojuegoENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(0, 10),  // "videojuego"
         QT_MOC_LITERAL(11, 14),  // "juegoPrincipal"
         QT_MOC_LITERAL(26, 0),  // ""
-        QT_MOC_LITERAL(27, 10)   // "manejarSen"
+        QT_MOC_LITERAL(27, 10),  // "manejarSen"
+        QT_MOC_LITERAL(38, 7)   // "tranqui"
     },
     "videojuego",
     "juegoPrincipal",
     "",
-    "manejarSen"
+    "manejarSen",
+    "tranqui"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -76,7 +80,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSvideojuegoENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -84,10 +88,12 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSvideojuegoENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   26,    2, 0x0a,    1 /* Public */,
-       3,    0,   27,    2, 0x0a,    2 /* Public */,
+       1,    0,   32,    2, 0x0a,    1 /* Public */,
+       3,    0,   33,    2, 0x0a,    2 /* Public */,
+       4,    0,   34,    2, 0x0a,    3 /* Public */,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -106,6 +112,8 @@ Q_CONSTINIT const QMetaObject videojuego::staticMetaObject = { {
         // method 'juegoPrincipal'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'manejarSen'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'tranqui'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -119,6 +127,7 @@ void videojuego::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->juegoPrincipal(); break;
         case 1: _t->manejarSen(); break;
+        case 2: _t->tranqui(); break;
         default: ;
         }
     }
@@ -144,13 +153,13 @@ int videojuego::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 3)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }

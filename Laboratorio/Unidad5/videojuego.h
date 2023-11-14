@@ -61,6 +61,7 @@ public:
 public slots:
     void juegoPrincipal();
     void manejarSen();
+    void tranqui();
 
 protected:
     void keyPressEvent(QKeyEvent *event);

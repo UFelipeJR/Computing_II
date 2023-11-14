@@ -88,7 +88,7 @@ void pacman::animacionM()
 void pacman::animacion()
 {
     colisionadores = collidingItems();
-    if(vivo){
+    if(vivo && !confirmacionPowerUp){
         animacionVivo();
         for(int i = 0; i< colisionadores.size(); i++){
             if(typeid(*colisionadores[i]) == typeid(ghost)){
@@ -98,6 +98,9 @@ void pacman::animacion()
                 return;
             }
         }
+    }
+    else if(vivo && confirmacionPowerUp){
+        animacionVivo();
     }
     else{
         animacionM();
@@ -115,24 +118,21 @@ void pacman::sfx(QString ruta,bool Switch)
     audio->setVolume(1);
 
     if(Switch){
-        //audio->play();
+        audio->play();
     }
     else{
         audio->stop();
     }
 
-
-
 }
-
 
 
 void pacman::iniciarPowerUp()
 {
     qDebug() << "Se ha iniciado el PowerUp";
-    tiempoPoder->start(5000);  // Iniciar el temporizador de 5 segundos
+    tiempoPoder->start(8000);
     powerUp = false;
-    sfx(":/Recursos/Sonidos/siren.wav",true);
+    confirmacionPowerUp = true;
 }
 
 
@@ -140,7 +140,8 @@ void pacman::iniciarPowerUp()
 void pacman::terminarPowerUp()
 {
     qDebug() << "powerUp Finalizado";
-    sfx(":/Recursos/Sonidos/siren.wav",false);
+    emit tranquilizar();
+    confirmacionPowerUp = false;
 }
 
 
