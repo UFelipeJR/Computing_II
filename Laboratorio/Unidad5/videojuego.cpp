@@ -216,14 +216,14 @@ void videojuego::movimiento_Automatico()
 
 
     // Izquierda
-    if (direcciones == 0 && pacMancito->getEstadoMovimiento() &&!maze->bloqueoEntidad(pacmanLaberintoX+izquierda,pacmanLaberintoY)) {
+    if (direcciones == 0 && pacMancito->getEstadoMovimiento() && !maze->bloqueoEntidad(pacmanLaberintoX+izquierda,pacmanLaberintoY)) {
         pacMancito->setRotation(180);
         pacMancito->setTransformOriginPoint(13, 13);
         pacMancito->moveBy(-cantPix, 0);
     }
 
     // Arriba
-    else if (direcciones == 1 && pacMancito->getEstadoMovimiento()&& !maze->bloqueoEntidad(pacmanLaberintoX,pacmanLaberintoY+arriba)) {
+    else if (direcciones == 1 && pacMancito->getEstadoMovimiento()&& !maze->bloqueoEntidad(pacmanLaberintoX,pacmanLaberintoY+arriba)){
 
         pacMancito->setRotation(-90);
         pacMancito->setTransformOriginPoint(13, 13);
@@ -247,7 +247,7 @@ void videojuego::movimiento_Automatico()
 
 }
 
-
+/*
 void videojuego::movimiento_blinky()
 {
     short int cantPix = 5;
@@ -280,59 +280,55 @@ void videojuego::movimiento_blinky()
         blinky->moveBy(0, cantPix);
     }
 }
+*/
 
 
-/*
 void videojuego::movimiento_blinky()
 {
     short int cantPix = 5;
-
-
+    short int direccionAleatoria = 0;
     const float Tizquierda = -0.75;
     const float Tarriba = -0.12499;
     const float Tderecha = 0.375;
     const float Tabajo = 1.125;
+    bool movimientoExitoso = false;
+    srand(time(0));
 
 
-    qDebug() << "Derecha:" << maze->bloqueoEntidad(blinkyLaberintoX + Tderecha, blinkyLaberintoY);
-    qDebug() << "Izquierda:" << maze->bloqueoEntidad(blinkyLaberintoX + Tizquierda, blinkyLaberintoY);
-    qDebug() << "Arriba:" << maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tarriba);
-    qDebug() << "Abajo:" << maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tabajo);
 
+    while (!movimientoExitoso) {
+        direccionAleatoria = rand() % 4;
 
-    // Calcular la distancia a los bordes
-    float distanciaIzquierda = blinkyLaberintoX;
-    float distanciaDerecha = maze->getAncho() - blinkyLaberintoX;
-    float distanciaArriba = blinkyLaberintoY;
-    float distanciaAbajo = maze->getLargo() - blinkyLaberintoY;
-
-    // Calcular las distancias a las paredes en cada dirección
-    float distanciaDerechaPared = cal_distancia(blinkyLaberintoX, blinkyLaberintoY, 1, 0);
-    float distanciaIzquierdaPared = cal_distancia(blinkyLaberintoX, blinkyLaberintoY, -1, 0);
-    float distanciaArribaPared = cal_distancia(blinkyLaberintoX, blinkyLaberintoY, 0, -1);
-    float distanciaAbajoPared = cal_distancia(blinkyLaberintoX, blinkyLaberintoY, 0, 1);
-
-    // Comprueba si "blinky" está bloqueado en todas las direcciones
-    bool bloqueoDerecha = maze->bloqueoEntidad(blinkyLaberintoX + Tderecha, blinkyLaberintoY);
-    bool bloqueoIzquierda = maze->bloqueoEntidad(blinkyLaberintoX + Tizquierda, blinkyLaberintoY);
-    bool bloqueoArriba = maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tarriba);
-    bool bloqueoAbajo = maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tabajo);
-
-    if (distanciaDerecha < distanciaIzquierda && !bloqueoDerecha) {
-        blinky->moveBy(cantPix, 0);
-    }
-    else if (distanciaIzquierda < distanciaArriba && !bloqueoIzquierda) {
-        blinky->moveBy(-cantPix, 0);
-    }
-    else if (distanciaArriba < distanciaAbajo && !bloqueoArriba) {
-        blinky->moveBy(0, -cantPix);
-    }
-    else if (!bloqueoAbajo) {
-        blinky->moveBy(0, cantPix);
+        switch (direccionAleatoria) {
+            case 0:
+                if (!maze->bloqueoEntidad(blinkyLaberintoX + Tderecha, blinkyLaberintoY)) {
+                    blinky->moveBy(cantPix, 0);
+                    movimientoExitoso = true;
+                }
+                break;
+            case 1:
+                if (!maze->bloqueoEntidad(blinkyLaberintoX + Tizquierda, blinkyLaberintoY)) {
+                    blinky->moveBy(-cantPix, 0);
+                    movimientoExitoso = true;
+                }
+                break;
+            case 2:
+                if (!maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tarriba)) {
+                    blinky->moveBy(0, -cantPix);
+                    movimientoExitoso = true;
+                }
+                break;
+            case 3:
+                if (!maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tabajo)) {
+                    blinky->moveBy(0, cantPix);
+                    movimientoExitoso = true;
+                }
+                break;
+        }
     }
 }
 
-*/
+
 
 void videojuego::juegoPrincipal()
 {
@@ -369,6 +365,8 @@ void videojuego::juegoPrincipal()
     actualizarTexto();
 
     qDebug() << "DEBUG";
+    qDebug() << maze->bloqueoEntidad(pacmanLaberintoX,pacmanLaberintoY);
+    qDebug() << "X: " << pacmanLaberintoX << "Y:" << pacmanLaberintoY;
 
 }
 

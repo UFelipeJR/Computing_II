@@ -13,7 +13,7 @@
 #include <pacman.h>
 using namespace std;
 
-class laberinto : public QObject, public QGraphicsPixmapItem
+class laberinto : public QObject
 {
     Q_OBJECT
 
