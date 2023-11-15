@@ -1,5 +1,4 @@
-
-#include "videojuego.h"
+#include <videojuego.h>
 #include <QApplication>
 
 int main(int argc, char *argv[])

@@ -9,6 +9,7 @@
 #include <QLabel>
 #include <QFontDatabase>
 #include <cmath>
+#include <cstdlib>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class videojuego; }
@@ -41,6 +42,8 @@ private:
     float pacmanLaberintoY;
     float blinkyLaberintoX;
     float blinkyLaberintoY;
+    float clydeLaberintoX;
+    float clydeLaberintoY;
 
     string textoPuntaje;
 
@@ -48,7 +51,7 @@ private:
 public:
     videojuego(QWidget *parent = nullptr);
     ~videojuego();
-    setCustomBackgroundColor(string color);
+    void setCustomBackgroundColor(string color);
     void construirTablero();
     void renderizarTablero();
     void dibujarCuadricula();
@@ -57,6 +60,7 @@ public:
     void tp();
     void movimiento_Automatico();
     void movimiento_blinky();
+    void movimiento_clyde();
     float cal_distancia(float xF, float yF ,int dirX, int dirY);
 public slots:
     void juegoPrincipal();

@@ -81,9 +81,12 @@ bool laberinto::comerPunto(int x, int y)
         puntaje += 20;
         emit comPuntoGrande();
     }
+
     return false;
 
 }
+
+
 
 uint laberinto::getPuntaje() const
 {

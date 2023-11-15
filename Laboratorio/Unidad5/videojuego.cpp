@@ -43,7 +43,7 @@ videojuego::videojuego(QWidget *parent) :
     pacMancito->setPos(211,410.45);
     blinky->setPos(211,218);
     pinky->setPos(211,275);
-    clyde->setPos(242,275);
+    clyde->setPos(211,218);
     inky->setPos(180,275);
 
     // Agregado de items
@@ -142,7 +142,7 @@ void videojuego::dibujarCuadricula() {
 }
 
 
-videojuego::setCustomBackgroundColor(string color)
+void videojuego::setCustomBackgroundColor(string color)
 {
     QString comando = QString::fromStdString("background-color: "+color+";");
     setStyleSheet(comando);
@@ -154,6 +154,9 @@ void videojuego::posRelativa()
     pacmanLaberintoY = (pacMancito->y()+7)/constanteLaberinto;
     blinkyLaberintoX = ((blinky->x()-1)/constanteLaberinto)+1;
     blinkyLaberintoY = (blinky->y()+7)/constanteLaberinto;
+    clydeLaberintoX = ((clyde->x()-1)/constanteLaberinto)+1;
+    clydeLaberintoY = (clyde->y()-1)/constanteLaberinto;
+
 }
 
 void videojuego::actualizarTexto()
@@ -252,10 +255,10 @@ void videojuego::movimiento_blinky()
 {
     short int cantPix = 5;
 
-    const float Tizquierda = -0.75;
-    const float Tarriba = -0.12499;
-    const float Tderecha = 0.375;
-    const float Tabajo = 1.125;
+    const float Tizquierda = 0;
+    const float Tarriba = -0;
+    const float Tderecha = 0;
+    const float Tabajo = 0;
 
     float derecha = cal_distancia(blinkyLaberintoX,blinkyLaberintoY,1,0);
     float izquierda = cal_distancia(blinkyLaberintoX,blinkyLaberintoY,-1,0);
@@ -334,8 +337,36 @@ void videojuego::movimiento_blinky()
 
 */
 
+void videojuego::movimiento_clyde()
+{
+    short int cantPix = 7;
+    const float Tizquierda = -0.75;
+    const float Tarriba = -0.12499;
+    const float Tderecha = 0.375;
+    const float Tabajo = 1.125;
+    int randomDir = (rand() % 4) + 1;
+
+    qDebug() << randomDir;
+    qDebug() << clydeLaberintoX;
+    qDebug() << clydeLaberintoY;
+
+    if(randomDir == 1 && !maze->bloqueoEntidad(clydeLaberintoX + Tderecha,clydeLaberintoY)){
+        clyde->moveBy(cantPix,0);
+    }
+    else if (randomDir == 2 && !maze->bloqueoEntidad(clydeLaberintoX + Tizquierda,clydeLaberintoY)){
+        clyde->moveBy(-cantPix, 0);
+    }
+    else if (randomDir == 3 && !maze->bloqueoEntidad(clydeLaberintoX,clydeLaberintoY + Tarriba)){
+        clyde->moveBy(0, -cantPix);
+    }
+    else if (randomDir == 4 && !maze->bloqueoEntidad(clydeLaberintoX,clydeLaberintoY + Tabajo)){
+        clyde->moveBy(0, cantPix);
+    }
+}
+
 void videojuego::juegoPrincipal()
 {
+    srand(time(NULL));
     posRelativa();
     tp();
 
@@ -356,7 +387,8 @@ void videojuego::juegoPrincipal()
         scene->removeItem(pinky);
         scene->removeItem(clyde);
         scene->removeItem(inky);
-        blinky->setPos(211,218);
+        blinky->setPos(212,218);
+        clyde->setPos(212,218);
 
     }
 
@@ -366,10 +398,10 @@ void videojuego::juegoPrincipal()
 
     renderizarTablero();
     movimiento_blinky();
+    movimiento_clyde();
     actualizarTexto();
 
     qDebug() << "DEBUG";
-
 }
 
 
