@@ -75,6 +75,7 @@ private slots:
     void terminarPowerUp();
 signals:
     void tranquilizar();
+    void restablecer();
 
 };
 

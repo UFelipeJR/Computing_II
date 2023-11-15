@@ -61,6 +61,7 @@ videojuego::videojuego(QWidget *parent) :
     connect(timer, SIGNAL(timeout()),this, SLOT(juegoPrincipal()));
     connect(maze, SIGNAL(comPuntoGrande()),this, SLOT(manejarSen()));
     connect(pacMancito,SIGNAL(tranquilizar()),this, SLOT(tranqui()));
+    connect(pacMancito,SIGNAL(restablecer()),this, SLOT(restablecimiento()));
     timer->start(100);
 
     direcciones = -1;
@@ -142,7 +143,7 @@ void videojuego::dibujarCuadricula() {
 }
 
 
-videojuego::setCustomBackgroundColor(string color)
+void videojuego::setCustomBackgroundColor(string color)
 {
     QString comando = QString::fromStdString("background-color: "+color+";");
     setStyleSheet(comando);
@@ -154,6 +155,8 @@ void videojuego::posRelativa()
     pacmanLaberintoY = (pacMancito->y()+7)/constanteLaberinto;
     blinkyLaberintoX = ((blinky->x()-1)/constanteLaberinto)+1;
     blinkyLaberintoY = (blinky->y()+7)/constanteLaberinto;
+    clydeLaberintoX = ((clyde->x()-1)/constanteLaberinto)+1;
+    clydeLaberintoY = (clyde->y()-1)/constanteLaberinto;
 }
 
 void videojuego::actualizarTexto()
@@ -247,7 +250,7 @@ void videojuego::movimiento_Automatico()
 
 }
 
-/*
+
 void videojuego::movimiento_blinky()
 {
     short int cantPix = 5;
@@ -262,7 +265,6 @@ void videojuego::movimiento_blinky()
     float arriba = cal_distancia(blinkyLaberintoX,blinkyLaberintoY,0,-1);
     float abajo = cal_distancia(blinkyLaberintoX,blinkyLaberintoY,0,1);
 
-    qDebug() << derecha;
     if ((derecha < izquierda && derecha < arriba && derecha < abajo)&& !maze->bloqueoEntidad(blinkyLaberintoX + Tderecha, blinkyLaberintoY)){
         //Derecha
         blinky->moveBy(cantPix, 0);
@@ -280,10 +282,7 @@ void videojuego::movimiento_blinky()
         blinky->moveBy(0, cantPix);
     }
 }
-*/
-
-
-void videojuego::movimiento_blinky()
+void videojuego::movimiento_clyde()
 {
     short int cantPix = 5;
     short int direccionAleatoria = 0;
@@ -292,48 +291,46 @@ void videojuego::movimiento_blinky()
     const float Tderecha = 0.375;
     const float Tabajo = 1.125;
     bool movimientoExitoso = false;
-    srand(time(0));
-
-
 
     while (!movimientoExitoso) {
         direccionAleatoria = rand() % 4;
 
         switch (direccionAleatoria) {
-            case 0:
-                if (!maze->bloqueoEntidad(blinkyLaberintoX + Tderecha, blinkyLaberintoY)) {
-                    blinky->moveBy(cantPix, 0);
-                    movimientoExitoso = true;
-                }
-                break;
-            case 1:
-                if (!maze->bloqueoEntidad(blinkyLaberintoX + Tizquierda, blinkyLaberintoY)) {
-                    blinky->moveBy(-cantPix, 0);
-                    movimientoExitoso = true;
-                }
-                break;
-            case 2:
-                if (!maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tarriba)) {
-                    blinky->moveBy(0, -cantPix);
-                    movimientoExitoso = true;
-                }
-                break;
-            case 3:
-                if (!maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tabajo)) {
-                    blinky->moveBy(0, cantPix);
-                    movimientoExitoso = true;
-                }
-                break;
+        case 0:
+            if (!maze->bloqueoEntidad(clydeLaberintoX + Tderecha, clydeLaberintoY)) {
+                clyde->moveBy(cantPix, 0);
+                movimientoExitoso = true;
+            }
+            break;
+        case 1:
+            if (!maze->bloqueoEntidad(clydeLaberintoX + Tizquierda, clydeLaberintoY)) {
+                clyde->moveBy(-cantPix, 0);
+                movimientoExitoso = true;
+            }
+            break;
+        case 2:
+            if (!maze->bloqueoEntidad(clydeLaberintoX, clydeLaberintoY + Tarriba)) {
+                clyde->moveBy(0, -cantPix);
+                movimientoExitoso = true;
+            }
+            break;
+        case 3:
+            if (!maze->bloqueoEntidad(clydeLaberintoX, clydeLaberintoY + Tabajo)) {
+                clyde->moveBy(0, cantPix);
+                movimientoExitoso = true;
+            }
+            break;
         }
     }
 }
-
-
 
 void videojuego::juegoPrincipal()
 {
     posRelativa();
     tp();
+        scene->removeItem(pinky);
+        scene->removeItem(clyde);
+        scene->removeItem(inky);
 
     if(pacMancito->getVivo()){
         pacMancito->setEstadoMovimiento(true);
@@ -362,6 +359,7 @@ void videojuego::juegoPrincipal()
 
     renderizarTablero();
     movimiento_blinky();
+    //movimiento_clyde();
     actualizarTexto();
 
     qDebug() << "DEBUG";
@@ -389,6 +387,11 @@ void videojuego::tranqui()
     pinky->setAsustado(false);
     clyde->setAsustado(false);
     inky->setAsustado(false);
+}
+
+void videojuego::restablecimiento()
+{
+    blinky->setPos(211,218);
 }
 
 float videojuego::cal_distancia(float xF, float yF ,int dirX, int dirY)

@@ -10,6 +10,7 @@
 #include <QFontDatabase>
 #include <cmath>
 #include <cstdlib>
+#include <ctime>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class videojuego; }
@@ -66,6 +67,7 @@ public slots:
     void juegoPrincipal();
     void manejarSen();
     void tranqui();
+    void restablecimiento();
 
 protected:
     void keyPressEvent(QKeyEvent *event);

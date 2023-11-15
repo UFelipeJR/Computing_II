@@ -101,6 +101,14 @@ void pacman::animacion()
     }
     else if(vivo && confirmacionPowerUp){
         animacionVivo();
+        for(int i = 0; i< colisionadores.size(); i++){
+            if(typeid(*colisionadores[i]) == typeid(ghost)){
+                qDebug() << "Se ha colisionado un pacman con un fantasma en modo power";
+                emit restablecer();
+                return;
+            }
+        }
+
     }
     else{
         animacionM();
