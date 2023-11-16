@@ -11,9 +11,10 @@
 #include <iostream>
 #include <Qpainter>
 #include <pacman.h>
+#include <QGraphicsScene>
 using namespace std;
 
-class laberinto : public QObject
+class laberinto : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
@@ -26,6 +27,11 @@ private:
     uint puntoGrande;
     uint puntaje;
 
+    QPixmap arregloLaberinto[32];
+    QPixmap imagenLaberinto;
+    QGraphicsPixmapItem* LaberintoPixmaItems[28][36];
+
+
 public:
     laberinto();
     unsigned int bloque(int x, int y);
@@ -34,6 +40,8 @@ public:
     static uint getAncho();
     static uint getLargo();
     uint getPuntaje() const;
+    void construirTablero(QGraphicsScene* escena);
+    void renderizarTablero();
 
 signals:
     void comPuntoGrande();

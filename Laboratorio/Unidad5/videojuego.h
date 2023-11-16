@@ -28,10 +28,6 @@ private:
     pacman *pacMancito;
     laberinto* maze;
     QTimer *timer;
-    QPixmap arregloLaberinto[32];
-    QPixmap imagenLaberinto;
-    QGraphicsPixmapItem* LaberintoPixmaItems[28][36];
-    QGraphicsTextItem* texto;
 
     ghost *blinky;
     ghost *clyde;
@@ -46,15 +42,14 @@ private:
     float clydeLaberintoX;
     float clydeLaberintoY;
 
+    QGraphicsTextItem* texto;
     string textoPuntaje;
 
-
 public:
+
     videojuego(QWidget *parent = nullptr);
     ~videojuego();
     void setCustomBackgroundColor(string color);
-    void construirTablero();
-    void renderizarTablero();
     void dibujarCuadricula();
     void posRelativa();
     void actualizarTexto();
@@ -63,6 +58,7 @@ public:
     void movimiento_blinky();
     void movimiento_clyde();
     float cal_distancia(float xF, float yF ,int dirX, int dirY);
+
 public slots:
     void juegoPrincipal();
     void manejarSen();

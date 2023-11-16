@@ -37,8 +37,8 @@ videojuego::videojuego(QWidget *parent) :
 
     setCustomBackgroundColor("black");
 
-    construirTablero();
-    renderizarTablero();
+    maze->construirTablero(scene);
+    maze->renderizarTablero();
 
     pacMancito->setPos(211,410.45);
     blinky->setPos(211,218);
@@ -94,36 +94,6 @@ videojuego::~videojuego()
 }
 
 
-void videojuego::construirTablero()
-{
-    imagenLaberinto.load(":/Recursos/Sprites/labyrinth.png");
-    int indice = 0;
-    for (int i = 0; i < 8; i++){
-        for (int j = 0; j < 4; j++){
-            arregloLaberinto[indice] = imagenLaberinto.copy(i*constanteLaberinto,j*constanteLaberinto,constanteLaberinto,constanteLaberinto);
-            indice ++;
-        }
-    }
-
-    for (int i = 0; i < maze->getAncho(); i++){
-        for (int j = 0; j < maze->getLargo(); j++){
-            LaberintoPixmaItems[i][j] = new QGraphicsPixmapItem();
-            LaberintoPixmaItems[i][j]->setPixmap(arregloLaberinto[maze->bloque(i,j)]);
-            LaberintoPixmaItems[i][j]->setPos(i*constanteLaberinto,j*constanteLaberinto);
-            scene->addItem(LaberintoPixmaItems[i][j]);
-        }
-    }
-
-}
-
-void videojuego::renderizarTablero()
-{
-    for (int i = 0; i < maze->getAncho(); i++){
-        for (int j = 0; j < maze->getLargo(); j++){
-            LaberintoPixmaItems[i][j]->setPixmap(arregloLaberinto[maze->bloque(i,j)]);
-        }
-    }
-}
 
 void videojuego::dibujarCuadricula() {
     QPen redPen(Qt::red);
@@ -357,7 +327,7 @@ void videojuego::juegoPrincipal()
         pacMancito->sfx(":/Recursos/Sonidos/vivo.wav",true);
     }
 
-    renderizarTablero();
+    maze->renderizarTablero();
     movimiento_blinky();
     //movimiento_clyde();
     actualizarTexto();

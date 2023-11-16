@@ -5,7 +5,7 @@ pacman::pacman()
 
 }
 
-pacman::pacman(unsigned short vidas, unsigned short velocidad)
+pacman::pacman(unsigned short vidas,unsigned short velocidad)
 {
     this->vidas = vidas;
     this->velocidad = velocidad;
@@ -31,7 +31,6 @@ pacman::~pacman()
 {
     delete pacmanVivo;
     delete timerPacman;
-    delete audio;
     delete pacmanMuerto;
 }
 

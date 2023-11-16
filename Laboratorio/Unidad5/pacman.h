@@ -41,7 +41,6 @@ private:
     unsigned short int cambioSpriteMuerto;
 
     //Sonidos
-    QSoundEffect *audio;
 
     //Colisiones
     QList <QGraphicsItem*> colisionadores;

@@ -93,6 +93,36 @@ uint laberinto::getPuntaje() const
     return puntaje;
 }
 
+void laberinto::construirTablero(QGraphicsScene *scene)
+{
+    imagenLaberinto.load(":/Recursos/Sprites/labyrinth.png");
+    int indice = 0;
+    for (int i = 0; i < 8; i++){
+        for (int j = 0; j < 4; j++){
+            arregloLaberinto[indice] = imagenLaberinto.copy(i*constanteLaberinto,j*constanteLaberinto,constanteLaberinto,constanteLaberinto);
+            indice ++;
+        }
+    }
+
+    for (int i = 0; i < ancho; i++){
+        for (int j = 0; j < largo; j++){
+            LaberintoPixmaItems[i][j] = new QGraphicsPixmapItem();
+            LaberintoPixmaItems[i][j]->setPixmap(arregloLaberinto[bloque(i,j)]);
+            LaberintoPixmaItems[i][j]->setPos(i*constanteLaberinto,j*constanteLaberinto);
+            scene->addItem(LaberintoPixmaItems[i][j]);
+        }
+    }
+}
+
+void laberinto::renderizarTablero()
+{
+    for (int i = 0; i < ancho; i++){
+        for (int j = 0; j < largo; j++){
+            LaberintoPixmaItems[i][j]->setPixmap(arregloLaberinto[bloque(i,j)]);
+        }
+    }
+}
+
 
 
 
