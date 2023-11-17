@@ -2,7 +2,21 @@
 
 ghost::ghost()
 {
+    this->velocidad = velocidad;
+    this-> nativo = nativo;
+    this-> modificado = modificado;
 
+    fantasmaVivo = new QPixmap;
+    fantasmaOjos = new QPixmap;
+    fantasmaAsustado = new QPixmap;
+    timerFantasma = new QTimer;
+
+
+    timerFantasma->start(1000/velocidad);
+    connect(timerFantasma, SIGNAL(timeout()), this, SLOT(animacion()));
+    cambioSpriteVivo = 1;
+    cambioSpriteOjos = 1;
+    pintarFantasma();
 }
 
 ghost::ghost(const QColor &nativo, const QColor &modificado, unsigned short velocidad)
@@ -21,7 +35,6 @@ ghost::ghost(const QColor &nativo, const QColor &modificado, unsigned short velo
     connect(timerFantasma, SIGNAL(timeout()), this, SLOT(animacion()));
     cambioSpriteVivo = 1;
     cambioSpriteOjos = 1;
-    //separarSprites(":/Recursos/Sprites/cuerpoFantasma.png",":/Recursos/Sprites/ojosFantasma.png",":/Recursos/Sprites/cuerpoFantasmaAsus.png",1,1);
     pintarFantasma();
 
 }
@@ -96,7 +109,7 @@ void ghost::animacionVivo()
     } else {
         cambioSpriteVivo++;
     }
-    separarSprites(":/Recursos/Sprites/cuerpoFantasma.png",":/Recursos/Sprites/ojosFantasma.png",":/Recursos/Sprites/cuerpoFantasmaAsus.png",cambioSpriteVivo,cambioSpriteOjos);
+    separarSprites(recursos::RFantasmaV,recursos::RFantasmaO,recursos::RFantasmaA,cambioSpriteVivo,cambioSpriteOjos);
     fusionador.drawPixmap(0,0,*fantasmaOjos);
     fusionador.end();
 

@@ -69,6 +69,10 @@ public:
     void animacionM();
     void iniciarPowerUp();
 
+    unsigned short getVidas() const;
+
+    void setVidas(unsigned short newVidas);
+
 private slots:
     void animacion();
     void terminarPowerUp();

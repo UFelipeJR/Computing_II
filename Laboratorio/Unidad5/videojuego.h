@@ -39,11 +39,13 @@ private:
     float pacmanLaberintoY;
     float blinkyLaberintoX;
     float blinkyLaberintoY;
-    float clydeLaberintoX;
-    float clydeLaberintoY;
+    float inkyLaberintoX;
+    float inkyLaberintoY;
 
     QGraphicsTextItem* texto;
+    QGraphicsTextItem* texto2;
     string textoPuntaje;
+    string textoVida;
 
 public:
 
@@ -55,8 +57,6 @@ public:
     void actualizarTexto();
     void tp();
     void movimiento_Automatico();
-    void movimiento_blinky();
-    void movimiento_clyde();
     float cal_distancia(float xF, float yF ,int dirX, int dirY);
 
 public slots:
@@ -64,6 +64,8 @@ public slots:
     void manejarSen();
     void tranqui();
     void restablecimiento();
+    void movimiento_blinky();
+    //void movimiento_inky();
 
 protected:
     void keyPressEvent(QKeyEvent *event);

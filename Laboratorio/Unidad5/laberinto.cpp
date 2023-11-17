@@ -86,8 +86,6 @@ bool laberinto::comerPunto(int x, int y)
 
 }
 
-
-
 uint laberinto::getPuntaje() const
 {
     return puntaje;
@@ -95,7 +93,7 @@ uint laberinto::getPuntaje() const
 
 void laberinto::construirTablero(QGraphicsScene *scene)
 {
-    imagenLaberinto.load(":/Recursos/Sprites/labyrinth.png");
+    imagenLaberinto.load(recursos::ruta_laberinto);
     int indice = 0;
     for (int i = 0; i < 8; i++){
         for (int j = 0; j < 4; j++){

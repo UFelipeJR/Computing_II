@@ -9,34 +9,32 @@ videojuego::videojuego(QWidget *parent) :
     ui->setupUi(this);
 
 
-    // Colores fantasmas
     QColor defecto = QColor(255,255,255);
     QColor blinkyColor = QColor(255,0,0);
     QColor clydeColor = QColor(250,169,30);
     QColor inkyColor = QColor(147,215,247);
     QColor pinkyColor = QColor(239,176,198);
-
-
     QFont customFont;
-    customFont.setPointSize(16);
-    customFont.setFamily("Arcadepix");
 
 
+    timer = new QTimer(this);
     maze = new laberinto;
-    pacMancito = new pacman(5,6);
+    pacMancito = new pacman(10,6);
     view = new QGraphicsView(this);
     scene = new QGraphicsScene(this);
     blinky = new ghost(defecto,blinkyColor,6);
     clyde = new ghost(defecto,clydeColor,6);
     inky = new ghost(defecto,inkyColor,6);
     pinky = new ghost(defecto,pinkyColor,6);
+    texto = new QGraphicsTextItem(QString::fromStdString(textoPuntaje));
+    texto2 = new QGraphicsTextItem(QString::fromStdString(textoVida));
 
-    view->setScene(scene);
+    customFont.setPointSize(16);
+    customFont.setFamily("Arcadepix");
+
+    direcciones = -1;
     setCentralWidget(view);
-
-
     setCustomBackgroundColor("black");
-
     maze->construirTablero(scene);
     maze->renderizarTablero();
 
@@ -46,38 +44,45 @@ videojuego::videojuego(QWidget *parent) :
     clyde->setPos(242,275);
     inky->setPos(180,275);
 
-    // Agregado de items
-
+    view->setScene(scene);
     scene->addItem(pacMancito);
     scene->addItem(blinky);
     scene->addItem(pinky);
     scene->addItem(clyde);
     scene->addItem(inky);
-
-
     ui->main_scene->setScene(scene);
 
-    timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()),this, SLOT(juegoPrincipal()));
+    connect(timer, SIGNAL(timeout()),this, SLOT(movimiento_blinky()));
+    //connect(timer, SIGNAL(timeout()),this, SLOT(movimiento_inky()));
     connect(maze, SIGNAL(comPuntoGrande()),this, SLOT(manejarSen()));
     connect(pacMancito,SIGNAL(tranquilizar()),this, SLOT(tranqui()));
     connect(pacMancito,SIGNAL(restablecer()),this, SLOT(restablecimiento()));
     timer->start(100);
 
-    direcciones = -1;
     this->setFixedSize(800,600);
     this->setWindowTitle("Pacman");
     scene->setSceneRect(0, 0, maze->getAncho() * constanteLaberinto, maze->getLargo() * constanteLaberinto);
 
     pacmanLaberintoX = 0.0;
     pacmanLaberintoY = 0.0;
+    blinkyLaberintoX = 0.0;
+    blinkyLaberintoY = 0.0;
+    inkyLaberintoX = 0.0;
+    inkyLaberintoY = 0.0;
     textoPuntaje = "Puntaje: 0";
+    textoVida = "Vidas: 10";
 
-    //dibujarCuadricula();
-    texto = new QGraphicsTextItem(QString::fromStdString(textoPuntaje));
     texto->setFont(customFont);
     texto->setDefaultTextColor(Qt::white);
     scene->addItem(texto);
+
+    texto2->setFont(customFont);
+    texto2->setDefaultTextColor(Qt::white);
+    texto2->setPos(325,0);
+    scene->addItem(texto2);
+
+    //dibujarCuadricula();
 
 }
 
@@ -91,6 +96,7 @@ videojuego::~videojuego()
     delete inky;
     delete pinky;
     delete texto;
+    delete texto2;
 }
 
 
@@ -125,13 +131,15 @@ void videojuego::posRelativa()
     pacmanLaberintoY = (pacMancito->y()+7)/constanteLaberinto;
     blinkyLaberintoX = ((blinky->x()-1)/constanteLaberinto)+1;
     blinkyLaberintoY = (blinky->y()+7)/constanteLaberinto;
-    clydeLaberintoX = ((clyde->x()-1)/constanteLaberinto)+1;
-    clydeLaberintoY = (clyde->y()-1)/constanteLaberinto;
+    inkyLaberintoX = ((inky->x()-1)/constanteLaberinto)+1;
+    inkyLaberintoY = (inky->y()+7)/constanteLaberinto;
 }
 
 void videojuego::actualizarTexto()
 {
     textoPuntaje = "Puntaje:" + to_string(maze->getPuntaje());
+    textoVida = "Vidas:"+ to_string(pacMancito->getVidas());
+    texto2->setPlainText(QString::fromStdString(textoVida));
     texto->setPlainText(QString::fromStdString(textoPuntaje));
     view->update();
 }
@@ -180,13 +188,12 @@ void videojuego::keyPressEvent(QKeyEvent *event)
 
 void videojuego::movimiento_Automatico()
 {
-    int cantPix = 8;
+    short int cantPix = 8;
 
     const float izquierda = -0.75;
     const float arriba = -0.12499;
     const float derecha = 0.375;
     const float abajo = 1.125;
-
 
     // Izquierda
     if (direcciones == 0 && pacMancito->getEstadoMovimiento() && !maze->bloqueoEntidad(pacmanLaberintoX+izquierda,pacmanLaberintoY)) {
@@ -230,6 +237,7 @@ void videojuego::movimiento_blinky()
     const float Tderecha = 0.375;
     const float Tabajo = 1.125;
 
+
     float derecha = cal_distancia(blinkyLaberintoX,blinkyLaberintoY,1,0);
     float izquierda = cal_distancia(blinkyLaberintoX,blinkyLaberintoY,-1,0);
     float arriba = cal_distancia(blinkyLaberintoX,blinkyLaberintoY,0,-1);
@@ -249,50 +257,40 @@ void videojuego::movimiento_blinky()
     }
     else if ((abajo < izquierda && abajo < arriba && abajo < derecha)&& !maze->bloqueoEntidad(blinkyLaberintoX, blinkyLaberintoY + Tabajo)){
         //Abajo
-        blinky->moveBy(0, cantPix);
+        blinky->moveBy(0, cantPix+1);
     }
 }
-void videojuego::movimiento_clyde()
+
+/*
+void videojuego::movimiento_inky()
 {
     short int cantPix = 5;
-    short int direccionAleatoria = 0;
+
     const float Tizquierda = -0.75;
     const float Tarriba = -0.12499;
     const float Tderecha = 0.375;
     const float Tabajo = 1.125;
-    bool movimientoExitoso = false;
 
-    while (!movimientoExitoso) {
-        direccionAleatoria = rand() % 4;
+    float derecha = cal_distancia(inkyLaberintoX,inkyLaberintoY,1,0);
+    float izquierda = cal_distancia(inkyLaberintoX,inkyLaberintoY,-1,0);
+    float arriba = cal_distancia(inkyLaberintoX,inkyLaberintoY,0,-1);
+    float abajo = cal_distancia(inkyLaberintoX,inkyLaberintoY,0,1);
 
-        switch (direccionAleatoria) {
-        case 0:
-            if (!maze->bloqueoEntidad(clydeLaberintoX + Tderecha, clydeLaberintoY)) {
-                clyde->moveBy(cantPix, 0);
-                movimientoExitoso = true;
-            }
-            break;
-        case 1:
-            if (!maze->bloqueoEntidad(clydeLaberintoX + Tizquierda, clydeLaberintoY)) {
-                clyde->moveBy(-cantPix, 0);
-                movimientoExitoso = true;
-            }
-            break;
-        case 2:
-            if (!maze->bloqueoEntidad(clydeLaberintoX, clydeLaberintoY + Tarriba)) {
-                clyde->moveBy(0, -cantPix);
-                movimientoExitoso = true;
-            }
-            break;
-        case 3:
-            if (!maze->bloqueoEntidad(clydeLaberintoX, clydeLaberintoY + Tabajo)) {
-                clyde->moveBy(0, cantPix);
-                movimientoExitoso = true;
-            }
-            break;
-        }
+    if ((derecha > izquierda && derecha > arriba && derecha > abajo)&& !maze->bloqueoEntidad(inkyLaberintoX + Tderecha, inkyLaberintoY)){
+        inky->moveBy(cantPix, 0);
+    }
+    else if ((izquierda > derecha && izquierda > arriba && izquierda > abajo)&& !maze->bloqueoEntidad(inkyLaberintoX + Tizquierda, inkyLaberintoY)){
+        inky->moveBy(-cantPix, 0);
+    }
+    else if ((arriba > izquierda && arriba > derecha && arriba > abajo)&& !maze->bloqueoEntidad(inkyLaberintoX, inkyLaberintoY + Tarriba)){
+        inky->moveBy(0, -cantPix);
+    }
+    else if ((abajo > izquierda && abajo > arriba && abajo > derecha)&& !maze->bloqueoEntidad(inkyLaberintoX, inkyLaberintoY + Tabajo)){
+
+        inky->moveBy(0, cantPix);
     }
 }
+*/
 
 void videojuego::juegoPrincipal()
 {
@@ -319,7 +317,7 @@ void videojuego::juegoPrincipal()
         scene->removeItem(pinky);
         scene->removeItem(clyde);
         scene->removeItem(inky);
-        blinky->setPos(211,218);
+        restablecimiento();
 
     }
 
@@ -328,13 +326,16 @@ void videojuego::juegoPrincipal()
     }
 
     maze->renderizarTablero();
-    movimiento_blinky();
-    //movimiento_clyde();
+
     actualizarTexto();
 
     qDebug() << "DEBUG";
     qDebug() << maze->bloqueoEntidad(pacmanLaberintoX,pacmanLaberintoY);
     qDebug() << "X: " << pacmanLaberintoX << "Y:" << pacmanLaberintoY;
+
+    if(pacMancito->getVidas() == 0){
+        exit(1);
+    }
 
 }
 
@@ -362,6 +363,7 @@ void videojuego::tranqui()
 void videojuego::restablecimiento()
 {
     blinky->setPos(211,218);
+    blinky->setAsustado(false);
 }
 
 float videojuego::cal_distancia(float xF, float yF ,int dirX, int dirY)
@@ -373,8 +375,6 @@ float videojuego::cal_distancia(float xF, float yF ,int dirX, int dirY)
     }
     return distancia;
 }
-
-
 
 
 

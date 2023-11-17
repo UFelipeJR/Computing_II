@@ -1,7 +1,7 @@
 #ifndef LABERINTO_H
 #define LABERINTO_H
 
-#include <recursos.h>
+
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
@@ -12,6 +12,8 @@
 #include <Qpainter>
 #include <pacman.h>
 #include <QGraphicsScene>
+#include "recursos.h";
+
 using namespace std;
 
 class laberinto : public QObject, public QGraphicsPixmapItem

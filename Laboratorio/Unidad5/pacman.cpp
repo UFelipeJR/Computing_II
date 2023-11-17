@@ -2,6 +2,24 @@
 
 pacman::pacman()
 {
+    this->vidas = 3;
+    this->velocidad = 1;
+
+    pacmanVivo = new QPixmap;
+    pacmanMuerto = new QPixmap;
+    timerPacman = new QTimer;
+    tiempoPoder = new QTimer;
+
+    timerPacman->start(1000/velocidad);
+    connect(timerPacman, SIGNAL(timeout()), this, SLOT(animacion()));
+    cambioSpriteVivo = 1;
+    cambioSpriteMuerto = 1;
+    separarSprites(recursos::RpacmanVivo, 1);
+    separarSprites(recursos::RpacmanMuerto, 1);
+
+    tiempoPoder->setSingleShot(true);
+    tiempoPoder->setInterval(5000);
+    connect(tiempoPoder,SIGNAL(timeout()),this,SLOT(terminarPowerUp()));
 
 }
 
@@ -19,8 +37,8 @@ pacman::pacman(unsigned short vidas,unsigned short velocidad)
     connect(timerPacman, SIGNAL(timeout()), this, SLOT(animacion()));
     cambioSpriteVivo = 1;
     cambioSpriteMuerto = 1;
-    separarSprites(":/Recursos/Sprites/vivo.png", 1);
-    separarSprites(":/Recursos/Sprites/muerte.png", 1);
+    separarSprites(recursos::RpacmanVivo, 1);
+    separarSprites(recursos::RpacmanMuerto, 1);
 
     tiempoPoder->setSingleShot(true);
     tiempoPoder->setInterval(5000);
@@ -58,7 +76,7 @@ void pacman::animacionVivo()
         cambioSpriteVivo++;
     }
 
-    separarSprites(":/Recursos/Sprites/vivo.png", cambioSpriteVivo);
+    separarSprites(recursos::RpacmanVivo, cambioSpriteVivo);
 
     *pacmanVivo = pacmanVivo->scaled(pacmanVivo->width() * escala, pacmanVivo->height() * escala);
 
@@ -77,7 +95,7 @@ void pacman::animacionM()
     } else {
         cambioSpriteMuerto++;
     }
-    separarSprites(":/Recursos/Sprites/muerte.png",cambioSpriteMuerto);
+    separarSprites(recursos::RpacmanMuerto,cambioSpriteMuerto);
     *pacmanMuerto = pacmanMuerto->scaled(pacmanMuerto->width() * escala, pacmanMuerto->height()*escala);
     setPixmap(*pacmanMuerto);
     estadoMovimiento = false;
@@ -93,7 +111,8 @@ void pacman::animacion()
             if(typeid(*colisionadores[i]) == typeid(ghost)){
                 vivo = false;
                 qDebug() << "Se ha colisionado un pacman con un fantasma";
-                sfx(":/Recursos/Sonidos/muerto.wav",true);
+                sfx(recursos::sonidoM,true);
+                vidas--;
                 return;
             }
         }
@@ -138,6 +157,7 @@ void pacman::iniciarPowerUp()
 {
     qDebug() << "Se ha iniciado el PowerUp";
     tiempoPoder->start(8000);
+    sfx(recursos::RpowerUP,true);
     powerUp = false;
     confirmacionPowerUp = true;
 }
@@ -184,6 +204,14 @@ void pacman::setEstadoMovimiento(bool newEstadoMovimiento)
     estadoMovimiento = newEstadoMovimiento;
 }
 
+unsigned short pacman::getVidas() const
+{
+    return vidas;
+}
 
+void pacman::setVidas(unsigned short newVidas)
+{
+    vidas = newVidas;
+}
 
 

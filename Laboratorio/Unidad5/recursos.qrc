@@ -5,13 +5,12 @@
         <file>Recursos/Sprites/muerte.png</file>
         <file>Recursos/Sprites/cuerpoFantasma.png</file>
         <file>Recursos/Sprites/ojosFantasma.png</file>
-        <file>Recursos/Archivos/laberinto.png</file>
-        <file>Recursos/Archivos/laberintoRecortado.png</file>
         <file>Recursos/Sprites/labyrinth.png</file>
         <file>Recursos/Sonidos/vivo.wav</file>
         <file>Recursos/Sonidos/muerto.wav</file>
         <file>Recursos/Fuentes/arcadepi.ttf</file>
         <file>Recursos/Sonidos/siren.wav</file>
         <file>Recursos/Sprites/cuerpoFantasmaAsus.png</file>
+        <file>Recursos/Sonidos/powerUP.wav</file>
     </qresource>
 </RCC>
