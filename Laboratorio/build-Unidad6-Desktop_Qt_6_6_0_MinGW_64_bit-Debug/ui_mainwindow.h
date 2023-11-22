@@ -56,7 +56,7 @@ public:
         centralwidget->setObjectName("centralwidget");
         layoutWidget = new QWidget(centralwidget);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(10, 80, 168, 272));
+        layoutWidget->setGeometry(QRect(10, 80, 209, 272));
         gridLayout = new QGridLayout(layoutWidget);
         gridLayout->setObjectName("gridLayout");
         gridLayout->setContentsMargins(0, 0, 0, 0);
@@ -171,7 +171,7 @@ public:
 
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName("graphicsView");
-        graphicsView->setGeometry(QRect(200, 10, 1101, 661));
+        graphicsView->setGeometry(QRect(240, 10, 1001, 621));
         MainWindow->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow);
@@ -184,7 +184,7 @@ public:
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         radio->setText(QCoreApplication::translate("MainWindow", "Radio", nullptr));
         add->setText(QCoreApplication::translate("MainWindow", "Agregar", nullptr));
-        continue_2->setText(QCoreApplication::translate("MainWindow", "Continuar", nullptr));
+        continue_2->setText(QCoreApplication::translate("MainWindow", "Iniciar", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Vel Y ini", nullptr));
         continue_3->setText(QCoreApplication::translate("MainWindow", "Reiniciar", nullptr));
         Xo->setText(QCoreApplication::translate("MainWindow", "Pos X ini", nullptr));

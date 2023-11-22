@@ -18,6 +18,8 @@ body::body(float _x, float _y, float _masa, float _rad, float _vx, float _vy)
     masa = _masa;
 
     setPos((x/EX), (-y/EY));
+
+
 }
 
 QRectF body::boundingRect() const
@@ -27,7 +29,15 @@ QRectF body::boundingRect() const
 
 void body::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::darkRed);
+
+    QColor colours[10] = {QColor("cyan"), QColor("magenta"), QColor("red"),
+                          QColor("darkRed"), QColor("darkCyan"), QColor("darkMagenta"),
+                          QColor("green"), QColor("darkGreen"), QColor("yellow"),
+                          QColor("blue")};
+
+    int num = rand()%10;
+
+    painter->setBrush(colours[num]);
     painter->drawEllipse(boundingRect());
 }
 

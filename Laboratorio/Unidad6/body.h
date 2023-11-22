@@ -10,6 +10,8 @@
 #include <QGraphicsItem>
 #include <QPainter>
 #include <cmath>
+#include<stdlib.h>
+#include<time.h>
 
 class body : public QGraphicsItem
 {

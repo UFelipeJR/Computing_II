@@ -14,11 +14,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->continue_5,SIGNAL(clicked(bool)),this,SLOT(system1()));
     connect(ui->continue_6,SIGNAL(clicked(bool)),this,SLOT(system2()));
 
-
     showMaximized();
     scene = new QGraphicsScene(-300, -400, 600, 800);
     ui->graphicsView->setScene(scene);
     timer = new QTimer(this);
+    timertwo = new QTimer(this);
+
+
+    numSimulation = 0;
+    timertwo->start(0.1);
 
     ui->Num_Xo->setMinimum(-1e20);
     ui->Num_Xo->setMaximum(1e20);
@@ -33,16 +37,22 @@ MainWindow::MainWindow(QWidget *parent)
     ui->vely->setMinimum(-1e20);
     ui->vely->setMaximum(1e20);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+    connect(timertwo, SIGNAL(timeout()), this, SLOT(repairButtons()));
     state = false;
 
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    srand(time(NULL));
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete timer;
+    delete timertwo;
+    delete scene;
 }
 
 void MainWindow::iniciar_clicked()
@@ -52,6 +62,7 @@ void MainWindow::iniciar_clicked()
 
 void MainWindow::add_instance()
 {
+    numSimulation = 3;
     timer->start(33);
     float posX = ui->Num_Xo->value();
     float posY = ui->Num_Yo->value();;
@@ -73,30 +84,67 @@ void MainWindow::add_instance()
 
 }
 
+
 void MainWindow::update()
 {
 
+    float masa, posx, posy;
     if(state){
-        for (int r = 0; r < 11; r++){
-            for (int j = 0; j < system.length(); j++){
-                for (int i = 0; i < system.length(); i++){
-                    if (system[i] != system[j])
-                    {
-                        float masa = system[i]->getMasa();
-                        float posx = system[i]->getX();
-                        float posy = system[i]->getY();
+    for (int r=0 ; r<11; r++)
+    {
+        for (int j=0 ; j < system.length(); j++)
+        {
+                for (int i=0; i < system.length(); i++){
+                    if (system[i] != system[j]){
+                        masa = system[i]->getMasa();
+                        posx = system[i]->getX();
+                        posy = system[i]->getY();
                         system[j]->aceleracion(masa, posx, posy);
                     }
-                }
 
+                }
                 system[j]->velocidades();
                 system[j]->posiciones();
+                writeFile(posx,posy, false);
 
                 system[j]->setAx(0);
                 system[j]->setAy(0);
-            }
         }
+        writeFile(posx,posy,true);
+
     }
+    }
+}
+
+
+void MainWindow::writeFile(float val1, float val2, bool nl)
+{
+    std::string namefile;
+
+    if(numSimulation == 1){
+    namefile = "../Unidad6/Archivos/sistema1.txt";
+    }
+    else if(numSimulation == 2){
+    namefile = "../Unidad6/Archivos/sistema2.txt";
+    }
+    else if(numSimulation == 3){
+    namefile = "../Unidad6/Archivos/sistemaPersonalizado.txt";
+    }
+
+    std::ofstream archivo(namefile,std::ofstream::app);
+
+    if(!nl){
+    archivo << val1 << "\t";
+    archivo << val2 << "\t";
+
+    }
+    else{
+    archivo << "\n";
+    }
+
+    archivo.close();
+
+
 }
 
 void MainWindow::reset()
@@ -122,7 +170,7 @@ void MainWindow::deleteLast()
 
 void MainWindow::system1()
 {
-    qDebug() << "Sistema 1";
+    numSimulation = 1;
     timer->start(33);
     system.append(new body(0, -7000, 70, 120, 2, 0));
     scene->addItem(system.last());
@@ -137,7 +185,7 @@ void MainWindow::system1()
 
 void MainWindow::system2()
 {
-    qDebug() << "Sistema 2";
+    numSimulation = 2;
     timer->start(33);
     system.append(new body(0, 0, 50000, 200, 0, 0));
     scene->addItem(system.last());
@@ -153,6 +201,18 @@ void MainWindow::system2()
 
     system.append(new body(0, 5000, 70, 70, -2, 0));
     scene->addItem(system.last());
+}
+
+void MainWindow::repairButtons()
+{
+    if (system.isEmpty() || system.size() == 0){
+        ui->continue_2->setEnabled(false);
+        ui->continue_4->setEnabled(false);
+    }
+    else{
+        ui->continue_2->setEnabled(true);
+        ui->continue_4->setEnabled(true);
+    }
 }
 
 
