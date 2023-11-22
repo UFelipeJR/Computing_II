@@ -9,6 +9,7 @@ SOURCES += \
     laberinto.cpp \
     main.cpp \
     pacman.cpp \
+    recursos.cpp \
     videojuego.cpp
 
 HEADERS += \

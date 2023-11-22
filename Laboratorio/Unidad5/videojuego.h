@@ -65,7 +65,6 @@ public slots:
     void tranqui();
     void restablecimiento();
     void movimiento_blinky();
-    //void movimiento_inky();
 
 protected:
     void keyPressEvent(QKeyEvent *event);
