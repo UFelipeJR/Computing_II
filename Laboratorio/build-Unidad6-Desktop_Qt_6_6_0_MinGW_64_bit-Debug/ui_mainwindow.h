@@ -27,25 +27,27 @@ public:
     QWidget *centralwidget;
     QWidget *layoutWidget;
     QGridLayout *gridLayout;
-    QDoubleSpinBox *Num_Yo;
-    QLabel *radio;
-    QPushButton *add;
-    QPushButton *continue_2;
+    QDoubleSpinBox *radio_2;
+    QLabel *masa;
+    QDoubleSpinBox *vely;
     QLabel *label_2;
-    QPushButton *continue_3;
     QDoubleSpinBox *Num_Xo;
-    QDoubleSpinBox *masa_2;
-    QLabel *Xo;
-    QLabel *Yo;
     QLabel *label;
     QDoubleSpinBox *velx;
-    QLabel *masa;
-    QPushButton *continue_4;
-    QDoubleSpinBox *vely;
-    QDoubleSpinBox *radio_2;
-    QPushButton *continue_5;
-    QPushButton *continue_6;
+    QDoubleSpinBox *masa_2;
+    QLabel *radio;
+    QLabel *Yo;
+    QDoubleSpinBox *Num_Yo;
+    QLabel *Xo;
     QGraphicsView *graphicsView;
+    QWidget *gridLayoutWidget;
+    QGridLayout *gridLayout_2;
+    QPushButton *continue_6;
+    QPushButton *continue_4;
+    QPushButton *continue_2;
+    QPushButton *add;
+    QPushButton *continue_5;
+    QPushButton *continue_3;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -56,42 +58,35 @@ public:
         centralwidget->setObjectName("centralwidget");
         layoutWidget = new QWidget(centralwidget);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(10, 80, 209, 272));
+        layoutWidget->setGeometry(QRect(20, 10, 209, 294));
         gridLayout = new QGridLayout(layoutWidget);
         gridLayout->setObjectName("gridLayout");
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        Num_Yo = new QDoubleSpinBox(layoutWidget);
-        Num_Yo->setObjectName("Num_Yo");
-        Num_Yo->setMinimum(-10000.000000000000000);
-        Num_Yo->setMaximum(10000.000000000000000);
-        Num_Yo->setSingleStep(0.010000000000000);
+        radio_2 = new QDoubleSpinBox(layoutWidget);
+        radio_2->setObjectName("radio_2");
+        radio_2->setMinimum(-10000.000000000000000);
+        radio_2->setMaximum(10000.000000000000000);
+        radio_2->setSingleStep(0.010000000000000);
 
-        gridLayout->addWidget(Num_Yo, 1, 1, 1, 1);
+        gridLayout->addWidget(radio_2, 3, 1, 1, 1);
 
-        radio = new QLabel(layoutWidget);
-        radio->setObjectName("radio");
+        masa = new QLabel(layoutWidget);
+        masa->setObjectName("masa");
 
-        gridLayout->addWidget(radio, 3, 0, 1, 1);
+        gridLayout->addWidget(masa, 2, 0, 1, 1);
 
-        add = new QPushButton(layoutWidget);
-        add->setObjectName("add");
+        vely = new QDoubleSpinBox(layoutWidget);
+        vely->setObjectName("vely");
+        vely->setMinimum(-10000.000000000000000);
+        vely->setMaximum(10000.000000000000000);
+        vely->setSingleStep(0.010000000000000);
 
-        gridLayout->addWidget(add, 6, 0, 1, 1);
-
-        continue_2 = new QPushButton(layoutWidget);
-        continue_2->setObjectName("continue_2");
-
-        gridLayout->addWidget(continue_2, 6, 1, 1, 1);
+        gridLayout->addWidget(vely, 5, 1, 1, 1);
 
         label_2 = new QLabel(layoutWidget);
         label_2->setObjectName("label_2");
 
         gridLayout->addWidget(label_2, 5, 0, 1, 1);
-
-        continue_3 = new QPushButton(layoutWidget);
-        continue_3->setObjectName("continue_3");
-
-        gridLayout->addWidget(continue_3, 7, 0, 1, 1);
 
         Num_Xo = new QDoubleSpinBox(layoutWidget);
         Num_Xo->setObjectName("Num_Xo");
@@ -100,25 +95,6 @@ public:
         Num_Xo->setSingleStep(0.010000000000000);
 
         gridLayout->addWidget(Num_Xo, 0, 1, 1, 1);
-
-        masa_2 = new QDoubleSpinBox(layoutWidget);
-        masa_2->setObjectName("masa_2");
-        masa_2->setMinimum(-10000.000000000000000);
-        masa_2->setMaximum(10000.000000000000000);
-        masa_2->setSingleStep(0.010000000000000);
-
-        gridLayout->addWidget(masa_2, 2, 1, 1, 1);
-
-        Xo = new QLabel(layoutWidget);
-        Xo->setObjectName("Xo");
-
-        gridLayout->addWidget(Xo, 0, 0, 1, 1);
-
-        Yo = new QLabel(layoutWidget);
-        Yo->setObjectName("Yo");
-        Yo->setEnabled(true);
-
-        gridLayout->addWidget(Yo, 1, 0, 1, 1);
 
         label = new QLabel(layoutWidget);
         label->setObjectName("label");
@@ -133,45 +109,77 @@ public:
 
         gridLayout->addWidget(velx, 4, 1, 1, 1);
 
-        masa = new QLabel(layoutWidget);
-        masa->setObjectName("masa");
+        masa_2 = new QDoubleSpinBox(layoutWidget);
+        masa_2->setObjectName("masa_2");
+        masa_2->setMinimum(-10000.000000000000000);
+        masa_2->setMaximum(10000.000000000000000);
+        masa_2->setSingleStep(0.010000000000000);
 
-        gridLayout->addWidget(masa, 2, 0, 1, 1);
+        gridLayout->addWidget(masa_2, 2, 1, 1, 1);
 
-        continue_4 = new QPushButton(layoutWidget);
-        continue_4->setObjectName("continue_4");
+        radio = new QLabel(layoutWidget);
+        radio->setObjectName("radio");
 
-        gridLayout->addWidget(continue_4, 7, 1, 1, 1);
+        gridLayout->addWidget(radio, 3, 0, 1, 1);
 
-        vely = new QDoubleSpinBox(layoutWidget);
-        vely->setObjectName("vely");
-        vely->setMinimum(-10000.000000000000000);
-        vely->setMaximum(10000.000000000000000);
-        vely->setSingleStep(0.010000000000000);
+        Yo = new QLabel(layoutWidget);
+        Yo->setObjectName("Yo");
+        Yo->setEnabled(true);
 
-        gridLayout->addWidget(vely, 5, 1, 1, 1);
+        gridLayout->addWidget(Yo, 1, 0, 1, 1);
 
-        radio_2 = new QDoubleSpinBox(layoutWidget);
-        radio_2->setObjectName("radio_2");
-        radio_2->setMinimum(-10000.000000000000000);
-        radio_2->setMaximum(10000.000000000000000);
-        radio_2->setSingleStep(0.010000000000000);
+        Num_Yo = new QDoubleSpinBox(layoutWidget);
+        Num_Yo->setObjectName("Num_Yo");
+        Num_Yo->setMinimum(-10000.000000000000000);
+        Num_Yo->setMaximum(10000.000000000000000);
+        Num_Yo->setSingleStep(0.010000000000000);
 
-        gridLayout->addWidget(radio_2, 3, 1, 1, 1);
+        gridLayout->addWidget(Num_Yo, 1, 1, 1, 1);
 
-        continue_5 = new QPushButton(layoutWidget);
-        continue_5->setObjectName("continue_5");
+        Xo = new QLabel(layoutWidget);
+        Xo->setObjectName("Xo");
 
-        gridLayout->addWidget(continue_5, 8, 0, 1, 1);
-
-        continue_6 = new QPushButton(layoutWidget);
-        continue_6->setObjectName("continue_6");
-
-        gridLayout->addWidget(continue_6, 8, 1, 1, 1);
+        gridLayout->addWidget(Xo, 0, 0, 1, 1);
 
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName("graphicsView");
-        graphicsView->setGeometry(QRect(240, 10, 1001, 621));
+        graphicsView->setGeometry(QRect(240, 10, 1041, 681));
+        gridLayoutWidget = new QWidget(centralwidget);
+        gridLayoutWidget->setObjectName("gridLayoutWidget");
+        gridLayoutWidget->setGeometry(QRect(40, 320, 160, 176));
+        gridLayout_2 = new QGridLayout(gridLayoutWidget);
+        gridLayout_2->setObjectName("gridLayout_2");
+        gridLayout_2->setContentsMargins(0, 0, 0, 0);
+        continue_6 = new QPushButton(gridLayoutWidget);
+        continue_6->setObjectName("continue_6");
+
+        gridLayout_2->addWidget(continue_6, 1, 0, 1, 1);
+
+        continue_4 = new QPushButton(gridLayoutWidget);
+        continue_4->setObjectName("continue_4");
+
+        gridLayout_2->addWidget(continue_4, 5, 0, 1, 1);
+
+        continue_2 = new QPushButton(gridLayoutWidget);
+        continue_2->setObjectName("continue_2");
+
+        gridLayout_2->addWidget(continue_2, 7, 0, 1, 1);
+
+        add = new QPushButton(gridLayoutWidget);
+        add->setObjectName("add");
+
+        gridLayout_2->addWidget(add, 2, 0, 1, 1);
+
+        continue_5 = new QPushButton(gridLayoutWidget);
+        continue_5->setObjectName("continue_5");
+
+        gridLayout_2->addWidget(continue_5, 0, 0, 1, 1);
+
+        continue_3 = new QPushButton(gridLayoutWidget);
+        continue_3->setObjectName("continue_3");
+
+        gridLayout_2->addWidget(continue_3, 8, 0, 1, 1);
+
         MainWindow->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow);
@@ -182,18 +190,18 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        radio->setText(QCoreApplication::translate("MainWindow", "Radio", nullptr));
-        add->setText(QCoreApplication::translate("MainWindow", "Agregar", nullptr));
-        continue_2->setText(QCoreApplication::translate("MainWindow", "Iniciar", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "Vel Y ini", nullptr));
-        continue_3->setText(QCoreApplication::translate("MainWindow", "Reiniciar", nullptr));
-        Xo->setText(QCoreApplication::translate("MainWindow", "Pos X ini", nullptr));
-        Yo->setText(QCoreApplication::translate("MainWindow", "Pos y ini", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "Vel X Ini", nullptr));
         masa->setText(QCoreApplication::translate("MainWindow", "Masa", nullptr));
-        continue_4->setText(QCoreApplication::translate("MainWindow", "Borrar \303\232ltimo", nullptr));
-        continue_5->setText(QCoreApplication::translate("MainWindow", "Simulaci\303\263n 1", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "Vel Y ini", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Vel X Ini", nullptr));
+        radio->setText(QCoreApplication::translate("MainWindow", "Radio", nullptr));
+        Yo->setText(QCoreApplication::translate("MainWindow", "Pos y ini", nullptr));
+        Xo->setText(QCoreApplication::translate("MainWindow", "Pos X ini", nullptr));
         continue_6->setText(QCoreApplication::translate("MainWindow", "Simulaci\303\263n 2", nullptr));
+        continue_4->setText(QCoreApplication::translate("MainWindow", "Borrar \303\232ltimo", nullptr));
+        continue_2->setText(QCoreApplication::translate("MainWindow", "Iniciar", nullptr));
+        add->setText(QCoreApplication::translate("MainWindow", "Agregar", nullptr));
+        continue_5->setText(QCoreApplication::translate("MainWindow", "Simulaci\303\263n 1", nullptr));
+        continue_3->setText(QCoreApplication::translate("MainWindow", "Reiniciar", nullptr));
     } // retranslateUi
 
 };

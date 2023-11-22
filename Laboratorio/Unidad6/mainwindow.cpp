@@ -43,7 +43,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    srand(time(NULL));
+
+    QPalette pal = palette();
+    pal.setColor(QPalette::Window, Qt::darkBlue);
+    pal.setColor(QPalette::WindowText, Qt::white);
+    ui->centralwidget->setAutoFillBackground(true);
+    ui->centralwidget->setPalette(pal);
+    QBrush brush(QColor(187, 254, 254));
+    scene->setBackgroundBrush(brush);
+    this->setWindowTitle("Simulación Sistema Gravitacional");
 
 }
 
@@ -99,12 +107,12 @@ void MainWindow::update()
                         masa = system[i]->getMasa();
                         posx = system[i]->getX();
                         posy = system[i]->getY();
-                        system[j]->aceleracion(masa, posx, posy);
+                        system[j]->acceleration(masa, posx, posy);
                     }
 
                 }
-                system[j]->velocidades();
-                system[j]->posiciones();
+                system[j]->vels();
+                system[j]->positions();
                 writeFile(posx,posy, false);
 
                 system[j]->setAx(0);

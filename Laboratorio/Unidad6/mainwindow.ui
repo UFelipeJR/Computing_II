@@ -17,15 +17,15 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>80</y>
+      <x>20</x>
+      <y>10</y>
       <width>209</width>
-      <height>272</height>
+      <height>294</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="1" column="1">
-      <widget class="QDoubleSpinBox" name="Num_Yo">
+     <item row="3" column="1">
+      <widget class="QDoubleSpinBox" name="radio_2">
        <property name="minimum">
         <double>-10000.000000000000000</double>
        </property>
@@ -37,24 +37,23 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="radio">
+     <item row="2" column="0">
+      <widget class="QLabel" name="masa">
        <property name="text">
-        <string>Radio</string>
+        <string>Masa</string>
        </property>
       </widget>
      </item>
-     <item row="6" column="0">
-      <widget class="QPushButton" name="add">
-       <property name="text">
-        <string>Agregar</string>
+     <item row="5" column="1">
+      <widget class="QDoubleSpinBox" name="vely">
+       <property name="minimum">
+        <double>-10000.000000000000000</double>
        </property>
-      </widget>
-     </item>
-     <item row="6" column="1">
-      <widget class="QPushButton" name="continue_2">
-       <property name="text">
-        <string>Iniciar</string>
+       <property name="maximum">
+        <double>10000.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.010000000000000</double>
        </property>
       </widget>
      </item>
@@ -65,15 +64,28 @@
        </property>
       </widget>
      </item>
-     <item row="7" column="0">
-      <widget class="QPushButton" name="continue_3">
-       <property name="text">
-        <string>Reiniciar</string>
+     <item row="0" column="1">
+      <widget class="QDoubleSpinBox" name="Num_Xo">
+       <property name="minimum">
+        <double>-10000.000000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>10000.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.010000000000000</double>
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QDoubleSpinBox" name="Num_Xo">
+     <item row="4" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Vel X Ini</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QDoubleSpinBox" name="velx">
        <property name="minimum">
         <double>-10000.000000000000000</double>
        </property>
@@ -98,10 +110,10 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="Xo">
+     <item row="3" column="0">
+      <widget class="QLabel" name="radio">
        <property name="text">
-        <string>Pos X ini</string>
+        <string>Radio</string>
        </property>
       </widget>
      </item>
@@ -115,15 +127,8 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Vel X Ini</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QDoubleSpinBox" name="velx">
+     <item row="1" column="1">
+      <widget class="QDoubleSpinBox" name="Num_Yo">
        <property name="minimum">
         <double>-10000.000000000000000</double>
        </property>
@@ -135,57 +140,10 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="masa">
+     <item row="0" column="0">
+      <widget class="QLabel" name="Xo">
        <property name="text">
-        <string>Masa</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="1">
-      <widget class="QPushButton" name="continue_4">
-       <property name="text">
-        <string>Borrar Último</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QDoubleSpinBox" name="vely">
-       <property name="minimum">
-        <double>-10000.000000000000000</double>
-       </property>
-       <property name="maximum">
-        <double>10000.000000000000000</double>
-       </property>
-       <property name="singleStep">
-        <double>0.010000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QDoubleSpinBox" name="radio_2">
-       <property name="minimum">
-        <double>-10000.000000000000000</double>
-       </property>
-       <property name="maximum">
-        <double>10000.000000000000000</double>
-       </property>
-       <property name="singleStep">
-        <double>0.010000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="0">
-      <widget class="QPushButton" name="continue_5">
-       <property name="text">
-        <string>Simulación 1</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="1">
-      <widget class="QPushButton" name="continue_6">
-       <property name="text">
-        <string>Simulación 2</string>
+        <string>Pos X ini</string>
        </property>
       </widget>
      </item>
@@ -196,10 +154,64 @@
      <rect>
       <x>240</x>
       <y>10</y>
-      <width>1001</width>
-      <height>621</height>
+      <width>1041</width>
+      <height>681</height>
      </rect>
     </property>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>320</y>
+      <width>160</width>
+      <height>176</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="1" column="0">
+      <widget class="QPushButton" name="continue_6">
+       <property name="text">
+        <string>Simulación 2</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QPushButton" name="continue_4">
+       <property name="text">
+        <string>Borrar Último</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
+      <widget class="QPushButton" name="continue_2">
+       <property name="text">
+        <string>Iniciar</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="add">
+       <property name="text">
+        <string>Agregar</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="continue_5">
+       <property name="text">
+        <string>Simulación 1</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="0">
+      <widget class="QPushButton" name="continue_3">
+       <property name="text">
+        <string>Reiniciar</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>
