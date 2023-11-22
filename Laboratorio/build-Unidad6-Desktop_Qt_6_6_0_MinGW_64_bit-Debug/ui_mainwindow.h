@@ -32,6 +32,7 @@ public:
     QPushButton *add;
     QPushButton *continue_2;
     QLabel *label_2;
+    QPushButton *continue_3;
     QDoubleSpinBox *Num_Xo;
     QDoubleSpinBox *masa_2;
     QLabel *Xo;
@@ -39,9 +40,11 @@ public:
     QLabel *label;
     QDoubleSpinBox *velx;
     QLabel *masa;
+    QPushButton *continue_4;
     QDoubleSpinBox *vely;
     QDoubleSpinBox *radio_2;
-    QPushButton *continue_3;
+    QPushButton *continue_5;
+    QPushButton *continue_6;
     QGraphicsView *graphicsView;
 
     void setupUi(QMainWindow *MainWindow)
@@ -53,7 +56,7 @@ public:
         centralwidget->setObjectName("centralwidget");
         layoutWidget = new QWidget(centralwidget);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(10, 80, 168, 242));
+        layoutWidget->setGeometry(QRect(10, 80, 168, 272));
         gridLayout = new QGridLayout(layoutWidget);
         gridLayout->setObjectName("gridLayout");
         gridLayout->setContentsMargins(0, 0, 0, 0);
@@ -84,6 +87,11 @@ public:
         label_2->setObjectName("label_2");
 
         gridLayout->addWidget(label_2, 5, 0, 1, 1);
+
+        continue_3 = new QPushButton(layoutWidget);
+        continue_3->setObjectName("continue_3");
+
+        gridLayout->addWidget(continue_3, 7, 0, 1, 1);
 
         Num_Xo = new QDoubleSpinBox(layoutWidget);
         Num_Xo->setObjectName("Num_Xo");
@@ -130,6 +138,11 @@ public:
 
         gridLayout->addWidget(masa, 2, 0, 1, 1);
 
+        continue_4 = new QPushButton(layoutWidget);
+        continue_4->setObjectName("continue_4");
+
+        gridLayout->addWidget(continue_4, 7, 1, 1, 1);
+
         vely = new QDoubleSpinBox(layoutWidget);
         vely->setObjectName("vely");
         vely->setMinimum(-10000.000000000000000);
@@ -146,10 +159,15 @@ public:
 
         gridLayout->addWidget(radio_2, 3, 1, 1, 1);
 
-        continue_3 = new QPushButton(layoutWidget);
-        continue_3->setObjectName("continue_3");
+        continue_5 = new QPushButton(layoutWidget);
+        continue_5->setObjectName("continue_5");
 
-        gridLayout->addWidget(continue_3, 7, 0, 1, 1);
+        gridLayout->addWidget(continue_5, 8, 0, 1, 1);
+
+        continue_6 = new QPushButton(layoutWidget);
+        continue_6->setObjectName("continue_6");
+
+        gridLayout->addWidget(continue_6, 8, 1, 1, 1);
 
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName("graphicsView");
@@ -168,11 +186,14 @@ public:
         add->setText(QCoreApplication::translate("MainWindow", "Agregar", nullptr));
         continue_2->setText(QCoreApplication::translate("MainWindow", "Continuar", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Vel Y ini", nullptr));
+        continue_3->setText(QCoreApplication::translate("MainWindow", "Reiniciar", nullptr));
         Xo->setText(QCoreApplication::translate("MainWindow", "Pos X ini", nullptr));
         Yo->setText(QCoreApplication::translate("MainWindow", "Pos y ini", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Vel X Ini", nullptr));
         masa->setText(QCoreApplication::translate("MainWindow", "Masa", nullptr));
-        continue_3->setText(QCoreApplication::translate("MainWindow", "Reiniciar", nullptr));
+        continue_4->setText(QCoreApplication::translate("MainWindow", "Borrar \303\232ltimo", nullptr));
+        continue_5->setText(QCoreApplication::translate("MainWindow", "Simulaci\303\263n 1", nullptr));
+        continue_6->setText(QCoreApplication::translate("MainWindow", "Simulaci\303\263n 2", nullptr));
     } // retranslateUi
 
 };

@@ -20,7 +20,7 @@
       <x>10</x>
       <y>80</y>
       <width>168</width>
-      <height>242</height>
+      <height>272</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -62,6 +62,13 @@
       <widget class="QLabel" name="label_2">
        <property name="text">
         <string>Vel Y ini</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
+      <widget class="QPushButton" name="continue_3">
+       <property name="text">
+        <string>Reiniciar</string>
        </property>
       </widget>
      </item>
@@ -135,6 +142,13 @@
        </property>
       </widget>
      </item>
+     <item row="7" column="1">
+      <widget class="QPushButton" name="continue_4">
+       <property name="text">
+        <string>Borrar Último</string>
+       </property>
+      </widget>
+     </item>
      <item row="5" column="1">
       <widget class="QDoubleSpinBox" name="vely">
        <property name="minimum">
@@ -161,10 +175,17 @@
        </property>
       </widget>
      </item>
-     <item row="7" column="0">
-      <widget class="QPushButton" name="continue_3">
+     <item row="8" column="0">
+      <widget class="QPushButton" name="continue_5">
        <property name="text">
-        <string>Reiniciar</string>
+        <string>Simulación 1</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QPushButton" name="continue_6">
+       <property name="text">
+        <string>Simulación 2</string>
        </property>
       </widget>
      </item>

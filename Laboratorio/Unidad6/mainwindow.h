@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
-#include <cuerpo.h>
+#include <body.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,7 +19,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    QList <cuerpo*> sistema;
+    QList <body*> system;
     QGraphicsScene *scene;
     QTimer *timer;
     bool state;
@@ -29,6 +29,9 @@ private slots:
     void add_instance();
     void update();
     void reset();
+    void deleteLast();
+    void system1();
+    void system2();
 };
 
 #endif // MAINWINDOW_H
