@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef SIMULATION_H
+#define SIMULATION_H
 
 #include <QMainWindow>
 #include <QTimer>
@@ -11,13 +11,13 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class simulation : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    simulation(QWidget *parent = nullptr);
+    ~simulation();
     void writeFile(float val1, float val2, bool nl);
 
 private:
@@ -40,4 +40,4 @@ private slots:
     void repairButtons();
 };
 
-#endif // MAINWINDOW_H
+#endif // SIMULATION_H

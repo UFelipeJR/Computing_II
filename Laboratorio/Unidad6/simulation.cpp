@@ -1,7 +1,7 @@
-#include "mainwindow.h"
+#include "simulation.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
+simulation::simulation(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
-MainWindow::~MainWindow()
+simulation::~simulation()
 {
     delete ui;
     delete timer;
@@ -63,12 +63,12 @@ MainWindow::~MainWindow()
     delete scene;
 }
 
-void MainWindow::iniciar_clicked()
+void simulation::iniciar_clicked()
 {
     state = true;
 }
 
-void MainWindow::add_instance()
+void simulation::add_instance()
 {
     numSimulation = 3;
     timer->start(33);
@@ -92,8 +92,7 @@ void MainWindow::add_instance()
 
 }
 
-
-void MainWindow::update()
+void simulation::update()
 {
 
     float masa, posx, posy;
@@ -125,7 +124,7 @@ void MainWindow::update()
 }
 
 
-void MainWindow::writeFile(float val1, float val2, bool nl)
+void simulation::writeFile(float val1, float val2, bool nl)
 {
     std::string namefile;
 
@@ -155,7 +154,7 @@ void MainWindow::writeFile(float val1, float val2, bool nl)
 
 }
 
-void MainWindow::reset()
+void simulation::reset()
 {
     body* elementoActual;
     for (QList<body*>::iterator it = system.begin(); it != system.end(); ++it) {
@@ -166,7 +165,7 @@ void MainWindow::reset()
     state = false;
 }
 
-void MainWindow::deleteLast()
+void simulation::deleteLast()
 {
     if (!system.isEmpty())
     {
@@ -176,7 +175,7 @@ void MainWindow::deleteLast()
     }
 }
 
-void MainWindow::system1()
+void simulation::system1()
 {
     numSimulation = 1;
     timer->start(33);
@@ -191,7 +190,7 @@ void MainWindow::system1()
 
 }
 
-void MainWindow::system2()
+void simulation::system2()
 {
     numSimulation = 2;
     timer->start(33);
@@ -211,7 +210,7 @@ void MainWindow::system2()
     scene->addItem(system.last());
 }
 
-void MainWindow::repairButtons()
+void simulation::repairButtons()
 {
     if (system.isEmpty() || system.size() == 0){
         ui->continue_2->setEnabled(false);
