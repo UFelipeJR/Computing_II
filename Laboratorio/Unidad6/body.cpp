@@ -3,43 +3,90 @@
 
 body::body()
 {
-
-}
-
-body::body(float _x, float _y, float _masa, float _rad, float _vx, float _vy)
-{
-    x = _x;
-    y = _y;
-    vx = _vx;
-    vy = _vy;
+    x = 0;
+    y = 0;
+    vx = 0;
+    vy = 0;
     ax = 0;
     ay = 0;
-    radio = _rad;
-    masa = _masa;
+    rad = 0;
+    mass = 0;
+
+    setPos(0,0);
+
+    color = genRandomColor();
+}
+
+body::body(float x, float y, float mass, float rad, float vx, float vy)
+{
+    this->x = x;
+    this->y = y;
+    this->vx = vx;
+    this->vy = vy;
+    this->ax = 0;
+    this->ay = 0;
+    this->rad = rad;
+    this->mass = mass;
 
     setPos((x/EX), (-y/EY));
+
+    color = genRandomColor();
 
 
 }
 
 QRectF body::boundingRect() const
 {
-    return QRect(-radio/EX, -radio/EX, (radio/EX)*2, (radio/EX)*2);
+    return QRect(-rad/EX, -rad/EX, (rad/EX)*2, (rad/EX)*2);
 }
 
 void body::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
 
-    QColor colours[10] = {QColor("cyan"), QColor("magenta"), QColor("red"),
-                          QColor("darkRed"), QColor("darkCyan"), QColor("darkMagenta"),
-                          QColor("green"), QColor("darkGreen"), QColor("yellow"),
-                          QColor("blue")};
-
-    int num = rand()%10;
-
-    painter->setBrush(colours[num]);
+    painter->setBrush(color);
     painter->drawEllipse(boundingRect());
 }
+
+void body::acceleration(float m2, float x2, float y2)
+{
+
+    float r=0;
+    float alpha=0;
+
+    r = sqrt(pow((x2-x),2) + pow((y2-y),2));
+
+    if (x2!=x) alpha = atan2((y2-y),(x2-x));
+    else alpha = 0;
+
+
+    ax += (G * m2 * cos(alpha)) / pow(r,2);
+    ay += (G * m2 * sin(alpha)) / pow(r,2);
+}
+
+void body::vels()
+{
+    vx = vx + (ax*DT);
+    vy = vy + (ay*DT);
+}
+
+void body::positions()
+{
+    x = x + (vx * DT) + (0.5 * ax * pow(DT,2));
+    y = y + (vy * DT) + (0.5 * ay * pow(DT,2));
+
+    setPos((x/EX), (-y/EY));
+}
+
+QColor body::genRandomColor()
+{
+    int red = std::rand() % 256;
+    int green = std::rand() % 256;
+    int blue = std::rand() % 256;
+
+    return QColor(red, green, blue);
+}
+
+
 
 float body::getX() const
 {
@@ -67,74 +114,43 @@ float body::getAy() const
 }
 float body::getRad() const
 {
-    return radio;
+    return rad;
 }
 float body::getMasa() const
 {
-    return masa;
+    return mass;
 }
 
 
-void body::setX(float value)
+void body::setX(float val)
 {
-    x = value;
+    x = val;
 }
-void body::setY(float value)
+void body::setY(float val)
 {
-    y = value;
+    y = val;
 }
-void body::setVx(float value)
+void body::setVx(float val)
 {
-    vx = value;
+    vx = val;
 }
-void body::setVy(float value)
+void body::setVy(float val)
 {
-    vy = value;
+    vy = val;
 }
-void body::setAx(float value)
+void body::setAx(float val)
 {
-    ax = value;
+    ax = val;
 }
-void body::setAy(float value)
+void body::setAy(float val)
 {
-    ay = value;
+    ay = val;
 }
-void body::setRad(float value)
+void body::setRad(float val)
 {
-    radio = value;
+    rad = val;
 }
-void body::setMasa(float value)
+void body::setMasa(float val)
 {
-    masa = value;
-}
-
-
-void body::aceleracion(float m2, float x2, float y2)
-{
-
-    float r=0;
-    float alpha=0;
-
-    r = sqrt(pow((x2-x),2) + pow((y2-y),2));
-
-    if (x2!=x) alpha = atan2((y2-y),(x2-x));
-    else alpha = 0;
-
-
-    ax += (G * m2 * cos(alpha)) / pow(r,2);
-    ay += (G * m2 * sin(alpha)) / pow(r,2);
-}
-
-void body::velocidades()
-{
-    vx = vx + (ax*DT);
-    vy = vy + (ay*DT);
-}
-
-void body::posiciones()
-{
-    x = x + (vx * DT) + (0.5 * ax * pow(DT,2));
-    y = y + (vy * DT) + (0.5 * ay * pow(DT,2));
-
-    setPos((x/EX), (-y/EY));
+    mass = val;
 }

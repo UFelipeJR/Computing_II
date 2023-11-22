@@ -10,18 +10,19 @@
 #include <QGraphicsItem>
 #include <QPainter>
 #include <cmath>
+#include <qcolor.h>
 #include<stdlib.h>
 #include<time.h>
 
 class body : public QGraphicsItem
 {
 private:
-    float x, y, vx, vy, ax, ay, radio, masa;
-    bool centro;
+    float x, y, vx, vy, ax, ay, rad, mass;
+    QColor color;
 
 public:
     body();
-    body(float _x, float _y, float _masa, float _radio, float _vx, float _vy);
+    body(float x, float y, float mass, float rad, float vx, float vy);
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -36,18 +37,20 @@ public:
     float getMasa() const;
     bool getCentro() const;
 
-    void setX(float value);
-    void setY(float value);
-    void setVx(float value);
-    void setVy(float value);
-    void setAx(float value);
-    void setAy(float value);
-    void setRad(float value);
-    void setMasa(float value);
+    void setX(float val);
+    void setY(float val);
+    void setVx(float val);
+    void setVy(float val);
+    void setAx(float val);
+    void setAy(float val);
+    void setRad(float val);
+    void setMasa(float val);
 
-    void aceleracion(float m2, float x2, float y2);
-    void velocidades();
-    void posiciones();
+    void acceleration(float m2, float x2, float y2);
+    void vels();
+    void positions();
+
+    QColor genRandomColor();
 };
 
 #endif // BODY_H
