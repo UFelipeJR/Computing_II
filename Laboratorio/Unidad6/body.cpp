@@ -1,12 +1,12 @@
-#include "cuerpo.h"
+#include "body.h"
 
 
-cuerpo::cuerpo()
+body::body()
 {
 
 }
 
-cuerpo::cuerpo(float _x, float _y, float _masa, float _rad, float _vx, float _vy)
+body::body(float _x, float _y, float _masa, float _rad, float _vx, float _vy)
 {
     x = _x;
     y = _y;
@@ -20,86 +20,86 @@ cuerpo::cuerpo(float _x, float _y, float _masa, float _rad, float _vx, float _vy
     setPos((x/EX), (-y/EY));
 }
 
-QRectF cuerpo::boundingRect() const
+QRectF body::boundingRect() const
 {
     return QRect(-radio/EX, -radio/EX, (radio/EX)*2, (radio/EX)*2);
 }
 
-void cuerpo::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void body::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     painter->setBrush(Qt::darkRed);
     painter->drawEllipse(boundingRect());
 }
 
-float cuerpo::getX() const
+float body::getX() const
 {
     return x;
 }
-float cuerpo::getY() const
+float body::getY() const
 {
     return y;
 }
-float cuerpo::getVx() const
+float body::getVx() const
 {
     return vx;
 }
-float cuerpo::getVy() const
+float body::getVy() const
 {
     return vy;
 }
-float cuerpo::getAx() const
+float body::getAx() const
 {
     return ax;
 }
-float cuerpo::getAy() const
+float body::getAy() const
 {
     return ay;
 }
-float cuerpo::getRad() const
+float body::getRad() const
 {
     return radio;
 }
-float cuerpo::getMasa() const
+float body::getMasa() const
 {
     return masa;
 }
 
 
-void cuerpo::setX(float value)
+void body::setX(float value)
 {
     x = value;
 }
-void cuerpo::setY(float value)
+void body::setY(float value)
 {
     y = value;
 }
-void cuerpo::setVx(float value)
+void body::setVx(float value)
 {
     vx = value;
 }
-void cuerpo::setVy(float value)
+void body::setVy(float value)
 {
     vy = value;
 }
-void cuerpo::setAx(float value)
+void body::setAx(float value)
 {
     ax = value;
 }
-void cuerpo::setAy(float value)
+void body::setAy(float value)
 {
     ay = value;
 }
-void cuerpo::setRad(float value)
+void body::setRad(float value)
 {
     radio = value;
 }
-void cuerpo::setMasa(float value)
+void body::setMasa(float value)
 {
     masa = value;
 }
 
 
-void cuerpo::aceleracion(float m2, float x2, float y2)
+void body::aceleracion(float m2, float x2, float y2)
 {
 
     float r=0;
@@ -115,13 +115,13 @@ void cuerpo::aceleracion(float m2, float x2, float y2)
     ay += (G * m2 * sin(alpha)) / pow(r,2);
 }
 
-void cuerpo::velocidades()
+void body::velocidades()
 {
     vx = vx + (ax*DT);
     vy = vy + (ay*DT);
 }
 
-void cuerpo::posiciones()
+void body::posiciones()
 {
     x = x + (vx * DT) + (0.5 * ax * pow(DT,2));
     y = y + (vy * DT) + (0.5 * ay * pow(DT,2));

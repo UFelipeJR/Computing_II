@@ -1,5 +1,5 @@
-#ifndef CUERPO_H
-#define CUERPO_H
+#ifndef BODY_H
+#define BODY_H
 
 #define EY 20
 #define EX 10
@@ -11,15 +11,15 @@
 #include <QPainter>
 #include <cmath>
 
-class cuerpo : public QGraphicsItem
+class body : public QGraphicsItem
 {
 private:
     float x, y, vx, vy, ax, ay, radio, masa;
     bool centro;
 
 public:
-    cuerpo();
-    cuerpo(float _x, float _y, float _masa, float _radio, float _vx, float _vy);
+    body();
+    body(float _x, float _y, float _masa, float _radio, float _vx, float _vy);
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -51,4 +51,4 @@ public:
     void posiciones();
 };
 
-#endif // CUERPO_H
+#endif // BODY_H
