@@ -12,6 +12,11 @@ body::body()
     rad = 0;
     mass = 0;
 
+    EY = 20;
+    EX = 10;
+    G  = 1;
+    DT = 1;
+
     setPos(0,0);
 
     color = genRandomColor();
@@ -27,6 +32,11 @@ body::body(float x, float y, float mass, float rad, float vx, float vy)
     this->ay = 0;
     this->rad = rad;
     this->mass = mass;
+
+    EY = 20;
+    EX = 10;
+    G  = 1;
+    DT = 1;
 
     setPos((x/EX), (-y/EY));
 
@@ -55,9 +65,12 @@ void body::acceleration(float m2, float x2, float y2)
 
     r = sqrt(pow((x2-x),2) + pow((y2-y),2));
 
-    if (x2!=x) alpha = atan2((y2-y),(x2-x));
-    else alpha = 0;
-
+    if (x2!=x){
+        alpha = atan2((y2-y),(x2-x));
+    }
+    else{
+        alpha = 0;
+    }
 
     ax += (G * m2 * cos(alpha)) / pow(r,2);
     ay += (G * m2 * sin(alpha)) / pow(r,2);

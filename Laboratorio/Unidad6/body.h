@@ -1,11 +1,12 @@
 #ifndef BODY_H
 #define BODY_H
 
+/*
 #define EY 20
 #define EX 10
-
 #define G 1
 #define DT 1
+*/
 
 #include <QGraphicsItem>
 #include <QPainter>
@@ -18,6 +19,7 @@ class body : public QGraphicsItem
 {
 private:
     float x, y, vx, vy, ax, ay, rad, mass;
+    int EY, EX,G,DT;
     QColor color;
 
 public:

@@ -220,8 +220,9 @@ void simulation::repairButtons()
         ui->continue_2->setEnabled(true);
         ui->continue_4->setEnabled(true);
     }
-}
 
+
+}
 
 
 
